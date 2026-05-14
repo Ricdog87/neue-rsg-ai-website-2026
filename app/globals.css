@@ -124,3 +124,10 @@ body {
     transition: none;
   }
 }
+
+/* Video background gradient-shift fallback */
+@keyframes gradientShift {
+  0%   { opacity: 0.6; filter: hue-rotate(0deg); }
+  50%  { opacity: 0.9; filter: hue-rotate(20deg); }
+  100% { opacity: 0.6; filter: hue-rotate(-10deg); }
+}

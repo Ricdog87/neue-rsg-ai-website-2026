@@ -13,18 +13,33 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-[hsl(var(--bg))] noise"
+      /*
+       * KEY FIX: removed bg-[hsl(var(--bg))] — the VideoBackground overlay
+       * now provides the dark background. Keeping bg here would paint over
+       * the absolutely-positioned video child.
+       *
+       * Also removed `isolate` — it was creating a stacking context that trapped
+       * z-index: -N children behind its own background.
+       *
+       * overflow-hidden clips the taller video to the hero bounds.
+       */
+      className="relative flex min-h-[100svh] flex-col overflow-hidden noise"
+      style={{ backgroundColor: 'hsl(240 10% 4%)' }} // fallback for no-JS
     >
-      {/* Cinematic background video (fixed, parallax, prefers-reduced-motion safe) */}
+      {/* z:0 — video + overlay */}
       <VideoBackground />
 
-      {/* Brand glow / lens flare — sits above video, behind content */}
-      <LensFlare />
+      {/* z:10 — brand glow on top of video overlay */}
+      <div className="relative z-10">
+        <LensFlare />
+      </div>
 
-      {/* 3-D floating astronaut — hero visual */}
-      <AstronautPlaceholder />
+      {/* z:10 — floating astronaut */}
+      <div className="relative z-10">
+        <AstronautPlaceholder />
+      </div>
 
-      {/* Content layer */}
+      {/* z:20 — all text + CTA content */}
       <div className="relative z-20 flex flex-1 flex-col justify-between px-6 pt-32 pb-12 md:pt-40">
         <div className="mx-auto w-full max-w-7xl">
           <motion.p
@@ -86,7 +101,7 @@ export function Hero() {
           </motion.ul>
         </div>
 
-        {/* Live-Stats strip at hero bottom */}
+        {/* Live-Stats Strip */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,9 +118,7 @@ export function Hero() {
           <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/5 pt-6 sm:grid-cols-4 lg:grid-cols-7">
             {liveStats.map((s) => (
               <div key={s.label}>
-                <div className="font-display text-2xl text-[hsl(var(--fg))] md:text-3xl">
-                  {s.value}
-                </div>
+                <div className="font-display text-2xl text-[hsl(var(--fg))] md:text-3xl">{s.value}</div>
                 <div className="mt-1 text-xs text-[hsl(var(--muted))]">{s.label}</div>
               </div>
             ))}

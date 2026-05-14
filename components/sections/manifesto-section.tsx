@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { about, site } from '@/lib/content';
+import { about } from '@/lib/content';
 
 export function ManifestoSection() {
   return (

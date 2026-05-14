@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { liveAgents } from '@/lib/content';
-import { cn } from '@/lib/utils';
+
 
 function useCountUp(target: number, duration = 1800) {
   const [count, setCount] = useState(0);

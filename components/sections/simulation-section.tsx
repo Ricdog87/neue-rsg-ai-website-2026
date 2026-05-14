@@ -91,6 +91,7 @@ export function SimulationSection() {
     obs.observe(el);
     return () => {
       obs.disconnect();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       timersRef.current.forEach(clearTimeout);
     };
   }, []);

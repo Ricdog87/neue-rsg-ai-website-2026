@@ -95,3 +95,9 @@ body {
   pointer-events: none;
   mix-blend-mode: overlay;
 }
+
+/* Marquee animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

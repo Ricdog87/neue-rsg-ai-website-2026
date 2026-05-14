@@ -14,26 +14,27 @@ import { TimelineSection } from '@/components/sections/timeline-section';
 import { TechStackSection } from '@/components/sections/techstack-section';
 import { AboutSection } from '@/components/sections/about-section';
 import { ContactSection } from '@/components/sections/contact-section';
+import { SectionReveal } from '@/components/ui/section-reveal';
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <TrustMarquee />
-      <LiveAgentsSection />
-      <ProblemsSection />
-      <SolutionsSection />
-      <SimulationSection />
-      <UseCasesSection />
-      <ManifestoSection />
-      <RoiSection />
-      <TechExplainerSection />
-      <PricingSection />
-      <TestimonialsSection />
-      <TimelineSection />
-      <TechStackSection />
-      <AboutSection />
-      <ContactSection />
+      <SectionReveal><LiveAgentsSection /></SectionReveal>
+      <SectionReveal><ProblemsSection /></SectionReveal>
+      <SectionReveal><SolutionsSection /></SectionReveal>
+      <SectionReveal><SimulationSection /></SectionReveal>
+      <SectionReveal><UseCasesSection /></SectionReveal>
+      <SectionReveal><ManifestoSection /></SectionReveal>
+      <SectionReveal><RoiSection /></SectionReveal>
+      <SectionReveal><TechExplainerSection /></SectionReveal>
+      <SectionReveal><PricingSection /></SectionReveal>
+      <SectionReveal><TestimonialsSection /></SectionReveal>
+      <SectionReveal><TimelineSection /></SectionReveal>
+      <SectionReveal><TechStackSection /></SectionReveal>
+      <SectionReveal><AboutSection /></SectionReveal>
+      <SectionReveal><ContactSection /></SectionReveal>
     </>
   );
 }

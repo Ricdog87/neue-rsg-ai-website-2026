@@ -6,6 +6,7 @@ import { hero, liveStats, site } from '@/lib/content';
 import { KineticTypo } from '@/components/hero/kinetic-typo';
 import { LensFlare } from '@/components/hero/lens-flare';
 import { AstronautPlaceholder } from '@/components/hero/astronaut-placeholder';
+import { VideoBackground } from '@/components/hero/video-background';
 import { Button } from '@/components/ui/button';
 
 export function Hero() {
@@ -14,7 +15,13 @@ export function Hero() {
       id="hero"
       className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-[hsl(var(--bg))] noise"
     >
+      {/* Cinematic background video (fixed, parallax, prefers-reduced-motion safe) */}
+      <VideoBackground />
+
+      {/* Brand glow / lens flare — sits above video, behind content */}
       <LensFlare />
+
+      {/* 3-D floating astronaut — hero visual */}
       <AstronautPlaceholder />
 
       {/* Content layer */}
@@ -71,7 +78,7 @@ export function Hero() {
             {hero.trustChips.map((chip) => (
               <li
                 key={chip}
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur"
+                className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm"
               >
                 {chip}
               </li>
@@ -79,7 +86,7 @@ export function Hero() {
           </motion.ul>
         </div>
 
-        {/* Live-Stats Strip am Hero-Boden */}
+        {/* Live-Stats strip at hero bottom */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

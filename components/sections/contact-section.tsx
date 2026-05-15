@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { finalCta, site } from '@/lib/content';
 import { ArrowRight, Calendar, Mail, Phone } from 'lucide-react';
 import { Magnetic } from '@/components/effects/magnetic';
+import { ScrollScale } from '@/components/effects/scroll-scale';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
 
 export function ContactSection() {
   const [selected, setSelected] = useState<string>('');
@@ -23,15 +25,18 @@ export function ContactSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {finalCta.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {finalCta.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {finalCta.headline}
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           {finalCta.subline}
         </p>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           {/* Left: CTA card */}
+          <ScrollScale from={0.9} to={1.04} out={1}>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -84,6 +89,7 @@ export function ContactSection() {
             </p>
           </motion.div>
 
+          </ScrollScale>
           {/* Right: contact details */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}

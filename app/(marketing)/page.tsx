@@ -6,6 +6,7 @@ import { SolutionsSection } from '@/components/sections/solutions-section';
 import { SimulationSection } from '@/components/sections/simulation-section';
 import { ShowcaseSection } from '@/components/sections/showcase-section';
 import { UseCasesSection } from '@/components/sections/usecases-section';
+import { StatsRevealSection } from '@/components/sections/stats-reveal-section';
 import { ManifestoSection } from '@/components/sections/manifesto-section';
 import { RoiSection } from '@/components/sections/roi-section';
 import { TechExplainerSection } from '@/components/sections/tech-explainer-section';
@@ -28,6 +29,8 @@ export default function HomePage() {
       <SectionReveal><SimulationSection /></SectionReveal>
       {/* WOW — pinned horizontal showcase over WebGL distortion */}
       <ShowcaseSection />
+      {/* WOW #2 — pinned vertical stats reveal */}
+      <StatsRevealSection />
       <SectionReveal><UseCasesSection /></SectionReveal>
       <SectionReveal><ManifestoSection /></SectionReveal>
       <SectionReveal><RoiSection /></SectionReveal>

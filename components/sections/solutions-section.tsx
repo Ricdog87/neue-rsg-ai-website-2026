@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { solutions, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
 import { TiltCard } from '@/components/effects/tilt-card';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
+import { ScrollScale } from '@/components/effects/scroll-scale';
 
 export function SolutionsSection() {
   return (
@@ -15,15 +17,18 @@ export function SolutionsSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {solutions.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {solutions.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {solutions.headline}
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           {solutions.subline}
         </p>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           {/* Steps */}
+          <ScrollScale from={0.95} to={1} out={1}>
           <div className="space-y-4">
             {solutions.steps.map((step, i) => (
               <motion.div
@@ -54,8 +59,10 @@ export function SolutionsSection() {
               </a>
             </Magnetic>
           </div>
+          </ScrollScale>
 
           {/* Pipeline visual */}
+          <ScrollParallax y={-12}>
           <TiltCard className="rounded-2xl border border-white/8 bg-black/40 p-6 font-mono">
             <div className="mb-4 flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-[hsl(var(--neon))] shadow-[0_0_8px_hsl(var(--neon))]" />
@@ -84,6 +91,7 @@ export function SolutionsSection() {
               ))}
             </div>
           </TiltCard>
+          </ScrollParallax>
         </div>
       </div>
     </section>

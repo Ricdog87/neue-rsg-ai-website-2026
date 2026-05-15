@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { problems } from '@/lib/content';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
+import { ScrollScale } from '@/components/effects/scroll-scale';
 
 const REAL_STATS = ['67%', '40%', '89.000 €', '74%'];
 
@@ -15,17 +17,19 @@ export function ProblemsSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {problems.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {problems.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {problems.headline}
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           {problems.subline}
         </p>
 
         <div className="mt-14 grid gap-5 md:grid-cols-2">
           {problems.items.map((item, i) => (
+            <ScrollScale key={item.title} from={0.92} to={1} out={1}>
             <motion.div
-              key={item.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -48,6 +52,7 @@ export function ProblemsSection() {
                 </p>
               </div>
             </motion.div>
+            </ScrollScale>
           ))}
         </div>
 

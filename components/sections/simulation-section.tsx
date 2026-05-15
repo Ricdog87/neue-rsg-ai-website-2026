@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { ScrollScale } from '@/components/effects/scroll-scale';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
 
 const STREAM = [
   { delay: 0,    text: '> Neuer Lead eingehend: "TechVision GmbH"' },
@@ -105,13 +107,16 @@ export function SimulationSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           Live-Simulation
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          Sieh deinem KI-Agenten beim Denken zu.
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            Sieh deinem KI-Agenten beim Denken zu.
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           Echtzeit-Output aus einer echten Lead-Qualifizierungs-Pipeline — von Webhook bis Termin-Buchung in unter 5 Sekunden.
         </p>
 
+        <ScrollScale from={0.92} to={1.02} out={1}>
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           {/* Terminal */}
           <div
@@ -154,6 +159,7 @@ export function SimulationSection() {
             ))}
           </div>
         </div>
+        </ScrollScale>
       </div>
     </section>
   );

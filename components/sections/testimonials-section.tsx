@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { testimonials } from '@/lib/content';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
+import { ScrollScale } from '@/components/effects/scroll-scale';
 
 export function TestimonialsSection() {
   return (
@@ -13,17 +15,20 @@ export function TestimonialsSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {testimonials.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {testimonials.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {testimonials.headline}
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           {testimonials.subline}
         </p>
 
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {testimonials.items.map((item, i) => (
+            <ScrollScale key={i} from={0.93} to={1} out={1}>
+            <ScrollParallax y={i % 2 === 0 ? -10 : 10}>
             <motion.div
-              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
@@ -57,6 +62,8 @@ export function TestimonialsSection() {
                 </div>
               </div>
             </motion.div>
+            </ScrollParallax>
+            </ScrollScale>
           ))}
         </div>
       </div>

@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { about, site } from '@/lib/content';
 import Image from 'next/image';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
+import { ScrollScale } from '@/components/effects/scroll-scale';
 
 export function AboutSection() {
   return (
@@ -14,9 +16,11 @@ export function AboutSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {about.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {about.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {about.headline}
+          </h2>
+        </ScrollParallax>
 
         <div className="mt-14 grid gap-12 lg:grid-cols-2">
           {/* Text */}
@@ -46,6 +50,8 @@ export function AboutSection() {
 
           {/* Founder card + pillars */}
           <div className="space-y-4">
+            <ScrollScale from={0.94} to={1} out={1}>
+            <ScrollParallax rotate={1}>
             <div className="flex items-center gap-5 rounded-2xl border border-white/8 bg-white/[0.03] p-6">
               <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[hsl(var(--accent))/30]">
                 <Image
@@ -70,6 +76,8 @@ export function AboutSection() {
                 </a>
               </div>
             </div>
+            </ScrollParallax>
+            </ScrollScale>
 
             <div className="grid grid-cols-2 gap-3">
               {about.pillars.map((p, i) => (

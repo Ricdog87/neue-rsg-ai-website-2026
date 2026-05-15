@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { techStack } from '@/lib/content';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
+import { ScrollScale } from '@/components/effects/scroll-scale';
 
 const TAG_COLORS: Record<string, string> = {
   Orchestration:  'text-[hsl(var(--neon))]   bg-[hsl(var(--neon))/8]   border-[hsl(var(--neon))/25]',
@@ -22,17 +24,20 @@ export function TechStackSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {techStack.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {techStack.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {techStack.headline}
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           {techStack.subline}
         </p>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {techStack.items.map((item, i) => (
+            <ScrollScale key={item.title} from={0.94} to={1} out={1}>
+            <ScrollParallax x={i % 2 === 0 ? 6 : -6}>
             <motion.div
-              key={item.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
@@ -47,6 +52,8 @@ export function TechStackSection() {
               <h3 className="mt-4 font-semibold">{item.title}</h3>
               <p className="mt-2 text-sm text-[hsl(var(--muted))] leading-relaxed">{item.body}</p>
             </motion.div>
+            </ScrollParallax>
+            </ScrollScale>
           ))}
         </div>
 

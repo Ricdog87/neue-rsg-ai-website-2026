@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useCases, site } from '@/lib/content';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
+import { ScrollScale } from '@/components/effects/scroll-scale';
 
 const ICONS: Record<string, string> = {
   'Support-Agent': '🎧',
@@ -22,17 +24,20 @@ export function UseCasesSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {useCases.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {useCases.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {useCases.headline}
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           {useCases.subline}
         </p>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {useCases.items.map((item, i) => (
+            <ScrollScale key={item.name} from={0.92} to={1} out={1}>
+            <ScrollParallax x={i % 2 === 0 ? 8 : -8}>
             <motion.div
-              key={item.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
@@ -46,6 +51,8 @@ export function UseCasesSection() {
               </div>
               <p className="mt-3 text-sm text-[hsl(var(--muted))] leading-relaxed">{item.body}</p>
             </motion.div>
+            </ScrollParallax>
+            </ScrollScale>
           ))}
         </div>
 

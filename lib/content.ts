@@ -424,6 +424,31 @@ export const roi = {
     perYear: 'pro Jahr · konservative Schätzung',
     empty: 'Wähle mindestens eine Abteilung — und sieh die Zahl, die dein CFO sehen sollte.',
     cta: 'Diese Zahl mit Ricardo besprechen'
+  },
+  /**
+   * Conversion factors used to translate annual € savings into more
+   * tangible buckets (hours of senior time, content pieces, etc.).
+   * Numbers are deliberately conservative.
+   */
+  visual: {
+    hourlyRate: 65, // €/h fully-loaded mid-senior knowledge worker
+    comparison: {
+      manualLabel: 'Heute · manuell',
+      manualHint: '100 % Personalkosten · 0 % Skalierung',
+      aiLabel: 'Mit KI-Agent',
+      aiHint: 'KI übernimmt Routine · Mensch macht Mensch-Arbeit',
+      reductionLabel: 'Aufwandsreduktion'
+    },
+    timeLabel: 'Stunden zurückgewonnen pro Monat',
+    projectionLabel: '5-Jahres-Projektion · kumulierte Ersparnis',
+    projectionYears: [1, 2, 3, 4, 5],
+    /** What the visitor could DO with the saved money — visceral conversion */
+    equivalents: [
+      { threshold: 30000, icon: '👤', label: 'Senior-Mitarbeiter Vollzeit', divisor: 65000 },
+      { threshold: 15000, icon: '📣', label: 'Marketing-Kampagnen', divisor: 4500 },
+      { threshold: 10000, icon: '🏖️', label: 'Wochen Team-Urlaub', divisor: 8000 },
+      { threshold: 5000,  icon: '💻', label: 'Senior-Workshops', divisor: 3500 }
+    ]
   }
 } as const;
 
@@ -435,6 +460,12 @@ export const pricing = {
   headline: 'Du kennst deine Ersparnis. Jetzt vergleich die Investition.',
   subline:
     'Keine 200-Stunden-Projekte mit offenem Ende. Festpreise. Klare Leistung. Dein erster Agent rechnet sich schneller, als du Angebote vergleichst.',
+  trustRow: [
+    { label: 'Festpreis', sub: 'kein Time-and-Material' },
+    { label: '14 Tage SLA', sub: 'nach Go-Live inklusive' },
+    { label: 'DSGVO + EU', sub: 'kein US-Cloud-Risiko' },
+    { label: '2–4 Wochen', sub: 'bis Produktiv-Agent' }
+  ],
   tiers: [
     {
       name: 'Automatische Workflows',
@@ -442,6 +473,9 @@ export const pricing = {
       price: 'ab 2.500 €',
       priceSuffix: 'einmalig',
       note: 'zzgl. Hosting & Token-Kosten*',
+      marketPrice: 'Marktpreis ab 8.000 €',
+      roiHint: 'Ø ROI nach < 2 Monaten bei 25K€ Ersparnis',
+      bestFor: 'Sales-Ops · HR-Ops · Buchhaltung',
       features: [
         'Individuelle Workflow-Entwicklung (n8n / Zapier-Stack)',
         'Integration in deine bestehenden Systeme',
@@ -458,6 +492,9 @@ export const pricing = {
       price: 'ab 5.000 €',
       priceSuffix: 'einmalig',
       note: 'zzgl. Hosting & Token-Kosten*',
+      marketPrice: 'Marktpreis ab 18.000 €',
+      roiHint: '8 von 10 Mittelständlern wählen dieses Paket',
+      bestFor: 'Kundenservice · Account Management · Mittelstand',
       features: [
         'Autonomer KI-Agent mit Entscheidungslogik',
         'Multi-System-Integration (CRM, ERP, E-Mail, Slack)',
@@ -666,7 +703,21 @@ export const finalCta = {
     'Onboarding-Agent',
     'Operations-Agent',
     'Individuelle Lösung'
-  ]
+  ],
+  liveStatus: {
+    label: 'Heute online',
+    sub: 'Antwort meistens in < 2 Stunden'
+  },
+  founderTagline:
+    '15 Jahre B2B-Vertrieb. Spricht Vertrieb, baut KI. Du redest direkt mit dem Gründer — kein SDR, kein Account-Manager.',
+  /** Static "next available slots" preview — feels alive even though it's static */
+  nextSlots: [
+    { day: 'Heute',     time: '17:30' },
+    { day: 'Morgen',    time: '10:00' },
+    { day: 'Übermorgen', time: '14:30' }
+  ],
+  microProof:
+    '„ROI nach 4 Monaten — und Ricardo hat genauso ehrlich gesagt, was NICHT geht." — CTO, Datenanalyse-Unternehmen'
 } as const;
 
 /* ─────────────────────────────────────────────────────────

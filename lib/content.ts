@@ -445,7 +445,7 @@ export const about = {
     name: 'Ricardo Serrano',
     role: 'Geschäftsführer',
     company: 'RSG Agent Services',
-    photo: '/images/ricardo-serrano.jpeg'
+    photo: '/images/ricardo-serrano.png'
   },
   pillars: [
     {

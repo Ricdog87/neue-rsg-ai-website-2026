@@ -79,11 +79,11 @@ export function VideoBackground() {
         }}
       >
         <source
-          src="https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_25fps.mp4"
+          src="/3129671-hd_1920_1080_30fps.mp4"
           type="video/mp4"
         />
         <source
-          src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_25fps.mp4"
+          src="/3129671-hd_1920_1080_30fps.mp4"
           type="video/mp4"
         />
       </video>

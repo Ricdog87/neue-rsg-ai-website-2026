@@ -18,8 +18,8 @@ const HeroWebGL = dynamic(
   () => import('@/components/effects/hero-webgl').then((m) => m.HeroWebGL),
   { ssr: false },
 );
-const HeroSpline = dynamic(
-  () => import('@/components/effects/hero-spline').then((m) => m.HeroSpline),
+const HeroOrb = dynamic(
+  () => import('@/components/effects/hero-orb').then((m) => m.HeroOrb),
   { ssr: false },
 );
 
@@ -68,8 +68,8 @@ export function Hero() {
         <LensFlare />
       </div>
 
-      {/* z:10 — WebGL centerpiece (Spline AI Brain) */}
-      <HeroSpline />
+      {/* z:10 — WebGL centerpiece (procedural iridescent distort sphere) */}
+      <HeroOrb />
 
       {/* z:20 — all text + CTA content */}
       <div className="relative z-20 flex flex-1 flex-col justify-between px-6 pt-32 pb-12 md:pt-40">

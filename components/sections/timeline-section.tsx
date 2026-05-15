@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { timeline, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
+import { ScrollScale } from '@/components/effects/scroll-scale';
 
 const TAG_COLORS: Record<string, string> = {
   Discovery: 'text-[hsl(var(--neon))] border-[hsl(var(--neon))/30] bg-[hsl(var(--neon))/8]',
@@ -22,9 +24,11 @@ export function TimelineSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {timeline.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {timeline.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {timeline.headline}
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           {timeline.subline}
         </p>
@@ -32,12 +36,14 @@ export function TimelineSection() {
         {/* Timeline */}
         <div className="mt-14 relative">
           {/* Vertical line */}
-          <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-[hsl(var(--neon))/40] via-[hsl(var(--accent))/30] to-transparent md:left-8" />
+          <ScrollParallax y={20} className="absolute left-6 top-0 h-full w-px md:left-8">
+            <div className="h-full w-full bg-gradient-to-b from-[hsl(var(--neon))/40] via-[hsl(var(--accent))/30] to-transparent" />
+          </ScrollParallax>
 
           <div className="space-y-6">
             {timeline.phases.map((phase, i) => (
+              <ScrollScale key={phase.n} from={0.94} to={1} out={1}>
               <motion.div
-                key={phase.n}
                 initial={{ opacity: 0, x: -24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
@@ -61,6 +67,7 @@ export function TimelineSection() {
                   <p className="mt-2 text-sm text-[hsl(var(--muted))] leading-relaxed">{phase.body}</p>
                 </div>
               </motion.div>
+              </ScrollScale>
             ))}
           </div>
         </div>

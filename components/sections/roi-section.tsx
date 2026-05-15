@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { roi, site } from '@/lib/content';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
+import { ScrollScale } from '@/components/effects/scroll-scale';
 
 const SAVINGS: Record<string, number> = {
   recruiting: 28000,
@@ -36,9 +38,11 @@ export function RoiSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {roi.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {roi.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {roi.headline}
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           {roi.subline}
         </p>
@@ -93,8 +97,10 @@ export function RoiSection() {
           </div>
 
           {/* Result card */}
+          <ScrollScale from={0.9} to={1.02} out={1}>
           <div className="rounded-2xl border border-[hsl(var(--accent))/30] bg-[hsl(var(--accent))/5] p-7 flex flex-col gap-5">
             <p className="text-sm text-[hsl(var(--muted))]">Geschätztes Einsparpotenzial</p>
+            <ScrollParallax y={-15}>
             <div>
               <div className="font-mono text-5xl font-bold text-[hsl(var(--neon))]">
                 {scaledSavings > 0
@@ -103,6 +109,7 @@ export function RoiSection() {
               </div>
               <p className="mt-1 text-xs text-[hsl(var(--muted))]">pro Jahr (Schätzung)</p>
             </div>
+            </ScrollParallax>
 
             {roiMonths > 0 && (
               <div>
@@ -128,6 +135,7 @@ export function RoiSection() {
               Einsparpotenzial besprechen →
             </a>
           </div>
+          </ScrollScale>
         </div>
       </div>
     </section>

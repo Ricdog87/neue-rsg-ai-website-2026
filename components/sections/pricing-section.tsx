@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { pricing, site } from '@/lib/content';
 import { Check } from 'lucide-react';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
+import { ScrollScale } from '@/components/effects/scroll-scale';
 
 export function PricingSection() {
   return (
@@ -14,17 +16,20 @@ export function PricingSection() {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {pricing.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
-          {pricing.headline}
-        </h2>
+        <ScrollParallax x={-8}>
+          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+            {pricing.headline}
+          </h2>
+        </ScrollParallax>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
           {pricing.subline}
         </p>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           {pricing.tiers.map((tier, i) => (
+            <ScrollScale key={tier.name} from={0.92} to={1} out={1}>
+            <ScrollParallax rotate={tier.recommended ? 3 : 0}>
             <motion.div
-              key={tier.name}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -72,6 +77,8 @@ export function PricingSection() {
                 {tier.cta}
               </a>
             </motion.div>
+            </ScrollParallax>
+            </ScrollScale>
           ))}
         </div>
 

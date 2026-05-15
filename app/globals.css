@@ -101,6 +101,11 @@ body {
   to   { transform: translateX(-50%); }
 }
 
+/* Conic gradient spin for showcase card borders */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ── Section reveal (scroll-triggered fade-in) ── */
 .section-reveal {
   opacity: 0;

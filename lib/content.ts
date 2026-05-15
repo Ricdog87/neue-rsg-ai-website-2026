@@ -52,7 +52,6 @@ export const nav = [
   { label: 'ROI-Rechner', href: '#roi' },
   { label: 'Preise', href: '#pricing' },
   { label: 'Über uns', href: '#about' },
-  { label: 'Partner', href: 'https://www.rsg-ai.de/partner' },
   { label: 'Kontakt', href: '#contact' }
 ] as const;
 
@@ -678,32 +677,20 @@ export const footer = {
     'KI-Agenten, die deine Geschäftsprozesse 24/7 automatisieren. DSGVO-konform, made in Germany.',
   groups: [
     {
-      title: 'Lösungen',
+      title: 'Produkt',
       links: [
-        { label: 'Support-Agent', href: '#usecases' },
-        { label: 'E-Mail-Agent', href: '#usecases' },
-        { label: 'Sales-Agent', href: '#usecases' },
-        { label: 'Automatische Workflows', href: '#pricing' }
+        { label: 'Lösungen', href: '#solutions' },
+        { label: 'Use Cases', href: '#usecases' },
+        { label: 'ROI-Rechner', href: '#roi' },
+        { label: 'Preise', href: '#pricing' }
       ]
     },
     {
       title: 'Unternehmen',
       links: [
         { label: 'Über uns', href: '#about' },
-        { label: 'Partner', href: 'https://www.rsg-ai.de/partner' },
-        { label: 'Vision & Mission', href: 'https://www.rsg-ai.de/vision-mission' },
-        { label: 'KI-Beratung Wiesbaden', href: 'https://www.rsg-ai.de/ki-beratung-wiesbaden' },
-        { label: 'Preise', href: '#pricing' },
-        { label: 'Kontakt', href: '#contact' }
-      ]
-    },
-    {
-      title: 'Unsere Marken',
-      links: [
-        { label: 'RSG Recruiting Solutions', href: 'https://www.recruiting-sg.de' },
-        { label: 'elumalab', href: 'https://www.elumalab.com' },
-        { label: 'Lacar Associate', href: 'https://www.lacar-associate.de' },
-        { label: 'Lacar eLearning', href: 'https://lacar-elearning.com' }
+        { label: 'Kontakt', href: '#contact' },
+        { label: 'KI-Beratung Wiesbaden', href: 'https://www.rsg-ai.de/ki-beratung-wiesbaden' }
       ]
     },
     {

@@ -39,6 +39,112 @@ function useCountUp(target: number, durationMs = 900) {
   return value;
 }
 
+/**
+ * Smart team-size picker.
+ *
+ * Replaces the generic range slider with a segmented control: four
+ * realistic categories from Solo to Mittelstand. Clicking a segment
+ * sets a sensible default for that band; a small +/- stepper lets
+ * the customer fine-tune from there. Max realistic for the target
+ * audience is 250 MA — beyond that we'd be talking enterprise sales,
+ * not a self-service ROI calculator.
+ */
+const TEAM_SEGMENTS = [
+  { id: 'solo',    label: 'Solo',         range: '1 MA',         defaultValue: 1,   min: 1,   max: 1   },
+  { id: 'startup', label: 'Startup',      range: '2–10 MA',      defaultValue: 5,   min: 2,   max: 10  },
+  { id: 'growth',  label: 'Wachstumsphase', range: '11–50 MA',   defaultValue: 25,  min: 11,  max: 50  },
+  { id: 'mid',     label: 'Mittelstand',  range: '51–250 MA',    defaultValue: 100, min: 51,  max: 250 },
+] as const;
+
+type TeamSegment = (typeof TEAM_SEGMENTS)[number];
+
+function segmentFor(n: number): TeamSegment {
+  return TEAM_SEGMENTS.find((s) => n >= s.min && n <= s.max) ?? TEAM_SEGMENTS[TEAM_SEGMENTS.length - 1];
+}
+
+function TeamSizePicker({ value, onChange }: { value: number; onChange: (n: number) => void }) {
+  const active = segmentFor(value);
+  const stepDown = () => onChange(Math.max(active.min, value - (value > 50 ? 5 : 1)));
+  const stepUp   = () => onChange(Math.min(active.max, value + (value >= 50 ? 5 : 1)));
+
+  return (
+    <div className="mt-6 rounded-2xl border border-white/8 bg-white/[0.02] p-5">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <p className="text-sm font-medium text-[hsl(var(--fg))]">
+          Wie groß ist dein Team?
+        </p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--neon))]">
+          Startup → Mittelstand
+        </p>
+      </div>
+
+      {/* Segment chips */}
+      <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {TEAM_SEGMENTS.map((s) => {
+          const isActive = s.id === active.id;
+          return (
+            <button
+              key={s.id}
+              onClick={() => onChange(s.defaultValue)}
+              className={`group relative overflow-hidden rounded-xl border p-3 text-left transition-all duration-300 ${
+                isActive
+                  ? 'border-[hsl(var(--neon))] bg-[hsl(var(--neon))/8] shadow-[0_0_30px_-12px_hsl(174_100%_50%/0.7)]'
+                  : 'border-white/10 bg-white/[0.025] hover:border-white/25 hover:bg-white/[0.04]'
+              }`}
+            >
+              <span
+                className={`font-mono text-[10px] uppercase tracking-[0.22em] ${
+                  isActive ? 'text-[hsl(var(--neon))]' : 'text-[hsl(var(--muted))]'
+                }`}
+              >
+                {s.label}
+              </span>
+              <span className="mt-1 block text-sm font-semibold text-[hsl(var(--fg))]">
+                {s.range}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Fine-tune stepper */}
+      <div className="mt-5 flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.025] px-4 py-3">
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
+            Genau · feinjustieren
+          </p>
+          <p className="mt-0.5 flex items-baseline gap-2">
+            <span className="font-display text-3xl font-bold text-[hsl(var(--neon))]">
+              {value}
+            </span>
+            <span className="text-sm text-[hsl(var(--muted))]">
+              {value === 1 ? 'Mitarbeiter' : 'Mitarbeiter · ' + active.label}
+            </span>
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={stepDown}
+            disabled={value <= active.min}
+            aria-label="Weniger"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 text-lg font-bold text-[hsl(var(--fg))] transition hover:border-[hsl(var(--neon))/40] hover:bg-[hsl(var(--neon))/8] disabled:opacity-30"
+          >
+            −
+          </button>
+          <button
+            onClick={stepUp}
+            disabled={value >= active.max}
+            aria-label="Mehr"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 text-lg font-bold text-[hsl(var(--fg))] transition hover:border-[hsl(var(--neon))/40] hover:bg-[hsl(var(--neon))/8] disabled:opacity-30"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function RoiSection() {
   const [selected, setSelected] = useState<string[]>([]);
   const [employees, setEmployees] = useState(20);
@@ -151,25 +257,7 @@ export function RoiSection() {
               })}
             </div>
 
-            <div className="mt-6 rounded-xl border border-white/8 bg-white/[0.02] p-4">
-              <label className="mb-2 flex items-center justify-between text-sm">
-                <span className="text-[hsl(var(--muted))]">Wie viele Mitarbeiter hast du?</span>
-                <span className="font-mono font-semibold text-[hsl(var(--fg))]">{employees}</span>
-              </label>
-              <input
-                type="range"
-                min={1}
-                max={500}
-                step={1}
-                value={employees}
-                onChange={(e) => setEmployees(Number(e.target.value))}
-                className="w-full accent-[hsl(var(--neon))]"
-              />
-              <div className="mt-1 flex justify-between font-mono text-[10px] text-[hsl(var(--muted))]">
-                <span>1</span>
-                <span>500+</span>
-              </div>
-            </div>
+            <TeamSizePicker value={employees} onChange={setEmployees} />
           </div>
 
           {/* Result panel */}

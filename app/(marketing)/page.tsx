@@ -4,6 +4,7 @@ import { LiveAgentsSection } from '@/components/sections/live-agents-section';
 import { ProblemsSection } from '@/components/sections/problems-section';
 import { SolutionsSection } from '@/components/sections/solutions-section';
 import { SimulationSection } from '@/components/sections/simulation-section';
+import { ShowcaseSection } from '@/components/sections/showcase-section';
 import { UseCasesSection } from '@/components/sections/usecases-section';
 import { ManifestoSection } from '@/components/sections/manifesto-section';
 import { RoiSection } from '@/components/sections/roi-section';
@@ -25,6 +26,8 @@ export default function HomePage() {
       <SectionReveal><ProblemsSection /></SectionReveal>
       <SectionReveal><SolutionsSection /></SectionReveal>
       <SectionReveal><SimulationSection /></SectionReveal>
+      {/* WOW — pinned horizontal showcase over WebGL distortion */}
+      <ShowcaseSection />
       <SectionReveal><UseCasesSection /></SectionReveal>
       <SectionReveal><ManifestoSection /></SectionReveal>
       <SectionReveal><RoiSection /></SectionReveal>

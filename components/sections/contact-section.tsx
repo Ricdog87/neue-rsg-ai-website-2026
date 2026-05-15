@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { finalCta, site } from '@/lib/content';
 import { ArrowRight, Calendar, Mail, Phone } from 'lucide-react';
+import { Magnetic } from '@/components/effects/magnetic';
 
 export function ContactSection() {
   const [selected, setSelected] = useState<string>('');
@@ -65,16 +66,18 @@ export function ContactSection() {
               </div>
             </div>
 
-            <a
-              href={`${site.cta.meetingUrl}${selected ? `?agent=${encodeURIComponent(selected)}` : ''}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-7 flex items-center justify-center gap-2 rounded-full bg-[hsl(var(--accent))] px-6 py-3.5 text-sm font-semibold text-white transition hover:opacity-90"
-            >
-              <Calendar className="h-4 w-4" />
-              {finalCta.ctaButton}
-              <ArrowRight className="h-4 w-4" />
-            </a>
+            <Magnetic strength={0.25} radius={120}>
+              <a
+                href={`${site.cta.meetingUrl}${selected ? `?agent=${encodeURIComponent(selected)}` : ''}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-7 flex items-center justify-center gap-2 rounded-full bg-[hsl(var(--accent))] px-6 py-3.5 text-sm font-semibold text-white transition hover:opacity-90"
+              >
+                <Calendar className="h-4 w-4" />
+                {finalCta.ctaButton}
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </Magnetic>
 
             <p className="mt-3 text-center text-xs text-[hsl(var(--muted))]">
               {finalCta.responseSla}

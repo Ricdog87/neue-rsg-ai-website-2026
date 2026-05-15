@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { timeline, site } from '@/lib/content';
+import { Magnetic } from '@/components/effects/magnetic';
 
 const TAG_COLORS: Record<string, string> = {
   Discovery: 'text-[hsl(var(--neon))] border-[hsl(var(--neon))/30] bg-[hsl(var(--neon))/8]',
@@ -77,14 +78,16 @@ export function TimelineSection() {
             </span>
             <p className="mt-1 text-sm text-[hsl(var(--muted))]">{timeline.summary.label}</p>
           </div>
-          <a
-            href={site.cta.meetingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-[hsl(var(--neon))] px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90"
-          >
-            Jetzt starten →
-          </a>
+          <Magnetic strength={0.3}>
+            <a
+              href={site.cta.meetingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-[hsl(var(--neon))] px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90"
+            >
+              Jetzt starten →
+            </a>
+          </Magnetic>
         </motion.div>
       </div>
     </section>

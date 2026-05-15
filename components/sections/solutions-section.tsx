@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { solutions, site } from '@/lib/content';
+import { Magnetic } from '@/components/effects/magnetic';
+import { TiltCard } from '@/components/effects/tilt-card';
 
 export function SolutionsSection() {
   return (
@@ -41,18 +43,20 @@ export function SolutionsSection() {
                 </div>
               </motion.div>
             ))}
-            <a
-              href={site.cta.meetingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-2 rounded-full bg-[hsl(var(--accent))] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-            >
-              {solutions.cta} →
-            </a>
+            <Magnetic strength={0.3}>
+              <a
+                href={site.cta.meetingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-2 rounded-full bg-[hsl(var(--accent))] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+              >
+                {solutions.cta} →
+              </a>
+            </Magnetic>
           </div>
 
           {/* Pipeline visual */}
-          <div className="rounded-2xl border border-white/8 bg-black/40 p-6 font-mono">
+          <TiltCard className="rounded-2xl border border-white/8 bg-black/40 p-6 font-mono">
             <div className="mb-4 flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-[hsl(var(--neon))] shadow-[0_0_8px_hsl(var(--neon))]" />
               <span className="text-xs text-[hsl(var(--neon))]">{solutions.pipeline.title} · AKTIV</span>
@@ -79,7 +83,7 @@ export function SolutionsSection() {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </TiltCard>
         </div>
       </div>
     </section>

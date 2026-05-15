@@ -1,6 +1,8 @@
 'use client';
 
-import { useEffect, useRef, ReactNode } from 'react';
+import { useRef, ReactNode } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 
 interface SectionRevealProps {
   children: ReactNode;
@@ -8,32 +10,45 @@ interface SectionRevealProps {
 }
 
 /**
- * Wraps a section in a subtle fade-in-from-below reveal using IntersectionObserver.
- * No JS animation libraries needed — pure CSS transition triggered by a class swap.
- * Works alongside the video parallax for a layered cinematic scroll feel.
+ * Drop-in scroll-reveal wrapper. Upgraded from IntersectionObserver+CSS
+ * to GSAP ScrollTrigger — same API, synced with Lenis, plus a subtle
+ * pre-scroll parallax lift so sections breathe as they enter.
  */
 export function SectionReveal({ children, className = '' }: SectionRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+  useGSAP(
+    () => {
+      const el = ref.current;
+      if (!el) return;
 
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('section-visible');
-          obs.unobserve(el);
-        }
-      },
-      { threshold: 0.06 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+      if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.set(el, { opacity: 1, y: 0 });
+        return;
+      }
+
+      gsap.set(el, { opacity: 0, y: 60, filter: 'blur(8px)' });
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 1.2,
+            ease: 'expo.out',
+          });
+        },
+      });
+    },
+    { scope: ref },
+  );
 
   return (
-    <div ref={ref} className={`section-reveal ${className}`}>
+    <div ref={ref} className={className}>
       {children}
     </div>
   );

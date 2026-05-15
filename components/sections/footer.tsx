@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Linkedin, Twitter, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { Linkedin, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 import { footer, site } from '@/lib/content';
 
 export function Footer() {
@@ -47,13 +47,13 @@ export function Footer() {
                 <Linkedin className="h-4 w-4" />
               </a>
               <a
-                href={site.social.x}
+                href={site.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="X / Twitter"
+                aria-label="Instagram"
                 className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-[hsl(var(--muted))] hover:border-[hsl(var(--neon))] hover:text-[hsl(var(--neon))]"
               >
-                <Twitter className="h-4 w-4" />
+                <Instagram className="h-4 w-4" />
               </a>
               <a
                 href={site.social.youtube}

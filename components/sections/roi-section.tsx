@@ -48,8 +48,6 @@ export function RoiSection() {
   const savingsPerYear = selected.reduce((sum, id) => sum + (SAVINGS[id] ?? 0), 0);
   const scaledSavings = Math.round((savingsPerYear * Math.max(1, employees / 20)) / 1000) * 1000;
   const roiMonths = scaledSavings > 0 ? Math.max(1, Math.round((5000 / scaledSavings) * 12)) : 0;
-  const monthlyHours = scaledSavings > 0 ? Math.round(scaledSavings / roi.visual.hourlyRate / 12) : 0;
-
   // Tangibles: how many of each "thing" the savings buy
   const equivalents = roi.visual.equivalents
     .filter((e) => scaledSavings >= e.threshold)
@@ -76,10 +74,6 @@ export function RoiSection() {
 
   const animatedSavings = useCountUp(scaledSavings, 900);
   const animatedMonths = useCountUp(roiMonths, 700);
-  const animatedHours = useCountUp(monthlyHours, 700);
-
-  // Bar comparison: manual cost vs cost with AI (savings = 70 % cut)
-  const aiPercent = scaledSavings > 0 ? 30 : 100; // % bar of "with AI"
 
   return (
     <section
@@ -272,172 +266,230 @@ export function RoiSection() {
           </ScrollScale>
         </div>
 
-        {/* ───── VISUAL ROW: only renders when there's a selection ───── */}
+        {/* ───── VISUAL STORY ROW — only renders when there's a selection ───── */}
         {scaledSavings > 0 && (
-          <div className="mt-10 grid gap-6 lg:grid-cols-12">
-            {/* Comparison bars: manual vs AI */}
-            <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6 lg:col-span-7">
-              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--muted))]">
-                Vorher · Nachher
-              </p>
-              <h3 className="mt-2 font-display text-2xl tracking-tight md:text-3xl">
-                So sieht dein Aufwand mit und ohne KI-Agent aus.
-              </h3>
-
-              <div className="mt-6 space-y-5">
-                {/* Manual bar — full width, red */}
+          <div className="mt-12 space-y-6">
+            {/* HERO: The 8-hour work-day comparison */}
+            <div
+              className="relative overflow-hidden rounded-3xl border border-white/8 p-8 md:p-10"
+              style={{
+                background:
+                  'linear-gradient(155deg, hsl(240 12% 8% / 0.9) 0%, hsl(240 14% 5%) 100%)',
+              }}
+            >
+              <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
                 <div>
-                  <div className="mb-2 flex items-baseline justify-between">
-                    <span className="text-sm font-medium text-[hsl(var(--fg))]">
-                      {roi.visual.comparison.manualLabel}
-                    </span>
-                    <span className="font-mono text-sm font-semibold text-red-400">
-                      100 %
-                    </span>
-                  </div>
-                  <div className="relative h-6 overflow-hidden rounded-md bg-white/5">
-                    <div
-                      className="h-full rounded-md transition-all duration-700"
-                      style={{
-                        width: '100%',
-                        background:
-                          'linear-gradient(to right, hsl(0 75% 55% / 0.85), hsl(0 75% 55% / 0.55))',
-                        boxShadow: '0 0 20px hsl(0 75% 55% / 0.4) inset',
-                      }}
-                    />
-                  </div>
-                  <p className="mt-1.5 text-xs text-[hsl(var(--muted))]">
-                    {roi.visual.comparison.manualHint}
+                  <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--neon))]">
+                    Dein Arbeitstag · in Echtzeit
                   </p>
-                </div>
-
-                {/* AI bar — small, neon */}
-                <div>
-                  <div className="mb-2 flex items-baseline justify-between">
-                    <span className="text-sm font-medium text-[hsl(var(--fg))]">
-                      {roi.visual.comparison.aiLabel}
-                    </span>
-                    <span className="font-mono text-sm font-semibold text-[hsl(var(--neon))]">
-                      {aiPercent} %
-                    </span>
-                  </div>
-                  <div className="relative h-6 overflow-hidden rounded-md bg-white/5">
-                    <div
-                      className="h-full rounded-md transition-all duration-700"
-                      style={{
-                        width: `${aiPercent}%`,
-                        background:
-                          'linear-gradient(to right, hsl(174 100% 50% / 0.95), hsl(174 100% 50% / 0.65))',
-                        boxShadow: '0 0 25px hsl(174 100% 50% / 0.6) inset',
-                      }}
-                    />
-                  </div>
-                  <p className="mt-1.5 text-xs text-[hsl(var(--muted))]">
-                    {roi.visual.comparison.aiHint}
+                  <h3 className="mt-2 font-display text-3xl tracking-tight md:text-4xl">
+                    8 Stunden. Heute laufen 5,4 davon ins Leere.
+                  </h3>
+                  <p className="mt-3 max-w-xl text-sm text-[hsl(var(--muted))] md:text-base">
+                    Studien (McKinsey 2024) zeigen: 68 % der Arbeitszeit gehen für
+                    Routine drauf. Mit einem KI-Agenten kippt das Verhältnis komplett.
                   </p>
-                </div>
 
-                {/* Reduction badge */}
-                <div className="flex items-center justify-between rounded-lg border border-[hsl(var(--neon))/25] bg-[hsl(var(--neon))/8] px-4 py-3">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--neon))]">
-                    {roi.visual.comparison.reductionLabel}
-                  </span>
-                  <span className="font-display text-3xl font-bold text-[hsl(var(--neon))]">
-                    -{100 - aiPercent} %
-                  </span>
-                </div>
-              </div>
-
-              {/* Hours regained */}
-              <div className="mt-7 border-t border-white/8 pt-6">
-                <div className="flex items-baseline justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--muted))]">
-                    {roi.visual.timeLabel}
-                  </span>
-                  <span className="font-display text-3xl font-bold text-[hsl(var(--fg))]">
-                    {animatedHours}h
-                  </span>
-                </div>
-                <div className="mt-3 grid grid-cols-12 gap-1">
-                  {Array.from({ length: 12 }).map((_, i) => {
-                    const filled = i < Math.min(12, Math.round(monthlyHours / 20));
-                    return (
+                  {/* HEUTE — Day-Bar */}
+                  <div className="mt-8">
+                    <div className="mb-2 flex items-baseline justify-between">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-red-400">
+                        Heute · ohne KI
+                      </span>
+                      <span className="font-mono text-xs text-[hsl(var(--muted))]">8h Tag</span>
+                    </div>
+                    <div className="relative flex h-14 overflow-hidden rounded-xl border border-white/8">
                       <div
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={i}
-                        className="h-8 rounded-sm transition-colors"
+                        className="flex items-center justify-start pl-4 text-xs font-bold uppercase tracking-wider text-white/95"
                         style={{
-                          background: filled
-                            ? 'linear-gradient(to top, hsl(174 100% 50% / 0.85), hsl(174 100% 50% / 0.4))'
-                            : 'hsl(0 0% 100% / 0.04)',
-                          boxShadow: filled ? '0 0 12px hsl(174 100% 50% / 0.4) inset' : 'none',
+                          width: '68%',
+                          background:
+                            'linear-gradient(to right, hsl(0 75% 55% / 0.95), hsl(0 75% 55% / 0.7))',
+                          boxShadow: '0 0 30px hsl(0 75% 55% / 0.3) inset',
                         }}
-                      />
-                    );
-                  })}
+                      >
+                        5,4h Routine
+                      </div>
+                      <div
+                        className="flex items-center justify-end pr-4 text-xs font-bold uppercase tracking-wider text-[hsl(var(--fg))]"
+                        style={{
+                          width: '32%',
+                          background:
+                            'linear-gradient(to right, hsl(240 12% 14%), hsl(174 100% 50% / 0.4))',
+                        }}
+                      >
+                        2,6h Verkaufen
+                      </div>
+                    </div>
+                    <div className="mt-1 flex justify-between font-mono text-[9px] text-[hsl(var(--muted))]">
+                      <span>09:00</span>
+                      <span>11:00</span>
+                      <span>13:00</span>
+                      <span>15:00</span>
+                      <span>17:00</span>
+                    </div>
+                  </div>
+
+                  {/* MIT KI — Day-Bar (inverted) */}
+                  <div className="mt-6">
+                    <div className="mb-2 flex items-baseline justify-between">
+                      <span className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.24em] text-[hsl(var(--neon))]">
+                        <span className="relative flex h-2 w-2">
+                          <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-[hsl(var(--neon))] opacity-60" />
+                          <span className="relative inline-flex h-2 w-2 rounded-full bg-[hsl(var(--neon))]" />
+                        </span>
+                        Mit RSG KI-Agent
+                      </span>
+                      <span className="font-mono text-xs text-[hsl(var(--muted))]">8h Tag</span>
+                    </div>
+                    <div className="relative flex h-14 overflow-hidden rounded-xl border border-[hsl(var(--neon))/30]">
+                      <div
+                        className="flex items-center justify-start pl-4 text-xs font-bold uppercase tracking-wider text-white/90"
+                        style={{
+                          width: '20%',
+                          background:
+                            'linear-gradient(to right, hsl(0 75% 55% / 0.85), hsl(0 75% 55% / 0.55))',
+                        }}
+                      >
+                        1,6h
+                      </div>
+                      <div
+                        className="flex items-center justify-end pr-4 text-sm font-bold uppercase tracking-wider text-black"
+                        style={{
+                          width: '80%',
+                          background:
+                            'linear-gradient(to right, hsl(174 100% 50% / 0.95), hsl(174 100% 60%))',
+                          boxShadow: '0 0 40px hsl(174 100% 50% / 0.5) inset',
+                        }}
+                      >
+                        6,4h Verkaufen · Wertschöpfung
+                      </div>
+                    </div>
+                    <div className="mt-1 flex justify-between font-mono text-[9px] text-[hsl(var(--muted))]">
+                      <span>09:00</span>
+                      <span>11:00</span>
+                      <span>13:00</span>
+                      <span>15:00</span>
+                      <span>17:00</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Side panel: gained */}
+                <div className="flex flex-col justify-center gap-5 lg:border-l lg:border-white/8 lg:pl-8">
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[hsl(var(--muted))]">
+                      Pro Mitarbeiter gewonnen
+                    </p>
+                    <p
+                      className="mt-1 font-display text-5xl font-bold leading-none tracking-tight text-[hsl(var(--neon))] md:text-6xl"
+                      style={{ textShadow: '0 0 40px hsl(174 100% 50% / 0.5)' }}
+                    >
+                      +3,8h
+                    </p>
+                    <p className="mt-1 text-xs text-[hsl(var(--muted))]">
+                      Verkaufszeit · jeden Tag
+                    </p>
+                  </div>
+                  <div className="border-t border-white/8 pt-5">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[hsl(var(--muted))]">
+                      Im Team ({employees} MA) gewonnen
+                    </p>
+                    <p className="mt-1 font-display text-3xl font-bold tracking-tight text-[hsl(var(--fg))]">
+                      {(employees * 3.8 * 20).toLocaleString('de-DE')}h
+                    </p>
+                    <p className="mt-1 text-xs text-[hsl(var(--muted))]">
+                      Wertschöpfungs-Stunden pro Monat
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Right column: 5-yr projection + tangibles */}
-            <div className="space-y-6 lg:col-span-5">
-              {/* 5-year cumulative bars */}
-              <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6">
+            {/* SECOND ROW: 5-Year projection + tangibles, side-by-side */}
+            <div className="grid gap-6 lg:grid-cols-12">
+              {/* 5-Year projection — bigger & more dramatic */}
+              <div
+                className="relative overflow-hidden rounded-3xl border border-white/8 p-8 lg:col-span-7"
+                style={{
+                  background:
+                    'linear-gradient(155deg, hsl(271 91% 65% / 0.07) 0%, hsl(240 14% 5%) 100%)',
+                }}
+              >
                 <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--muted))]">
                   {roi.visual.projectionLabel}
                 </p>
-                <div className="mt-4 flex items-end gap-2">
+                <h3 className="mt-2 font-display text-2xl tracking-tight md:text-3xl">
+                  In 5 Jahren holst du dir{' '}
+                  <span className="text-[hsl(var(--neon))]" style={{ textShadow: '0 0 30px hsl(174 100% 50% / 0.5)' }}>
+                    {Math.round((scaledSavings * 5) / 1000)}K €
+                  </span>{' '}
+                  zurück.
+                </h3>
+
+                <div className="mt-8 flex items-end gap-3 md:gap-4" style={{ minHeight: 220 }}>
                   {roi.visual.projectionYears.map((y) => {
                     const cumulative = scaledSavings * y;
                     const heightPct = (y / roi.visual.projectionYears.length) * 100;
                     return (
-                      <div key={y} className="flex flex-1 flex-col items-center gap-2">
-                        <span className="font-mono text-[10px] text-[hsl(var(--neon))]">
+                      <div key={y} className="flex flex-1 flex-col items-center gap-3">
+                        <span className="font-display text-lg font-bold text-[hsl(var(--fg))] md:text-xl">
                           {Math.round(cumulative / 1000)}K
                         </span>
                         <div
-                          className="w-full rounded-t-md transition-all duration-700"
+                          className="w-full rounded-t-lg transition-all duration-700"
                           style={{
-                            height: `${Math.max(20, heightPct * 1.4)}px`,
+                            height: `${Math.max(40, heightPct * 1.8)}px`,
                             background:
-                              'linear-gradient(to top, hsl(271 91% 65% / 0.9), hsl(174 100% 50% / 0.7))',
-                            boxShadow: '0 0 20px hsl(271 91% 65% / 0.35)',
+                              'linear-gradient(to top, hsl(271 91% 65% / 0.95), hsl(174 100% 50% / 0.85))',
+                            boxShadow:
+                              '0 0 30px hsl(271 91% 65% / 0.45), 0 0 60px hsl(174 100% 50% / 0.15)',
                           }}
                         />
-                        <span className="font-mono text-[10px] text-[hsl(var(--muted))]">
-                          J{y}
+                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[hsl(var(--muted))]">
+                          Jahr {y}
                         </span>
                       </div>
                     );
                   })}
                 </div>
-                <p className="mt-4 text-xs text-[hsl(var(--muted))]">
-                  Über 5 Jahre:{' '}
-                  <span className="font-mono font-bold text-[hsl(var(--neon))]">
-                    {Math.round((scaledSavings * 5) / 1000)}K €
-                  </span>{' '}
-                  zurück in dein Unternehmen.
-                </p>
               </div>
 
-              {/* What can you DO with the savings */}
+              {/* Tangibles — what can you DO with the money */}
               {equivalents.length > 0 && (
-                <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6">
+                <div
+                  className="relative overflow-hidden rounded-3xl border border-white/8 p-8 lg:col-span-5"
+                  style={{
+                    background:
+                      'linear-gradient(155deg, hsl(174 100% 50% / 0.06) 0%, hsl(240 14% 5%) 100%)',
+                  }}
+                >
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--muted))]">
-                    Was du mit der Ersparnis machen kannst
+                    Was {Math.round(animatedSavings / 1000)}K € pro Jahr bedeuten
                   </p>
-                  <ul className="mt-4 space-y-3">
+                  <h3 className="mt-2 font-display text-2xl tracking-tight">
+                    Was du dafür wirklich kaufen kannst.
+                  </h3>
+                  <ul className="mt-6 space-y-3">
                     {equivalents.map((eq) => (
                       <li
                         key={eq.label}
-                        className="flex items-center gap-4 rounded-lg border border-white/6 bg-white/[0.02] px-4 py-3"
+                        className="flex items-center gap-4 rounded-2xl border border-white/8 bg-white/[0.02] px-5 py-4 transition-colors hover:border-[hsl(var(--accent))/30]"
                       >
-                        <span className="text-2xl">{eq.icon}</span>
+                        <span className="text-3xl">{eq.icon}</span>
                         <div className="flex-1">
-                          <span className="font-mono text-2xl font-bold text-[hsl(var(--accent))]">
-                            {eq.count}×
-                          </span>{' '}
-                          <span className="text-sm text-[hsl(var(--fg))]">{eq.label}</span>
+                          <div className="flex items-baseline gap-2">
+                            <span
+                              className="font-display text-4xl font-bold leading-none text-[hsl(var(--accent))]"
+                              style={{ textShadow: '0 0 25px hsl(271 91% 65% / 0.4)' }}
+                            >
+                              {eq.count}
+                            </span>
+                            <span className="text-xs font-bold text-[hsl(var(--accent))]/70">×</span>
+                          </div>
+                          <span className="mt-0.5 block text-sm font-medium text-[hsl(var(--fg))]">
+                            {eq.label}
+                          </span>
                         </div>
                       </li>
                     ))}

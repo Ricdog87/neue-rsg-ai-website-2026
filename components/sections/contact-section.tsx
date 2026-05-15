@@ -274,7 +274,7 @@ export function ContactSection() {
               <div className="mt-3 flex gap-4 text-xs">
                 {[
                   { label: 'LinkedIn', href: site.social.linkedin },
-                  { label: 'X / Twitter', href: site.social.x },
+                  { label: 'Instagram', href: site.social.instagram },
                   { label: 'YouTube', href: site.social.youtube },
                 ].map((s) => (
                   <a

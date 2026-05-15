@@ -34,7 +34,7 @@ export const site = {
   },
   social: {
     linkedin: 'https://www.linkedin.com/company/rsg-recruiting-solutions-group/',
-    x: 'https://x.com/RSGAgentService',
+    instagram: 'https://www.instagram.com/rsg.agentservices/',
     youtube: 'https://www.youtube.com/@RSGAgentServices'
   },
   legal: {
@@ -172,23 +172,23 @@ export const solutions = {
   eyebrow: 'Bauen. Betreiben. Liefern.',
   headline: 'Kein 80-Seiten-Strategiepapier. Sondern KI-Agenten, die ab Woche 2 für dich arbeiten.',
   subline:
-    'Andere Agenturen liefern Decks. Wir liefern produktive Agenten — analysiert, gebaut, integriert und 24/7 betrieben. Dein Team konzentriert sich aufs Verkaufen, wir auf die Maschine darunter.',
+    'Du brauchst keinen weiteren Berater, der dir erklärt, was du schon weißt. Du brauchst einen KI-Agenten, der die Routine übernimmt — damit dein Team endlich wieder das macht, wofür du es bezahlst. Wir analysieren, bauen, integrieren und betreiben. Du siehst Resultate.',
   steps: [
     {
-      title: 'Prozess-Audit in 60 Minuten',
-      body: 'Wir setzen uns mit deinen Vertriebs- und Operations-Leads zusammen und identifizieren die 3 Prozesse mit dem höchsten Automatisierungs-Hebel. Datenbasiert, ohne Bauchgefühl.'
+      title: 'Prozess-Audit in 60 Minuten — nicht 60 Tagen.',
+      body: 'Schluss mit endlosen Discovery-Phasen, die niemand bezahlt. Wir setzen uns mit deinen Vertriebs- und Operations-Leads zusammen, identifizieren die 3 Prozesse mit dem größten Hebel — datenbasiert, ohne Bauchgefühl. Am Ende: 1 Roadmap-Seite, kein 80-Seiten-Deck.'
     },
     {
-      title: 'Maßgeschneiderter KI-Agent statt Standard-Tool',
-      body: 'Auf Basis von LangChain & LangGraph bauen wir Agenten, die deine Sprache sprechen, deine Systeme kennen und deine Edge-Cases handhaben — keine "wir biegen unseren Workflow um das Tool".'
+      title: 'Maßgeschneiderter KI-Agent statt Standard-Tool von der Stange.',
+      body: 'Du kennst das: Standard-Tools zwingen dich, deine Prozesse anzupassen. Wir drehen das um. Auf LangChain & LangGraph bauen wir Agenten, die deine Sprache sprechen, deine Systeme kennen, deine Edge-Cases handhaben.'
     },
     {
-      title: 'EU-Hosting & 24/7-Monitoring inklusive',
-      body: 'DSGVO-konforme deutsche Cloud, Echtzeit-Dashboards, automatische Alerts bei Anomalien. Wir betreiben — du siehst die Resultate.'
+      title: 'EU-Hosting & 24/7-Monitoring — dein Compliance-Officer schläft ruhig.',
+      body: 'Keine US-Cloud-Datentransfers, keine Erklärungsnot vor dem Datenschutzbeauftragten. DSGVO-konforme deutsche Cloud, ISO 27001, Echtzeit-Dashboards, automatische Alerts. Wir betreiben — du lieferst Resultate.'
     },
     {
-      title: 'Tiefe Integration in dein CRM',
-      body: 'HubSpot, Salesforce, Pipedrive, Personio, DATEV, Slack, Teams. Direkt angebunden, ohne dass dein IT-Team ein Ticket schreiben muss.'
+      title: 'Tiefe Integration in dein CRM — ohne IT-Ticket-Hölle.',
+      body: 'HubSpot, Salesforce, Pipedrive, Personio, DATEV, Slack, Teams. Direkt angebunden — kein "wir warten auf einen IT-Slot in Q3". Dein Agent ist ab Tag 1 in deinem Stack, nicht daneben.'
     }
   ],
   cta: 'Erstgespräch buchen',

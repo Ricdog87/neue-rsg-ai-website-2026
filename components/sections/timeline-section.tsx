@@ -18,14 +18,14 @@ export function TimelineSection() {
   return (
     <section
       id="timeline"
-      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-6 py-24 md:py-32"
+      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {timeline.eyebrow}
         </p>
         <ScrollParallax x={-8}>
-          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+          <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
             {timeline.headline}
           </h2>
         </ScrollParallax>
@@ -48,10 +48,10 @@ export function TimelineSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="relative flex gap-6 pl-16 md:pl-20"
+                className="relative flex gap-4 pl-12 sm:pl-14 md:pl-20"
               >
                 {/* Circle on line */}
-                <div className="absolute left-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border-2 border-[hsl(var(--neon))/40] bg-[hsl(var(--bg))] md:left-5">
+                <div className="absolute left-2 top-3 flex h-6 w-6 items-center justify-center rounded-full border-2 border-[hsl(var(--neon))/40] bg-[hsl(var(--bg))] sm:left-3 md:left-5 md:h-7 md:w-7">
                   <span className="font-mono text-[10px] text-[hsl(var(--neon))]">{phase.n}</span>
                 </div>
 
@@ -77,10 +77,10 @@ export function TimelineSection() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 flex flex-col items-start gap-5 rounded-2xl border border-[hsl(var(--neon))/25] bg-[hsl(var(--neon))/5] p-7 md:flex-row md:items-center md:justify-between"
+          className="mt-10 flex flex-col items-start gap-5 rounded-2xl border border-[hsl(var(--neon))/25] bg-[hsl(var(--neon))/5] p-5 md:p-7 md:flex-row md:items-center md:justify-between"
         >
           <div>
-            <span className="font-mono text-5xl font-bold text-[hsl(var(--neon))]">
+            <span className="font-mono text-4xl font-bold text-[hsl(var(--neon))] md:text-5xl">
               {timeline.summary.weeks}
             </span>
             <p className="mt-1 text-sm text-[hsl(var(--muted))]">{timeline.summary.label}</p>

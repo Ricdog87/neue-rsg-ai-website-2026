@@ -64,7 +64,7 @@ export function KineticTypo({ lines, className }: KineticTypoProps) {
     <h1
       ref={ref}
       className={cn(
-        'font-display text-balance text-[12vw] leading-[0.95] tracking-tight md:text-[8vw]',
+        'font-display text-balance text-[clamp(2rem,12vw,5rem)] leading-[0.95] tracking-tight md:text-[clamp(3rem,8vw,8rem)]',
         className,
       )}
     >

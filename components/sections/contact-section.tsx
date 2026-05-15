@@ -16,7 +16,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden border-t border-white/5 bg-[hsl(var(--bg))] px-6 py-24 md:py-32"
+      className="relative overflow-hidden border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
     >
       {/* Ambient atmosphere */}
       <div
@@ -35,7 +35,7 @@ export function ContactSection() {
           {finalCta.eyebrow}
         </p>
         <ScrollParallax x={-8}>
-          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+          <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
             {finalCta.headline}
           </h2>
         </ScrollParallax>
@@ -169,7 +169,7 @@ export function ContactSection() {
                       <button
                         key={opt}
                         onClick={() => setSelected(opt)}
-                        className={`rounded-full border px-3 py-1.5 text-xs transition ${
+                        className={`rounded-full border px-3 py-2.5 text-sm transition ${
                           selected === opt
                             ? 'border-[hsl(var(--accent))] bg-[hsl(var(--accent))/15] text-[hsl(var(--fg))]'
                             : 'border-white/10 text-[hsl(var(--muted))] hover:border-white/25'

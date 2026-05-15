@@ -5,7 +5,7 @@ import { footer, site } from '@/lib/content';
 export function Footer() {
   return (
     <footer className="border-t border-white/5 bg-[hsl(var(--bg))]">
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2" aria-label={`${site.shortName} Startseite`}>

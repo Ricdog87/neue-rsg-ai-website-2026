@@ -43,7 +43,7 @@ function KpiCounter({ target, suffix, label }: { target: number; suffix: string;
 
   return (
     <div ref={ref} className="flex flex-col gap-2 rounded-2xl border border-white/8 bg-white/[0.03] p-6">
-      <span className="font-mono text-4xl font-bold tabular-nums text-[hsl(var(--neon))]">
+      <span className="font-mono text-3xl font-bold tabular-nums text-[hsl(var(--neon))] md:text-4xl">
         {v}{suffix}
       </span>
       <span className="text-sm text-[hsl(var(--muted))]">{label}</span>
@@ -101,14 +101,14 @@ export function SimulationSection() {
   return (
     <section
       id="simulation"
-      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-6 py-24 md:py-32"
+      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           Live-Simulation
         </p>
         <ScrollParallax x={-8}>
-          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+          <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
             Sieh deinem KI-Agenten beim Denken zu.
           </h2>
         </ScrollParallax>

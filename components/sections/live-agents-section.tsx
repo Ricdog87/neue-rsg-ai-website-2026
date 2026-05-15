@@ -100,13 +100,13 @@ export function LiveAgentsSection() {
   return (
     <section
       id="live-agents"
-      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-6 py-24 md:py-32"
+      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
           {liveAgents.eyebrow}
         </p>
-        <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+        <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
           {liveAgents.headline}
         </h2>
         <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">

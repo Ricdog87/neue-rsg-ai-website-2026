@@ -9,7 +9,7 @@ export function ManifestoSection() {
   return (
     <section
       id="manifesto"
-      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-6 py-24 md:py-32"
+      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">

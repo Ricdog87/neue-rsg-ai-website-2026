@@ -185,7 +185,7 @@ export function RoiSection() {
   return (
     <section
       id="roi"
-      className="relative overflow-hidden border-t border-white/5 bg-[hsl(var(--bg))] px-6 py-24 md:py-32"
+      className="relative overflow-hidden border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
     >
       {/* Ambient glows */}
       <div
@@ -204,7 +204,7 @@ export function RoiSection() {
           {roi.eyebrow}
         </p>
         <ScrollParallax x={-8}>
-          <h2 className="mt-4 font-display text-balance text-4xl tracking-tight md:text-6xl">
+          <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
             {roi.headline}
           </h2>
         </ScrollParallax>

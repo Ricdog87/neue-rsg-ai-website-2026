@@ -130,6 +130,10 @@ body {
 }
 
 /* Video background gradient-shift fallback */
+/* .no-video: show gradient fallback, hide video (mobile / reduced-motion) */
+.no-video .video-fallback { display: block !important; }
+.no-video video { display: none !important; }
+
 @keyframes gradientShift {
   0%   { opacity: 0.6; filter: hue-rotate(0deg); }
   50%  { opacity: 0.9; filter: hue-rotate(20deg); }

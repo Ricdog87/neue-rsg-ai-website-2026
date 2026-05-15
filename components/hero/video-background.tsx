@@ -20,7 +20,9 @@ export function VideoBackground() {
   const wrapRef  = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const isMobile = window.innerWidth < 768;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isMobile || prefersReduced) {
       wrapRef.current?.classList.add('no-video');
       return;
     }

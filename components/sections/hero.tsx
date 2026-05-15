@@ -72,7 +72,7 @@ export function Hero() {
       <HeroOrb />
 
       {/* z:20 — all text + CTA content */}
-      <div className="relative z-20 flex flex-1 flex-col justify-between px-6 pt-32 pb-12 md:pt-40">
+      <div className="relative z-20 flex flex-1 flex-col justify-between px-4 pt-28 pb-10 sm:px-6 md:pt-40 md:pb-12">
         <div className="mx-auto w-full max-w-7xl">
           <motion.p
             data-hero-eyebrow
@@ -147,7 +147,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
-          className="mx-auto mt-16 w-full max-w-7xl"
+          className="mx-auto mt-8 w-full max-w-7xl md:mt-16"
         >
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[hsl(var(--muted))]">
             <span className="relative flex h-2 w-2">

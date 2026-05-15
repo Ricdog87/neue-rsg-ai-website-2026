@@ -14,16 +14,19 @@ const DistortionPlane = dynamic(
 /**
  * Wow-stop #2 — pinned vertical stats reveal.
  *
- * The section pins to the viewport and as the user scrolls down,
- * three huge stat cards (taken from `liveAgents.kpis`) zoom in
- * one after the other from scale 0.3 → 2.5, then fade out, then
- * the next one comes. A DistortionPlane in the background
- * provides the brand-coloured noise field.
+ * Pixelation fix: text is rendered at its PEAK native size (clamp ~28vw)
+ * and we only ever scale DOWN from there. CSS transform-scale upscales
+ * the rasterised glyph texture, which blurs above 1; staying ≤1 keeps
+ * glyphs vector-sharp.
  *
- * Guarded by `prefers-reduced-motion` — without motion the three
- * stats are simply stacked legibly with no transform animation.
+ * Timeline:
+ *   stage_n starts at scale 0.4, opacity 0
+ *   → grows to scale 1.0 (full native size — crisp)
+ *   → shrinks back + fades out
+ *   then stage_{n+1} takes over.
  *
- * Sits between ShowcaseSection and UseCasesSection.
+ * Plus GPU promotion (translateZ(0) + backface hidden) and explicit
+ * font-smoothing for retina-clean edges.
  */
 export function StatsRevealSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -43,34 +46,30 @@ export function StatsRevealSection() {
         typeof window !== 'undefined' &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches
       ) {
-        // Static fallback: show all three legibly, no animation
-        gsap.set([s1, s2, s3], { scale: 1, opacity: 1, position: 'relative' });
+        gsap.set([s1, s2, s3], { scale: 1, opacity: 1 });
         return;
       }
 
-      gsap.set([s1, s2, s3], { scale: 0.3, opacity: 0, willChange: 'transform, opacity' });
+      gsap.set([s1, s2, s3], { scale: 0.4, opacity: 0, willChange: 'transform, opacity' });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=200%',
+          end: '+=220%',
           pin: true,
           scrub: 1,
           anticipatePin: 1,
         },
       });
 
-      // Stage 1
-      tl.to(s1, { scale: 2.5, opacity: 1, duration: 1, ease: 'power2.out' }, 0);
-      tl.to(s1, { scale: 4, opacity: 0, duration: 1, ease: 'power2.in' }, 1.1);
+      tl.to(s1, { scale: 1, opacity: 1, duration: 1, ease: 'power2.out' }, 0);
+      tl.to(s1, { scale: 0.55, opacity: 0, duration: 1, ease: 'power2.in' }, 1.1);
 
-      // Stage 2
-      tl.to(s2, { scale: 2.5, opacity: 1, duration: 1, ease: 'power2.out' }, 1.1);
-      tl.to(s2, { scale: 4, opacity: 0, duration: 1, ease: 'power2.in' }, 2.2);
+      tl.to(s2, { scale: 1, opacity: 1, duration: 1, ease: 'power2.out' }, 1.1);
+      tl.to(s2, { scale: 0.55, opacity: 0, duration: 1, ease: 'power2.in' }, 2.2);
 
-      // Stage 3 — final one stays visible
-      tl.to(s3, { scale: 2.5, opacity: 1, duration: 1, ease: 'power2.out' }, 2.2);
+      tl.to(s3, { scale: 1, opacity: 1, duration: 1, ease: 'power2.out' }, 2.2);
     },
     { scope: sectionRef },
   );
@@ -82,19 +81,16 @@ export function StatsRevealSection() {
       ref={sectionRef}
       id="stats-reveal"
       className="relative h-[100svh] overflow-hidden border-t border-white/5 bg-[hsl(var(--bg))]"
-      aria-label="Live-Zahlen"
+      aria-label="Live-Zahlen aus Produktion"
     >
-      {/* Brand-coloured noise backdrop */}
       <DistortionPlane />
 
-      {/* Eyebrow */}
       <div className="absolute left-1/2 top-10 z-20 -translate-x-1/2 text-center">
         <p className="font-mono text-xs uppercase tracking-[0.3em] text-[hsl(var(--neon))]">
-          Live aus Produktion
+          Live aus Produktion · gerade jetzt
         </p>
       </div>
 
-      {/* Stack of stat cards — stacked on top of each other, GSAP scales each in turn */}
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         {liveAgents.kpis.slice(0, 3).map((kpi, i) => (
           <div
@@ -102,20 +98,31 @@ export function StatsRevealSection() {
             key={i}
             ref={stages[i]}
             className="pointer-events-none absolute flex flex-col items-center justify-center text-center"
-            style={{ willChange: 'transform, opacity' }}
+            style={{
+              willChange: 'transform, opacity',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+            }}
             aria-hidden={i > 0}
           >
-            <span className="font-display text-[clamp(4rem,18vw,16rem)] font-bold leading-none tracking-tighter text-[hsl(var(--fg))] drop-shadow-[0_0_40px_hsl(var(--accent)/0.45)]">
+            <span
+              className="font-display font-bold leading-none tracking-tighter text-[hsl(var(--fg))] drop-shadow-[0_0_60px_hsl(var(--accent)/0.55)]"
+              style={{
+                fontSize: 'clamp(7rem, 28vw, 22rem)',
+                textRendering: 'geometricPrecision',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+              }}
+            >
               {kpi.value}
             </span>
-            <span className="mt-4 max-w-[80vw] font-mono text-sm uppercase tracking-[0.25em] text-[hsl(var(--neon))] md:text-base">
+            <span className="mt-6 max-w-[80vw] font-mono text-sm uppercase tracking-[0.25em] text-[hsl(var(--neon))] md:text-base">
               {kpi.label}
             </span>
           </div>
         ))}
       </div>
 
-      {/* Scroll hint */}
       <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-[hsl(var(--muted))]">
         weiterscrollen ↓
       </div>

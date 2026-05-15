@@ -4,6 +4,9 @@ import { LenisProvider } from '@/components/providers/lenis-provider';
 import { CookieBanner } from '@/components/providers/cookie-banner';
 import { Navbar } from '@/components/sections/navbar';
 import { Footer } from '@/components/sections/footer';
+import { MagneticCursor } from '@/components/effects/magnetic-cursor';
+import { ScrollProgress } from '@/components/effects/scroll-progress';
+import { PageTransition } from '@/components/effects/page-transition';
 import { site } from '@/lib/content';
 import './globals.css';
 
@@ -61,6 +64,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-[hsl(var(--bg))] text-[hsl(var(--fg))] antialiased">
+        <PageTransition />
+        <ScrollProgress />
+        <MagneticCursor />
         <LenisProvider>
           <Navbar />
           <main>{children}</main>

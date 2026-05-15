@@ -1,13 +1,21 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { ArrowRight, Calculator } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { KineticTypo } from '@/components/hero/kinetic-typo';
 import { LensFlare } from '@/components/hero/lens-flare';
 import { AstronautPlaceholder } from '@/components/hero/astronaut-placeholder';
 import { VideoBackground } from '@/components/hero/video-background';
+import { Magnetic } from '@/components/effects/magnetic';
 import { Button } from '@/components/ui/button';
+
+// Lazy-load the WebGL layer so Three.js stays out of the initial bundle
+const HeroWebGL = dynamic(
+  () => import('@/components/effects/hero-webgl').then((m) => m.HeroWebGL),
+  { ssr: false },
+);
 
 export function Hero() {
   return (
@@ -28,6 +36,9 @@ export function Hero() {
     >
       {/* z:0 — video + overlay */}
       <VideoBackground />
+
+      {/* z:5 — WebGL particle field above video, below content */}
+      <HeroWebGL />
 
       {/* z:10 — brand glow on top of video overlay */}
       <div className="relative z-10">
@@ -70,18 +81,22 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 1.4 }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <a href={site.cta.meetingUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="primary" size="lg" className="group">
-                {hero.ctaPrimary}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </a>
-            <a href="#roi">
-              <Button variant="outline" size="lg">
-                <Calculator className="h-4 w-4" />
-                {hero.ctaSecondary}
-              </Button>
-            </a>
+            <Magnetic strength={0.3}>
+              <a href={site.cta.meetingUrl} target="_blank" rel="noopener noreferrer">
+                <Button variant="primary" size="lg" className="group">
+                  {hero.ctaPrimary}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </a>
+            </Magnetic>
+            <Magnetic strength={0.25}>
+              <a href="#roi">
+                <Button variant="outline" size="lg">
+                  <Calculator className="h-4 w-4" />
+                  {hero.ctaSecondary}
+                </Button>
+              </a>
+            </Magnetic>
           </motion.div>
 
           <motion.ul

@@ -131,3 +131,20 @@ body {
   50%  { opacity: 0.9; filter: hue-rotate(20deg); }
   100% { opacity: 0.6; filter: hue-rotate(-10deg); }
 }
+
+/* Custom magnetic cursor — hide native pointer on fine-pointer devices */
+@media (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role='button'] {
+    cursor: none !important;
+  }
+}
+
+/* GSAP SplitText line wrappers need overflow-hidden so chars can clip */
+.split-line {
+  overflow: hidden;
+  display: inline-block;
+}

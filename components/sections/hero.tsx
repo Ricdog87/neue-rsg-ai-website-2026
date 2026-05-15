@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
 import { ArrowRight, Calculator } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { KineticTypo } from '@/components/hero/kinetic-typo';
@@ -9,6 +11,7 @@ import { LensFlare } from '@/components/hero/lens-flare';
 import { VideoBackground } from '@/components/hero/video-background';
 import { Magnetic } from '@/components/effects/magnetic';
 import { Button } from '@/components/ui/button';
+import { gsap } from '@/lib/gsap';
 
 // Lazy-load WebGL so Three.js stays out of the initial bundle
 const HeroWebGL = dynamic(
@@ -21,21 +24,38 @@ const HeroOrb = dynamic(
 );
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      // Multi-speed parallax: as the hero scrolls past, each layer drifts
+      // at a different rate so they separate cinematically.
+      const trig = {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1.1,
+      } as const;
+
+      gsap.to('[data-hero-eyebrow]', { yPercent: -120, opacity: 0.2, ease: 'none', scrollTrigger: trig });
+      gsap.to('[data-hero-headline]', { yPercent: -55, ease: 'none', scrollTrigger: trig });
+      gsap.to('[data-hero-subline]', { yPercent: -45, opacity: 0.5, ease: 'none', scrollTrigger: trig });
+      gsap.to('[data-hero-ctas]', { yPercent: -38, ease: 'none', scrollTrigger: trig });
+      gsap.to('[data-hero-chips]', { yPercent: -30, opacity: 0.6, ease: 'none', scrollTrigger: trig });
+      gsap.to('[data-hero-stats]', { yPercent: -18, ease: 'none', scrollTrigger: trig });
+      gsap.to('[data-hero-scroll-hint]', { opacity: 0, ease: 'none', scrollTrigger: trig });
+    },
+    { scope: sectionRef },
+  );
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
-      /*
-       * KEY FIX: removed bg-[hsl(var(--bg))] — the VideoBackground overlay
-       * now provides the dark background. Keeping bg here would paint over
-       * the absolutely-positioned video child.
-       *
-       * Also removed `isolate` — it was creating a stacking context that trapped
-       * z-index: -N children behind its own background.
-       *
-       * overflow-hidden clips the taller video to the hero bounds.
-       */
       className="relative flex min-h-[100svh] flex-col overflow-hidden noise"
-      style={{ backgroundColor: 'hsl(240 10% 4%)' }} // fallback for no-JS
+      style={{ backgroundColor: 'hsl(240 10% 4%)' }}
     >
       {/* z:0 — video + overlay */}
       <VideoBackground />
@@ -48,13 +68,14 @@ export function Hero() {
         <LensFlare />
       </div>
 
-      {/* z:10 — WebGL centerpiece (replaces SVG astronaut) */}
+      {/* z:10 — WebGL centerpiece, masked, scroll-driven (its own parallax inside) */}
       <HeroOrb />
 
       {/* z:20 — all text + CTA content */}
       <div className="relative z-20 flex flex-1 flex-col justify-between px-6 pt-32 pb-12 md:pt-40">
         <div className="mx-auto w-full max-w-7xl">
           <motion.p
+            data-hero-eyebrow
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -63,11 +84,12 @@ export function Hero() {
             {hero.eyebrow}
           </motion.p>
 
-          <div className="mt-6">
+          <div data-hero-headline className="mt-6">
             <KineticTypo lines={hero.headlineKinetic} />
           </div>
 
           <motion.p
+            data-hero-subline
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
@@ -77,6 +99,7 @@ export function Hero() {
           </motion.p>
 
           <motion.div
+            data-hero-ctas
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
@@ -101,6 +124,7 @@ export function Hero() {
           </motion.div>
 
           <motion.ul
+            data-hero-chips
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.6 }}
@@ -119,6 +143,7 @@ export function Hero() {
 
         {/* Live-Stats Strip */}
         <motion.div
+          data-hero-stats
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
@@ -144,6 +169,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
+        data-hero-scroll-hint
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2.2 }}

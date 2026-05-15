@@ -50,27 +50,47 @@ export function ShowcaseSection() {
           start: 'top top',
           end: () => `+=${getDistance()}`,
           pin: true,
-          scrub: 0.8,
+          scrub: 1.4,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      // Per-card scale-into-frame
+      // Per-card scale-into-frame — stronger zoom for premium feel
       slides.forEach((card) => {
         gsap.fromTo(
           card.querySelector('.showcase-card-inner'),
-          { scale: 0.92, opacity: 0.5 },
+          { scale: 0.78, opacity: 0.35, rotateY: 18 },
           {
             scale: 1,
             opacity: 1,
+            rotateY: 0,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: card,
               containerAnimation: tween,
               start: 'left center',
               end: 'center center',
-              scrub: true,
+              scrub: 1.2,
+            },
+          },
+        );
+
+        // Add an exit-scale so card shrinks as it leaves center going left
+        gsap.fromTo(
+          card.querySelector('.showcase-card-inner'),
+          { scale: 1 },
+          {
+            scale: 0.85,
+            opacity: 0.4,
+            rotateY: -14,
+            ease: 'power2.in',
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: tween,
+              start: 'center center',
+              end: 'right center',
+              scrub: 1.2,
             },
           },
         );

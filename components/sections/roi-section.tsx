@@ -5,6 +5,7 @@ import { roi, site } from '@/lib/content';
 import { ScrollParallax } from '@/components/effects/scroll-parallax';
 import { ScrollScale } from '@/components/effects/scroll-scale';
 import { Magnetic } from '@/components/effects/magnetic';
+import { BreakevenChart } from '@/components/sections/roi-breakeven';
 import { TrendingDown, TrendingUp, Clock } from 'lucide-react';
 
 const SAVINGS: Record<string, number> = {
@@ -406,7 +407,10 @@ export function RoiSection() {
               </div>
             </div>
 
-            {/* SECOND ROW: 5-Year projection + tangibles, side-by-side */}
+            {/* BREAK-EVEN: Investment vs. Output — senior BD framing */}
+            <BreakevenChart scaledSavings={scaledSavings} />
+
+            {/* THIRD ROW: 5-Year projection + tangibles, side-by-side */}
             <div className="grid gap-6 lg:grid-cols-12">
               {/* 5-Year projection — bigger & more dramatic */}
               <div

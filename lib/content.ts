@@ -431,7 +431,7 @@ export const roi = {
    * Numbers are deliberately conservative.
    */
   visual: {
-    hourlyRate: 65, // €/h fully-loaded mid-senior knowledge worker
+    hourlyRate: 65,
     comparison: {
       manualLabel: 'Heute · manuell',
       manualHint: '100 % Personalkosten · 0 % Skalierung',
@@ -442,7 +442,24 @@ export const roi = {
     timeLabel: 'Stunden zurückgewonnen pro Monat',
     projectionLabel: '5-Jahres-Projektion · kumulierte Ersparnis',
     projectionYears: [1, 2, 3, 4, 5],
-    /** What the visitor could DO with the saved money — visceral conversion */
+    /** Investment-vs-output break-even calc — Senior BD framing */
+    breakeven: {
+      eyebrow: 'Investment vs. Ertrag · Break-Even-Punkt',
+      headline: 'Ab welchem Tag ist dein KI-Agent bezahlt?',
+      subline:
+        'Senior-BD-Frage: Wie schnell holt sich dein Invest wieder rein? Hier ist die ehrliche Linie — unsere Investition gegen den Umsatz, der dir gerade in deinen manuellen Prozessen verloren geht.',
+      tiers: [
+        { id: 'workflow', label: 'Automatische Workflows',  price: 2500 },
+        { id: 'agent',    label: 'KI-Agent Autonom',         price: 5000 }
+      ],
+      investLabel: 'Einmaliges Invest',
+      monthlySavingsLabel: 'Verloren · Monat',
+      breakevenLabel: 'Break-Even nach',
+      netLabel: 'Netto-Plus · 12 Monate',
+      manualLineLabel: 'Investment',
+      aiLineLabel: 'Kumulierte Ersparnis',
+      footer: 'Jede Woche, die du wartest, ist eine Woche, in der dein Wettbewerber automatisiert.'
+    },
     equivalents: [
       { threshold: 30000, icon: '👤', label: 'Senior-Mitarbeiter Vollzeit', divisor: 65000 },
       { threshold: 15000, icon: '📣', label: 'Marketing-Kampagnen', divisor: 4500 },

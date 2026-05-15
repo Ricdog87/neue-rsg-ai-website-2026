@@ -157,15 +157,15 @@ export function RoiSection() {
               </label>
               <input
                 type="range"
-                min={5}
+                min={1}
                 max={500}
-                step={5}
+                step={1}
                 value={employees}
                 onChange={(e) => setEmployees(Number(e.target.value))}
                 className="w-full accent-[hsl(var(--neon))]"
               />
               <div className="mt-1 flex justify-between font-mono text-[10px] text-[hsl(var(--muted))]">
-                <span>5</span>
+                <span>1</span>
                 <span>500+</span>
               </div>
             </div>

@@ -76,9 +76,8 @@ body {
 
 /* Kinetic typo mask reveal */
 .kinetic-line {
-  display: inline-block;
+  display: block; /* one line per wrapper — must NOT be inline-block */
   overflow: hidden;
-  vertical-align: bottom;
 }
 
 .kinetic-line > span {

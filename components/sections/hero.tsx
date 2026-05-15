@@ -6,14 +6,17 @@ import { ArrowRight, Calculator } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { KineticTypo } from '@/components/hero/kinetic-typo';
 import { LensFlare } from '@/components/hero/lens-flare';
-import { AstronautPlaceholder } from '@/components/hero/astronaut-placeholder';
 import { VideoBackground } from '@/components/hero/video-background';
 import { Magnetic } from '@/components/effects/magnetic';
 import { Button } from '@/components/ui/button';
 
-// Lazy-load the WebGL layer so Three.js stays out of the initial bundle
+// Lazy-load WebGL so Three.js stays out of the initial bundle
 const HeroWebGL = dynamic(
   () => import('@/components/effects/hero-webgl').then((m) => m.HeroWebGL),
+  { ssr: false },
+);
+const HeroOrb = dynamic(
+  () => import('@/components/effects/hero-orb').then((m) => m.HeroOrb),
   { ssr: false },
 );
 
@@ -45,10 +48,8 @@ export function Hero() {
         <LensFlare />
       </div>
 
-      {/* z:10 — floating astronaut */}
-      <div className="relative z-10">
-        <AstronautPlaceholder />
-      </div>
+      {/* z:10 — WebGL centerpiece (replaces SVG astronaut) */}
+      <HeroOrb />
 
       {/* z:20 — all text + CTA content */}
       <div className="relative z-20 flex flex-1 flex-col justify-between px-6 pt-32 pb-12 md:pt-40">

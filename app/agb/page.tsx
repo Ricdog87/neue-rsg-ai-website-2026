@@ -14,9 +14,9 @@ export default function AgbPage() {
     <LegalLayout title="Allgemeine Geschäftsbedingungen" updatedAt="Mai 2026">
       <p>
         Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen
-        der <strong>{site.legal.company}</strong> (nachfolgend „RSG") und ihren
-        Auftraggebern (nachfolgend „Kunde") über KI-Agenten-, Beratungs- und
-        Automatisierungsleistungen.
+        der <strong>{site.legal.company}</strong> (nachfolgend „RSG"), die unter der
+        Marke <strong>{site.legal.brandName}</strong> KI-Agenten-, Beratungs- und
+        Automatisierungsleistungen anbietet, und ihren Auftraggebern (nachfolgend „Kunde").
       </p>
 
       <h2>§ 1 Geltungsbereich</h2>

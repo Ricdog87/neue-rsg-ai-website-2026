@@ -89,6 +89,9 @@ export function Footer() {
           <p>{footer.copyright}</p>
           <p>{footer.tagline}</p>
         </div>
+        <p className="mt-3 text-[11px] italic text-[hsl(var(--muted))]/80">
+          {site.legal.brandNote}
+        </p>
       </div>
     </footer>
   );

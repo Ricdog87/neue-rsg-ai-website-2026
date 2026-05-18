@@ -12,6 +12,11 @@ export const metadata: Metadata = {
 export default function ImpressumPage() {
   return (
     <LegalLayout title="Impressum" updatedAt="Mai 2026">
+      <p>
+        <strong>{site.legal.brandName}</strong> ist eine Marke der nachfolgend genannten
+        Gesellschaft. Diese Website wird betrieben von:
+      </p>
+
       <h2>Angaben gemäß § 5 DDG</h2>
       <p>
         <strong>{site.legal.company}</strong>
@@ -19,6 +24,13 @@ export default function ImpressumPage() {
         Am Heiligenhaus 9
         <br />
         65207 Wiesbaden, Deutschland
+      </p>
+
+      <h2>Markeninhaberin</h2>
+      <p>
+        Inhaberin der Marke „{site.legal.brandName}" ist die {site.legal.company}.
+        Sämtliche unter der Marke „{site.legal.brandName}" angebotenen Leistungen werden
+        rechtlich von der vorgenannten Gesellschaft erbracht.
       </p>
 
       <h2>Vertreten durch</h2>

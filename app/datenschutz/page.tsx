@@ -12,6 +12,12 @@ export const metadata: Metadata = {
 export default function DatenschutzPage() {
   return (
     <LegalLayout title="Datenschutzerklärung" updatedAt="Mai 2026">
+      <p>
+        Diese Datenschutzerklärung gilt für die Website www.rsg-ai.de und alle unter der
+        Marke <strong>{site.legal.brandName}</strong> angebotenen Leistungen.
+        {site.legal.brandNote}
+      </p>
+
       <h2>1. Datenschutz auf einen Blick</h2>
       <p>
         Wir behandeln personenbezogene Daten vertraulich und entsprechend den gesetzlichen

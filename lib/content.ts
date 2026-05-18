@@ -39,6 +39,8 @@ export const site = {
   },
   legal: {
     company: 'RSG Recruiting Solutions Group GmbH',
+    brandName: 'RSG AI',
+    brandNote: 'RSG AI ist eine Marke der RSG Recruiting Solutions Group GmbH.',
     hrb: 'HRB 35951',
     imprintUrl: '/impressum',
     privacyUrl: '/datenschutz',

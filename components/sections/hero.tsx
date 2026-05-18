@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { ArrowRight, Calculator } from 'lucide-react';

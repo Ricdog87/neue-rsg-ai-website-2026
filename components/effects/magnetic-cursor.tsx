@@ -42,13 +42,29 @@ export function MagneticCursor() {
       setRingY(target.y);
     };
 
+    // Hover-Feedback: kleinere Scale + Blend-Mode-Switch.
+    // Mit mix-blend-difference und großem Ring wird kleiner Text (z.B.
+    // Nav-Links) optisch invertiert und unlesbar. Deshalb auf Hover:
+    // Ring schrumpft minimal, wechselt zu solidem Neon ohne Blend.
     const enterInteractive = () => {
-      gsap.to(ring, { scale: 1.8, borderColor: 'hsl(174 100% 50%)', duration: 0.3 });
-      gsap.to(dot, { scale: 0, duration: 0.2 });
+      ring.style.mixBlendMode = 'normal';
+      gsap.to(ring, {
+        scale: 1.25,
+        borderColor: 'hsl(174 100% 50%)',
+        backgroundColor: 'hsl(174 100% 50% / 0.12)',
+        duration: 0.25,
+      });
+      gsap.to(dot, { scale: 0, duration: 0.18 });
     };
     const leaveInteractive = () => {
-      gsap.to(ring, { scale: 1, borderColor: 'hsl(0 0% 98% / 0.6)', duration: 0.3 });
-      gsap.to(dot, { scale: 1, duration: 0.2 });
+      ring.style.mixBlendMode = 'difference';
+      gsap.to(ring, {
+        scale: 1,
+        borderColor: 'hsl(0 0% 98% / 0.6)',
+        backgroundColor: 'transparent',
+        duration: 0.25,
+      });
+      gsap.to(dot, { scale: 1, duration: 0.18 });
     };
 
     const interactiveSelector = 'a, button, [role="button"], input, textarea, label, [data-cursor="hover"]';

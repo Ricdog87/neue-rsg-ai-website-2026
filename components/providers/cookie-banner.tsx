@@ -39,7 +39,7 @@ export function CookieBanner() {
       expires={365}
     >
       Wir verwenden Cookies für Analytics & Performance. Details in der{' '}
-      <a href="https://www.rsg-ai.de/datenschutz" className="underline">
+      <a href="/datenschutz" className="underline">
         Datenschutzerklärung
       </a>
       .

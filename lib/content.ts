@@ -40,9 +40,9 @@ export const site = {
   legal: {
     company: 'RSG Recruiting Solutions Group GmbH',
     hrb: 'HRB 35951',
-    imprintUrl: 'https://www.rsg-ai.de/impressum',
-    privacyUrl: 'https://www.rsg-ai.de/datenschutz',
-    termsUrl: 'https://www.rsg-ai.de/agb'
+    imprintUrl: '/impressum',
+    privacyUrl: '/datenschutz',
+    termsUrl: '/agb'
   }
 } as const;
 
@@ -764,9 +764,9 @@ export const footer = {
     {
       title: 'Rechtliches',
       links: [
-        { label: 'Impressum', href: 'https://www.rsg-ai.de/impressum' },
-        { label: 'Datenschutz', href: 'https://www.rsg-ai.de/datenschutz' },
-        { label: 'AGB', href: 'https://www.rsg-ai.de/agb' }
+        { label: 'Impressum', href: '/impressum' },
+        { label: 'Datenschutz', href: '/datenschutz' },
+        { label: 'AGB', href: '/agb' }
       ]
     }
   ],

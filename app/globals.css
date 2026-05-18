@@ -106,6 +106,54 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Legal pages typography — sober, readable */
+.legal-prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: hsl(var(--fg));
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.legal-prose h3 {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: hsl(var(--fg));
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.legal-prose p,
+.legal-prose ul,
+.legal-prose ol {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: hsl(var(--muted));
+  margin-top: 0.75rem;
+}
+.legal-prose ul,
+.legal-prose ol {
+  padding-left: 1.25rem;
+}
+.legal-prose li {
+  margin-top: 0.4rem;
+}
+.legal-prose a {
+  color: hsl(var(--neon));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legal-prose strong {
+  color: hsl(var(--fg));
+  font-weight: 600;
+}
+.legal-prose hr {
+  border: none;
+  border-top: 1px solid hsl(0 0% 100% / 0.08);
+  margin: 2rem 0;
+}
+
 /* ── Section reveal (scroll-triggered fade-in) ── */
 .section-reveal {
   opacity: 0;

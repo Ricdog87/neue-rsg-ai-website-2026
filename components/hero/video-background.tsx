@@ -76,7 +76,7 @@ const NEBULA_FRAG = `
   void main() {
     vec2 uv = vUv * 2.0 - 1.0;
     float d = length(uv);
-    vec3 p = vec3(uv * 1.5, uTime * 0.02);
+    vec3 p = vec3(uv * 1.5, uTime * 0.005);
     float n = fbm(p) * 0.5 + 0.5;
     float bands = pow(n, 2.2);
     vec3 col = mix(uColA * 0.3, uColB * 0.4, n);
@@ -113,8 +113,8 @@ function Stars({ count }: { count: number }) {
   useFrame((state) => {
     if (!ref.current) return;
     const t = state.clock.elapsedTime;
-    ref.current.rotation.y = t * 0.005;
-    ref.current.rotation.x = t * 0.003;
+    ref.current.rotation.y = t * 0.002;
+    ref.current.rotation.x = t * 0.0012;
     (ref.current.material as THREE.ShaderMaterial).uniforms.uTime.value = t;
   });
 
@@ -140,7 +140,7 @@ function Stars({ count }: { count: number }) {
           void main() {
             vColor = color;
             float h = fract(sin(dot(position.xy, vec2(12.9898, 78.233))) * 43758.5453);
-            vTw = 0.55 + 0.45 * sin(uTime * (0.4 + h * 1.6) + h * 6.28);
+            vTw = 0.75 + 0.25 * sin(uTime * (0.15 + h * 0.6) + h * 6.28);
             vec4 mv = modelViewMatrix * vec4(position, 1.0);
             gl_Position = projectionMatrix * mv;
             gl_PointSize = size * uPx * (300.0 / -mv.z) * vTw;
@@ -168,7 +168,7 @@ function Nebula() {
   useFrame((state) => {
     if (!ref.current) return;
     (ref.current.material as THREE.ShaderMaterial).uniforms.uTime.value = state.clock.elapsedTime;
-    ref.current.rotation.z = state.clock.elapsedTime * 0.005;
+    ref.current.rotation.z = state.clock.elapsedTime * 0.0012;
   });
   return (
     <mesh ref={ref} position={[0, 0, -400]}>
@@ -192,11 +192,11 @@ function Nebula() {
 function Planet() {
   const ref = useRef<THREE.Mesh>(null);
   useFrame((state) => {
-    if (ref.current) ref.current.rotation.y = state.clock.elapsedTime * 0.04;
+    if (ref.current) ref.current.rotation.y = state.clock.elapsedTime * 0.008;
   });
   return (
-    <mesh ref={ref} position={[70, 25, -150]}>
-      <sphereGeometry args={[28, 64, 64]} />
+    <mesh ref={ref} position={[95, 35, -260]}>
+      <sphereGeometry args={[22, 64, 64]} />
       <shaderMaterial
         uniforms={{
           uCore: { value: new THREE.Color('#1e1b4b') },
@@ -223,6 +223,7 @@ function Planet() {
 }
 
 function ShootingStar() {
+  const ref = useRef<THREE.Line>(null);
   const data = useRef({
     shootT: 99,
     lastShoot: -10,
@@ -249,7 +250,7 @@ function ShootingStar() {
   useFrame((state) => {
     const t = state.clock.elapsedTime;
     const d = data.current;
-    if (t - d.lastShoot > 7 + Math.random() * 5) {
+    if (t - d.lastShoot > 18 + Math.random() * 12) {
       d.lastShoot = t;
       d.shootT = 0;
       d.start.set(
@@ -273,15 +274,15 @@ function ShootingStar() {
     }
   });
 
-  return <primitive object={lineObj} />;
+  return <primitive ref={ref} object={lineObj} />;
 }
 
 function CameraDrift() {
   useFrame((state) => {
     const t = state.clock.elapsedTime;
     const scroll = typeof window !== 'undefined' ? window.scrollY : 0;
-    state.camera.position.x = Math.sin(t * 0.1) * 1.5;
-    state.camera.position.y = Math.cos(t * 0.13) * 0.8 - scroll * 0.005;
+    state.camera.position.x = Math.sin(t * 0.03) * 0.5;
+    state.camera.position.y = Math.cos(t * 0.04) * 0.3 - scroll * 0.003;
     state.camera.lookAt(0, 0, 0);
   });
   return null;
@@ -321,7 +322,7 @@ export function VideoBackground() {
           <ShootingStar />
           <CameraDrift />
           <EffectComposer>
-            <Bloom intensity={1.1} luminanceThreshold={0.55} luminanceSmoothing={0.4} mipmapBlur />
+            <Bloom intensity={0.35} luminanceThreshold={0.8} luminanceSmoothing={0.5} />
           </EffectComposer>
         </Canvas>
       )}

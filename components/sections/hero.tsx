@@ -61,7 +61,7 @@ export function Hero() {
       <VideoBackground />
 
       {/* z:5 — WebGL particle field above video, below content */}
-      <HeroWebGL />
+      {/* <HeroWebGL /> disabled for flicker */}
 
       {/* z:10 — brand glow on top of video overlay */}
       <div className="relative z-10">
@@ -69,7 +69,7 @@ export function Hero() {
       </div>
 
       {/* z:10 — WebGL centerpiece (procedural iridescent distort sphere) */}
-      <HeroOrb />
+      {/* <HeroOrb /> disabled for flicker */}
 
       {/* z:20 — all text + CTA content */}
       <div className="relative z-20 flex flex-1 flex-col justify-between px-4 pt-28 pb-10 sm:px-6 md:pt-40 md:pb-12">

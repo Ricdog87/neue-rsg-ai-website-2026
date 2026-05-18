@@ -1,7 +1,6 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
@@ -9,9 +8,8 @@ import * as THREE from 'three';
  * Hero-section animated space background.
  *
  * Live-rendered R3F scene: depth-parallax starfield (twinkle + glow shader),
- * procedural fbm nebula in brand colors, distant planet with atmospheric
- * fresnel rim-light, occasional shooting stars, subtle camera drift + scroll
- * parallax. Bloom postprocessing for cinematic glow.
+ * procedural fbm nebula in brand colors, occasional shooting stars, subtle
+ * camera drift + scroll parallax. Minimal — no postprocessing, no planet.
  *
  * Performance:
  *   Mobile  : 2500 stars, dpr capped at 1.5
@@ -189,39 +187,6 @@ function Nebula() {
   );
 }
 
-function Planet() {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((state) => {
-    if (ref.current) ref.current.rotation.y = state.clock.elapsedTime * 0.008;
-  });
-  return (
-    <mesh ref={ref} position={[95, 35, -260]}>
-      <sphereGeometry args={[22, 64, 64]} />
-      <shaderMaterial
-        uniforms={{
-          uCore: { value: new THREE.Color('#1e1b4b') },
-          uAtmo: { value: new THREE.Color('#a855f7') },
-        }}
-        vertexShader={`
-          varying vec3 vN; varying vec3 vP;
-          void main() { vN = normalize(normalMatrix * normal); vec4 mv = modelViewMatrix * vec4(position, 1.0); vP = mv.xyz; gl_Position = projectionMatrix * mv; }
-        `}
-        fragmentShader={`
-          varying vec3 vN; varying vec3 vP; uniform vec3 uCore; uniform vec3 uAtmo;
-          void main() {
-            vec3 vd = normalize(-vP);
-            float fr = pow(1.0 - max(dot(vN, vd), 0.0), 2.5);
-            vec3 col = mix(uCore, uAtmo, fr);
-            float lm = max(dot(vN, normalize(vec3(-0.6, 0.7, 0.3))), 0.0);
-            col = mix(col * 0.3, col, lm);
-            gl_FragColor = vec4(col, 1.0);
-          }
-        `}
-      />
-    </mesh>
-  );
-}
-
 function ShootingStar() {
   const ref = useRef<THREE.Line>(null);
   const data = useRef({
@@ -318,12 +283,8 @@ export function VideoBackground() {
         >
           <Stars count={isMobile ? 2500 : 6000} />
           <Nebula />
-          <Planet />
           <ShootingStar />
           <CameraDrift />
-          <EffectComposer>
-            <Bloom intensity={0.35} luminanceThreshold={0.8} luminanceSmoothing={0.5} />
-          </EffectComposer>
         </Canvas>
       )}
       {/* Readable-overlay: dark gradient on top of scene so headline stays crisp */}

@@ -760,7 +760,7 @@ export const footer = {
       links: [
         { label: 'Über uns', href: '#about' },
         { label: 'Kontakt', href: '#contact' },
-        { label: 'KI-Beratung Wiesbaden', href: 'https://www.rsg-ai.de/ki-beratung-wiesbaden' }
+        { label: 'KI-Beratung Wiesbaden', href: '/ki-beratung-wiesbaden' }
       ]
     },
     {

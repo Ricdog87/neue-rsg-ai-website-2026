@@ -13,15 +13,6 @@ import { Magnetic } from '@/components/effects/magnetic';
 import { Button } from '@/components/ui/button';
 import { gsap } from '@/lib/gsap';
 
-// Lazy-load WebGL so Three.js stays out of the initial bundle
-const HeroWebGL = dynamic(
-  () => import('@/components/effects/hero-webgl').then((m) => m.HeroWebGL),
-  { ssr: false },
-);
-const HeroOrb = dynamic(
-  () => import('@/components/effects/hero-orb').then((m) => m.HeroOrb),
-  { ssr: false },
-);
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);

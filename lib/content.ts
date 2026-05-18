@@ -21,7 +21,7 @@ export const site = {
     'Deutschlands erste KI-Agentur aus dem Vertrieb — bauen, betreiben, liefern.',
   url: 'https://www.rsg-ai.de',
   contact: {
-    email: 'info@rsg-ai.de',
+    email: 'hello@rsg-ai.de',
     phone: '+49 176 60772556',
     phoneHref: 'tel:+4917660772556',
     city: 'Wiesbaden, Deutschland',

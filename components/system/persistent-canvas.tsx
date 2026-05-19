@@ -50,8 +50,9 @@ export function PersistentCanvas() {
       const y = window.scrollY;
       // 0 → 1 over the hero viewport
       const heroProgress = Math.min(1, y / (vh * 0.9));
-      // Fade from 1.0 → 0.18 as we leave the hero
-      const op = 1 - heroProgress * 0.82;
+      // Stays mostly present across the whole site — cosmos breathes
+      // behind every section. 1.0 → 0.55 (was 0.18 → too dim).
+      const op = 1 - heroProgress * 0.45;
       el.style.opacity = op.toFixed(3);
       raf = 0;
     };

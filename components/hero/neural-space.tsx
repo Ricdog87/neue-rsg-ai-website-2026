@@ -400,13 +400,76 @@ function CameraDirector({ pointer }: { pointer: React.MutableRefObject<{ x: numb
 
 /**
  * Lusion-style glass centerpiece — MeshTransmissionMaterial with high
- * iridescence + chromatic aberration. Floats off-center (right side
- * of viewport) so it never competes with the headline.
+ * iridescence + chromatic aberration.
  *
- * The shape is a high-segment torus knot → looks like a sculpted glass
- * object, not a Three.js demo primitive.
+ * Now scroll-reactive: as the visitor scrolls, the glass migrates,
+ * shrinks, rotates faster, and the chromatic aberration deepens —
+ * giving the impression of one persistent object that "rides along"
+ * with the journey through the page (Active-Theory pattern lite).
+ *
+ * Scroll progress comes from a ref shared at module scope, updated
+ * by the PersistentCanvas mount via window.scrollY.
  */
+const scrollSignal = { value: 0 };
+
+if (typeof window !== 'undefined') {
+  const update = () => {
+    const vh = window.innerHeight || 1;
+    // 0 at top, 1 after scrolling ~3 viewports — gentle ramp
+    scrollSignal.value = Math.min(1, window.scrollY / (vh * 3));
+  };
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+}
+
 function GlassCenterpiece() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  // Animated material params via uniform refs would require deep drei
+  // refactor; instead we mutate the props each frame on the parent mesh
+  // and rely on drei's mat refresh.
+  const matRef = useRef<{
+    chromaticAberration: number;
+    distortion: number;
+    thickness: number;
+  } | null>(null);
+
+  useFrame(() => {
+    if (!meshRef.current) return;
+    const s = scrollSignal.value;
+    // Smoothstep for a hand-keyframed feel
+    const e = s * s * (3 - 2 * s);
+
+    // Position: drift from right side (3.6, 0.4) deeper into space
+    meshRef.current.position.x = 3.6 - e * 2.4; // → 1.2
+    meshRef.current.position.y = 0.4 + e * 0.9; // → 1.3
+    meshRef.current.position.z = -e * 5.5; // → -5.5
+
+    // Scale: shrink as it recedes
+    const sc = 1.15 - e * 0.55; // 1.15 → 0.6
+    meshRef.current.scale.setScalar(sc);
+
+    // Rotation: speed up with depth
+    meshRef.current.rotation.x += 0.003 + e * 0.012;
+    meshRef.current.rotation.y += 0.005 + e * 0.018;
+
+    // Update material live (refs are kept by drei's MeshTransmissionMaterial)
+    const mat = meshRef.current.material as unknown as {
+      chromaticAberration?: number;
+      distortion?: number;
+      thickness?: number;
+    };
+    if (mat) {
+      mat.chromaticAberration = 0.55 + e * 1.6;
+      mat.distortion = 0.25 + e * 0.6;
+      mat.thickness = 1.2 - e * 0.4;
+      matRef.current = {
+        chromaticAberration: mat.chromaticAberration ?? 0,
+        distortion: mat.distortion ?? 0,
+        thickness: mat.thickness ?? 0,
+      };
+    }
+  });
+
   return (
     <Float
       speed={1.2}
@@ -414,7 +477,7 @@ function GlassCenterpiece() {
       floatIntensity={0.6}
       floatingRange={[-0.15, 0.15]}
     >
-      <mesh position={[3.6, 0.4, 0]} scale={1.15}>
+      <mesh ref={meshRef} position={[3.6, 0.4, 0]} scale={1.15}>
         <torusKnotGeometry args={[0.72, 0.24, 220, 32, 2, 3]} />
         <MeshTransmissionMaterial
           backside

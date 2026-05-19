@@ -10,6 +10,7 @@ import { PageTransition } from '@/components/effects/page-transition';
 import { SectionRail } from '@/components/effects/section-rail';
 import { EntryLoader } from '@/components/system/entry-loader';
 import { PersistentCanvas } from '@/components/system/persistent-canvas';
+import { RouteTransition } from '@/components/system/route-transition';
 import { SoundProvider } from '@/components/system/sound-engine';
 import { site } from '@/lib/content';
 import './globals.css';
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="relative min-h-screen bg-[#03020c] text-[hsl(var(--fg))] antialiased">
         <PersistentCanvas />
         <EntryLoader />
+        <RouteTransition />
         <SoundProvider>
           <PageTransition />
           <ScrollProgress />

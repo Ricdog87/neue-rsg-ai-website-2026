@@ -226,7 +226,7 @@ export function Hero() {
               Live · KI-Agenten in Produktion
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4 lg:grid-cols-7">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
             {liveStats.map((s, i) => (
               <motion.div
                 key={s.label}

@@ -49,56 +49,55 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: 'Lösungen', href: '#solutions' },
-  { label: 'Use Cases', href: '#usecases' },
-  { label: 'ROI-Rechner', href: '#roi' },
+  { label: 'Problem', href: '#problems' },
+  { label: 'Live-Agenten', href: '#live-agents' },
+  { label: 'Lösung', href: '#solutions' },
+  { label: 'ROI', href: '#roi' },
   { label: 'Preise', href: '#pricing' },
-  { label: 'Über uns', href: '#about' },
-  { label: 'Kontakt', href: '#contact' }
+  { label: 'Termin', href: '#contact' }
 ] as const;
 
 /* ─────────────────────────────────────────────────────────
    HERO — Hook: "Dein Vertrieb arbeitet. Aber zu 70 % falsch."
    ───────────────────────────────────────────────────────── */
 export const hero = {
-  eyebrow: 'KI-Agenten aus dem Vertrieb — für den Mittelstand',
+  eyebrow: 'KI-Agenten für den Mittelstand',
   headlineKinetic: [
     'Dein Vertrieb',
     'arbeitet hart.',
-    'Aber zu 70 %',
-    'an der falschen Aufgabe.'
+    '70 % davon',
+    'umsonst.'
   ],
   subline:
-    '15 Jahre B2B-Vertrieb. Tausende Stunden in CRMs, Mail-Threads und Excel-Listen verschwendet. Heute bauen wir die KI-Agenten, die wir damals selbst gebraucht hätten — und betreiben sie für dich. DSGVO-konform. In 2–4 Wochen live.',
-  ctaPrimary: 'Agenten-Demo anfragen',
-  ctaSecondary: 'Einsparpotenzial berechnen',
+    'Wir bauen KI-Agenten, die Routine übernehmen. 2–4 Wochen Go-Live. DSGVO-konform. Made in Germany.',
+  ctaPrimary: 'Demo buchen',
+  ctaSecondary: 'ROI berechnen',
   trustChips: [
-    'DSGVO-konform · EU-Server',
-    'Made in Germany',
-    'Go-Live 2–4 Wochen',
-    '12+ Kunden in Produktion',
-    'Ø 312 % ROI nach 4 Monaten'
+    '2–4 Wochen bis Live',
+    'DSGVO · EU-Server',
+    '12+ Agenten in Produktion',
+    '312 % Ø ROI nach 4 Monaten',
+    'ISO 27001 Hosting'
   ]
 } as const;
 
 export const liveStats = [
   { value: '1.247', label: 'Tasks/Tag' },
-  { value: '0.8s', label: 'Ø Reaktionszeit' },
-  { value: '99.9%', label: 'Uptime EU-Cloud' },
-  { value: '24/7', label: 'kein Feierabend' },
-  { value: '2–4', label: 'Wochen Go-Live' },
-  { value: '35K€', label: 'Ø Ersparnis p.a.' },
-  { value: '100%', label: 'DSGVO-konform' }
+  { value: '0.8s', label: 'Ø Reaktion' },
+  { value: '38K€', label: 'Ø Ersparnis p.a.' },
+  { value: '312%', label: 'Ø ROI · 4 Mo.' },
+  { value: '99.9%', label: 'Uptime EU' },
+  { value: '12+', label: 'Live-Agenten' }
 ] as const;
 
 /* ─────────────────────────────────────────────────────────
    LIVE AGENTS — Proof: "Während du liest, arbeiten sie."
    ───────────────────────────────────────────────────────── */
 export const liveAgents = {
-  eyebrow: 'KI-Agenten live in Produktion',
-  headline: 'Während du diese Zeile liest, schließen unsere Agenten Tickets, qualifizieren Leads und beantworten E-Mails.',
+  eyebrow: 'Live in Produktion',
+  headline: 'Drei Agenten. Drei Stellschrauben. Sofort messbar.',
   subline:
-    'Kein Demo-Video. Kein PowerPoint. Echte Pipelines bei echten Mittelständlern — ohne Pause, ohne Wartezeit, ohne den teuersten Mitarbeiter blockieren.',
+    'Echte Pipelines bei echten Kunden. 24/7. Keine Demos — Zahlen.',
   agents: [
     {
       name: 'Sales-Agent',
@@ -134,36 +133,36 @@ export const liveAgents = {
    PROBLEMS — Pain agitation. Visceral.
    ───────────────────────────────────────────────────────── */
 export const problems = {
-  eyebrow: 'Du erkennst dich wieder?',
-  headline: 'Diese 4 Vertriebs-Killer haben uns 15 Jahre lang Umsatz gekostet. Erkennst du sie?',
+  eyebrow: 'Das Problem',
+  headline: '4 Zahlen, die deinen Vertrieb ruinieren.',
   subline:
-    'Wir waren auf deiner Seite des Schreibtisches. Wir wissen, wo deine teuersten Mitarbeiter wirklich Zeit verlieren — und warum kein Tool der Welt das alleine fixt.',
+    'Studien-Hartfakts aus 2024. Keine Meinung — Zahlen.',
   items: [
     {
-      title: 'Dein Vertrieb verkauft nicht. Er verwaltet.',
-      body: 'Angebote schreiben, Leads nachfassen, CRM pflegen, Termine koordinieren, Reports bauen. Die Top-Performer in deinem Team verbringen mehr Zeit mit Tipparbeit als mit echten Kundengesprächen. Jede Stunde Admin ist eine Stunde, in der ein Wettbewerber dein Geschäft macht.',
-      stat: { value: '68 %', label: 'der Vertriebszeit geht für Nicht-Verkaufs-Aufgaben verloren (McKinsey 2024)' }
+      title: 'Vertrieb verkauft nicht. Er verwaltet.',
+      body: 'CRM, E-Mails, Reports, Follow-ups — Tipparbeit statt Kundengespräche.',
+      stat: { value: '68 %', label: 'Nicht-Verkaufs-Zeit (McKinsey 2024)' }
     },
     {
-      title: 'Hochbezahlte Mitarbeiter machen Mindestlohn-Arbeit.',
-      body: 'E-Mails kategorisieren, Daten zwischen Systemen kopieren, Follow-ups erinnern, Status-Updates schreiben. Du zahlst 80K für eine Senior-Position — und 30 Stunden im Monat fließen in Tasks, die ein KI-Agent in Sekunden erledigt. Das ist kein Effizienz-Problem. Das ist eine offene Geldwunde.',
-      stat: { value: '40 %', label: 'der Arbeitszeit entfällt auf wiederholbare, automatisierbare Routine' }
+      title: 'Senior-Gehälter für Mindestlohn-Tasks.',
+      body: '80K-Profile machen Datentransfer und Kategorisierung — 30h/Monat.',
+      stat: { value: '40 %', label: 'automatisierbare Routine' }
     },
     {
-      title: 'Jede Woche ohne Automatisierung ist verlorenes Geld.',
-      body: 'Während du noch ein KI-Pilotprojekt evaluierst und dein IT-Team Tickets schreibt, laufen deine Pipelines weiter durch dieselben Löcher. Wir haben es selbst durchlebt: Drei Quartale verloren, weil "wir müssen erst nochmal drüber schlafen".',
-      stat: { value: '47K €', label: 'durchschnittlicher Jahresverlust pro manuellem Vertriebsprozess (eigene Erhebung)' }
+      title: 'Jede Woche ohne Automation kostet.',
+      body: 'Während du evaluierst, läuft das Geld weiter durch dieselben Löcher.',
+      stat: { value: '47K €', label: 'Jahresverlust pro manuellem Prozess' }
     },
     {
-      title: 'ChatGPT im Browser ist kein Vertriebssystem.',
-      body: 'Wir wissen: Dein Team hat schon ChatGPT-Accounts. Du hast Prompts gespeichert. Vielleicht sogar Custom GPTs gebaut. Aber ohne tiefe CRM-Integration, ohne Prozesswissen, ohne Multi-Step-Logik bleibt jedes KI-Experiment eine Spielerei — die irgendwann im Sande verläuft.',
-      stat: { value: '74 %', label: 'der KI-Initiativen im Mittelstand scheitern an fehlender Prozess-Integration (BCG 2024)' }
+      title: 'ChatGPT ist kein Vertriebssystem.',
+      body: 'Ohne CRM-Integration und Multi-Step-Logik bleibt KI ein Browser-Tab.',
+      stat: { value: '74 %', label: 'KI-Initiativen scheitern (BCG 2024)' }
     }
   ],
   outro: {
-    title: 'Wir haben den Weg bereits gegangen — für uns und für 12+ Mittelständler.',
-    body: 'Als Vertriebsprofis und KI-Architekten in Personalunion wissen wir, welche Agenten wirklich helfen und welche nur in PowerPoint schick aussehen. Wir bauen, integrieren und betreiben — und liefern messbare Ergebnisse, keine Theorien.',
-    cta: 'Zeig mir, wie ihr das löst'
+    title: 'Wir haben es selbst durchlebt — und gelöst.',
+    body: '15 Jahre B2B-Vertrieb. Heute bauen wir die Agenten, die wir damals gebraucht hätten.',
+    cta: 'Wie wir liefern'
   }
 } as const;
 
@@ -171,29 +170,29 @@ export const problems = {
    SOLUTIONS — How we solve it. Outcome-first.
    ───────────────────────────────────────────────────────── */
 export const solutions = {
-  eyebrow: 'Bauen. Betreiben. Liefern.',
-  headline: 'Kein 80-Seiten-Strategiepapier. Sondern KI-Agenten, die ab Woche 2 für dich arbeiten.',
+  eyebrow: 'Wie wir liefern',
+  headline: 'Vier Schritte. Vier Wochen. Live.',
   subline:
-    'Du brauchst keinen weiteren Berater, der dir erklärt, was du schon weißt. Du brauchst einen KI-Agenten, der die Routine übernimmt — damit dein Team endlich wieder das macht, wofür du es bezahlst. Wir analysieren, bauen, integrieren und betreiben. Du siehst Resultate.',
+    'Kein Strategie-Deck. Kein Pilot in Q3. Bauen, integrieren, betreiben.',
   steps: [
     {
-      title: 'Prozess-Audit in 60 Minuten — nicht 60 Tagen.',
-      body: 'Schluss mit endlosen Discovery-Phasen, die niemand bezahlt. Wir setzen uns mit deinen Vertriebs- und Operations-Leads zusammen, identifizieren die 3 Prozesse mit dem größten Hebel — datenbasiert, ohne Bauchgefühl. Am Ende: 1 Roadmap-Seite, kein 80-Seiten-Deck.'
+      title: 'Prozess-Audit in 60 Minuten.',
+      body: '3 Prozesse mit größtem Hebel identifizieren. 1 Roadmap-Seite. Kein 80-Seiten-Deck.'
     },
     {
-      title: 'Maßgeschneiderter KI-Agent statt Standard-Tool von der Stange.',
-      body: 'Du kennst das: Standard-Tools zwingen dich, deine Prozesse anzupassen. Wir drehen das um. Auf LangChain & LangGraph bauen wir Agenten, die deine Sprache sprechen, deine Systeme kennen, deine Edge-Cases handhaben.'
+      title: 'Maßgeschneidert auf LangChain / LangGraph.',
+      body: 'Kein Standard-Tool. Dein Agent kennt deine Systeme, deine Sprache, deine Edge-Cases.'
     },
     {
-      title: 'EU-Hosting & 24/7-Monitoring — dein Compliance-Officer schläft ruhig.',
-      body: 'Keine US-Cloud-Datentransfers, keine Erklärungsnot vor dem Datenschutzbeauftragten. DSGVO-konforme deutsche Cloud, ISO 27001, Echtzeit-Dashboards, automatische Alerts. Wir betreiben — du lieferst Resultate.'
+      title: 'EU-Cloud · ISO 27001 · 24/7-Monitoring.',
+      body: 'DSGVO-konformes Hosting in Deutschland. Echtzeit-Dashboards. Automatische Alerts.'
     },
     {
-      title: 'Tiefe Integration in dein CRM — ohne IT-Ticket-Hölle.',
-      body: 'HubSpot, Salesforce, Pipedrive, Personio, DATEV, Slack, Teams. Direkt angebunden — kein "wir warten auf einen IT-Slot in Q3". Dein Agent ist ab Tag 1 in deinem Stack, nicht daneben.'
+      title: 'CRM-Integration ohne IT-Ticket.',
+      body: 'HubSpot · Salesforce · Pipedrive · Personio · DATEV · Slack · Teams. Tag 1 produktiv.'
     }
   ],
-  cta: 'Erstgespräch buchen',
+  cta: 'Termin buchen',
   pipeline: {
     title: 'Sales-Agent · live',
     status: 'active',

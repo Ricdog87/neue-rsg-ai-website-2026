@@ -17,17 +17,16 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`
   },
   description:
-    'Wir designen, hosten und betreiben maßgeschneiderte AI Agents für dein Unternehmen. DSGVO-konform, made in Germany.',
+    'KI-Agenten für den Mittelstand. 2–4 Wochen Go-Live. 312 % Ø ROI. DSGVO-konform · ISO 27001 · EU-Cloud. 12+ Agenten in Produktion.',
   keywords: [
-    'KI Agenten',
-    'AI Agents',
-    'KI Automatisierung',
-    'Sales Agent',
-    'Recruiting Agent',
-    'Mittelstand',
-    'DSGVO',
-    'LangChain',
-    'LangGraph'
+    'KI-Agenten Mittelstand',
+    'AI Agents Deutschland',
+    'KI Vertriebsautomatisierung',
+    'Sales Agent DSGVO',
+    'LangChain LangGraph',
+    'KI Beratung Wiesbaden',
+    'AI Agent EU Cloud',
+    'ChatGPT Vertrieb B2B'
   ],
   authors: [{ name: 'RSG Recruiting Solutions Group GmbH' }],
   creator: 'RSG Agent Services',

@@ -65,7 +65,6 @@ interface Node {
 }
 
 function NeuralNetwork() {
-  const groupRef = useRef<THREE.Group>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
   const nodesRef = useRef<THREE.Points>(null);
 
@@ -143,41 +142,42 @@ function NeuralNetwork() {
   useFrame((state) => {
     const t = state.clock.elapsedTime;
 
-    // Slow group rotation
-    if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(t * 0.05) * 0.15;
-      groupRef.current.rotation.x = Math.cos(t * 0.04) * 0.08;
-    }
-
-    // Pulse node sizes (animated point sizes via attribute)
+    // Stronger node pulse with occasional "burst" — every ~6s a random
+    // node briefly flares up to 3x size like a data packet firing.
     if (nodesRef.current) {
       const sizeAttr = nodesRef.current.geometry.getAttribute('size') as THREE.BufferAttribute | undefined;
       if (sizeAttr) {
+        const burstNode = Math.floor((t / 1.8) * 7) % nodes.length;
+        const burstPhase = (t * 0.55) % 1;
+        const burstStrength = burstPhase < 0.18 ? (1 - burstPhase / 0.18) * 2.4 : 0;
+
         for (let i = 0; i < nodes.length; i++) {
           const n = nodes[i];
-          const pulse = 0.55 + 0.45 * Math.sin(t * n.speed + n.phase);
-          sizeAttr.array[i] = baseSizes[i] * (0.6 + pulse * 0.9);
+          const pulse = 0.55 + 0.55 * Math.sin(t * n.speed + n.phase);
+          let s = baseSizes[i] * (0.7 + pulse * 1.1);
+          if (i === burstNode) s *= 1 + burstStrength;
+          sizeAttr.array[i] = s;
         }
         sizeAttr.needsUpdate = true;
       }
     }
 
-    // Pulse line opacity attribute
+    // Lines pulse opacity more dramatically + slight wave
     if (linesRef.current) {
       const mat = linesRef.current.material as THREE.LineBasicMaterial;
-      mat.opacity = 0.18 + 0.06 * Math.sin(t * 0.4);
+      mat.opacity = 0.22 + 0.12 * Math.sin(t * 0.55) + 0.06 * Math.sin(t * 1.7);
     }
   });
 
   return (
-    <group ref={groupRef}>
+    <group>
       {/* Connection lines */}
       <lineSegments ref={linesRef} geometry={lineGeometry}>
         <lineBasicMaterial
           attach="material"
-          color="#7d5cf0"
+          color="#a855f7"
           transparent
-          opacity={0.22}
+          opacity={0.28}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
         />
@@ -307,33 +307,125 @@ function NebulaPulse() {
   );
 }
 
+/**
+ * Cinematic camera director — drives a 38-second short-film loop:
+ *   00–10s · slow zoom IN, gentle tilt
+ *   10–18s · dolly RIGHT, slight roll
+ *   18–26s · zoom OUT, drift UP
+ *   26–34s · arc back left + descend
+ *   34–38s · ease back to start
+ *
+ * Uses smoothstep blends so transitions feel hand-keyframed.
+ */
+function CameraDirector({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: number }> }) {
+  const target = useRef(new THREE.Vector3(0, 0, 0));
+  const pos = useRef({ x: 0, y: 0, z: 7 });
+
+  // Smoothstep helper
+  const ss = (e0: number, e1: number, x: number) => {
+    const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0)));
+    return t * t * (3 - 2 * t);
+  };
+
+  useFrame((state, dt) => {
+    const T = state.clock.elapsedTime;
+    const cycle = 38;
+    const t = T % cycle;
+
+    // ── Camera path (parametric, easing-blended) ───────────
+    // Phase 1 (0–10s): slow zoom in
+    const p1 = ss(0, 10, t);
+    // Phase 2 (10–18s): dolly right
+    const p2 = ss(10, 18, t);
+    // Phase 3 (18–26s): zoom out + lift
+    const p3 = ss(18, 26, t);
+    // Phase 4 (26–34s): arc back left
+    const p4 = ss(26, 34, t);
+    // Phase 5 (34–38s): settle
+    const p5 = ss(34, 38, t);
+
+    // Compose camera position
+    let cx = 0, cy = 0, cz = 7.5;
+
+    // Phase 1 — zoom in (z 7.5 → 4.8), tilt up
+    cz += -2.7 * p1;
+    cy += 0.6 * p1;
+
+    // Phase 2 — dolly right (x 0 → 2.2)
+    cx += 2.2 * p2;
+    cy += -0.4 * p2;
+
+    // Phase 3 — zoom out (z 4.8 → 8.5), lift up
+    cz += 3.7 * p3;
+    cy += 1.2 * p3;
+
+    // Phase 4 — arc back (x 2.2 → -1.8)
+    cx += -4 * p4;
+    cy += -1.5 * p4;
+
+    // Phase 5 — settle back to (0, 0, 7.5)
+    cx += 1.8 * p5;
+    cy += 0.1 * p5;
+    cz += -1 * p5;
+
+    // Add gentle mouse parallax on top
+    cx += pointer.current.x * 0.5;
+    cy += -pointer.current.y * 0.25;
+
+    // Slow autonomous breathing
+    cz += Math.sin(T * 0.13) * 0.15;
+    cy += Math.cos(T * 0.09) * 0.12;
+
+    // Smooth lerp camera toward target position
+    const lerp = Math.min(1, dt * 1.2);
+    pos.current.x += (cx - pos.current.x) * lerp;
+    pos.current.y += (cy - pos.current.y) * lerp;
+    pos.current.z += (cz - pos.current.z) * lerp;
+
+    state.camera.position.set(pos.current.x, pos.current.y, pos.current.z);
+
+    // Always look slightly above origin for cinematic framing
+    target.current.set(
+      pointer.current.x * 0.3,
+      0.2 + pointer.current.y * -0.2,
+      0,
+    );
+    state.camera.lookAt(target.current);
+  });
+
+  return null;
+}
+
 function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: number }> }) {
   const groupRef = useRef<THREE.Group>(null);
 
-  useFrame((_, dt) => {
+  useFrame((state) => {
     if (!groupRef.current) return;
-    // Subtle parallax tracking mouse
-    const tx = pointer.current.x * 0.15;
-    const ty = pointer.current.y * 0.08;
-    groupRef.current.rotation.y += (tx - groupRef.current.rotation.y) * dt * 1.2;
-    groupRef.current.rotation.x += (-ty - groupRef.current.rotation.x) * dt * 1.2;
+    const T = state.clock.elapsedTime;
+    // Continuous slow scene rotation — gives parallax against camera moves
+    groupRef.current.rotation.y = Math.sin(T * 0.04) * 0.18;
+    groupRef.current.rotation.x = Math.cos(T * 0.035) * 0.09;
+    groupRef.current.rotation.z = Math.sin(T * 0.025) * 0.04;
   });
 
   return (
-    <group ref={groupRef}>
-      <NebulaPulse />
-      <Stars
-        radius={50}
-        depth={40}
-        count={3500}
-        factor={3}
-        saturation={0.4}
-        fade
-        speed={0.5}
-      />
-      <DustField />
-      <NeuralNetwork />
-    </group>
+    <>
+      <CameraDirector pointer={pointer} />
+      <group ref={groupRef}>
+        <NebulaPulse />
+        <Stars
+          radius={60}
+          depth={50}
+          count={4500}
+          factor={3.5}
+          saturation={0.6}
+          fade
+          speed={1.2}
+        />
+        <DustField />
+        <NeuralNetwork />
+      </group>
+    </>
   );
 }
 

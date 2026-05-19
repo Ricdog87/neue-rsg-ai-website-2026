@@ -200,8 +200,6 @@ export function PricingSection() {
 
                 <a
                   href={site.cta.meetingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className={
                     'group mt-auto inline-flex h-14 items-center justify-center gap-2 rounded-full px-6 font-display text-[0.95rem] font-medium transition-all ' +
                     (isReco

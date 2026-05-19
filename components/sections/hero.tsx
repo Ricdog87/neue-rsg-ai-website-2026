@@ -191,8 +191,6 @@ export function Hero() {
               <Magnetic strength={0.28}>
                 <a
                   href={site.cta.meetingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="group relative inline-flex h-14 items-center gap-2 overflow-hidden rounded-full bg-white px-7 font-display text-[0.95rem] font-medium text-[#0a0a0a] transition-all hover:shadow-[0_20px_50px_-10px_rgba(180,160,255,0.6)]"
                 >
                   <span

@@ -340,8 +340,6 @@ export function RoiSection() {
                 <Magnetic strength={0.22}>
                   <a
                     href={site.cta.meetingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--neon))] px-6 py-4 text-sm font-bold text-black transition hover:opacity-90"
                     style={{ boxShadow: '0 20px 50px -10px hsl(255 71% 37% / 0.6)' }}
                   >

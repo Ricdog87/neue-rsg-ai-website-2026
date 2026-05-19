@@ -227,8 +227,6 @@ export default function KIBeratungWiesbadenPage() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href={site.cta.meetingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-[hsl(var(--accent))] px-6 py-3.5 text-sm font-bold text-white transition hover:opacity-90"
               style={{ boxShadow: '0 25px 60px -15px hsl(271 91% 65% / 0.7)' }}
             >

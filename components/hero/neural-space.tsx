@@ -1,8 +1,9 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial, Stars } from '@react-three/drei';
-import { EffectComposer, Bloom } from '@react-three/postprocessing';
+import { Float, MeshTransmissionMaterial, Points, PointMaterial, Stars, Environment } from '@react-three/drei';
+import { EffectComposer, Bloom, ChromaticAberration } from '@react-three/postprocessing';
+import { BlendFunction } from 'postprocessing';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -397,6 +398,47 @@ function CameraDirector({ pointer }: { pointer: React.MutableRefObject<{ x: numb
 }
 
 
+/**
+ * Lusion-style glass centerpiece — MeshTransmissionMaterial with high
+ * iridescence + chromatic aberration. Floats off-center (right side
+ * of viewport) so it never competes with the headline.
+ *
+ * The shape is a high-segment torus knot → looks like a sculpted glass
+ * object, not a Three.js demo primitive.
+ */
+function GlassCenterpiece() {
+  return (
+    <Float
+      speed={1.2}
+      rotationIntensity={0.45}
+      floatIntensity={0.6}
+      floatingRange={[-0.15, 0.15]}
+    >
+      <mesh position={[3.6, 0.4, 0]} scale={1.15}>
+        <torusKnotGeometry args={[0.72, 0.24, 220, 32, 2, 3]} />
+        <MeshTransmissionMaterial
+          backside
+          backsideThickness={0.4}
+          samples={6}
+          resolution={512}
+          transmission={1}
+          roughness={0.08}
+          thickness={1.2}
+          ior={1.45}
+          chromaticAberration={0.55}
+          anisotropy={0.4}
+          distortion={0.25}
+          distortionScale={0.3}
+          temporalDistortion={0.1}
+          attenuationDistance={2}
+          attenuationColor="#c9b9ff"
+          color="#ffffff"
+        />
+      </mesh>
+    </Float>
+  );
+}
+
 function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: number }> }) {
   const groupRef = useRef<THREE.Group>(null);
 
@@ -412,6 +454,15 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
   return (
     <>
       <CameraDirector pointer={pointer} />
+      {/* HDRI environment — gives the glass realistic reflections */}
+      <Environment preset="studio" environmentIntensity={0.7} />
+      {/* Two-point key/fill lighting for the glass */}
+      <ambientLight intensity={0.2} />
+      <directionalLight position={[4, 6, 4]} intensity={1.2} color="#e2d6ff" />
+      <directionalLight position={[-3, -2, 2]} intensity={0.5} color="#7d5cf0" />
+
+      <GlassCenterpiece />
+
       <group ref={groupRef}>
         <NebulaPulse />
         <Stars
@@ -473,10 +524,14 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
         <Scene pointer={pointer} />
         <EffectComposer enableNormalPass={false} multisampling={2}>
           <Bloom
-            intensity={0.42}
-            luminanceThreshold={0.32}
+            intensity={0.55}
+            luminanceThreshold={0.28}
             luminanceSmoothing={0.7}
             mipmapBlur
+          />
+          <ChromaticAberration
+            blendFunction={BlendFunction.NORMAL}
+            offset={[0.0009, 0.0009] as unknown as [number, number]}
           />
         </EffectComposer>
       </Canvas>

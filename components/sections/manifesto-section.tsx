@@ -10,9 +10,7 @@ export function ManifestoSection() {
       className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--ink))] text-white px-6 py-24 md:py-32 lg:px-10"
     >
       <div className="mx-auto max-w-[1280px]">
-        <span className="eyebrow !text-[hsl(var(--accent-soft))] before:!bg-[hsl(var(--accent-soft))]">
-          Manifesto
-        </span>
+        <span className="eyebrow">Manifesto</span>
 
         <motion.blockquote
           initial={{ opacity: 0, y: 30 }}

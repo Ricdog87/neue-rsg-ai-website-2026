@@ -106,7 +106,7 @@ export function StatsRevealSection() {
             aria-hidden={i > 0}
           >
             <span
-              className="font-display font-medium leading-none tracking-tighter text-[hsl(var(--ink))]"
+              className="font-display font-medium leading-none tracking-tighter text-[hsl(var(--fg))]"
               style={{
                 fontSize: 'clamp(7rem, 28vw, 22rem)',
                 textRendering: 'geometricPrecision',

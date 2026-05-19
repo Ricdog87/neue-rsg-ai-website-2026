@@ -41,7 +41,7 @@ function KpiCounter({ target, suffix, label }: { target: number; suffix: string;
 
   return (
     <div ref={ref} className="flex flex-col gap-2 bg-[hsl(var(--bg))] p-7">
-      <span className="font-display text-[2.25rem] font-medium leading-none tabular-nums tracking-tight text-[hsl(var(--ink))] md:text-[2.75rem]">
+      <span className="font-display text-[2.25rem] font-medium leading-none tabular-nums tracking-tight text-[hsl(var(--fg))] md:text-[2.75rem]">
         {v}
         {suffix}
       </span>
@@ -106,7 +106,7 @@ export function SimulationSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <span className="eyebrow">Live-Simulation</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               Sieh deinem KI-Agenten beim{' '}
               <span className="font-accent italic text-[hsl(var(--accent))]">Denken</span> zu.
             </h2>

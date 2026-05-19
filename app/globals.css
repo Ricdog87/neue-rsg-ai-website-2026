@@ -2,62 +2,66 @@
 @plugin 'tailwindcss-animate';
 
 /* ────────────────────────────────────────────────────────────
-   FRSG · 2026 — Hohrising-inspired Premium Design System
-   Palette: white paper, deep indigo-purple #3a1ba0, ink-black header.
-   Type: Manrope display, Inter body, Fraunces italic accents,
-   JetBrains Mono micro-labels.
+   FRSG · 2026 — Dark Editorial Premium Design System
+   Original brand colors (deep night + purple + cyan neon)
+   layered onto a hohrising-style editorial layout language.
    ──────────────────────────────────────────────────────────── */
 
 @theme {
-  /* Surfaces — white paper with a barely-warm tint for sections */
-  --color-bg: hsl(0 0% 100%);              /* paper / canvas */
-  --color-surface: hsl(40 12% 98%);        /* alternate section bg #fafaf8 */
-  --color-surface-2: hsl(40 10% 96%);      /* sunken / hover */
-  --color-ink: hsl(0 0% 4%);               /* near-black #0a0a0a */
-  --color-fg: hsl(220 14% 14%);            /* body text */
-  --color-muted: hsl(220 8% 38%);          /* secondary */
-  --color-subtle: hsl(220 6% 56%);         /* tertiary */
-  --color-border: hsl(40 6% 89%);          /* #e4e3e0 */
-  --color-border-strong: hsl(40 6% 78%);
+  /* Surfaces — deep night */
+  --color-bg: hsl(240 10% 4%);             /* page canvas */
+  --color-bg-deep: hsl(240 14% 2%);        /* deepest section */
+  --color-surface: hsl(240 8% 7%);         /* card surface */
+  --color-surface-2: hsl(240 7% 10%);      /* elevated card */
+  --color-ink: hsl(240 14% 2%);            /* darkest surface (footer, navbar, manifesto) */
 
-  /* Signature deep indigo purple — Hohrising's exact brand color */
-  --color-accent: hsl(255 71% 37%);        /* #3a1ba0 */
-  --color-accent-soft: hsl(255 71% 95%);   /* tint */
-  --color-accent-deep: hsl(255 75% 28%);
-  --color-accent-translucent: 58 27 160;   /* RGB for rgba() use */
+  /* Text */
+  --color-fg: hsl(0 0% 98%);               /* primary text */
+  --color-muted: hsl(240 5% 65%);          /* secondary */
+  --color-subtle: hsl(240 5% 45%);         /* tertiary */
 
-  /* Legacy alias */
-  --color-neon: hsl(255 71% 37%);
+  /* Borders — subtle hairlines */
+  --color-border: hsl(240 6% 14%);
+  --color-border-strong: hsl(240 6% 22%);
+
+  /* Brand accents */
+  --color-accent: hsl(271 91% 65%);        /* #a855f7 — RSG-Purple */
+  --color-accent-soft: hsl(271 95% 88%);   /* bright pale — for accent text on dark */
+  --color-accent-deep: hsl(271 91% 75%);   /* hover */
+  --color-neon: hsl(174 100% 50%);         /* Cyan turquoise */
+  --color-neon-soft: hsl(174 90% 82%);     /* bright pale */
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-display: var(--font-display), 'Manrope', system-ui, sans-serif;
   --font-accent: var(--font-accent), 'Fraunces', Georgia, serif;
 
-  --radius: 0.25rem;     /* small radius for cards — Hohrising uses 3px */
-  --radius-pill: 9999px; /* full pill for buttons */
+  --radius: 0.5rem;
+  --radius-pill: 9999px;
 
-  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.04), 0 2px 5px rgb(0 0 0 / 0.06);
-  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.04), 0 12px 32px -12px rgb(0 0 0 / 0.12);
-  --shadow-glow: 0 24px 60px -24px hsl(255 71% 37% / 0.32);
-  --shadow-neon: 0 24px 60px -24px hsl(255 71% 37% / 0.32);
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  --shadow-lift: 0 8px 24px -8px rgb(0 0 0 / 0.5), 0 24px 60px -20px rgb(0 0 0 / 0.6);
+  --shadow-glow: 0 24px 60px -20px hsl(271 91% 65% / 0.45);
+  --shadow-neon: 0 24px 60px -20px hsl(174 100% 50% / 0.45);
 }
 
 :root {
-  color-scheme: light;
-  --bg: 0 0% 100%;
-  --surface: 40 12% 98%;
-  --surface-2: 40 10% 96%;
-  --ink: 0 0% 4%;
-  --fg: 220 14% 14%;
-  --muted: 220 8% 38%;
-  --subtle: 220 6% 56%;
-  --border: 40 6% 89%;
-  --border-strong: 40 6% 78%;
-  --accent: 255 71% 37%;
-  --accent-soft: 255 71% 95%;
-  --accent-deep: 255 75% 28%;
-  --neon: 255 71% 37%;
+  color-scheme: dark;
+  --bg: 240 10% 4%;
+  --bg-deep: 240 14% 2%;
+  --surface: 240 8% 7%;
+  --surface-2: 240 7% 10%;
+  --ink: 240 14% 2%;
+  --fg: 0 0% 98%;
+  --muted: 240 5% 65%;
+  --subtle: 240 5% 45%;
+  --border: 240 6% 14%;
+  --border-strong: 240 6% 22%;
+  --accent: 271 91% 65%;
+  --accent-soft: 271 95% 88%;
+  --accent-deep: 271 91% 75%;
+  --neon: 174 100% 50%;
+  --neon-soft: 174 90% 82%;
 }
 
 * {
@@ -88,8 +92,8 @@ body {
 }
 
 ::selection {
-  background: hsl(var(--accent) / 0.18);
-  color: hsl(var(--ink));
+  background: hsl(var(--neon) / 0.28);
+  color: hsl(var(--fg));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -103,26 +107,15 @@ body {
   }
 }
 
-/* Subtle indigo wash behind the hero — replaces the neon lens flare */
+/* Soft purple/cyan radial — used behind big headlines */
 .lens-flare {
   background: radial-gradient(
     ellipse at center,
-    hsl(var(--accent) / 0.10) 0%,
-    hsl(var(--accent) / 0.04) 35%,
+    hsl(var(--accent) / 0.28) 0%,
+    hsl(var(--neon) / 0.10) 32%,
     transparent 70%
   );
-  filter: blur(80px);
-}
-
-/* Editorial paper noise — barely visible */
-.noise::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-  opacity: 0.025;
-  pointer-events: none;
-  mix-blend-mode: multiply;
+  filter: blur(50px);
 }
 
 .kinetic-line {
@@ -131,6 +124,17 @@ body {
 }
 .kinetic-line > span {
   display: inline-block;
+}
+
+/* Cinematic noise overlay */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.045;
+  pointer-events: none;
+  mix-blend-mode: overlay;
 }
 
 @keyframes marquee {
@@ -148,7 +152,7 @@ body {
   font-size: 1.625rem;
   font-weight: 500;
   letter-spacing: -0.02em;
-  color: hsl(var(--ink));
+  color: hsl(var(--fg));
   margin-top: 2.75rem;
   margin-bottom: 0.75rem;
 }
@@ -156,7 +160,7 @@ body {
   font-family: var(--font-sans);
   font-size: 1.05rem;
   font-weight: 600;
-  color: hsl(var(--ink));
+  color: hsl(var(--fg));
   margin-top: 1.75rem;
   margin-bottom: 0.5rem;
 }
@@ -176,17 +180,17 @@ body {
   margin-top: 0.4rem;
 }
 .legal-prose a {
-  color: hsl(var(--accent));
+  color: hsl(var(--neon));
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 .legal-prose strong {
-  color: hsl(var(--ink));
+  color: hsl(var(--fg));
   font-weight: 600;
 }
 .legal-prose hr {
   border: none;
-  border-top: 1px solid hsl(var(--border));
+  border-top: 1px solid hsl(0 0% 100% / 0.08);
   margin: 2rem 0;
 }
 
@@ -218,13 +222,15 @@ body {
   100% { opacity: 0.6; filter: hue-rotate(-10deg); }
 }
 
-/* Custom cursor disabled — doesn't fit editorial aesthetic */
-html.has-custom-cursor,
-html.has-custom-cursor body,
-html.has-custom-cursor a,
-html.has-custom-cursor button,
-html.has-custom-cursor [role='button'] {
-  cursor: auto !important;
+/* Magnetic cursor restored — fits cinematic dark aesthetic */
+@media (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role='button'] {
+    cursor: none !important;
+  }
 }
 
 .split-line {
@@ -234,13 +240,12 @@ html.has-custom-cursor [role='button'] {
 
 /* ── Editorial primitives ──────────────────────────────────── */
 
-/* Eyebrow — small uppercase mono label */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: hsl(var(--accent));
+  color: hsl(var(--neon));
   display: inline-flex;
   align-items: center;
   gap: 0.625rem;
@@ -250,7 +255,7 @@ html.has-custom-cursor [role='button'] {
   display: inline-block;
   width: 1.75rem;
   height: 1px;
-  background: hsl(var(--accent));
+  background: hsl(var(--neon));
 }
 
 .hairline {
@@ -258,7 +263,7 @@ html.has-custom-cursor [role='button'] {
 }
 
 .link-underline {
-  color: hsl(var(--ink));
+  color: hsl(var(--fg));
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
@@ -266,11 +271,11 @@ html.has-custom-cursor [role='button'] {
   transition: text-decoration-color 0.2s ease, color 0.2s ease;
 }
 .link-underline:hover {
-  text-decoration-color: hsl(var(--accent));
-  color: hsl(var(--accent));
+  text-decoration-color: hsl(var(--neon));
+  color: hsl(var(--neon));
 }
 
-/* Signature pill button (Hohrising) — translucent indigo over solid border */
+/* Pill buttons — translucent purple over solid purple border */
 .btn-pill {
   display: inline-flex;
   align-items: center;
@@ -281,15 +286,16 @@ html.has-custom-cursor [role='button'] {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 0.95rem;
-  background: rgba(58, 27, 160, 0.92);
+  background: hsl(var(--accent));
   border: 1px solid hsl(var(--accent));
   color: white;
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
 .btn-pill:hover {
   background: hsl(var(--accent-deep));
-  box-shadow: 0 8px 24px -8px hsl(var(--accent) / 0.5);
+  box-shadow: 0 8px 24px -8px hsl(var(--accent) / 0.6);
 }
+
 .btn-pill-ghost {
   display: inline-flex;
   align-items: center;
@@ -301,18 +307,17 @@ html.has-custom-cursor [role='button'] {
   font-weight: 500;
   font-size: 0.95rem;
   background: transparent;
-  border: 1px solid hsl(var(--ink));
-  color: hsl(var(--ink));
-  transition: background 0.2s ease, color 0.2s ease;
+  border: 1px solid hsl(var(--border-strong));
+  color: hsl(var(--fg));
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 .btn-pill-ghost:hover {
-  background: hsl(var(--ink));
-  color: white;
+  border-color: hsl(var(--neon));
+  color: hsl(var(--neon));
 }
 
-/* Card — paper-style surface with hairline */
 .card-paper {
-  background: hsl(var(--bg));
+  background: hsl(var(--surface));
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
   transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;

@@ -18,7 +18,7 @@ export function TechExplainerSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <span className="eyebrow">{techExplainer.eyebrow}</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {techExplainer.headline}
             </h2>
           </div>
@@ -39,7 +39,7 @@ export function TechExplainerSection() {
                 'inline-flex min-h-[44px] items-center gap-2 rounded-full border px-5 py-2.5 font-display text-[0.875rem] font-medium transition ' +
                 (active === m.id
                   ? 'border-[hsl(var(--accent))] bg-[hsl(var(--accent))] text-white'
-                  : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--muted))] hover:border-[hsl(var(--ink))] hover:text-[hsl(var(--ink))]')
+                  : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--muted))] hover:border-[hsl(var(--ink))] hover:text-[hsl(var(--fg))]')
               }
             >
               <span>{m.icon}</span> {m.label}
@@ -57,7 +57,7 @@ export function TechExplainerSection() {
               · ideal für: {detail.who}
             </span>
           </div>
-          <p className="mt-5 font-display text-[1.25rem] leading-[1.4] text-[hsl(var(--ink))] md:text-[1.5rem]">
+          <p className="mt-5 font-display text-[1.25rem] leading-[1.4] text-[hsl(var(--fg))] md:text-[1.5rem]">
             „{detail.painpoint}"
           </p>
           <p className="mt-4 text-[0.95rem] leading-[1.6] text-[hsl(var(--muted))]">
@@ -116,7 +116,7 @@ export function TechExplainerSection() {
                   >
                     <span className="text-lg">{node.icon}</span>
                     <div>
-                      <div className="text-[0.85rem] font-medium text-[hsl(var(--ink))]">
+                      <div className="text-[0.85rem] font-medium text-[hsl(var(--fg))]">
                         {node.label}
                       </div>
                       <div className="text-[0.7rem] text-[hsl(var(--muted))]">{node.sub}</div>

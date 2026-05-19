@@ -9,20 +9,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Solid ink button — editorial / premium primary
+        // Brand purple — primary action
         primary:
-          'bg-[hsl(var(--ink))] text-[hsl(var(--bg))] hover:bg-[hsl(var(--ink))]/85',
-        // Burnt-sienna accent — used sparingly for the highest-intent CTA
-        accent:
-          'bg-[hsl(var(--accent))] text-white hover:bg-[hsl(var(--accent-deep))]',
-        // Legacy alias for older sections
+          'bg-[hsl(var(--accent))] text-white hover:bg-[hsl(var(--accent-deep))] hover:shadow-[0_0_40px_hsl(var(--accent)/0.55)]',
+        // Cyan neon — high-energy alt
         neon:
+          'bg-[hsl(var(--neon))] text-black hover:shadow-[0_0_40px_hsl(var(--neon)/0.55)]',
+        accent:
           'bg-[hsl(var(--accent))] text-white hover:bg-[hsl(var(--accent-deep))]',
         // Hairline outlined — secondary
         outline:
-          'border border-[hsl(var(--ink))] bg-transparent text-[hsl(var(--ink))] hover:bg-[hsl(var(--ink))] hover:text-[hsl(var(--bg))]',
-        ghost:
-          'bg-transparent text-[hsl(var(--ink))] hover:bg-[hsl(var(--surface))]'
+          'border border-[hsl(var(--border-strong))] bg-transparent text-[hsl(var(--fg))] hover:border-[hsl(var(--neon))] hover:text-[hsl(var(--neon))]',
+        ghost: 'bg-transparent text-[hsl(var(--fg))] hover:bg-white/5'
       },
       size: {
         sm: 'h-9 px-4 text-sm',

@@ -198,7 +198,7 @@ export function RoiSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <span className="eyebrow">{roi.eyebrow}</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {roi.headline}
             </h2>
           </div>

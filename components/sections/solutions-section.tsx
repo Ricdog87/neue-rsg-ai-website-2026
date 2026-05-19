@@ -14,7 +14,7 @@ export function SolutionsSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <span className="eyebrow">{solutions.eyebrow}</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-light leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-light leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {solutions.headline}
             </h2>
           </div>
@@ -41,7 +41,7 @@ export function SolutionsSection() {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
-                  <h3 className="font-display text-[1.375rem] font-medium leading-tight tracking-tight text-[hsl(var(--ink))]">
+                  <h3 className="font-display text-[1.375rem] font-medium leading-tight tracking-tight text-[hsl(var(--fg))]">
                     {step.title}
                   </h3>
                   <p className="mt-2 text-[0.95rem] leading-[1.6] text-[hsl(var(--muted))]">
@@ -69,7 +69,7 @@ export function SolutionsSection() {
               <div className="mb-6 flex items-center justify-between border-b border-[hsl(var(--border))] pb-5">
                 <div className="flex items-center gap-2.5">
                   <Activity className="h-4 w-4 text-[hsl(var(--accent))]" aria-hidden />
-                  <span className="font-mono text-[0.75rem] uppercase tracking-[0.18em] text-[hsl(var(--ink))]">
+                  <span className="font-mono text-[0.75rem] uppercase tracking-[0.18em] text-[hsl(var(--fg))]">
                     {solutions.pipeline.title}
                   </span>
                 </div>
@@ -91,7 +91,7 @@ export function SolutionsSection() {
                       {s.n}
                     </span>
                     <div className="flex-1">
-                      <div className="text-[0.875rem] font-medium text-[hsl(var(--ink))]">
+                      <div className="text-[0.875rem] font-medium text-[hsl(var(--fg))]">
                         {s.title}
                       </div>
                       <div className="mt-0.5 text-[0.75rem] text-[hsl(var(--subtle))]">

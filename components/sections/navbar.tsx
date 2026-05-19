@@ -24,8 +24,10 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 bg-[hsl(var(--ink))] text-white transition-shadow duration-300',
-        scrolled ? 'shadow-[0_1px_0_0_rgb(255_255_255_/_0.06),0_8px_24px_-12px_rgb(0_0_0_/_0.6)]' : ''
+        'fixed inset-x-0 top-0 z-50 text-white transition-all duration-300',
+        scrolled
+          ? 'border-b border-white/8 bg-[hsl(var(--bg))]/85 backdrop-blur-xl'
+          : 'bg-transparent'
       )}
     >
       <nav className="mx-auto flex h-[68px] max-w-[1280px] items-center justify-between px-6 lg:px-10">

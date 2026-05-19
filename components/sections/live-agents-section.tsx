@@ -44,7 +44,7 @@ function KpiCard({ value, label }: { value: string; label: string }) {
 
   return (
     <div ref={ref} className="flex flex-col gap-2 bg-[hsl(var(--bg))] p-6">
-      <span className="font-display text-[2.5rem] font-medium leading-none tabular-nums tracking-tight text-[hsl(var(--ink))]">
+      <span className="font-display text-[2.5rem] font-medium leading-none tabular-nums tracking-tight text-[hsl(var(--fg))]">
         {display}
       </span>
       <span className="text-[0.8rem] text-[hsl(var(--muted))]">{label}</span>
@@ -104,7 +104,7 @@ export function LiveAgentsSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-7">
             <span className="eyebrow">{liveAgents.eyebrow}</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {liveAgents.headline}
             </h2>
           </div>
@@ -120,7 +120,7 @@ export function LiveAgentsSection() {
           {liveAgents.agents.map((agent) => (
             <div key={agent.name} className="flex flex-col bg-[hsl(var(--bg))] p-7">
               <div className="flex items-center justify-between">
-                <span className="font-display text-[1.05rem] font-medium tracking-tight text-[hsl(var(--ink))]">
+                <span className="font-display text-[1.05rem] font-medium tracking-tight text-[hsl(var(--fg))]">
                   {agent.name}
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent-soft))] px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-[hsl(var(--accent))]">

@@ -21,7 +21,7 @@ export function TrustMarquee() {
           {[...clients, ...clients, ...clients].map((name, i) => (
             <span
               key={i}
-              className="inline-flex shrink-0 items-center gap-3 font-display text-[1.05rem] tracking-tight text-[hsl(var(--ink))]/75"
+              className="inline-flex shrink-0 items-center gap-3 font-display text-[1.05rem] tracking-tight text-[hsl(var(--fg))]/75"
             >
               <span
                 aria-hidden

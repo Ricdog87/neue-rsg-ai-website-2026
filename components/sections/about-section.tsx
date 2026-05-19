@@ -15,7 +15,7 @@ export function AboutSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-7">
             <span className="eyebrow">{about.eyebrow}</span>
-            <h2 className="mt-6 max-w-3xl font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 max-w-3xl font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {about.headline}
             </h2>
           </div>
@@ -35,7 +35,7 @@ export function AboutSection() {
                   className={
                     'text-[1.05rem] leading-[1.7] ' +
                     (i === 2
-                      ? 'font-medium text-[hsl(var(--ink))]'
+                      ? 'font-medium text-[hsl(var(--fg))]'
                       : 'text-[hsl(var(--muted))]')
                   }
                 >
@@ -47,7 +47,7 @@ export function AboutSection() {
                 initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="mt-10 border-l-2 border-[hsl(var(--accent))] pl-6 font-accent text-[1.5rem] font-light italic leading-[1.45] text-[hsl(var(--ink))] md:text-[1.75rem]"
+                className="mt-10 border-l-2 border-[hsl(var(--accent))] pl-6 font-accent text-[1.5rem] font-light italic leading-[1.45] text-[hsl(var(--fg))] md:text-[1.75rem]"
               >
                 „{about.quote}"
               </motion.blockquote>
@@ -68,7 +68,7 @@ export function AboutSection() {
                   />
                 </div>
                 <div>
-                  <p className="font-display text-[1.15rem] font-medium tracking-tight text-[hsl(var(--ink))]">
+                  <p className="font-display text-[1.15rem] font-medium tracking-tight text-[hsl(var(--fg))]">
                     {about.founder.name}
                   </p>
                   <p className="text-[0.875rem] text-[hsl(var(--muted))]">
@@ -99,7 +99,7 @@ export function AboutSection() {
                   transition={{ delay: i * 0.08 }}
                   className="bg-[hsl(var(--bg))] p-5"
                 >
-                  <h3 className="font-display text-[0.95rem] font-medium text-[hsl(var(--ink))]">
+                  <h3 className="font-display text-[0.95rem] font-medium text-[hsl(var(--fg))]">
                     {p.title}
                   </h3>
                   <p className="mt-2 text-[0.8rem] leading-relaxed text-[hsl(var(--muted))]">

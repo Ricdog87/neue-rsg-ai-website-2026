@@ -20,7 +20,7 @@ export function Footer() {
               href={site.cta.meetingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex h-14 items-center gap-2 rounded-full bg-[hsl(var(--bg))] px-7 text-[0.95rem] font-medium text-[hsl(var(--ink))] transition-all hover:bg-[hsl(var(--accent))] hover:text-white"
+              className="group inline-flex h-14 items-center gap-2 rounded-full bg-[hsl(var(--bg))] px-7 text-[0.95rem] font-medium text-[hsl(var(--fg))] transition-all hover:bg-[hsl(var(--accent))] hover:text-white"
             >
               {site.cta.primary}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -44,7 +44,7 @@ export function Footer() {
             >
               <span
                 aria-hidden
-                className="grid h-9 w-9 place-items-center rounded-full bg-[hsl(var(--bg))] font-display text-base font-medium text-[hsl(var(--ink))]"
+                className="grid h-9 w-9 place-items-center rounded-full bg-[hsl(var(--bg))] font-display text-base font-medium text-[hsl(var(--fg))]"
               >
                 R
               </span>

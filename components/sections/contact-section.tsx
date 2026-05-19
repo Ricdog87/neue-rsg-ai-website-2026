@@ -20,7 +20,7 @@ export function ContactSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <span className="eyebrow">{finalCta.eyebrow}</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {finalCta.headline}
             </h2>
           </div>
@@ -68,7 +68,7 @@ export function ContactSection() {
                 />
               </div>
               <div>
-                <p className="font-display text-[1.375rem] font-medium tracking-tight text-[hsl(var(--ink))]">
+                <p className="font-display text-[1.375rem] font-medium tracking-tight text-[hsl(var(--fg))]">
                   {about.founder.name}
                 </p>
                 <p className="text-[0.875rem] text-[hsl(var(--muted))]">
@@ -113,7 +113,7 @@ export function ContactSection() {
                       <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
                         {slot.day}
                       </span>
-                      <span className="mt-2 font-display text-[1.5rem] font-medium tracking-tight text-[hsl(var(--ink))]">
+                      <span className="mt-2 font-display text-[1.5rem] font-medium tracking-tight text-[hsl(var(--fg))]">
                         {slot.time}
                       </span>
                       <span className="mt-1 text-[0.7rem] text-[hsl(var(--muted))]">
@@ -142,7 +142,7 @@ export function ContactSection() {
                       'rounded-full border px-4 py-2 text-[0.8rem] transition ' +
                       (selected === opt
                         ? 'border-[hsl(var(--accent))] bg-[hsl(var(--accent))] text-white'
-                        : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--muted))] hover:border-[hsl(var(--ink))] hover:text-[hsl(var(--ink))]')
+                        : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--muted))] hover:border-[hsl(var(--ink))] hover:text-[hsl(var(--fg))]')
                     }
                   >
                     {opt}
@@ -173,7 +173,7 @@ export function ContactSection() {
           >
             <div className="rounded-md border border-[hsl(var(--border))] bg-[hsl(var(--bg))] p-7">
               <Quote className="h-6 w-6 -scale-x-100 text-[hsl(var(--accent))]" />
-              <p className="mt-4 font-display text-[1.05rem] leading-[1.5] text-[hsl(var(--ink))] md:text-[1.15rem]">
+              <p className="mt-4 font-display text-[1.05rem] leading-[1.5] text-[hsl(var(--fg))] md:text-[1.15rem]">
                 „{finalCta.microProof}"
               </p>
             </div>
@@ -213,7 +213,7 @@ export function ContactSection() {
                   <p className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
                     {item.label}
                   </p>
-                  <p className="mt-1 text-[0.95rem] font-medium text-[hsl(var(--ink))]">
+                  <p className="mt-1 text-[0.95rem] font-medium text-[hsl(var(--fg))]">
                     {item.value}
                   </p>
                 </div>
@@ -224,7 +224,7 @@ export function ContactSection() {
             ))}
 
             <div className="rounded-md border border-[hsl(var(--border))] bg-[hsl(var(--bg))] p-5">
-              <p className="text-[0.95rem] font-medium text-[hsl(var(--ink))]">
+              <p className="text-[0.95rem] font-medium text-[hsl(var(--fg))]">
                 {site.contact.city}
               </p>
               <p className="mt-1 text-[0.8rem] text-[hsl(var(--muted))]">

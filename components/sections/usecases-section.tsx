@@ -23,7 +23,7 @@ export function UseCasesSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <span className="eyebrow">{useCases.eyebrow}</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {useCases.headline}
             </h2>
           </div>
@@ -50,7 +50,7 @@ export function UseCasesSection() {
                   {item.kpi}
                 </span>
               </div>
-              <h3 className="font-display text-[1.375rem] font-medium leading-tight tracking-tight text-[hsl(var(--ink))]">
+              <h3 className="font-display text-[1.375rem] font-medium leading-tight tracking-tight text-[hsl(var(--fg))]">
                 {item.name}
               </h3>
               <p className="text-[0.95rem] leading-[1.6] text-[hsl(var(--muted))]">
@@ -65,7 +65,7 @@ export function UseCasesSection() {
             href={site.cta.meetingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex h-14 items-center gap-2 rounded-full border border-[hsl(var(--ink))] px-7 font-display text-[0.95rem] font-medium text-[hsl(var(--ink))] transition-all hover:bg-[hsl(var(--ink))] hover:text-white"
+            className="group inline-flex h-14 items-center gap-2 rounded-full border border-[hsl(var(--ink))] px-7 font-display text-[0.95rem] font-medium text-[hsl(var(--fg))] transition-all hover:bg-[hsl(var(--ink))] hover:text-white"
           >
             Meinen Agenten besprechen
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

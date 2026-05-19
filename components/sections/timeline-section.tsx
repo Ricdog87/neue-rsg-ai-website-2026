@@ -14,7 +14,7 @@ export function TimelineSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <span className="eyebrow">{timeline.eyebrow}</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {timeline.headline}
             </h2>
           </div>
@@ -49,7 +49,7 @@ export function TimelineSection() {
                   <span className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
                     {phase.tag}
                   </span>
-                  <h3 className="mt-2 font-display text-[1.5rem] font-medium leading-tight tracking-tight text-[hsl(var(--ink))]">
+                  <h3 className="mt-2 font-display text-[1.5rem] font-medium leading-tight tracking-tight text-[hsl(var(--fg))]">
                     {phase.title}
                   </h3>
                 </div>
@@ -70,7 +70,7 @@ export function TimelineSection() {
           className="mt-16 flex flex-col items-start gap-6 border-t border-[hsl(var(--border))] pt-12 md:flex-row md:items-center md:justify-between"
         >
           <div>
-            <span className="font-display text-[clamp(3rem,7vw,5rem)] font-medium leading-none tracking-tight text-[hsl(var(--ink))]">
+            <span className="font-display text-[clamp(3rem,7vw,5rem)] font-medium leading-none tracking-tight text-[hsl(var(--fg))]">
               {timeline.summary.weeks}
             </span>
             <p className="mt-2 text-[0.95rem] text-[hsl(var(--muted))]">

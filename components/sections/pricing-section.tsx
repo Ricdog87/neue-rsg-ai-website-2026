@@ -17,7 +17,7 @@ export function PricingSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <span className="eyebrow">{pricing.eyebrow}</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {pricing.headline}
             </h2>
           </div>
@@ -41,7 +41,7 @@ export function PricingSection() {
                   <Icon className="h-4 w-4" />
                 </span>
                 <div>
-                  <p className="font-display text-[0.95rem] font-medium text-[hsl(var(--ink))]">
+                  <p className="font-display text-[0.95rem] font-medium text-[hsl(var(--fg))]">
                     {t.label}
                   </p>
                   <p className="text-[0.75rem] text-[hsl(var(--muted))]">{t.sub}</p>
@@ -93,7 +93,7 @@ export function PricingSection() {
                 <h3
                   className={
                     'mt-5 font-display text-[2rem] font-medium leading-tight tracking-tight md:text-[2.5rem] ' +
-                    (isReco ? 'text-white' : 'text-[hsl(var(--ink))]')
+                    (isReco ? 'text-white' : 'text-[hsl(var(--fg))]')
                   }
                 >
                   {tier.name}
@@ -112,7 +112,7 @@ export function PricingSection() {
                     <span
                       className={
                         'font-display text-[3rem] font-medium leading-none tracking-tight md:text-[4rem] ' +
-                        (isReco ? 'text-[hsl(var(--accent-soft))]' : 'text-[hsl(var(--ink))]')
+                        (isReco ? 'text-[hsl(var(--accent-soft))]' : 'text-[hsl(var(--fg))]')
                       }
                     >
                       {tier.price}
@@ -171,7 +171,7 @@ export function PricingSection() {
                   <p
                     className={
                       'text-[0.875rem] ' +
-                      (isReco ? 'text-white/85' : 'text-[hsl(var(--ink))]')
+                      (isReco ? 'text-white/85' : 'text-[hsl(var(--fg))]')
                     }
                   >
                     {tier.roiHint}
@@ -206,7 +206,7 @@ export function PricingSection() {
                     'group mt-auto inline-flex h-14 items-center justify-center gap-2 rounded-full px-6 font-display text-[0.95rem] font-medium transition-all ' +
                     (isReco
                       ? 'bg-[hsl(var(--accent))] text-white hover:bg-[hsl(var(--accent-deep))]'
-                      : 'border border-[hsl(var(--ink))] text-[hsl(var(--ink))] hover:bg-[hsl(var(--ink))] hover:text-white')
+                      : 'border border-[hsl(var(--ink))] text-[hsl(var(--fg))] hover:bg-[hsl(var(--ink))] hover:text-white')
                   }
                   style={{ marginTop: '2.5rem' }}
                 >

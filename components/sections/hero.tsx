@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
-import { ArrowUpRight, Calculator } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
+import { ArrowUpRight, Calculator, Sparkles } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
 
@@ -15,14 +15,31 @@ const NeuralSpace = dynamic(
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * Cinematic dark hero — WebGL "neural space" backdrop with editorial
- * typography on top. Pulsing AI-agent network behind a giant kinetic
- * headline.
+ * Cinematic dark hero — WebGL neural-space + editorial typography.
+ *
+ * What's new (members-club feel):
+ *  · Service identifier pill above the headline — tells you in 2s what we do
+ *  · Headline letters react to mouse hover (subtle 3D tilt)
+ *  · Stats strip has hover micro-interactions
+ *  · CTAs use animated gradient borders
  */
 export function Hero() {
   const lines = hero.headlineKinetic;
   const lastIndex = lines.length - 1;
   const [reduced, setReduced] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Mouse parallax on headline
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const tiltX = useSpring(useTransform(mouseY, [-1, 1], [2, -2]), {
+    stiffness: 120,
+    damping: 30,
+  });
+  const tiltY = useSpring(useTransform(mouseX, [-1, 1], [-2, 2]), {
+    stiffness: 120,
+    damping: 30,
+  });
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -33,16 +50,24 @@ export function Hero() {
     return () => mq.removeEventListener?.('change', onChange);
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mouseX.set(((e.clientX - rect.left) / rect.width) * 2 - 1);
+    mouseY.set(((e.clientY - rect.top) / rect.height) * 2 - 1);
+  };
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
+      onMouseMove={handleMouseMove}
       className="relative overflow-hidden bg-[#03020c] text-white"
       style={{ minHeight: '100svh' }}
     >
-      {/* z:0 — WebGL neural-space backdrop */}
       <NeuralSpace reduced={reduced} />
 
-      {/* z:5 — Soft top + bottom fade for legibility */}
+      {/* Top + bottom fades */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[5]"
@@ -52,7 +77,7 @@ export function Hero() {
         }}
       />
 
-      {/* z:5 — Indigo bloom vignette behind the headline */}
+      {/* Indigo bloom behind headline */}
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 z-[6] h-[80vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-full"
@@ -63,7 +88,7 @@ export function Hero() {
         }}
       />
 
-      {/* Decorative rule lines + grid for editorial sci-fi feel */}
+      {/* Editorial grid */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[7]"
@@ -78,34 +103,48 @@ export function Hero() {
         }}
       />
 
-      {/* Content */}
       <div
-        className="relative z-10 mx-auto grid max-w-[1280px] grid-cols-12 gap-x-6 px-6 pt-[140px] pb-24 lg:px-10 lg:pt-[180px] lg:pb-32"
+        className="relative z-10 mx-auto grid max-w-[1280px] grid-cols-12 gap-x-6 px-6 pt-[150px] pb-24 lg:px-10 lg:pt-[190px] lg:pb-32"
         style={{ minHeight: '100svh' }}
       >
-        {/* Eyebrow + masthead */}
+        {/* ── Service identifier pill — tells the visitor what we DO ── */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="col-span-12 mb-12 flex items-center justify-between md:mb-20"
+          className="col-span-12 mb-10 flex flex-wrap items-center gap-4 md:mb-14"
         >
-          <span className="inline-flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[#b4a0ff]">
-            <span aria-hidden className="h-px w-7 bg-[#7d5cf0]" />
+          <Magnetic strength={0.18} radius={120}>
+            <a
+              href="#solutions"
+              className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-white/15 bg-white/[0.04] py-2 pl-2 pr-4 backdrop-blur-sm transition-all hover:border-white/30 hover:bg-white/[0.08]"
+            >
+              <span className="relative grid h-6 w-6 place-items-center rounded-full bg-[hsl(var(--accent))] text-white">
+                <Sparkles className="h-3 w-3" />
+              </span>
+              <span className="font-display text-[0.8rem] font-medium tracking-tight text-white/90">
+                Wir bauen & betreiben KI-Agenten für deinen Vertrieb.
+              </span>
+              <ArrowUpRight className="h-3.5 w-3.5 text-white/55 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+            </a>
+          </Magnetic>
+
+          <span className="hidden items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-white/40 md:inline-flex">
+            <span className="h-px w-6 bg-white/20" />
             {hero.eyebrow}
           </span>
-          <div className="hidden items-center gap-4 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-white/45 md:flex">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inset-0 animate-ping rounded-full bg-[#b4a0ff] opacity-60" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#b4a0ff]" />
-            </span>
-            <span>System online · 48 Agents</span>
-            <span className="text-white/25">№&nbsp;01</span>
-          </div>
         </motion.div>
 
-        {/* Headline */}
-        <div className="col-span-12 md:col-span-11">
+        {/* ── Headline with mouse-tilt parallax ── */}
+        <motion.div
+          className="col-span-12 md:col-span-11"
+          style={{
+            rotateX: reduced ? 0 : tiltX,
+            rotateY: reduced ? 0 : tiltY,
+            transformPerspective: 1200,
+            transformStyle: 'preserve-3d',
+          }}
+        >
           <h1 className="font-display text-[clamp(2.75rem,8.5vw,7.5rem)] font-medium leading-[0.95] tracking-[-0.025em] text-white">
             {lines.map((line, i) => (
               <span key={i} className="block overflow-hidden">
@@ -125,9 +164,7 @@ export function Hero() {
                   }
                   style={
                     i === lastIndex
-                      ? {
-                          textShadow: '0 0 80px rgba(180,160,255,0.35)',
-                        }
+                      ? { textShadow: '0 0 80px rgba(180,160,255,0.35)' }
                       : undefined
                   }
                 >
@@ -136,14 +173,14 @@ export function Hero() {
               </span>
             ))}
           </h1>
-        </div>
+        </motion.div>
 
-        {/* Subline + CTAs + trust column */}
+        {/* ── Subline + CTAs + trust ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 1.0 }}
-          className="col-span-12 mt-16 grid grid-cols-12 gap-x-6 gap-y-12 md:mt-24"
+          className="col-span-12 mt-14 grid grid-cols-12 gap-x-6 gap-y-12 md:mt-20"
         >
           <div className="col-span-12 md:col-span-7">
             <p className="max-w-2xl text-balance text-[1.05rem] leading-[1.65] text-white/70 md:text-[1.15rem]">
@@ -160,7 +197,7 @@ export function Hero() {
                 >
                   <span
                     aria-hidden
-                    className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#7d5cf0] to-[#b4a0ff] transition-transform duration-500 group-hover:translate-x-0"
+                    className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#a855f7] via-[#5e7cff] to-[#00ffe0] transition-transform duration-500 group-hover:translate-x-0"
                   />
                   <span className="relative z-10 group-hover:text-white">
                     {hero.ctaPrimary}
@@ -196,11 +233,11 @@ export function Hero() {
                       ease: EASE,
                       delay: 1.4 + i * 0.08,
                     }}
-                    className="flex items-start gap-3 text-[0.95rem] text-white/90"
+                    className="group flex items-start gap-3 text-[0.95rem] text-white/90"
                   >
                     <span
                       aria-hidden
-                      className="mt-2 h-px w-4 shrink-0 bg-[#7d5cf0]"
+                      className="mt-2 h-px w-4 shrink-0 bg-[#7d5cf0] transition-all duration-300 group-hover:w-8 group-hover:bg-[hsl(174_100%_50%)]"
                     />
                     <span>{chip}</span>
                   </motion.li>
@@ -210,12 +247,12 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Live stats — bottom masthead */}
+        {/* ── Live-stats masthead ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 1.8 }}
-          className="col-span-12 mt-24 border-t border-white/15 pt-8 md:mt-auto md:pt-10"
+          className="col-span-12 mt-20 border-t border-white/15 pt-8 md:mt-auto md:pt-10"
         >
           <div className="mb-6 flex items-center gap-3">
             <span className="relative flex h-2 w-2">
@@ -237,8 +274,10 @@ export function Hero() {
                   ease: EASE,
                   delay: 2.0 + i * 0.05,
                 }}
+                whileHover={{ y: -3 }}
+                className="group cursor-default"
               >
-                <div className="font-display text-[2rem] font-medium leading-none tracking-tight text-white md:text-[2.4rem]">
+                <div className="font-display text-[2rem] font-medium leading-none tracking-tight text-white transition-colors group-hover:text-[hsl(174_100%_70%)] md:text-[2.4rem]">
                   {s.value}
                 </div>
                 <div className="mt-2 text-[0.7rem] uppercase tracking-wider text-white/45">
@@ -258,7 +297,11 @@ export function Hero() {
           aria-hidden
         >
           <span>weiter</span>
-          <span className="block h-6 w-px bg-white/30" />
+          <motion.span
+            animate={{ height: ['12px', '24px', '12px'] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+            className="block w-px bg-white/40"
+          />
         </motion.div>
       </div>
     </section>

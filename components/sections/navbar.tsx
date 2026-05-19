@@ -8,11 +8,21 @@ import { nav, site } from '@/lib/content';
 import { cn } from '@/lib/utils';
 
 /**
- * Dark slim header — Hohrising-style #0b0b0b bar framing the white page.
+ * Premium "members-club" header.
+ *
+ *  ┌── Announcement strip ─────────────────────────────────────┐
+ *  │  ●  Q1 2026 · Kohorte 04 · 3 von 5 Plätzen vergeben    →  │
+ *  ├── Navbar ─────────────────────────────────────────────────┤
+ *  │  ◤◤◤ RSGAI.    Problem  Live  Lösung  ROI  Preise    CTA │
+ *  └───────────────────────────────────────────────────────────┘
+ *
+ * Hover micro-interactions: each nav item gets a sliding cyan dot
+ * indicator + soft blob trail. CTA has gradient-sweep on hover.
  */
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -21,75 +31,174 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Track which section is currently in view → highlight matching nav item
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+    const ids = nav.map((n) => n.href.replace('#', ''));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+    if (sections.length === 0) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActiveSection('#' + visible[0].target.id);
+      },
+      { rootMargin: '-40% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    sections.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-50 text-white transition-all duration-300',
-        scrolled
-          ? 'border-b border-white/8 bg-[hsl(var(--bg))]/85 backdrop-blur-xl'
-          : 'bg-transparent'
-      )}
-    >
-      <nav className="mx-auto flex h-[68px] max-w-[1280px] items-center justify-between px-6 lg:px-10">
-        <Link
-          href="/"
-          className="group flex items-center gap-2.5"
-          aria-label={`${site.shortName} Startseite`}
-        >
-          {/* Rising-stripes brand mark (custom — three diagonal indigo bars) */}
-          <svg
-            aria-hidden
-            width="22"
-            height="28"
-            viewBox="0 0 22 28"
-            fill="none"
-            className="text-[hsl(var(--accent))] transition-transform duration-300 group-hover:-translate-y-0.5"
-          >
-            <path d="M0 26 L8 4 L11 4 L3 26 Z" fill="currentColor" />
-            <path d="M7 26 L15 4 L18 4 L10 26 Z" fill="currentColor" opacity="0.7" />
-            <path d="M14 26 L22 4 L25 4 L17 26 Z" fill="currentColor" opacity="0.45" />
-          </svg>
-          <span className="font-display text-[1.15rem] font-semibold tracking-tight text-white">
-            {site.shortName}
-            <span className="text-[hsl(var(--accent))]">.</span>
-          </span>
-        </Link>
-
-        <ul className="hidden items-center gap-8 md:flex">
-          {nav.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="group relative font-display text-[0.875rem] font-medium text-white/75 transition-colors hover:text-white"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-[hsl(var(--accent))] transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="hidden md:block">
+    <header className="fixed inset-x-0 top-0 z-50 text-white">
+      {/* ── Announcement strip ── */}
+      <div
+        className={cn(
+          'relative overflow-hidden transition-all duration-300',
+          scrolled
+            ? 'h-0 opacity-0'
+            : 'h-9 border-b border-white/8 bg-[hsl(240_14%_2%)]/85 opacity-100 backdrop-blur-md'
+        )}
+      >
+        <div className="mx-auto flex h-9 max-w-[1280px] items-center justify-between px-6 lg:px-10">
+          <div className="flex items-center gap-3 font-mono text-[0.625rem] uppercase tracking-[0.24em] text-white/60">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inset-0 animate-ping rounded-full bg-[hsl(174_100%_50%)] opacity-70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(174_100%_50%)]" />
+            </span>
+            <span className="hidden sm:inline">
+              Q1 2026 · Kohorte 04 · 3 von 5 Plätzen vergeben
+            </span>
+            <span className="sm:hidden">3 / 5 Plätze · Q1 2026</span>
+          </div>
           <a
             href={site.cta.meetingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex h-10 items-center gap-2 rounded-full border border-[hsl(var(--accent))] bg-[hsl(var(--accent))]/85 px-5 font-display text-[0.875rem] font-medium text-white transition-all hover:bg-[hsl(var(--accent-deep))]"
+            className="group inline-flex items-center gap-1.5 font-mono text-[0.625rem] uppercase tracking-[0.24em] text-[hsl(174_100%_70%)] transition-colors hover:text-white"
           >
-            {site.cta.primary}
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            <span className="hidden sm:inline">Slot sichern</span>
+            <span className="sm:hidden">Slot</span>
+            <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </a>
         </div>
+        {/* Gradient hairline underneath */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-px"
+          style={{
+            background:
+              'linear-gradient(90deg, transparent 0%, hsl(174 100% 50% / 0.4) 20%, hsl(271 91% 65% / 0.4) 50%, hsl(174 100% 50% / 0.4) 80%, transparent 100%)',
+          }}
+        />
+      </div>
 
-        <button
-          className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menü umschalten"
-          aria-expanded={open}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </nav>
+      {/* ── Main navbar ── */}
+      <div
+        className={cn(
+          'transition-all duration-300',
+          scrolled
+            ? 'border-b border-white/8 bg-[hsl(var(--bg))]/85 backdrop-blur-xl'
+            : 'bg-transparent'
+        )}
+      >
+        <nav className="mx-auto flex h-[68px] max-w-[1280px] items-center justify-between px-6 lg:px-10">
+          <Link
+            href="/"
+            className="group flex items-center gap-2.5"
+            aria-label={`${site.shortName} Startseite`}
+          >
+            <svg
+              aria-hidden
+              width="22"
+              height="28"
+              viewBox="0 0 25 28"
+              fill="none"
+              className="text-[hsl(var(--accent))] transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-110"
+            >
+              <path d="M0 26 L8 4 L11 4 L3 26 Z" fill="currentColor" />
+              <path d="M7 26 L15 4 L18 4 L10 26 Z" fill="currentColor" opacity="0.7" />
+              <path d="M14 26 L22 4 L25 4 L17 26 Z" fill="currentColor" opacity="0.45" />
+            </svg>
+            <span className="font-display text-[1.15rem] font-semibold tracking-tight text-white">
+              {site.shortName}
+              <span className="text-[hsl(var(--accent))]">.</span>
+            </span>
+          </Link>
+
+          {/* Nav items with active indicator */}
+          <ul className="hidden items-center gap-1 md:flex">
+            {nav.map((item) => {
+              const isActive = activeSection === item.href;
+              return (
+                <li key={item.href} className="relative">
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      'group relative inline-flex h-9 items-center px-3.5 font-display text-[0.85rem] font-medium transition-colors',
+                      isActive ? 'text-white' : 'text-white/60 hover:text-white'
+                    )}
+                  >
+                    {/* Hover blob (slides in) */}
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 -z-10 scale-90 rounded-full bg-white/[0.06] opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100"
+                    />
+                    {/* Active indicator dot */}
+                    <span className="relative flex items-center gap-2">
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-active-dot"
+                          className="h-1 w-1 rounded-full bg-[hsl(174_100%_50%)]"
+                          style={{ boxShadow: '0 0 8px hsl(174 100% 50% / 0.8)' }}
+                        />
+                      )}
+                      {item.label}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="hidden items-center gap-2 md:flex">
+            <a
+              href={site.cta.meetingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex h-10 items-center gap-2 overflow-hidden rounded-full bg-white/[0.04] px-5 font-display text-[0.85rem] font-medium text-white backdrop-blur-sm transition-all hover:bg-white/[0.08]"
+              style={{
+                border: '1px solid rgba(255,255,255,0.12)',
+              }}
+            >
+              {/* Gradient sweep on hover */}
+              <span
+                aria-hidden
+                className="absolute inset-0 -translate-x-full opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100"
+                style={{
+                  background:
+                    'linear-gradient(90deg, hsl(271 91% 65%) 0%, hsl(220 90% 55%) 50%, hsl(174 100% 50%) 100%)',
+                }}
+              />
+              <span className="relative z-10">{site.cta.primary}</span>
+              <ArrowUpRight className="relative z-10 h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </div>
+
+          <button
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white md:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Menü umschalten"
+            aria-expanded={open}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </nav>
+      </div>
 
       <AnimatePresence>
         {open && (
@@ -97,28 +206,38 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-white/10 bg-[hsl(var(--ink))] md:hidden"
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden border-t border-white/8 bg-[hsl(var(--bg))]/95 backdrop-blur-xl md:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 py-6">
-              {nav.map((item) => (
-                <li key={item.href}>
+              {nav.map((item, i) => (
+                <motion.li
+                  key={item.href}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 + i * 0.04 }}
+                >
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className="flex items-center justify-between border-b border-white/10 py-4 font-display text-xl text-white"
                   >
-                    {item.label}
+                    <span className="flex items-center gap-3">
+                      <span className="font-mono text-[0.6875rem] text-white/40">
+                        0{i + 1}
+                      </span>
+                      {item.label}
+                    </span>
                     <ArrowUpRight className="h-4 w-4 text-white/55" />
                   </Link>
-                </li>
+                </motion.li>
               ))}
               <li className="pt-6">
                 <a
                   href={site.cta.meetingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-[hsl(var(--accent))] bg-[hsl(var(--accent))]/90 text-sm font-medium text-white"
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--accent))] text-sm font-medium text-white"
                 >
                   {site.cta.primary}
                   <ArrowUpRight className="h-4 w-4" />

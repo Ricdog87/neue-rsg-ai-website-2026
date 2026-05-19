@@ -211,6 +211,31 @@ export function Hero() {
           </motion.ul>
         </motion.div>
 
+        {/* Project-meta strip — Lusion case-study language */}
+        <motion.dl
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 3.3, ease: [0.16, 1, 0.3, 1] }}
+          className="col-span-12 mt-16 grid grid-cols-2 gap-y-6 border-y border-white/10 py-6 sm:grid-cols-5 sm:gap-x-6 md:mt-20"
+        >
+          {[
+            { k: 'Year', v: '2026' },
+            { k: 'Type', v: 'KI-Werkstatt' },
+            { k: 'Industry', v: 'B2B · Vertrieb' },
+            { k: 'Stack', v: 'LangChain · n8n' },
+            { k: 'Location', v: 'Wiesbaden, DE' },
+          ].map(({ k, v }) => (
+            <div key={k} className="flex flex-col gap-1">
+              <dt className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white/35">
+                {k}
+              </dt>
+              <dd className="font-display text-[0.95rem] font-medium tracking-tight text-white">
+                {v}
+              </dd>
+            </div>
+          ))}
+        </motion.dl>
+
         {/* Asymmetric stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

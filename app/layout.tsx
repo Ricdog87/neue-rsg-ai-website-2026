@@ -8,6 +8,7 @@ import { MagneticCursor } from '@/components/effects/magnetic-cursor';
 import { ScrollProgress } from '@/components/effects/scroll-progress';
 import { PageTransition } from '@/components/effects/page-transition';
 import { SectionRail } from '@/components/effects/section-rail';
+import { ChapterHud } from '@/components/effects/chapter-hud';
 import { EntryLoader } from '@/components/system/entry-loader';
 import { PersistentCanvas } from '@/components/system/persistent-canvas';
 import { RouteTransition } from '@/components/system/route-transition';
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <LenisProvider>
             <Navbar />
             <SectionRail />
+            <ChapterHud />
             <main className="relative z-[1]">{children}</main>
             <Footer />
           </LenisProvider>

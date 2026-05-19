@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import { ArrowUpRight, Calculator } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
@@ -29,12 +30,45 @@ export function Hero() {
   const heroKpi = liveStats[0];
   const tickerKpis = liveStats.slice(1);
 
+  // Mouse-following spotlight — soft purple glow that tracks the cursor
+  const sectionRef = useRef<HTMLElement>(null);
+  const mouseX = useMotionValue(50);
+  const mouseY = useMotionValue(50);
+  const spotlightX = useSpring(mouseX, { stiffness: 120, damping: 25, mass: 0.4 });
+  const spotlightY = useSpring(mouseY, { stiffness: 120, damping: 25, mass: 0.4 });
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    const onMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      mouseX.set(x);
+      mouseY.set(y);
+    };
+    el.addEventListener('mousemove', onMove);
+    return () => el.removeEventListener('mousemove', onMove);
+  }, [mouseX, mouseY]);
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative overflow-hidden text-white"
       style={{ minHeight: '100svh' }}
     >
+      {/* Mouse-following spotlight (Cursor.com / Linear pattern) */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[2] mix-blend-screen"
+        style={{
+          background: useMotionTemplate`radial-gradient(circle 400px at ${spotlightX}% ${spotlightY}%, hsl(var(--accent) / 0.18), transparent 70%)`,
+        }}
+      />
       {/* Layered legibility veils — radial wash under headline + vignette */}
       <div
         aria-hidden
@@ -136,6 +170,7 @@ export function Hero() {
               <a
                 href={site.cta.meetingUrl}
                 data-sound="tick"
+                data-cursor-label="Buchen"
                 className="group relative inline-flex h-14 items-center gap-2 overflow-hidden rounded-full bg-white px-7 font-display text-[0.95rem] font-medium text-[#0a0a0a] transition-shadow hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.55)]"
               >
                 <span
@@ -152,6 +187,7 @@ export function Hero() {
               <a
                 href="#roi"
                 data-sound="tick"
+                data-cursor-label="Rechnen"
                 className="group inline-flex h-14 items-center gap-2 rounded-full border border-white/25 px-7 font-display text-[0.95rem] font-medium text-white transition-all hover:border-white"
               >
                 <Calculator className="h-4 w-4 transition-transform group-hover:rotate-[-6deg]" />

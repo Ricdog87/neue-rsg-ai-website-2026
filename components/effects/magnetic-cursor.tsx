@@ -4,15 +4,19 @@ import { useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
 
 /**
- * Custom magnetic cursor — replaces native pointer with a dual-ring that
- * lerps toward the mouse and grows when hovering interactive elements.
+ * Custom magnetic cursor — dual-ring + context-aware label.
  *
- * Activated only on devices with a fine pointer (i.e. mouse, not touch).
- * Respects prefers-reduced-motion.
+ * Adds (in addition to the dual-ring base):
+ *   - A small label that slides in below the ring, showing whatever
+ *     `data-cursor-label="..."` the hovered element declares.
+ *     E.g. <a data-cursor-label="Buchen">Demo anfragen</a>
+ *
+ * Activated only on devices with a fine pointer. Respects reduced-motion.
  */
 export function MagneticCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -21,7 +25,8 @@ export function MagneticCursor() {
 
     const dot = dotRef.current;
     const ring = ringRef.current;
-    if (!dot || !ring) return;
+    const label = labelRef.current;
+    if (!dot || !ring || !label) return;
 
     document.documentElement.classList.add('has-custom-cursor');
 
@@ -32,6 +37,8 @@ export function MagneticCursor() {
     const setDotY = gsap.quickSetter(dot, 'y', 'px');
     const setRingX = gsap.quickTo(ring, 'x', { duration: 0.55, ease: 'power3' });
     const setRingY = gsap.quickTo(ring, 'y', { duration: 0.55, ease: 'power3' });
+    const setLabelX = gsap.quickTo(label, 'x', { duration: 0.5, ease: 'power3' });
+    const setLabelY = gsap.quickTo(label, 'y', { duration: 0.5, ease: 'power3' });
 
     const onMove = (e: PointerEvent) => {
       target.x = e.clientX;
@@ -40,13 +47,12 @@ export function MagneticCursor() {
       setDotY(target.y);
       setRingX(target.x);
       setRingY(target.y);
+      setLabelX(target.x);
+      setLabelY(target.y);
     };
 
-    // Hover-Feedback: ring grows slightly and gets a subtle border tint.
-    // Keep mix-blend-difference throughout — no jarring color switch.
-    // The cursor should READ premium, not signal "look at me" with a
-    // bright cyan halo every time it's near a link.
-    const enterInteractive = () => {
+    // Hover-Feedback: ring grows + optional context label slides in
+    const enterInteractive = (e: Event) => {
       gsap.to(ring, {
         scale: 1.6,
         borderColor: 'hsl(0 0% 100% / 0.85)',
@@ -54,6 +60,19 @@ export function MagneticCursor() {
         ease: 'power3.out',
       });
       gsap.to(dot, { scale: 0, duration: 0.2 });
+
+      // Optional context label from data-cursor-label
+      const el = e.currentTarget as HTMLElement | null;
+      const text = el?.getAttribute('data-cursor-label');
+      if (text && label) {
+        label.textContent = text;
+        gsap.to(label, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.25,
+          ease: 'power3.out',
+        });
+      }
     };
     const leaveInteractive = () => {
       gsap.to(ring, {
@@ -63,6 +82,11 @@ export function MagneticCursor() {
         ease: 'power3.out',
       });
       gsap.to(dot, { scale: 1, duration: 0.2 });
+      gsap.to(label, {
+        opacity: 0,
+        scale: 0.85,
+        duration: 0.2,
+      });
     };
 
     const interactiveSelector = 'a, button, [role="button"], input, textarea, label, [data-cursor="hover"]';
@@ -106,6 +130,13 @@ export function MagneticCursor() {
         aria-hidden
         className="pointer-events-none fixed left-0 top-0 z-[9999] hidden h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white mix-blend-difference md:block"
         style={{ willChange: 'transform' }}
+      />
+      {/* Context label — slides in next to cursor when hovering [data-cursor-label] */}
+      <div
+        ref={labelRef}
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 z-[9999] hidden -translate-x-1/2 translate-y-8 rounded-full bg-[hsl(var(--accent))] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white opacity-0 md:block"
+        style={{ willChange: 'transform, opacity', transform: 'scale(0.85)' }}
       />
     </>
   );

@@ -1,5 +1,6 @@
 import { Hero } from '@/components/sections/hero';
 import { UspSection } from '@/components/sections/usp-section';
+import { ManifestoStatementSection } from '@/components/sections/manifesto-statement-section';
 import { PipelineSection } from '@/components/sections/pipeline-section';
 import { SolutionsSection } from '@/components/sections/solutions-section';
 import { RoiSection } from '@/components/sections/roi-section';
@@ -8,20 +9,16 @@ import { ContactSection } from '@/components/sections/contact-section';
 import { SectionReveal } from '@/components/ui/section-reveal';
 
 /**
- * Sales-pitch composition — strafe Reihenfolge, 7 Sektionen.
+ * Sales-pitch composition — 8 sections, designed for live meeting use.
  *
- *  №01 Hero       · Wer wir sind        (5-Sek-Eindruck)
- *  №02 USP        · Warum RSG AI        (3 Differenzierer)
- *  №03 Pipelines  · Was wir bauen       (2 reale End-to-End-Flows)
- *  №04 Solutions  · Wie wir liefern     (4 Schritte + Live-Pipeline-Visual)
- *  №05 ROI        · Was du sparst       (interaktiver Rechner)
- *  №06 Pricing    · Investment          (2 Tiers, klare Zahlen)
- *  №07 Contact    · Termin              (Buchung)
- *
- * Dropped from main flow (still in codebase as opt-in):
- *  · LiveAgentsSection — redundant zu Pipelines
- *  · UseCasesSection   — Menu besprechen wir im Meeting
- *  · ProblemsSection   — Hartfakts sind im USP enthalten
+ *  №01 Hero        · Wer wir sind        (5-Sek-Eindruck)
+ *  №02 USP         · Warum RSG AI        (3 Differenzierer)
+ *  №03 Manifesto   · Drei Sätze          (pinned scroll-jacked) ← NEW
+ *  №04 Pipelines   · Was wir bauen       (2 reale Workflows)
+ *  №05 Solutions   · Wie wir liefern     (4 Schritte)
+ *  №06 ROI         · Was du sparst       (Rechner)
+ *  №07 Pricing     · Investment          (2 Tiers)
+ *  №08 Contact     · Termin              (Buchung)
  */
 export default function HomePage() {
   return (
@@ -30,6 +27,7 @@ export default function HomePage() {
       <SectionReveal>
         <UspSection />
       </SectionReveal>
+      <ManifestoStatementSection />
       <SectionReveal>
         <PipelineSection />
       </SectionReveal>

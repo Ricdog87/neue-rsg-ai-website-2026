@@ -91,9 +91,53 @@ body {
   font-style: italic;
 }
 
+/* Branded text selection — soft purple wash + cream text */
 ::selection {
-  background: hsl(var(--neon) / 0.28);
-  color: hsl(var(--fg));
+  background: hsl(var(--accent) / 0.45);
+  color: #ffffff;
+  text-shadow: 0 0 12px hsl(var(--accent) / 0.6);
+}
+::-moz-selection {
+  background: hsl(var(--accent) / 0.45);
+  color: #ffffff;
+}
+
+/* Animated text underline — sweeps in left-to-right on hover.
+   Apply by adding the class `link-anim` to any anchor or button. */
+.link-anim {
+  position: relative;
+  display: inline-block;
+}
+.link-anim::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-anim:hover::after,
+.link-anim:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Tabular numerals everywhere a number-heavy class lives — locks digit
+   widths so prices, KPIs and tickers stop jittering during count-ups. */
+.tabular-nums,
+[class*='tabular-nums'] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom focus ring — branded purple, never the browser default */
+:focus-visible {
+  outline: 2px solid hsl(var(--accent) / 0.7);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -9,6 +9,8 @@ import { ScrollProgress } from '@/components/effects/scroll-progress';
 import { PageTransition } from '@/components/effects/page-transition';
 import { SectionRail } from '@/components/effects/section-rail';
 import { ChapterHud } from '@/components/effects/chapter-hud';
+import { FloatingCta } from '@/components/effects/floating-cta';
+import { KeyboardShortcuts } from '@/components/effects/keyboard-shortcuts';
 import { EntryLoader } from '@/components/system/entry-loader';
 import { PersistentCanvas } from '@/components/system/persistent-canvas';
 import { RouteTransition } from '@/components/system/route-transition';
@@ -80,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navbar />
             <SectionRail />
             <ChapterHud />
+            <FloatingCta />
+            <KeyboardShortcuts />
             <main className="relative z-[1]">{children}</main>
             <Footer />
           </LenisProvider>

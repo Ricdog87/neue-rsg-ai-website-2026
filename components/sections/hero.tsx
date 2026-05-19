@@ -24,7 +24,6 @@ const EASE_INOUT = [0.65, 0, 0.35, 1] as const;
  */
 export function Hero() {
   const lines = hero.headlineKinetic;
-  const lastIndex = lines.length - 1;
 
   const heroKpi = liveStats[0];
   const tickerKpis = liveStats.slice(1);
@@ -65,28 +64,25 @@ export function Hero() {
         className="relative z-10 mx-auto grid max-w-[1280px] grid-cols-12 gap-x-6 px-6 pt-[150px] pb-20 lg:px-10 lg:pt-[180px] lg:pb-24"
         style={{ minHeight: '100svh' }}
       >
-        {/* Eyebrow */}
+        {/* ── Pre-headline rail — refined eyebrow + masthead ── */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE, delay: 1.8 }}
-          className="col-span-12 mb-14 flex items-center gap-3 md:mb-20"
+          className="col-span-12 mb-12 flex items-center gap-4 md:mb-16"
         >
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inset-0 animate-ping rounded-full bg-[hsl(174_100%_50%)] opacity-60" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(174_100%_50%)]" />
-          </span>
-          <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-white/55">
+          <span aria-hidden className="h-px w-10 bg-white/30" />
+          <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-white/65">
             {hero.eyebrow}
           </span>
           <span className="ml-auto hidden font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-white/30 md:inline">
-            № 01 / Vertriebs-KI
+            № 01 / Wiesbaden ⇆ Deutschland
           </span>
         </motion.div>
 
-        {/* Headline */}
-        <div className="col-span-12 md:col-span-11">
-          <h1 className="font-display text-[clamp(2.75rem,9vw,8rem)] font-medium leading-[0.95] tracking-[-0.025em] text-white">
+        {/* ── Headline — calm, refined, two-tier composition ── */}
+        <div className="col-span-12 md:col-span-10">
+          <h1 className="font-display text-[clamp(2.25rem,5.6vw,5.25rem)] font-medium leading-[1.04] tracking-[-0.025em] text-white">
             {lines.map((line, i) => (
               <span key={i} className="block overflow-hidden">
                 <motion.span
@@ -97,26 +93,41 @@ export function Hero() {
                     ease: EASE_INOUT,
                     delay: 1.95 + i * 0.14,
                   }}
-                  className={
-                    'inline-block ' +
-                    (i === lastIndex ? 'font-accent font-light italic text-white/95' : '')
-                  }
+                  className="inline-block"
                 >
                   {line}
                 </motion.span>
               </span>
             ))}
           </h1>
+
+          {/* Italic sub-statement — single editorial flourish */}
+          {hero.subStatement && (
+            <div className="mt-6 overflow-hidden md:mt-7">
+              <motion.p
+                initial={{ y: '105%' }}
+                animate={{ y: '0%' }}
+                transition={{
+                  duration: 1.2,
+                  ease: EASE_INOUT,
+                  delay: 1.95 + lines.length * 0.14 + 0.05,
+                }}
+                className="font-accent text-[clamp(1.25rem,2.4vw,2.1rem)] font-light italic leading-[1.2] text-white/75"
+              >
+                {hero.subStatement}
+              </motion.p>
+            </div>
+          )}
         </div>
 
-        {/* Subline + CTAs + trust */}
+        {/* ── Subline + CTAs + trust ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 2.7 }}
           className="col-span-12 mt-14 max-w-2xl md:mt-20"
         >
-          <p className="text-balance text-[1.05rem] leading-[1.65] text-white/65 md:text-[1.15rem]">
+          <p className="text-balance text-[1rem] leading-[1.65] text-white/65 md:text-[1.05rem]">
             {hero.subline}
           </p>
 

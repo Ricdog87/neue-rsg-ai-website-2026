@@ -61,19 +61,20 @@ export const nav = [
    HERO — Hook: "Dein Vertrieb arbeitet. Aber zu 70 % falsch."
    ───────────────────────────────────────────────────────── */
 export const hero = {
-  eyebrow: 'KI-Agenten für den Mittelstand',
+  eyebrow: 'Eine KI-Werkstatt für den Vertrieb',
   headlineKinetic: [
-    'Dein Vertrieb',
-    'arbeitet hart.',
-    '70 % davon',
-    'umsonst.'
+    'Wir bauen',
+    'und betreiben',
+    'KI-Agenten.'
   ],
+  // Used as a refined sub-statement below the headline
+  subStatement: 'Live in vier Wochen — nicht in vier Quartalen.',
   subline:
-    'Wir bauen KI-Agenten, die Routine übernehmen. 2–4 Wochen Go-Live. DSGVO-konform. Made in Germany.',
-  ctaPrimary: 'Demo buchen',
+    'Für anspruchsvolle Mittelständler. Designed, gehostet und operiert in Deutschland. Aufnahme aktuell für Kohorte 04 (Q1 2026).',
+  ctaPrimary: 'Erstgespräch',
   ctaSecondary: 'ROI berechnen',
   trustChips: [
-    '2–4 Wochen bis Live',
+    '4 Wochen bis Live',
     'DSGVO · EU-Server',
     '12+ Agenten in Produktion',
     '312 % Ø ROI nach 4 Monaten',

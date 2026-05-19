@@ -397,6 +397,194 @@ function CameraDirector({ pointer }: { pointer: React.MutableRefObject<{ x: numb
 }
 
 
+/* ────────────────────────────────────────────────────────────
+   COSMOS LAYERS — multi-depth parallax starfield, galaxy spiral,
+   shooting stars. All additive over the nebula plane.
+   ──────────────────────────────────────────────────────────── */
+
+/**
+ * Far parallax dust — tiny near-static distant particles. Gives the
+ * scene a sense of "this goes on forever in every direction".
+ */
+function FarDust() {
+  const ref = useRef<THREE.Points>(null);
+  const positions = useMemo(() => {
+    const N = 2200;
+    const pts = new Float32Array(N * 3);
+    for (let i = 0; i < N; i++) {
+      const r = 25 + Math.random() * 30;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      pts[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      pts[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      pts[i * 3 + 2] = r * Math.cos(phi);
+    }
+    return pts;
+  }, []);
+  useFrame((_, dt) => {
+    if (!ref.current) return;
+    ref.current.rotation.y += dt * 0.004;
+    ref.current.rotation.x += dt * 0.0015;
+  });
+  return (
+    <Points ref={ref} positions={positions} stride={3} frustumCulled>
+      <PointMaterial
+        transparent
+        color="#9d8de8"
+        size={0.012}
+        sizeAttenuation
+        depthWrite={false}
+        opacity={0.45}
+      />
+    </Points>
+  );
+}
+
+/**
+ * Distant galaxy spiral — a flat disc of particles arranged in two
+ * logarithmic spiral arms. Slowly rotates. Sits far behind the
+ * neural network at z = -8.
+ */
+function GalaxySpiral() {
+  const ref = useRef<THREE.Points>(null);
+  const positions = useMemo(() => {
+    const N = 3500;
+    const pts = new Float32Array(N * 3);
+    for (let i = 0; i < N; i++) {
+      // Logarithmic spiral
+      const branch = i % 2 === 0 ? 0 : Math.PI;
+      const t = (i / N) * 6.5 + 0.5;
+      const r = t * 1.4;
+      const angle = t * 2.2 + branch + (Math.random() - 0.5) * 0.6;
+      const x = Math.cos(angle) * r;
+      const y = Math.sin(angle) * r * 0.18 + (Math.random() - 0.5) * 0.4; // flatten
+      const z = Math.sin(angle) * r;
+      // Random radial jitter
+      const jitter = (Math.random() - 0.5) * 0.6;
+      pts[i * 3] = x + jitter;
+      pts[i * 3 + 1] = y;
+      pts[i * 3 + 2] = z + jitter;
+    }
+    return pts;
+  }, []);
+  useFrame((_, dt) => {
+    if (!ref.current) return;
+    ref.current.rotation.y += dt * 0.025;
+  });
+  return (
+    <group position={[6, -1, -8]} rotation={[0.5, 0.3, 0.2]}>
+      <Points ref={ref} positions={positions} stride={3} frustumCulled>
+        <PointMaterial
+          transparent
+          color="#c4b5fd"
+          size={0.025}
+          sizeAttenuation
+          depthWrite={false}
+          opacity={0.85}
+          blending={THREE.AdditiveBlending}
+        />
+      </Points>
+      {/* Bright core */}
+      <mesh>
+        <sphereGeometry args={[0.35, 24, 24]} />
+        <meshBasicMaterial
+          color="#ffe9c2"
+          transparent
+          opacity={0.55}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+/**
+ * Shooting stars — every few seconds, a streak fires across the
+ * sky from a random off-screen position to another. Premium "alive"
+ * signal — the cosmos has weather.
+ */
+function ShootingStars() {
+  const groupRef = useRef<THREE.Group>(null);
+  const STREAK_COUNT = 3;
+
+  // Each streak holds its own state in a ref
+  const streaks = useMemo(
+    () =>
+      Array.from({ length: STREAK_COUNT }, (_, i) => ({
+        startTime: i * 4.5 + Math.random() * 3,
+        cycle: 9 + Math.random() * 6,
+        from: new THREE.Vector3(0, 0, 0),
+        to: new THREE.Vector3(0, 0, 0),
+        ref: { current: null as THREE.Mesh | null },
+      })),
+    [],
+  );
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    streaks.forEach((s) => {
+      const local = ((t - s.startTime) % s.cycle) / s.cycle; // 0–1
+      const mesh = s.ref.current;
+      if (!mesh) return;
+
+      // At local=0, pick new endpoints (only once per cycle)
+      if (local < 0.02) {
+        const angle = Math.random() * Math.PI * 2;
+        const r = 12;
+        s.from.set(Math.cos(angle) * r, Math.sin(angle) * r * 0.6, -2 + Math.random() * 4);
+        s.to.set(
+          Math.cos(angle + Math.PI * 0.3) * r,
+          Math.sin(angle + Math.PI * 0.3) * r * 0.6,
+          -2 + Math.random() * 4,
+        );
+      }
+
+      // Visible window: 0.10 → 0.28 of the cycle
+      const visStart = 0.1;
+      const visEnd = 0.28;
+      if (local < visStart || local > visEnd) {
+        mesh.visible = false;
+        return;
+      }
+      mesh.visible = true;
+      const p = (local - visStart) / (visEnd - visStart);
+      const eased = 1 - Math.pow(1 - p, 2.5);
+      mesh.position.lerpVectors(s.from, s.to, eased);
+      // Streak orientation — point from→to
+      const dir = s.to.clone().sub(s.from).normalize();
+      mesh.lookAt(mesh.position.clone().add(dir));
+      const fadeAlpha = Math.sin(p * Math.PI); // peak in middle
+      const mat = mesh.material as THREE.Material & { opacity?: number };
+      if ('opacity' in mat) mat.opacity = fadeAlpha;
+    });
+  });
+
+  return (
+    <group ref={groupRef}>
+      {streaks.map((s, i) => (
+        <mesh
+          key={i}
+          ref={(el) => {
+            s.ref.current = el;
+          }}
+          visible={false}
+        >
+          <planeGeometry args={[1.2, 0.025]} />
+          <meshBasicMaterial
+            color="#e2d6ff"
+            transparent
+            opacity={0}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
 /**
  * Lusion-style glass centerpiece — MeshTransmissionMaterial with high
  * iridescence + chromatic aberration.
@@ -535,18 +723,41 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
       <GlassCenterpiece />
 
       <group ref={groupRef}>
+        {/* Deep background — nebula plane (the colour bed) */}
         <NebulaPulse />
+
+        {/* Far layer — distant galaxy spiral, very slow */}
+        <GalaxySpiral />
+
+        {/* Far parallax dust — slowest, behind the stars */}
+        <FarDust />
+
+        {/* Stars — main layer, three resolutions for depth */}
         <Stars
-          radius={80}
-          depth={70}
-          count={1800}
-          factor={2.0}
-          saturation={0.2}
+          radius={120}
+          depth={90}
+          count={3200}
+          factor={2.4}
+          saturation={0.25}
           fade
-          speed={0.5}
+          speed={0.45}
         />
+        <Stars
+          radius={60}
+          depth={45}
+          count={1400}
+          factor={3.2}
+          saturation={0.4}
+          fade
+          speed={0.85}
+        />
+
+        {/* Mid dust + neural mesh — the existing layers */}
         <DustField />
         <NeuralNetwork />
+
+        {/* Foreground "weather" — shooting stars firing every ~9s */}
+        <ShootingStars />
       </group>
     </>
   );

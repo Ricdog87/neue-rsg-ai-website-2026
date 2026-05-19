@@ -49,11 +49,11 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: 'Problem', href: '#problems' },
+  { label: 'Warum uns', href: '#usp' },
   { label: 'Live-Agenten', href: '#live-agents' },
-  { label: 'Lösung', href: '#solutions' },
+  { label: 'Prozess', href: '#solutions' },
   { label: 'ROI', href: '#roi' },
-  { label: 'Preise', href: '#pricing' },
+  { label: 'Investment', href: '#pricing' },
   { label: 'Termin', href: '#contact' }
 ] as const;
 

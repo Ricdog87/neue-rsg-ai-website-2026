@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { RsgLogoFull } from '@/components/icons/rsg-logo';
 
 const ENTRY_KEY = 'rsg-entry-shown';
 
@@ -89,67 +90,14 @@ export function EntryLoader() {
             }}
           />
 
-          {/* Wordmark — Manrope with stroke-draw via SVG */}
-          <div className="relative flex flex-col items-center gap-12">
-            <svg
-              width="180"
-              height="60"
-              viewBox="0 0 180 60"
-              className="text-white"
-            >
-              {/* Rising stripes mark */}
-              <g transform="translate(0, 14)">
-                <motion.path
-                  d="M0 30 L9 4 L13 4 L4 30 Z"
-                  fill="currentColor"
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.15 }}
-                />
-                <motion.path
-                  d="M8 30 L17 4 L21 4 L12 30 Z"
-                  fill="currentColor"
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 0.7, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.25 }}
-                />
-                <motion.path
-                  d="M16 30 L25 4 L29 4 L20 30 Z"
-                  fill="currentColor"
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 0.42, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.35 }}
-                />
-              </g>
-              {/* RSG. wordmark text */}
-              <motion.text
-                x="42"
-                y="40"
-                fontFamily="var(--font-display)"
-                fontSize="34"
-                fontWeight="500"
-                fill="currentColor"
-                letterSpacing="-0.025em"
-                initial={{ opacity: 0, x: -6 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.55, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              >
-                RSGAI
-              </motion.text>
-              <motion.text
-                x="151"
-                y="40"
-                fontFamily="var(--font-display)"
-                fontSize="34"
-                fontWeight="500"
-                fill="hsl(271 91% 65%)"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 1.0 }}
-              >
-                .
-              </motion.text>
-            </svg>
+          {/* Official RSG | AI logo with tagline */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="relative flex flex-col items-center gap-12"
+          >
+            <RsgLogoFull className="h-14 w-auto text-white" />
 
             {/* Counter strip */}
             <motion.div
@@ -166,7 +114,7 @@ export function EntryLoader() {
               <span className="block h-px w-12 bg-white/15" />
               <span className="tabular-nums text-white">{count.toString().padStart(2, '0')}</span>
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Bottom hairline gradient — adds the "premium frame" detail */}
           <div

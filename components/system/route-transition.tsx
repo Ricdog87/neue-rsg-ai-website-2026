@@ -75,25 +75,44 @@ export function RouteTransition() {
             }}
             fill="url(#wipe-grad)"
           />
-          {/* Brand mark in the center during cover phase */}
+          {/* Brand mark in the center during cover phase — RSG | AI */}
           {phase === 'covering' && (
             <motion.g
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25, delay: 0.15 }}
-              transform="translate(46 47)"
+              transform="translate(44 49)"
             >
               <text
                 x="0"
                 y="0"
-                fontSize="4"
-                fontFamily="var(--font-display)"
-                fontWeight="500"
+                fontSize="4.5"
+                fontFamily="var(--font-display), Manrope, sans-serif"
+                fontWeight="700"
                 fill="#ffffff"
                 letterSpacing="-0.05em"
               >
-                RSGAI.
+                RSG
+              </text>
+              <line
+                x1="6.6"
+                y1="-3.4"
+                x2="6.6"
+                y2="0.3"
+                stroke="#A855F7"
+                strokeWidth="0.3"
+              />
+              <text
+                x="7.6"
+                y="0"
+                fontSize="4.5"
+                fontFamily="var(--font-display), Manrope, sans-serif"
+                fontWeight="700"
+                fill="#A855F7"
+                letterSpacing="-0.05em"
+              >
+                AI
               </text>
             </motion.g>
           )}

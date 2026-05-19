@@ -77,7 +77,7 @@ export const hero = {
     'DSGVO · EU-Server',
     '12+ Agenten in Produktion',
     '312 % Ø ROI nach 4 Monaten',
-    'ISO 27001 Hosting'
+    'Hosting in Deutschland'
   ]
 } as const;
 
@@ -184,7 +184,7 @@ export const solutions = {
       body: 'Kein Standard-Tool. Dein Agent kennt deine Systeme, deine Sprache, deine Edge-Cases.'
     },
     {
-      title: 'EU-Cloud · ISO 27001 · 24/7-Monitoring.',
+      title: 'EU-Cloud · 24/7-Monitoring.',
       body: 'DSGVO-konformes Hosting in Deutschland. Echtzeit-Dashboards. Automatische Alerts.'
     },
     {
@@ -637,7 +637,7 @@ export const techStack = {
     {
       tag: 'Infrastructure',
       title: 'EU-Hosting · 100 % deutsch',
-      body: 'Alle Daten auf Servern in Frankfurt & Berlin. ISO 27001 & DSGVO-konform. Kein US-Cloud-Anbieter, keine Drittland-Übertragung.'
+      body: 'Alle Daten auf Servern in Frankfurt & Berlin. Vollständig DSGVO-konform. Kein US-Cloud-Anbieter, keine Drittland-Übertragung.'
     },
     {
       tag: 'Security',
@@ -656,7 +656,7 @@ export const techStack = {
     }
   ],
   badges: [
-    { label: 'ISO 27001', sub: 'Zertifizierungsstandard' },
+    { label: 'DSGVO-konform', sub: 'Auftragsverarbeitung inklusive' },
     { label: 'EU-Server', sub: '100 % europäische Infrastruktur' },
     { label: '99,9 %', sub: 'Garantierte Uptime' }
   ]

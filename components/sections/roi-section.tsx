@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import { roi, site } from '@/lib/content';
 import { ScrollParallax } from '@/components/effects/scroll-parallax';
 import { ScrollScale } from '@/components/effects/scroll-scale';
@@ -355,138 +356,94 @@ export function RoiSection() {
         {/* ───── VISUAL STORY ROW — only renders when there's a selection ───── */}
         {scaledSavings > 0 && (
           <div className="mt-12 space-y-6">
-            {/* HERO: The 8-hour work-day comparison */}
+            {/* HERO: The 8-hour work-day comparison — animated bars */}
             <div
               className="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] p-8 md:p-10"
               style={{
                 background:
-                  'linear-gradient(155deg, hsl(40 12% 98% / 0.9) 0%, hsl(0 0% 100%) 100%)',
+                  'linear-gradient(155deg, hsl(255 71% 14% / 0.6) 0%, hsl(240 12% 6%) 60%, hsl(240 14% 3%) 100%)',
+                boxShadow:
+                  '0 40px 100px -30px hsl(255 71% 37% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.05)',
               }}
             >
-              <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+              {/* Soft purple bloom upper-right */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full opacity-50 blur-[120px]"
+                style={{ background: 'radial-gradient(circle, hsl(255 71% 37% / 0.45), transparent 65%)' }}
+              />
+              <div className="relative grid gap-10 lg:grid-cols-[1.5fr_1fr]">
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--neon))]">
                     Dein Arbeitstag · in Echtzeit
                   </p>
-                  <h3 className="mt-2 font-display text-3xl tracking-tight md:text-4xl">
-                    8 Stunden. Heute laufen 5,4 davon ins Leere.
+                  <h3 className="mt-3 max-w-xl font-display text-[clamp(1.75rem,3vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-[hsl(var(--fg))]">
+                    8 Stunden.{' '}
+                    <span className="font-accent italic text-[hsl(var(--neon))]">
+                      5,4 davon
+                    </span>{' '}
+                    laufen ins Leere.
                   </h3>
-                  <p className="mt-3 max-w-xl text-sm text-[hsl(var(--muted))] md:text-base">
-                    Studien (McKinsey 2024) zeigen: 68 % der Arbeitszeit gehen für
-                    Routine drauf. Mit einem KI-Agenten kippt das Verhältnis komplett.
+                  <p className="mt-4 max-w-xl text-[0.95rem] leading-[1.6] text-[hsl(var(--muted))]">
+                    McKinsey 2024: 68 % der Arbeitszeit fließen in Routine. Mit
+                    einem KI-Agenten kippt das Verhältnis.
                   </p>
 
-                  {/* HEUTE — Day-Bar */}
-                  <div className="mt-8">
-                    <div className="mb-2 flex items-baseline justify-between">
-                      <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-red-400">
-                        Heute · ohne KI
-                      </span>
-                      <span className="font-mono text-xs text-[hsl(var(--muted))]">8h Tag</span>
-                    </div>
-                    <div className="relative flex h-14 overflow-hidden rounded-xl border border-[hsl(var(--border))]">
-                      <div
-                        className="flex items-center justify-start pl-4 text-xs font-bold uppercase tracking-wider text-white/95"
-                        style={{
-                          width: '68%',
-                          background:
-                            'linear-gradient(to right, hsl(0 75% 55% / 0.95), hsl(0 75% 55% / 0.7))',
-                          boxShadow: '0 0 30px hsl(0 75% 55% / 0.3) inset',
-                        }}
-                      >
-                        5,4h Routine
-                      </div>
-                      <div
-                        className="flex items-center justify-end pr-4 text-xs font-bold uppercase tracking-wider text-[hsl(var(--fg))]"
-                        style={{
-                          width: '32%',
-                          background:
-                            'linear-gradient(to right, hsl(240 12% 14%), hsl(255 71% 37% / 0.4))',
-                        }}
-                      >
-                        2,6h Verkaufen
-                      </div>
-                    </div>
-                    <div className="mt-1 flex justify-between font-mono text-[9px] text-[hsl(var(--muted))]">
-                      <span>09:00</span>
-                      <span>11:00</span>
-                      <span>13:00</span>
-                      <span>15:00</span>
-                      <span>17:00</span>
-                    </div>
-                  </div>
+                  {/* HEUTE — animated bar */}
+                  <AnimatedDayBar
+                    label="Heute · ohne KI"
+                    labelClass="text-red-400"
+                    routinePct={68}
+                    routineLabel="5,4h Routine"
+                    sellingLabel="2,6h Verkaufen"
+                    routineFill="linear-gradient(95deg, hsl(0 75% 60% / 0.95) 0%, hsl(8 80% 55% / 0.75) 100%)"
+                    sellingFill="linear-gradient(95deg, hsl(240 12% 14%) 0%, hsl(255 71% 28% / 0.5) 100%)"
+                    delay={0.1}
+                    showCursor
+                  />
 
-                  {/* MIT KI — Day-Bar (inverted) */}
-                  <div className="mt-6">
-                    <div className="mb-2 flex items-baseline justify-between">
-                      <span className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.24em] text-[hsl(var(--neon))]">
+                  {/* MIT KI — inverted */}
+                  <AnimatedDayBar
+                    className="mt-7"
+                    label={
+                      <span className="inline-flex items-center gap-1.5 text-[hsl(var(--neon))]">
                         <span className="relative flex h-2 w-2">
                           <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-[hsl(var(--neon))] opacity-60" />
                           <span className="relative inline-flex h-2 w-2 rounded-full bg-[hsl(var(--neon))]" />
                         </span>
                         Mit RSG KI-Agent
                       </span>
-                      <span className="font-mono text-xs text-[hsl(var(--muted))]">8h Tag</span>
-                    </div>
-                    <div className="relative flex h-14 overflow-hidden rounded-xl border border-[hsl(var(--neon))/30]">
-                      <div
-                        className="flex items-center justify-start pl-4 text-xs font-bold uppercase tracking-wider text-white/90"
-                        style={{
-                          width: '20%',
-                          background:
-                            'linear-gradient(to right, hsl(0 75% 55% / 0.85), hsl(0 75% 55% / 0.55))',
-                        }}
-                      >
-                        1,6h
-                      </div>
-                      <div
-                        className="flex items-center justify-end pr-4 text-sm font-bold uppercase tracking-wider text-black"
-                        style={{
-                          width: '80%',
-                          background:
-                            'linear-gradient(to right, hsl(255 71% 37% / 0.95), hsl(174 100% 60%))',
-                          boxShadow: '0 0 40px hsl(255 71% 37% / 0.5) inset',
-                        }}
-                      >
-                        6,4h Verkaufen · Wertschöpfung
-                      </div>
-                    </div>
-                    <div className="mt-1 flex justify-between font-mono text-[9px] text-[hsl(var(--muted))]">
-                      <span>09:00</span>
-                      <span>11:00</span>
-                      <span>13:00</span>
-                      <span>15:00</span>
-                      <span>17:00</span>
-                    </div>
-                  </div>
+                    }
+                    labelClass="text-[hsl(var(--neon))]"
+                    routinePct={20}
+                    routineLabel="1,6h"
+                    sellingLabel="6,4h Verkaufen · Wertschöpfung"
+                    routineFill="linear-gradient(95deg, hsl(0 75% 60% / 0.7) 0%, hsl(0 75% 55% / 0.4) 100%)"
+                    sellingFill="linear-gradient(95deg, hsl(255 71% 50%) 0%, hsl(220 90% 55%) 35%, hsl(174 100% 50%) 100%)"
+                    sellingGlow
+                    delay={0.55}
+                  />
                 </div>
 
-                {/* Side panel: gained */}
-                <div className="flex flex-col justify-center gap-5 lg:border-l lg:border-[hsl(var(--border))] lg:pl-8">
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[hsl(var(--muted))]">
-                      Pro Mitarbeiter gewonnen
-                    </p>
-                    <p
-                      className="mt-1 font-display text-5xl font-bold leading-none tracking-tight text-[hsl(var(--neon))] md:text-6xl"
-                      style={{ textShadow: '0 0 40px hsl(255 71% 37% / 0.5)' }}
-                    >
-                      +3,8h
-                    </p>
-                    <p className="mt-1 text-xs text-[hsl(var(--muted))]">
-                      Verkaufszeit · jeden Tag
-                    </p>
-                  </div>
-                  <div className="border-t border-[hsl(var(--border))] pt-5">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[hsl(var(--muted))]">
-                      Im Team ({employees} MA) gewonnen
-                    </p>
-                    <p className="mt-1 font-display text-3xl font-bold tracking-tight text-[hsl(var(--fg))]">
-                      {(employees * 3.8 * 20).toLocaleString('de-DE')}h
-                    </p>
-                    <p className="mt-1 text-xs text-[hsl(var(--muted))]">
-                      Wertschöpfungs-Stunden pro Monat
-                    </p>
+                {/* Side panel — animated big numbers */}
+                <div className="flex flex-col justify-center gap-6 lg:border-l lg:border-white/10 lg:pl-10">
+                  <BigNumber
+                    eyebrow="Pro Mitarbeiter gewonnen"
+                    value={3.8}
+                    suffix="h"
+                    decimals={1}
+                    sub="Verkaufszeit · jeden Tag"
+                    color="hsl(var(--neon))"
+                    glow="0 0 50px hsl(174 100% 50% / 0.45)"
+                  />
+                  <div className="border-t border-white/10 pt-6">
+                    <BigNumber
+                      eyebrow={`Im Team (${employees} MA) gewonnen`}
+                      value={Math.round(employees * 3.8 * 20)}
+                      suffix="h"
+                      sub="Wertschöpfungs-Stunden pro Monat"
+                      size="md"
+                    />
                   </div>
                 </div>
               </div>
@@ -495,47 +452,64 @@ export function RoiSection() {
             {/* BREAK-EVEN: Investment vs. Output — senior BD framing */}
             <BreakevenChart scaledSavings={scaledSavings} />
 
-            {/* THIRD ROW: 5-Year projection + tangibles, side-by-side */}
+            {/* THIRD ROW: 5-Year projection + tangibles */}
             <div className="grid gap-6 lg:grid-cols-12">
-              {/* 5-Year projection — bigger & more dramatic */}
+              {/* 5-Year projection */}
               <div
                 className="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] p-8 lg:col-span-7"
                 style={{
                   background:
-                    'linear-gradient(155deg, hsl(255 71% 37% / 0.07) 0%, hsl(0 0% 100%) 100%)',
+                    'linear-gradient(155deg, hsl(255 71% 18% / 0.5) 0%, hsl(240 12% 6%) 60%, hsl(240 14% 3%) 100%)',
+                  boxShadow: '0 30px 80px -30px hsl(255 71% 37% / 0.3)',
                 }}
               >
-                <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--muted))]">
+                <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
                   {roi.visual.projectionLabel}
                 </p>
-                <h3 className="mt-2 font-display text-2xl tracking-tight md:text-3xl">
+                <h3 className="mt-3 font-display text-[clamp(1.5rem,2.5vw,2.25rem)] font-medium leading-[1.05] tracking-[-0.02em] text-[hsl(var(--fg))]">
                   In 5 Jahren holst du dir{' '}
-                  <span className="text-[hsl(var(--neon))]" style={{ textShadow: '0 0 30px hsl(255 71% 37% / 0.5)' }}>
+                  <span
+                    className="text-[hsl(var(--neon))]"
+                    style={{ textShadow: '0 0 30px hsl(174 100% 50% / 0.5)' }}
+                  >
                     {Math.round((scaledSavings * 5) / 1000)}K €
                   </span>{' '}
                   zurück.
                 </h3>
 
-                <div className="mt-8 flex items-end gap-3 md:gap-4" style={{ minHeight: 220 }}>
-                  {roi.visual.projectionYears.map((y) => {
+                <div className="mt-10 flex items-end gap-3 md:gap-4" style={{ minHeight: 240 }}>
+                  {roi.visual.projectionYears.map((y, i) => {
                     const cumulative = scaledSavings * y;
                     const heightPct = (y / roi.visual.projectionYears.length) * 100;
                     return (
                       <div key={y} className="flex flex-1 flex-col items-center gap-3">
-                        <span className="font-display text-lg font-bold text-[hsl(var(--fg))] md:text-xl">
+                        <motion.span
+                          initial={{ opacity: 0, y: 8 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
+                          className="font-display text-[1.05rem] font-medium tracking-tight text-[hsl(var(--fg))] md:text-[1.25rem]"
+                        >
                           {Math.round(cumulative / 1000)}K
-                        </span>
-                        <div
-                          className="w-full rounded-t-lg transition-all duration-700"
+                        </motion.span>
+                        <motion.div
+                          initial={{ height: 0 }}
+                          whileInView={{ height: `${Math.max(40, heightPct * 1.8)}px` }}
+                          viewport={{ once: true, margin: '-40px' }}
+                          transition={{
+                            delay: 0.2 + i * 0.1,
+                            duration: 0.9,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className="w-full rounded-t-md"
                           style={{
-                            height: `${Math.max(40, heightPct * 1.8)}px`,
                             background:
-                              'linear-gradient(to top, hsl(255 71% 37% / 0.95), hsl(255 71% 37% / 0.85))',
+                              'linear-gradient(to top, hsl(255 71% 50% / 0.9), hsl(174 100% 50% / 0.65))',
                             boxShadow:
-                              '0 0 30px hsl(255 71% 37% / 0.45), 0 0 60px hsl(255 71% 37% / 0.15)',
+                              '0 0 30px hsl(255 71% 37% / 0.45), inset 0 1px 0 hsl(0 0% 100% / 0.15)',
                           }}
                         />
-                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[hsl(var(--muted))]">
+                        <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
                           Jahr {y}
                         </span>
                       </div>
@@ -544,43 +518,52 @@ export function RoiSection() {
                 </div>
               </div>
 
-              {/* Tangibles — what can you DO with the money */}
+              {/* Tangibles */}
               {equivalents.length > 0 && (
                 <div
                   className="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] p-8 lg:col-span-5"
                   style={{
                     background:
-                      'linear-gradient(155deg, hsl(255 71% 37% / 0.06) 0%, hsl(0 0% 100%) 100%)',
+                      'linear-gradient(155deg, hsl(255 71% 14% / 0.4) 0%, hsl(240 12% 6%) 60%, hsl(240 14% 3%) 100%)',
+                    boxShadow: '0 30px 80px -30px hsl(255 71% 37% / 0.25)',
                   }}
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--muted))]">
+                  <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
                     Was {Math.round(animatedSavings / 1000)}K € pro Jahr bedeuten
                   </p>
-                  <h3 className="mt-2 font-display text-2xl tracking-tight">
-                    Was du dafür wirklich kaufen kannst.
+                  <h3 className="mt-3 font-display text-[clamp(1.5rem,2.5vw,2rem)] font-medium leading-tight tracking-tight text-[hsl(var(--fg))]">
+                    Was du dafür{' '}
+                    <span className="font-accent italic text-[hsl(var(--accent))]">
+                      wirklich
+                    </span>{' '}
+                    kaufen kannst.
                   </h3>
                   <ul className="mt-6 space-y-3">
-                    {equivalents.map((eq) => (
-                      <li
+                    {equivalents.map((eq, i) => (
+                      <motion.li
                         key={eq.label}
-                        className="flex items-center gap-4 rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] px-5 py-4 transition-colors hover:border-[hsl(var(--accent))/30]"
+                        initial={{ opacity: 0, x: -16 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
+                        className="flex items-center gap-4 rounded-2xl border border-white/8 bg-white/[0.03] px-5 py-4 transition-colors hover:border-[hsl(var(--accent))/40] hover:bg-white/[0.05]"
                       >
                         <span className="text-3xl">{eq.icon}</span>
                         <div className="flex-1">
                           <div className="flex items-baseline gap-2">
                             <span
-                              className="font-display text-4xl font-bold leading-none text-[hsl(var(--accent))]"
-                              style={{ textShadow: '0 0 25px hsl(255 71% 37% / 0.4)' }}
+                              className="font-display text-[2.5rem] font-medium leading-none tracking-tight text-[hsl(var(--accent))]"
+                              style={{ textShadow: '0 0 25px hsl(271 91% 65% / 0.4)' }}
                             >
                               {eq.count}
                             </span>
                             <span className="text-xs font-bold text-[hsl(var(--accent))]/70">×</span>
                           </div>
-                          <span className="mt-0.5 block text-sm font-medium text-[hsl(var(--fg))]">
+                          <span className="mt-0.5 block text-[0.875rem] font-medium text-[hsl(var(--fg))]">
                             {eq.label}
                           </span>
                         </div>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
@@ -590,5 +573,184 @@ export function RoiSection() {
         )}
       </div>
     </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────
+   Helpers — animated bar & animated big number
+   ───────────────────────────────────────────────────────── */
+
+function AnimatedDayBar({
+  label,
+  labelClass = '',
+  routinePct,
+  routineLabel,
+  sellingLabel,
+  routineFill,
+  sellingFill,
+  sellingGlow = false,
+  showCursor = false,
+  delay = 0,
+  className = '',
+}: {
+  label: React.ReactNode;
+  labelClass?: string;
+  routinePct: number;
+  routineLabel: string;
+  sellingLabel: string;
+  routineFill: string;
+  sellingFill: string;
+  sellingGlow?: boolean;
+  showCursor?: boolean;
+  delay?: number;
+  className?: string;
+}) {
+  const sellingPct = 100 - routinePct;
+  return (
+    <div className={'mt-8 ' + className}>
+      <div className="mb-2 flex items-baseline justify-between">
+        <span
+          className={
+            'font-mono text-[0.6875rem] uppercase tracking-[0.22em] ' + labelClass
+          }
+        >
+          {label}
+        </span>
+        <span className="font-mono text-[0.75rem] text-[hsl(var(--muted))]">8h Tag</span>
+      </div>
+      <div className="relative flex h-14 overflow-hidden rounded-xl border border-white/10 bg-black/30">
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: `${routinePct}%` }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay }}
+          className="relative flex items-center justify-start overflow-hidden whitespace-nowrap pl-4 font-mono text-[0.7rem] font-bold uppercase tracking-wider text-white/95"
+          style={{ background: routineFill }}
+        >
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: delay + 0.5, duration: 0.5 }}
+          >
+            {routineLabel}
+          </motion.span>
+        </motion.div>
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: `${sellingPct}%` }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: delay + 0.15 }}
+          className="relative flex items-center justify-end overflow-hidden whitespace-nowrap pr-4 font-mono text-[0.7rem] font-bold uppercase tracking-wider text-white/95"
+          style={{
+            background: sellingFill,
+            boxShadow: sellingGlow
+              ? '0 0 40px hsl(174 100% 50% / 0.35) inset, 0 0 30px hsl(255 71% 37% / 0.25)'
+              : undefined,
+          }}
+        >
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: delay + 0.65, duration: 0.5 }}
+          >
+            {sellingLabel}
+          </motion.span>
+        </motion.div>
+        {showCursor && (
+          <motion.div
+            aria-hidden
+            initial={{ left: '0%' }}
+            animate={{ left: ['0%', '100%'] }}
+            transition={{ duration: 9, repeat: Infinity, ease: 'linear', delay: delay + 1.2 }}
+            className="pointer-events-none absolute top-0 h-full w-px"
+            style={{
+              background:
+                'linear-gradient(to bottom, transparent 0%, hsl(174 100% 50% / 0.8) 50%, transparent 100%)',
+              boxShadow: '0 0 14px hsl(174 100% 50% / 0.7)',
+            }}
+          />
+        )}
+      </div>
+      <div className="mt-1.5 flex justify-between font-mono text-[0.625rem] tracking-wider text-[hsl(var(--subtle))]">
+        <span>09:00</span>
+        <span>11:00</span>
+        <span>13:00</span>
+        <span>15:00</span>
+        <span>17:00</span>
+      </div>
+    </div>
+  );
+}
+
+function BigNumber({
+  eyebrow,
+  value,
+  suffix = '',
+  decimals = 0,
+  sub,
+  color = 'hsl(var(--fg))',
+  glow,
+  size = 'lg',
+}: {
+  eyebrow: string;
+  value: number;
+  suffix?: string;
+  decimals?: number;
+  sub: string;
+  color?: string;
+  glow?: string;
+  size?: 'md' | 'lg';
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [v, setV] = useState(0);
+  const done = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting && !done.current) {
+          done.current = true;
+          const start = performance.now();
+          const tick = (now: number) => {
+            const t = Math.min((now - start) / 1400, 1);
+            const ease = 1 - Math.pow(1 - t, 3);
+            setV(ease * value);
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.5 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [value]);
+
+  const display = v.toLocaleString('de-DE', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+
+  return (
+    <div ref={ref}>
+      <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
+        {eyebrow}
+      </p>
+      <p
+        className={
+          'mt-2 font-display font-medium leading-none tabular-nums tracking-tight ' +
+          (size === 'lg' ? 'text-[clamp(3rem,5vw,4.5rem)]' : 'text-[clamp(2rem,3.5vw,2.75rem)]')
+        }
+        style={{ color, textShadow: glow }}
+      >
+        {display}
+        {suffix}
+      </p>
+      <p className="mt-2 text-[0.8rem] text-[hsl(var(--muted))]">{sub}</p>
+    </div>
   );
 }

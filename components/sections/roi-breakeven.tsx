@@ -69,33 +69,46 @@ export function BreakevenChart({ scaledSavings }: Props) {
       className="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] p-8 md:p-10"
       style={{
         background:
-          'linear-gradient(155deg, hsl(255 71% 37% / 0.06) 0%, hsl(255 71% 37% / 0.04) 60%, hsl(0 0% 100%) 100%)',
+          'linear-gradient(155deg, hsl(255 71% 18% / 0.55) 0%, hsl(240 12% 6%) 55%, hsl(240 14% 3%) 100%)',
+        boxShadow:
+          '0 40px 100px -30px hsl(255 71% 37% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.05)',
       }}
     >
-      <div className="flex flex-wrap items-start justify-between gap-4">
+      {/* Cyan bloom upper-right */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full opacity-40 blur-[120px]"
+        style={{ background: 'radial-gradient(circle, hsl(174 100% 50% / 0.35), transparent 65%)' }}
+      />
+
+      <div className="relative flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--neon))]">
+          <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--neon))]">
             {roi.visual.breakeven.eyebrow}
           </p>
-          <h3 className="mt-2 max-w-2xl font-display text-2xl tracking-tight md:text-4xl">
+          <h3 className="mt-3 max-w-2xl font-display text-[clamp(1.5rem,3vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-[hsl(var(--fg))]">
             {roi.visual.breakeven.headline}
           </h3>
         </div>
 
         {/* Tier toggle */}
-        <div className="flex rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-1">
+        <div className="flex rounded-full border border-white/10 bg-white/[0.04] p-1 backdrop-blur-sm">
           {roi.visual.breakeven.tiers.map((t) => (
             <button
               key={t.id}
               onClick={() => setTierId(t.id)}
-              className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${
+              className={`rounded-full px-4 py-2 font-mono text-[0.75rem] font-medium transition ${
                 t.id === tierId
-                  ? 'bg-[hsl(var(--accent))/20] text-[hsl(var(--fg))]'
+                  ? 'bg-[hsl(var(--accent))] text-white shadow-[0_4px_16px_-4px_hsl(271_91%_65%/0.5)]'
                   : 'text-[hsl(var(--muted))] hover:text-[hsl(var(--fg))]'
               }`}
             >
               {t.label}
-              <span className="ml-2 font-mono text-[hsl(var(--neon))]">
+              <span
+                className={`ml-2 ${
+                  t.id === tierId ? 'text-white/80' : 'text-[hsl(var(--neon))]'
+                }`}
+              >
                 {t.price.toLocaleString('de-DE')} €
               </span>
             </button>
@@ -103,7 +116,7 @@ export function BreakevenChart({ scaledSavings }: Props) {
         </div>
       </div>
 
-      <p className="mt-3 max-w-3xl text-sm text-[hsl(var(--muted))] md:text-base">
+      <p className="relative mt-4 max-w-3xl text-[0.95rem] leading-[1.6] text-[hsl(var(--muted))]">
         {roi.visual.breakeven.subline}
       </p>
 
@@ -257,7 +270,7 @@ export function BreakevenChart({ scaledSavings }: Props) {
             {roi.visual.breakeven.manualLineLabel} · {invest.toLocaleString('de-DE')} €
           </text>
 
-          {/* Cumulative savings line */}
+          {/* Cumulative savings line — drawn-in animation */}
           <polyline
             points={savingsPath}
             fill="none"
@@ -266,7 +279,26 @@ export function BreakevenChart({ scaledSavings }: Props) {
             strokeLinecap="round"
             strokeLinejoin="round"
             filter="url(#be-glow)"
+            pathLength={1}
+            strokeDasharray="1 1"
+            strokeDashoffset={1}
+            style={{ animation: 'roi-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards' }}
           />
+          <style>{`
+            @keyframes roi-draw {
+              to { stroke-dashoffset: 0; }
+            }
+            @keyframes roi-pulse {
+              0%, 100% { r: 4; opacity: 1; }
+              50%      { r: 7; opacity: 0.7; }
+            }
+            @keyframes roi-trail {
+              0%   { offset-distance: 0%; opacity: 0; }
+              10%  { opacity: 1; }
+              90%  { opacity: 1; }
+              100% { offset-distance: 100%; opacity: 0; }
+            }
+          `}</style>
           <text
             x={xForMonth(minMonths) - 6}
             y={savingsEndY - 10}
@@ -297,8 +329,15 @@ export function BreakevenChart({ scaledSavings }: Props) {
                 r="9"
                 fill="hsl(255 71% 37%)"
                 filter="url(#be-glow)"
+                opacity={0.85}
               />
-              <circle cx={breakevenX} cy={investY} r="4" fill="hsl(0 0% 100%)" />
+              <circle
+                cx={breakevenX}
+                cy={investY}
+                r="4"
+                fill="hsl(0 0% 100%)"
+                style={{ animation: 'roi-pulse 2.4s ease-in-out infinite 2s' }}
+              />
               <g transform={`translate(${breakevenX + 10},${investY - 30})`}>
                 <rect
                   width="120"
@@ -356,23 +395,43 @@ function Kpi({
 }) {
   return (
     <div
-      className={`rounded-2xl border p-4 ${
+      className={`group relative overflow-hidden rounded-2xl border p-5 transition-all duration-300 ${
         highlight
-          ? 'border-[hsl(var(--neon))/40] bg-[hsl(var(--neon))/8]'
-          : 'border-[hsl(var(--border))] bg-white/[0.025]'
+          ? 'border-[hsl(var(--neon))/40] bg-gradient-to-br from-[hsl(174_100%_50%/0.08)] to-[hsl(174_100%_50%/0.02)]'
+          : 'border-white/10 bg-white/[0.03] hover:border-white/20'
       }`}
-      style={highlight ? { boxShadow: '0 0 30px -10px hsl(255 71% 37% / 0.5)' } : undefined}
+      style={
+        highlight
+          ? { boxShadow: '0 8px 32px -8px hsl(174 100% 50% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.08)' }
+          : { boxShadow: 'inset 0 1px 0 hsl(0 0% 100% / 0.04)' }
+      }
     >
-      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
+      <p className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
         {label}
       </p>
       <p
-        className="mt-1 font-display text-3xl font-bold leading-tight tracking-tight"
-        style={{ color, textShadow: highlight ? `0 0 25px ${color}` : undefined }}
+        className="mt-3 font-display text-[2rem] font-medium leading-none tabular-nums tracking-tight md:text-[2.5rem]"
+        style={{
+          color,
+          textShadow: highlight
+            ? `0 0 30px ${color.replace(')', ' / 0.55)')}`
+            : `0 0 18px ${color.replace(')', ' / 0.25)')}`,
+        }}
       >
         {value}
       </p>
-      {sub && <p className="mt-1 text-[11px] text-[hsl(var(--muted))]">{sub}</p>}
+      {sub && (
+        <p className="mt-2 text-[0.7rem] uppercase tracking-wider text-[hsl(var(--subtle))]">
+          {sub}
+        </p>
+      )}
+      {highlight && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-12 -right-12 h-32 w-32 rounded-full opacity-60 blur-2xl"
+          style={{ background: 'radial-gradient(circle, hsl(174 100% 50% / 0.25), transparent 70%)' }}
+        />
+      )}
     </div>
   );
 }

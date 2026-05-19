@@ -39,7 +39,7 @@ const REASONS = [
   },
   {
     title: 'DSGVO + EU-Hosting · 100 % made in Germany',
-    body: 'Server in Frankfurt & Berlin. Kein US-Cloud-Risiko. ISO 27001 by design. Dein Datenschutzbeauftragter atmet durch.'
+    body: 'Server in Frankfurt & Berlin. Kein US-Cloud-Risiko. Dein Datenschutzbeauftragter atmet durch.'
   },
   {
     title: 'Go-Live in 2–4 Wochen — nicht 4 Monaten',

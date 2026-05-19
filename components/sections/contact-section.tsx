@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { finalCta, site, about } from '@/lib/content';
 import { ArrowUpRight, Calendar, Mail, Phone, Quote } from 'lucide-react';
@@ -99,32 +100,50 @@ export function ContactSection() {
                 {finalCta.nextSlots.map((slot) => {
                   const id = `${slot.day}-${slot.time}`;
                   const active = pickedSlot === id;
+                  const params = new URLSearchParams();
+                  params.set('slot', id);
+                  if (selected) params.set('agent', selected);
                   return (
-                    <button
+                    <Link
                       key={id}
+                      href={`${site.cta.meetingUrl}?${params.toString()}`}
+                      onMouseEnter={() => setPickedSlot(id)}
                       onClick={() => setPickedSlot(id)}
+                      data-sound="tick"
+                      data-cursor="hover"
                       className={
-                        'group flex flex-col items-start rounded-md border p-4 text-left transition-all ' +
+                        'group relative flex flex-col items-start gap-1 overflow-hidden rounded-md border p-4 text-left transition-all ' +
                         (active
-                          ? 'border-[hsl(var(--accent))] bg-[hsl(var(--accent-soft))]'
-                          : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))] hover:border-[hsl(var(--border-strong))]')
+                          ? 'border-[hsl(var(--accent))] bg-[hsl(var(--accent))]/12 shadow-[0_0_30px_-12px_hsl(var(--accent)/0.7)]'
+                          : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))] hover:border-[hsl(var(--accent))]/50 hover:bg-[hsl(var(--accent))]/[0.04]')
                       }
                     >
-                      <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
-                        {slot.day}
-                      </span>
-                      <span className="mt-2 font-display text-[1.5rem] font-medium tracking-tight text-[hsl(var(--fg))]">
+                      <div className="flex w-full items-center justify-between">
+                        <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
+                          {slot.day}
+                        </span>
+                        <ArrowUpRight
+                          className={
+                            'h-3.5 w-3.5 transition-all ' +
+                            (active
+                              ? 'translate-x-0 text-[hsl(var(--accent))] opacity-100'
+                              : '-translate-x-1 text-[hsl(var(--subtle))] opacity-0 group-hover:translate-x-0 group-hover:opacity-100')
+                          }
+                        />
+                      </div>
+                      <span className="mt-1 font-display text-[1.5rem] font-medium tracking-tight text-[hsl(var(--fg))]">
                         {slot.time}
                       </span>
-                      <span className="mt-1 text-[0.7rem] text-[hsl(var(--muted))]">
+                      <span className="text-[0.7rem] text-[hsl(var(--muted))]">
                         30 Min · Video
                       </span>
-                    </button>
+                    </Link>
                   );
                 })}
               </div>
               <p className="mt-3 text-[0.75rem] text-[hsl(var(--muted))]">
-                Anderer Termin? Im Buchungs-Kalender wählst du deinen Slot.
+                Klick auf einen Slot öffnet direkt den Buchungs-Kalender. Anderer
+                Termin? Im Kalender wählst du deinen Wunsch-Slot.
               </p>
             </div>
 

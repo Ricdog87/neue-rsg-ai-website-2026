@@ -1,4 +1,5 @@
 import { Hero } from '@/components/sections/hero';
+import { TechMarquee } from '@/components/sections/tech-marquee';
 import { UspSection } from '@/components/sections/usp-section';
 import { ManifestoStatementSection } from '@/components/sections/manifesto-statement-section';
 import { PipelineSection } from '@/components/sections/pipeline-section';
@@ -24,6 +25,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <TechMarquee />
       <SectionReveal>
         <UspSection />
       </SectionReveal>

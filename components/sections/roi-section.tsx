@@ -261,12 +261,12 @@ export function RoiSection() {
           {/* Result panel */}
           <ScrollScale from={0.92} to={1.02} out={1} className="lg:col-span-2">
             <div
-              className="relative h-full overflow-hidden rounded-3xl border border-[hsl(var(--neon))/30] p-8"
+              className="relative h-full overflow-hidden rounded-3xl border border-[hsl(var(--accent))/30] p-8"
               style={{
                 background:
-                  'linear-gradient(155deg, hsl(255 71% 37% / 0.08) 0%, hsl(255 71% 37% / 0.06) 60%, hsl(0 0% 100%) 100%)',
+                  'linear-gradient(155deg, hsl(255 71% 18% / 0.55) 0%, hsl(240 12% 6%) 55%, hsl(240 14% 3%) 100%)',
                 boxShadow:
-                  '0 40px 100px -30px hsl(255 71% 37% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.05)',
+                  '0 40px 100px -30px hsl(255 71% 37% / 0.45), inset 0 1px 0 hsl(0 0% 100% / 0.06)',
               }}
             >
               <div

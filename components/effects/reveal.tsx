@@ -196,7 +196,79 @@ export function SlideIn({
   );
 }
 
-/* ── 6. Headline split — one line per child of a multi-line header ── */
+/* ── 7. CharSplit — per-letter kinetic reveal (Lusion-style) ── */
+export function CharSplit({
+  text,
+  className = '',
+  charClassName = '',
+  delay = 0,
+  stagger = 0.022,
+  duration = 0.9,
+}: {
+  text: string;
+  className?: string;
+  charClassName?: string;
+  delay?: number;
+  stagger?: number;
+  duration?: number;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-10% 0px' });
+
+  // Split into words first (so words wrap as units), then into chars
+  const words = text.split(' ');
+
+  return (
+    <span
+      ref={ref}
+      className={className}
+      style={{ display: 'inline-block', perspective: 600 }}
+    >
+      {words.map((word, wi) => (
+        <span
+          key={wi}
+          style={{
+            display: 'inline-block',
+            whiteSpace: 'nowrap',
+            marginRight: wi < words.length - 1 ? '0.25em' : 0,
+          }}
+        >
+          {Array.from(word).map((ch, ci) => {
+            const index = words.slice(0, wi).reduce((s, w) => s + w.length, 0) + ci;
+            return (
+              <span
+                key={ci}
+                style={{ display: 'inline-block', overflow: 'hidden' }}
+              >
+                <motion.span
+                  initial={{ y: '110%', rotateX: -42, opacity: 0 }}
+                  animate={
+                    inView
+                      ? { y: '0%', rotateX: 0, opacity: 1 }
+                      : { y: '110%', rotateX: -42, opacity: 0 }
+                  }
+                  transition={{
+                    duration,
+                    ease: EASE,
+                    delay: delay + index * stagger,
+                  }}
+                  style={{
+                    display: 'inline-block',
+                    transformOrigin: '50% 100%',
+                    transformStyle: 'preserve-3d',
+                  }}
+                  className={charClassName}
+                >
+                  {ch}
+                </motion.span>
+              </span>
+            );
+          })}
+        </span>
+      ))}
+    </span>
+  );
+}
 export function SplitLines({
   lines,
   className = '',

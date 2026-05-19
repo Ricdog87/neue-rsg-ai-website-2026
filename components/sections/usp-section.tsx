@@ -1,8 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from '@/lib/gsap';
 import { Activity, Building2, Workflow } from 'lucide-react';
-import { MaskWipe, SplitLines, Stagger } from '@/components/effects/reveal';
+import { MaskWipe, SplitLines } from '@/components/effects/reveal';
 
 const USPS = [
   {
@@ -42,8 +45,71 @@ const USPS = [
  * Reads in 20 seconds during a live meeting.
  */
 export function UspSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const rowsRef = useRef<HTMLDivElement>(null);
+
+  // Per-section scrub: as the USP block enters view, each row's accent
+  // wash slides in tied to scroll position. Pure GSAP ScrollTrigger,
+  // driven by Lenis through the existing bridge in LenisProvider.
+  useGSAP(
+    () => {
+      const rows = rowsRef.current?.querySelectorAll('[data-usp-row]');
+      if (!rows || rows.length === 0) return;
+      if (
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        return;
+      }
+
+      const ctx = gsap.context(() => {
+        rows.forEach((row) => {
+          const accent = row.querySelector('[data-usp-accent]');
+          if (!accent) return;
+          gsap.fromTo(
+            accent,
+            { scaleX: 0, opacity: 0, transformOrigin: 'left center' },
+            {
+              scaleX: 1,
+              opacity: 1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 80%',
+                end: 'top 30%',
+                scrub: 0.6,
+              },
+            },
+          );
+          const kpi = row.querySelector('[data-usp-kpi]');
+          if (kpi) {
+            gsap.fromTo(
+              kpi,
+              { x: 30, opacity: 0 },
+              {
+                x: 0,
+                opacity: 1,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: row,
+                  start: 'top 75%',
+                  end: 'top 35%',
+                  scrub: 0.6,
+                },
+              },
+            );
+          }
+        });
+      }, sectionRef);
+
+      return () => ctx.revert();
+    },
+    { scope: sectionRef },
+  );
+
   return (
     <section
+      ref={sectionRef}
       id="usp"
       className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))] px-6 py-24 md:py-32 lg:px-10"
     >
@@ -79,8 +145,8 @@ export function UspSection() {
         </div>
 
         {/* Three USPs — large editorial rows, not cards */}
-        <Stagger
-          delayStep={0.14}
+        <div
+          ref={rowsRef}
           className="mt-20 flex flex-col border-t border-[hsl(var(--border))]"
         >
           {USPS.map((u) => {
@@ -88,22 +154,27 @@ export function UspSection() {
             return (
               <article
                 key={u.n}
+                data-usp-row
                 data-cursor="hover"
-                className="group relative grid grid-cols-12 gap-x-6 gap-y-6 border-b border-[hsl(var(--border))] py-12 transition-colors md:py-16"
+                className="group relative grid grid-cols-12 gap-x-6 gap-y-6 overflow-hidden border-b border-[hsl(var(--border))] py-12 md:py-16"
               >
-                {/* Hover wash — only on the row */}
+                {/* Scrub-driven accent wash — scales in from the left
+                    tied to scroll position via ScrollTrigger */}
                 <div
+                  data-usp-accent
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  className="pointer-events-none absolute inset-0"
                   style={{
                     background:
-                      'linear-gradient(90deg, hsl(var(--accent) / 0.06) 0%, transparent 60%)',
+                      'linear-gradient(90deg, hsl(var(--accent) / 0.08) 0%, hsl(var(--accent) / 0.02) 35%, transparent 70%)',
+                    transform: 'scaleX(0)',
+                    transformOrigin: 'left center',
                   }}
                 />
 
                 {/* Number + Icon column */}
                 <div className="relative col-span-12 flex items-start gap-6 md:col-span-4">
-                  <span className="font-mono text-[0.75rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))] mt-3">
+                  <span className="mt-3 font-mono text-[0.75rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))]">
                     {u.n}
                   </span>
                   <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[hsl(var(--border-strong))] bg-[hsl(var(--surface))] text-[hsl(var(--accent))] transition-all group-hover:border-[hsl(var(--accent))] group-hover:bg-[hsl(var(--accent))]/10">
@@ -121,8 +192,11 @@ export function UspSection() {
                   </p>
                 </div>
 
-                {/* KPI column */}
-                <div className="relative col-span-12 md:col-span-3 md:text-right">
+                {/* KPI column — scrub-driven slide-in */}
+                <div
+                  data-usp-kpi
+                  className="relative col-span-12 md:col-span-3 md:text-right"
+                >
                   <div className="font-display text-[clamp(2.75rem,5vw,4rem)] font-medium leading-none tracking-tight text-[hsl(var(--accent))]">
                     {u.counterValue}
                   </div>
@@ -133,7 +207,7 @@ export function UspSection() {
               </article>
             );
           })}
-        </Stagger>
+        </div>
 
         {/* Closing pull-quote — the entire USP in one sentence */}
         <motion.div

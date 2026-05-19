@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Calculator } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
+import { CharSplit } from '@/components/effects/reveal';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const EASE_INOUT = [0.65, 0, 0.35, 1] as const;
@@ -80,25 +81,24 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* ── Headline — calm, refined, two-tier composition ── */}
+        {/* ── Headline — per-letter kinetic (Lusion-style) ── */}
         <div className="col-span-12 md:col-span-10">
           <h1 className="font-display text-[clamp(2.25rem,5.6vw,5.25rem)] font-medium leading-[1.04] tracking-[-0.025em] text-white">
-            {lines.map((line, i) => (
-              <span key={i} className="block overflow-hidden">
-                <motion.span
-                  initial={{ y: '105%' }}
-                  animate={{ y: '0%' }}
-                  transition={{
-                    duration: 1.2,
-                    ease: EASE_INOUT,
-                    delay: 1.95 + i * 0.14,
-                  }}
-                  className="inline-block"
-                >
-                  {line}
-                </motion.span>
-              </span>
-            ))}
+            {lines.map((line, i) => {
+              const offset = lines
+                .slice(0, i)
+                .reduce((s, l) => s + l.replace(/\s+/g, '').length, 0);
+              return (
+                <span key={i} className="block">
+                  <CharSplit
+                    text={line}
+                    delay={1.95 + offset * 0.022}
+                    stagger={0.022}
+                    duration={0.95}
+                  />
+                </span>
+              );
+            })}
           </h1>
 
           {/* Italic sub-statement — single editorial flourish */}
@@ -110,7 +110,7 @@ export function Hero() {
                 transition={{
                   duration: 1.2,
                   ease: EASE_INOUT,
-                  delay: 1.95 + lines.length * 0.14 + 0.05,
+                  delay: 2.95,
                 }}
                 className="font-accent text-[clamp(1.25rem,2.4vw,2.1rem)] font-light italic leading-[1.2] text-white/75"
               >

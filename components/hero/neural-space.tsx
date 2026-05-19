@@ -2,8 +2,7 @@
 
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshTransmissionMaterial, Points, PointMaterial, Stars, Environment } from '@react-three/drei';
-import { EffectComposer, Bloom, ChromaticAberration } from '@react-three/postprocessing';
-import { BlendFunction } from 'postprocessing';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -25,8 +24,8 @@ function DustField() {
   const ref = useRef<THREE.Points>(null);
 
   const positions = useMemo(() => {
-    const pts = new Float32Array(1500 * 3);
-    for (let i = 0; i < 1500; i++) {
+    const pts = new Float32Array(900 * 3);
+    for (let i = 0; i < 900; i++) {
       // Spherical distribution biased toward camera
       const r = 8 + Math.random() * 14;
       const theta = Math.random() * Math.PI * 2;
@@ -71,7 +70,7 @@ function NeuralNetwork() {
 
   // Build a constellation of AI "agent" nodes
   const { nodes, nodePositions, sizes, baseSizes } = useMemo(() => {
-    const N = 48;
+    const N = 28;
     const out: Node[] = [];
     const positions = new Float32Array(N * 3);
     const sz = new Float32Array(N);
@@ -424,80 +423,89 @@ if (typeof window !== 'undefined') {
 
 function GlassCenterpiece() {
   const meshRef = useRef<THREE.Mesh>(null);
-  // Animated material params via uniform refs would require deep drei
-  // refactor; instead we mutate the props each frame on the parent mesh
-  // and rely on drei's mat refresh.
-  const matRef = useRef<{
-    chromaticAberration: number;
-    distortion: number;
-    thickness: number;
-  } | null>(null);
+  const coreRef = useRef<THREE.Mesh>(null);
 
-  useFrame(() => {
+  useFrame((state) => {
     if (!meshRef.current) return;
     const s = scrollSignal.value;
     // Smoothstep for a hand-keyframed feel
     const e = s * s * (3 - 2 * s);
+    const t = state.clock.elapsedTime;
 
-    // Position: drift from right side (3.6, 0.4) deeper into space
-    meshRef.current.position.x = 3.6 - e * 2.4; // → 1.2
-    meshRef.current.position.y = 0.4 + e * 0.9; // → 1.3
-    meshRef.current.position.z = -e * 5.5; // → -5.5
+    // Position: drift from right side, deeper into space as you scroll
+    meshRef.current.position.x = 3.4 - e * 2.2; // → 1.2
+    meshRef.current.position.y = 0.3 + e * 0.8; // → 1.1
+    meshRef.current.position.z = -e * 5.0; // → -5.0
 
     // Scale: shrink as it recedes
-    const sc = 1.15 - e * 0.55; // 1.15 → 0.6
+    const sc = 1.05 - e * 0.5; // 1.05 → 0.55
     meshRef.current.scale.setScalar(sc);
 
-    // Rotation: speed up with depth
-    meshRef.current.rotation.x += 0.003 + e * 0.012;
-    meshRef.current.rotation.y += 0.005 + e * 0.018;
+    // Rotation: slow + steady (no spin acceleration — premium = calm)
+    meshRef.current.rotation.y = t * 0.12 + e * 0.4;
+    meshRef.current.rotation.x = Math.sin(t * 0.08) * 0.15;
 
-    // Update material live (refs are kept by drei's MeshTransmissionMaterial)
+    // Inner core: counter-rotates subtly
+    if (coreRef.current) {
+      coreRef.current.rotation.y = -t * 0.18;
+      coreRef.current.rotation.x = t * 0.06;
+    }
+
+    // Material params on scroll — kept SUBTLE (no distortion ramp,
+    // no chromatic-aberration ramp — those made the shape read as
+    // 'broken glass'. Just thickness/iridescence shift.)
     const mat = meshRef.current.material as unknown as {
-      chromaticAberration?: number;
-      distortion?: number;
       thickness?: number;
+      iridescence?: number;
     };
     if (mat) {
-      mat.chromaticAberration = 0.55 + e * 1.6;
-      mat.distortion = 0.25 + e * 0.6;
-      mat.thickness = 1.2 - e * 0.4;
-      matRef.current = {
-        chromaticAberration: mat.chromaticAberration ?? 0,
-        distortion: mat.distortion ?? 0,
-        thickness: mat.thickness ?? 0,
-      };
+      mat.thickness = 1.4 - e * 0.5;
     }
   });
 
   return (
     <Float
-      speed={1.2}
-      rotationIntensity={0.45}
-      floatIntensity={0.6}
-      floatingRange={[-0.15, 0.15]}
+      speed={0.9}
+      rotationIntensity={0.18}
+      floatIntensity={0.45}
+      floatingRange={[-0.12, 0.12]}
     >
-      <mesh ref={meshRef} position={[3.6, 0.4, 0]} scale={1.15}>
-        <torusKnotGeometry args={[0.72, 0.24, 220, 32, 2, 3]} />
-        <MeshTransmissionMaterial
-          backside
-          backsideThickness={0.4}
-          samples={6}
-          resolution={512}
-          transmission={1}
-          roughness={0.08}
-          thickness={1.2}
-          ior={1.45}
-          chromaticAberration={0.55}
-          anisotropy={0.4}
-          distortion={0.25}
-          distortionScale={0.3}
-          temporalDistortion={0.1}
-          attenuationDistance={2}
-          attenuationColor="#c9b9ff"
-          color="#ffffff"
-        />
-      </mesh>
+      <group ref={meshRef} position={[3.4, 0.3, 0]} scale={1.05}>
+        {/* Outer glass sphere — clean, photorealistic, no distortion */}
+        <mesh>
+          <icosahedronGeometry args={[0.95, 6]} />
+          <MeshTransmissionMaterial
+            backside
+            backsideThickness={0.35}
+            samples={8}
+            resolution={512}
+            transmission={1}
+            roughness={0.04}
+            thickness={1.4}
+            ior={1.5}
+            chromaticAberration={0.04}
+            anisotropy={0.15}
+            distortion={0}
+            distortionScale={0}
+            temporalDistortion={0}
+            attenuationDistance={2.5}
+            attenuationColor="#d4c5ff"
+            color="#ffffff"
+          />
+        </mesh>
+
+        {/* Inner core — small emissive sphere = "AI intelligence" signal */}
+        <mesh ref={coreRef} scale={0.32}>
+          <icosahedronGeometry args={[1, 3]} />
+          <meshStandardMaterial
+            color="#b4a0ff"
+            emissive="#a855f7"
+            emissiveIntensity={1.8}
+            roughness={0.4}
+            metalness={0.1}
+          />
+        </mesh>
+      </group>
     </Float>
   );
 }
@@ -529,13 +537,13 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
       <group ref={groupRef}>
         <NebulaPulse />
         <Stars
-          radius={75}
-          depth={60}
-          count={2800}
-          factor={2.4}
-          saturation={0.3}
+          radius={80}
+          depth={70}
+          count={1800}
+          factor={2.0}
+          saturation={0.2}
           fade
-          speed={0.7}
+          speed={0.5}
         />
         <DustField />
         <NeuralNetwork />
@@ -587,14 +595,10 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
         <Scene pointer={pointer} />
         <EffectComposer enableNormalPass={false} multisampling={2}>
           <Bloom
-            intensity={0.55}
-            luminanceThreshold={0.28}
+            intensity={0.5}
+            luminanceThreshold={0.3}
             luminanceSmoothing={0.7}
             mipmapBlur
-          />
-          <ChromaticAberration
-            blendFunction={BlendFunction.NORMAL}
-            offset={[0.0009, 0.0009] as unknown as [number, number]}
           />
         </EffectComposer>
       </Canvas>

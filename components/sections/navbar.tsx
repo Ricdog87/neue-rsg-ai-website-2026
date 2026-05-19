@@ -7,6 +7,7 @@ import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { nav, site } from '@/lib/content';
 import { cn } from '@/lib/utils';
 import { SoundToggle } from '@/components/system/sound-engine';
+import { RsgLogoMark } from '@/components/icons/rsg-logo';
 
 /**
  * Premium "members-club" header.
@@ -108,25 +109,10 @@ export function Navbar() {
         <nav className="mx-auto flex h-[68px] max-w-[1280px] items-center justify-between px-6 lg:px-10">
           <Link
             href="/"
-            className="group flex items-center gap-2.5"
+            className="group flex items-center"
             aria-label={`${site.shortName} Startseite`}
           >
-            <svg
-              aria-hidden
-              width="22"
-              height="28"
-              viewBox="0 0 25 28"
-              fill="none"
-              className="text-[hsl(var(--accent))] transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-110"
-            >
-              <path d="M0 26 L8 4 L11 4 L3 26 Z" fill="currentColor" />
-              <path d="M7 26 L15 4 L18 4 L10 26 Z" fill="currentColor" opacity="0.7" />
-              <path d="M14 26 L22 4 L25 4 L17 26 Z" fill="currentColor" opacity="0.45" />
-            </svg>
-            <span className="font-display text-[1.15rem] font-semibold tracking-tight text-white">
-              {site.shortName}
-              <span className="text-[hsl(var(--accent))]">.</span>
-            </span>
+            <RsgLogoMark className="h-7 w-auto text-white transition-opacity duration-300 group-hover:opacity-80" />
           </Link>
 
           {/* Nav items with active indicator */}

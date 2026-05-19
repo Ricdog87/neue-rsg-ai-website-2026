@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Linkedin, Instagram, Youtube, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import { footer, site } from '@/lib/content';
+import { RsgLogoFull } from '@/components/icons/rsg-logo';
 
 export function Footer() {
   return (
@@ -37,19 +38,10 @@ export function Footer() {
           <div className="lg:col-span-5">
             <Link
               href="/"
-              className="flex items-center gap-3"
+              className="inline-block"
               aria-label={`${site.shortName} Startseite`}
             >
-              <span
-                aria-hidden
-                className="grid h-9 w-9 place-items-center rounded-full bg-[hsl(var(--bg))] font-display text-base font-medium text-[hsl(var(--fg))]"
-              >
-                R
-              </span>
-              <span className="font-display text-[1.35rem] tracking-tight">
-                {site.shortName}
-                <span className="text-[hsl(var(--accent))]">.</span>
-              </span>
+              <RsgLogoFull className="h-12 w-auto text-white" />
             </Link>
             <p className="mt-5 max-w-sm text-[0.9rem] leading-relaxed text-white/65">
               {footer.description}

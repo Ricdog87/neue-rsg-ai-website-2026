@@ -35,7 +35,7 @@ export const site = {
   social: {
     linkedin: 'https://www.linkedin.com/company/113145138/',
     instagram: 'https://www.instagram.com/rsg_ai_automation/',
-    youtube: 'https://www.youtube.com/@RSGAgentServices'
+    youtube: 'https://www.youtube.com/@ricardo_builds_ai'
   },
   legal: {
     company: 'RSG Recruiting Solutions Group GmbH',

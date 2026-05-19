@@ -30,7 +30,7 @@ export const site = {
   cta: {
     primary: 'Demo anfragen',
     secondary: 'Einsparpotenzial berechnen',
-    meetingUrl: 'https://meetings-eu1.hubspot.com/r-serrano'
+    meetingUrl: '/termin'
   },
   social: {
     linkedin: 'https://www.linkedin.com/company/rsg-recruiting-solutions-group/',

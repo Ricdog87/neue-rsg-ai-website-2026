@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { nav, site } from '@/lib/content';
 import { cn } from '@/lib/utils';
+import { SoundToggle } from '@/components/system/sound-engine';
 
 /**
  * Premium "members-club" header.
@@ -163,9 +164,11 @@ export function Navbar() {
             })}
           </ul>
 
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-3 md:flex">
+            <SoundToggle />
             <a
               href={site.cta.meetingUrl}
+              data-sound="tick"
               className="group relative inline-flex h-10 items-center gap-2 overflow-hidden rounded-full bg-white/[0.04] px-5 font-display text-[0.85rem] font-medium text-white backdrop-blur-sm transition-all hover:bg-white/[0.08]"
               style={{
                 border: '1px solid rgba(255,255,255,0.12)',

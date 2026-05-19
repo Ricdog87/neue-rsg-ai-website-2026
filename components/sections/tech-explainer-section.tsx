@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { techExplainer, site } from '@/lib/content';
+import { AgentIconByName } from '@/components/icons/agent-icons';
 
 type ModeId = keyof typeof techExplainer.modeDetails;
 
@@ -41,8 +42,10 @@ export function TechExplainerSection() {
                   ? 'border-[hsl(var(--accent))] bg-[hsl(var(--accent))] text-white'
                   : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--muted))] hover:border-[hsl(var(--ink))] hover:text-[hsl(var(--fg))]')
               }
+              data-sound="tick"
             >
-              <span>{m.icon}</span> {m.label}
+              <AgentIconByName name={m.icon} className="h-4 w-4" />
+              {m.label}
             </button>
           ))}
         </div>

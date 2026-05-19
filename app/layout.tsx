@@ -9,6 +9,8 @@ import { ScrollProgress } from '@/components/effects/scroll-progress';
 import { PageTransition } from '@/components/effects/page-transition';
 import { SectionRail } from '@/components/effects/section-rail';
 import { EntryLoader } from '@/components/system/entry-loader';
+import { PersistentCanvas } from '@/components/system/persistent-canvas';
+import { SoundProvider } from '@/components/system/sound-engine';
 import { site } from '@/lib/content';
 import './globals.css';
 
@@ -64,18 +66,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} ${accentFont.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-[hsl(var(--bg))] text-[hsl(var(--fg))] antialiased">
+      <body className="relative min-h-screen bg-[#03020c] text-[hsl(var(--fg))] antialiased">
+        <PersistentCanvas />
         <EntryLoader />
-        <PageTransition />
-        <ScrollProgress />
-        <MagneticCursor />
-        <LenisProvider>
-          <Navbar />
-          <SectionRail />
-          <main>{children}</main>
-          <Footer />
-        </LenisProvider>
-        <CookieBanner />
+        <SoundProvider>
+          <PageTransition />
+          <ScrollProgress />
+          <MagneticCursor />
+          <LenisProvider>
+            <Navbar />
+            <SectionRail />
+            <main className="relative z-[1]">{children}</main>
+            <Footer />
+          </LenisProvider>
+          <CookieBanner />
+        </SoundProvider>
       </body>
     </html>
   );

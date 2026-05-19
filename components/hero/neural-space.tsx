@@ -396,6 +396,91 @@ function CameraDirector({ pointer }: { pointer: React.MutableRefObject<{ x: numb
   return null;
 }
 
+/**
+ * Signature core — single iridescent geometric object at scene origin.
+ *
+ * A low-poly icosahedron with a custom shader that fakes iridescence by
+ * mixing two viewing-angle colors plus a Fresnel rim. Rotates slowly and
+ * breathes scale. This is the "Spline-quality" anchor of the scene.
+ */
+function SignatureCore() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const matRef = useRef<THREE.ShaderMaterial>(null);
+
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uColorA: { value: new THREE.Color('#8b5cf6') }, // indigo-purple
+      uColorB: { value: new THREE.Color('#22d3ee') }, // cyan
+      uColorRim: { value: new THREE.Color('#f0eaff') },
+    }),
+    [],
+  );
+
+  useFrame((state, dt) => {
+    if (!meshRef.current) return;
+    const t = state.clock.elapsedTime;
+    meshRef.current.rotation.x += dt * 0.06;
+    meshRef.current.rotation.y += dt * 0.08;
+    const s = 1 + Math.sin(t * 0.7) * 0.04;
+    meshRef.current.scale.set(s, s, s);
+    if (matRef.current) matRef.current.uniforms.uTime.value = t;
+  });
+
+  return (
+    <mesh ref={meshRef} position={[0, 0, 0]}>
+      <icosahedronGeometry args={[0.85, 2]} />
+      <shaderMaterial
+        ref={matRef}
+        transparent
+        uniforms={uniforms}
+        vertexShader={/* glsl */ `
+          varying vec3 vNormal;
+          varying vec3 vViewDir;
+          varying vec3 vWorldPos;
+          uniform float uTime;
+          void main() {
+            vec3 p = position;
+            // Gentle vertex displacement — breathing surface
+            float n = sin(p.x * 4.0 + uTime) * cos(p.y * 4.0 + uTime * 0.7) * 0.04;
+            p += normal * n;
+            vec4 mv = modelViewMatrix * vec4(p, 1.0);
+            vWorldPos = (modelMatrix * vec4(p, 1.0)).xyz;
+            vNormal = normalize(normalMatrix * normal);
+            vViewDir = normalize(-mv.xyz);
+            gl_Position = projectionMatrix * mv;
+          }
+        `}
+        fragmentShader={/* glsl */ `
+          precision highp float;
+          varying vec3 vNormal;
+          varying vec3 vViewDir;
+          varying vec3 vWorldPos;
+          uniform float uTime;
+          uniform vec3 uColorA;
+          uniform vec3 uColorB;
+          uniform vec3 uColorRim;
+
+          void main() {
+            // Fresnel rim
+            float fres = pow(1.0 - max(0.0, dot(vNormal, vViewDir)), 2.6);
+            // View-angle dependent iridescence
+            float vd = dot(vNormal, vViewDir);
+            float irid = 0.5 + 0.5 * sin(vd * 6.28 + uTime * 0.4);
+            vec3 base = mix(uColorA, uColorB, irid);
+            vec3 col = base + uColorRim * fres * 0.65;
+            // Soft alpha — body translucent, rim solid
+            float alpha = 0.18 + fres * 0.85;
+            gl_FragColor = vec4(col, alpha);
+          }
+        `}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </mesh>
+  );
+}
+
 function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: number }> }) {
   const groupRef = useRef<THREE.Group>(null);
 
@@ -411,6 +496,7 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
   return (
     <>
       <CameraDirector pointer={pointer} />
+      <SignatureCore />
       <group ref={groupRef}>
         <NebulaPulse />
         <Stars

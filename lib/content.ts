@@ -50,9 +50,8 @@ export const site = {
 
 export const nav = [
   { label: 'Warum uns', href: '#usp' },
-  { label: 'Live', href: '#live-agents' },
   { label: 'Pipelines', href: '#pipelines' },
-  { label: 'Use Cases', href: '#usecases' },
+  { label: 'Prozess', href: '#solutions' },
   { label: 'ROI', href: '#roi' },
   { label: 'Investment', href: '#pricing' },
   { label: 'Termin', href: '#contact' }

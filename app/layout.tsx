@@ -8,6 +8,7 @@ import { MagneticCursor } from '@/components/effects/magnetic-cursor';
 import { ScrollProgress } from '@/components/effects/scroll-progress';
 import { PageTransition } from '@/components/effects/page-transition';
 import { SectionRail } from '@/components/effects/section-rail';
+import { EntryLoader } from '@/components/system/entry-loader';
 import { site } from '@/lib/content';
 import './globals.css';
 
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-[hsl(var(--bg))] text-[hsl(var(--fg))] antialiased">
+        <EntryLoader />
         <PageTransition />
         <ScrollProgress />
         <MagneticCursor />

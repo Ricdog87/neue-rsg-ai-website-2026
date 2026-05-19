@@ -7,6 +7,7 @@ import { Footer } from '@/components/sections/footer';
 import { MagneticCursor } from '@/components/effects/magnetic-cursor';
 import { ScrollProgress } from '@/components/effects/scroll-progress';
 import { PageTransition } from '@/components/effects/page-transition';
+import { SectionRail } from '@/components/effects/section-rail';
 import { site } from '@/lib/content';
 import './globals.css';
 
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <MagneticCursor />
         <LenisProvider>
           <Navbar />
+          <SectionRail />
           <main>{children}</main>
           <Footer />
         </LenisProvider>

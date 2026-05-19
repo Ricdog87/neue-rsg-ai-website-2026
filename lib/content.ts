@@ -33,8 +33,8 @@ export const site = {
     meetingUrl: '/termin'
   },
   social: {
-    linkedin: 'https://www.linkedin.com/company/rsg-recruiting-solutions-group/',
-    instagram: 'https://www.instagram.com/rsg.agentservices/',
+    linkedin: 'https://www.linkedin.com/company/113145138/',
+    instagram: 'https://www.instagram.com/rsg_ai_automation/',
     youtube: 'https://www.youtube.com/@RSGAgentServices'
   },
   legal: {
@@ -749,17 +749,18 @@ export const footer = {
     {
       title: 'Produkt',
       links: [
-        { label: 'Lösungen', href: '#solutions' },
-        { label: 'Use Cases', href: '#usecases' },
-        { label: 'ROI-Rechner', href: '#roi' },
-        { label: 'Preise', href: '#pricing' }
+        { label: 'Warum uns', href: '/#usp' },
+        { label: 'Pipelines', href: '/#pipelines' },
+        { label: 'Prozess', href: '/#solutions' },
+        { label: 'ROI-Rechner', href: '/#roi' },
+        { label: 'Investment', href: '/#pricing' }
       ]
     },
     {
       title: 'Unternehmen',
       links: [
-        { label: 'Über uns', href: '#about' },
-        { label: 'Kontakt', href: '#contact' },
+        { label: 'Termin buchen', href: '/termin' },
+        { label: 'Kontakt', href: '/#contact' },
         { label: 'KI-Beratung Wiesbaden', href: '/ki-beratung-wiesbaden' }
       ]
     },

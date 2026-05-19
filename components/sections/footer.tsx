@@ -92,9 +92,12 @@ export function Footer() {
               <ul className="mt-5 space-y-3 text-[0.9rem] text-white/75">
                 {group.links.map((link) => (
                   <li key={link.href + link.label}>
-                    <a href={link.href} className="hover:text-[hsl(var(--accent))]">
+                    <Link
+                      href={link.href}
+                      className="inline-flex items-center transition-colors hover:text-[hsl(var(--accent))]"
+                    >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

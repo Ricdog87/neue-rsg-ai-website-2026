@@ -258,9 +258,9 @@ export const techExplainer = {
   subline:
     'Nicht jedes Unternehmen braucht den teuersten Agenten. Wir zeigen dir live, welches der drei Architektur-Modelle deine konkrete Pain löst.',
   modes: [
-    { id: 'n8n', label: 'n8n Workflow', icon: '⚙️' },
-    { id: 'agent', label: 'KI-Agent (Standalone)', icon: '🤖' },
-    { id: 'hybrid', label: 'Hybrid-System', icon: '🔗' }
+    { id: 'n8n', label: 'n8n Workflow', icon: 'n8n' },
+    { id: 'agent', label: 'KI-Agent (Standalone)', icon: 'agent' },
+    { id: 'hybrid', label: 'Hybrid-System', icon: 'hybrid' }
   ],
   /**
    * One narrative per mode: when is this the right pick?

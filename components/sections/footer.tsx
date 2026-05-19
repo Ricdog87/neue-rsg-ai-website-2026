@@ -105,7 +105,27 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-8 text-[0.8rem] text-white/55 md:flex-row md:items-center">
+        {/* Editorial chrome strip — version, server, build year */}
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white/40">
+          <div className="flex flex-wrap items-center gap-5">
+            <span className="inline-flex items-center gap-2">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inset-0 animate-ping rounded-full bg-[hsl(174_100%_50%)] opacity-60" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(174_100%_50%)]" />
+              </span>
+              <span>System nominal · EU-Cloud</span>
+            </span>
+            <span className="hidden md:inline">v 2026.{(new Date().getMonth() + 1).toString().padStart(2, '0')}</span>
+            <span className="hidden md:inline">Built in Wiesbaden</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-5">
+            <span>{`© ${new Date().getFullYear()}`}</span>
+            <span className="hidden md:inline">Latency · {'<0.8s'}</span>
+            <span>UPTIME · 99.9 %</span>
+          </div>
+        </div>
+
+        <div className="mt-6 flex flex-col items-start justify-between gap-3 text-[0.8rem] text-white/55 md:flex-row md:items-center">
           <p>{footer.copyright}</p>
           <p className="italic">{footer.tagline}</p>
         </div>

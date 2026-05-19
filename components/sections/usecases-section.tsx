@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useCases, site } from '@/lib/content';
-import { ScrollParallax } from '@/components/effects/scroll-parallax';
-import { ScrollScale } from '@/components/effects/scroll-scale';
+import { ArrowUpRight } from 'lucide-react';
 
 const ICONS: Record<string, string> = {
   'Support-Agent': '🎧',
@@ -11,59 +10,65 @@ const ICONS: Record<string, string> = {
   'E-Mail-Agent': '✉️',
   'Onboarding-Agent': '🚀',
   'Sales-Agent': '📈',
-  'Admin-Agent': '🗂️',
+  'Admin-Agent': '🗂️'
 };
 
 export function UseCasesSection() {
   return (
     <section
       id="usecases"
-      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))] px-6 py-24 md:py-32 lg:px-10"
     >
-      <div className="mx-auto max-w-7xl">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
-          {useCases.eyebrow}
-        </p>
-        <ScrollParallax x={-8}>
-          <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
-            {useCases.headline}
-          </h2>
-        </ScrollParallax>
-        <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
-          {useCases.subline}
-        </p>
+      <div className="mx-auto max-w-[1280px]">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-8">
+          <div className="col-span-12 md:col-span-5">
+            <span className="eyebrow">{useCases.eyebrow}</span>
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+              {useCases.headline}
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
+            <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
+              {useCases.subline}
+            </p>
+          </div>
+        </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-md border border-[hsl(var(--border))] bg-[hsl(var(--border))] md:grid-cols-2 lg:grid-cols-3">
           {useCases.items.map((item, i) => (
-            <ScrollScale key={item.name} from={0.92} to={1} out={1}>
-            <ScrollParallax x={i % 2 === 0 ? 8 : -8}>
-            <motion.div
+            <motion.article
+              key={item.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.45, delay: i * 0.07 }}
-              className="group rounded-2xl border border-white/8 bg-white/[0.03] p-6 transition hover:border-[hsl(var(--accent))/40] hover:bg-white/[0.05]"
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="group flex flex-col gap-4 bg-[hsl(var(--bg))] p-8 transition-colors hover:bg-[hsl(var(--surface))]"
             >
-              <div className="text-3xl">{ICONS[item.name] ?? '🤖'}</div>
-              <h3 className="mt-4 text-lg font-semibold">{item.name}</h3>
-              <div className="mt-2 inline-block rounded-full border border-[hsl(var(--neon))/25] bg-[hsl(var(--neon))/8] px-3 py-1 font-mono text-xs text-[hsl(var(--neon))]">
-                {item.kpi}
+              <div className="flex items-start justify-between">
+                <span className="text-3xl">{ICONS[item.name] ?? '🤖'}</span>
+                <span className="rounded-full bg-[hsl(var(--accent-soft))] px-3 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[hsl(var(--accent))]">
+                  {item.kpi}
+                </span>
               </div>
-              <p className="mt-3 text-sm text-[hsl(var(--muted))] leading-relaxed">{item.body}</p>
-            </motion.div>
-            </ScrollParallax>
-            </ScrollScale>
+              <h3 className="font-display text-[1.375rem] font-medium leading-tight tracking-tight text-[hsl(var(--ink))]">
+                {item.name}
+              </h3>
+              <p className="text-[0.95rem] leading-[1.6] text-[hsl(var(--muted))]">
+                {item.body}
+              </p>
+            </motion.article>
           ))}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-12 flex justify-start">
           <a
             href={site.cta.meetingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[hsl(var(--accent))] px-7 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+            className="group inline-flex h-14 items-center gap-2 rounded-full border border-[hsl(var(--ink))] px-7 font-display text-[0.95rem] font-medium text-[hsl(var(--ink))] transition-all hover:bg-[hsl(var(--ink))] hover:text-white"
           >
-            Meinen Agenten besprechen →
+            Meinen Agenten besprechen
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </a>
         </div>
       </div>

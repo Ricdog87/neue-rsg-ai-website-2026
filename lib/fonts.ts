@@ -1,25 +1,44 @@
-import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
+import { Inter, Manrope, Fraunces, JetBrains_Mono } from 'next/font/google';
 
-export const geistSans = Geist({
+/**
+ * Body / UI sans — Inter, modern, neutral, premium.
+ */
+export const geistSans = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-geist-sans'
 });
 
-export const geistMono = Geist_Mono({
+/**
+ * Mono — for eyebrows, micro-labels, data.
+ */
+export const geistMono = JetBrains_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-geist-mono'
 });
 
 /**
- * Display font für Hero & große Headlines.
- * Instrument Serif als Open-Source-Alternative zu "Editorial New" / "PP Neue Montreal".
+ * Display headline — Manrope, the closest Google Fonts cousin of
+ * Fontshare's "Chillax" used by Hohrising. Geometric sans with humanist
+ * warmth, used for hero & section headlines.
  */
-export const displayFont = Instrument_Serif({
+export const displayFont = Manrope({
   subsets: ['latin'],
   display: 'swap',
-  weight: '400',
-  style: ['normal', 'italic'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-display'
+});
+
+/**
+ * Editorial italic — Fraunces (italic only). Used sparingly on emphasized
+ * words inside headlines to give the layout an editorial "art-directed"
+ * flourish without abandoning the Manrope identity.
+ */
+export const accentFont = Fraunces({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['300', '400'],
+  style: ['italic'],
+  variable: '--font-accent'
 });

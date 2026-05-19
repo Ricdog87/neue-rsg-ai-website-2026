@@ -68,7 +68,7 @@ function TeamSizePicker({ value, onChange }: { value: number; onChange: (n: numb
   const stepUp   = () => onChange(Math.min(active.max, value + (value >= 50 ? 5 : 1)));
 
   return (
-    <div className="mt-6 rounded-2xl border border-white/8 bg-white/[0.02] p-5">
+    <div className="mt-6 rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-5">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <p className="text-sm font-medium text-[hsl(var(--fg))]">
           Wie groß ist dein Team?
@@ -89,7 +89,7 @@ function TeamSizePicker({ value, onChange }: { value: number; onChange: (n: numb
               className={`group relative overflow-hidden rounded-xl border p-3 text-left transition-all duration-300 ${
                 isActive
                   ? 'border-[hsl(var(--neon))] bg-[hsl(var(--neon))/8] shadow-[0_0_30px_-12px_hsl(174_100%_50%/0.7)]'
-                  : 'border-white/10 bg-white/[0.025] hover:border-white/25 hover:bg-white/[0.04]'
+                  : 'border-[hsl(var(--border))] bg-white/[0.025] hover:border-white/25 hover:bg-white/[0.04]'
               }`}
             >
               <span
@@ -108,7 +108,7 @@ function TeamSizePicker({ value, onChange }: { value: number; onChange: (n: numb
       </div>
 
       {/* Fine-tune stepper */}
-      <div className="mt-5 flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.025] px-4 py-3">
+      <div className="mt-5 flex items-center justify-between rounded-xl border border-[hsl(var(--border))] bg-white/[0.025] px-4 py-3">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
             Genau · feinjustieren
@@ -185,31 +185,28 @@ export function RoiSection() {
   return (
     <section
       id="roi"
-      className="relative overflow-hidden border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
+      className="relative overflow-hidden border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))] px-6 py-24 md:py-32 lg:px-10"
     >
-      {/* Ambient glows */}
+      {/* Subtle indigo wash */}
       <div
         aria-hidden
-        className="pointer-events-none absolute right-0 top-1/3 h-[600px] w-[600px] -translate-y-1/2 rounded-full opacity-40 blur-[120px]"
-        style={{ background: 'radial-gradient(circle, hsl(174 100% 50% / 0.45), transparent 65%)' }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-0 bottom-0 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px]"
-        style={{ background: 'radial-gradient(circle, hsl(271 91% 65% / 0.5), transparent 65%)' }}
+        className="pointer-events-none absolute right-0 top-1/3 h-[600px] w-[600px] -translate-y-1/2 rounded-full opacity-30 blur-[140px]"
+        style={{ background: 'radial-gradient(circle, hsl(255 71% 37% / 0.10), transparent 70%)' }}
       />
 
-      <div className="relative mx-auto max-w-7xl">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
-          {roi.eyebrow}
-        </p>
-        <ScrollParallax x={-8}>
-          <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
-            {roi.headline}
-          </h2>
-        </ScrollParallax>
-        <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">{roi.subline}</p>
-        <p className="mt-3 font-mono text-xs text-[hsl(var(--muted))]">{roi.hint}</p>
+      <div className="relative mx-auto max-w-[1280px]">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-8">
+          <div className="col-span-12 md:col-span-5">
+            <span className="eyebrow">{roi.eyebrow}</span>
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+              {roi.headline}
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
+            <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">{roi.subline}</p>
+            <p className="mt-3 font-mono text-[0.75rem] text-[hsl(var(--subtle))]">{roi.hint}</p>
+          </div>
+        </div>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-5">
           {/* Department picker */}
@@ -227,7 +224,7 @@ export function RoiSection() {
                     className={`group relative overflow-hidden rounded-xl border p-4 text-left transition-all duration-300 ${
                       active
                         ? 'border-[hsl(var(--neon))] bg-[hsl(var(--neon))/8] shadow-[0_0_30px_-10px_hsl(174_100%_50%/0.6)]'
-                        : 'border-white/8 bg-white/[0.02] hover:border-white/25 hover:bg-white/[0.04]'
+                        : 'border-[hsl(var(--border))] bg-[hsl(var(--surface))] hover:border-white/25 hover:bg-white/[0.04]'
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -237,7 +234,7 @@ export function RoiSection() {
                           ✓
                         </span>
                       ) : (
-                        <span className="h-5 w-5 rounded-full border border-white/15" />
+                        <span className="h-5 w-5 rounded-full border border-[hsl(var(--border-strong))]" />
                       )}
                     </div>
                     <p className="mt-1.5 text-xs text-[hsl(var(--muted))]">{dept.body}</p>
@@ -266,9 +263,9 @@ export function RoiSection() {
               className="relative h-full overflow-hidden rounded-3xl border border-[hsl(var(--neon))/30] p-8"
               style={{
                 background:
-                  'linear-gradient(155deg, hsl(174 100% 50% / 0.08) 0%, hsl(271 91% 65% / 0.06) 60%, hsl(240 14% 5%) 100%)',
+                  'linear-gradient(155deg, hsl(255 71% 37% / 0.08) 0%, hsl(255 71% 37% / 0.06) 60%, hsl(0 0% 100%) 100%)',
                 boxShadow:
-                  '0 40px 100px -30px hsl(174 100% 50% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.05)',
+                  '0 40px 100px -30px hsl(255 71% 37% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.05)',
               }}
             >
               <div
@@ -297,7 +294,7 @@ export function RoiSection() {
                     <div className="flex items-baseline gap-2">
                       <span
                         className="font-display text-[clamp(4.5rem,11vw,8rem)] font-bold leading-[0.85] tracking-tight text-[hsl(var(--neon))]"
-                        style={{ textShadow: '0 0 60px hsl(174 100% 50% / 0.6)' }}
+                        style={{ textShadow: '0 0 60px hsl(255 71% 37% / 0.6)' }}
                       >
                         {scaledSavings > 0 ? `${Math.round(animatedSavings / 1000)}K` : '—'}
                       </span>
@@ -345,7 +342,7 @@ export function RoiSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--neon))] px-6 py-4 text-sm font-bold text-black transition hover:opacity-90"
-                    style={{ boxShadow: '0 20px 50px -10px hsl(174 100% 50% / 0.6)' }}
+                    style={{ boxShadow: '0 20px 50px -10px hsl(255 71% 37% / 0.6)' }}
                   >
                     {roi.result.cta} →
                   </a>
@@ -360,10 +357,10 @@ export function RoiSection() {
           <div className="mt-12 space-y-6">
             {/* HERO: The 8-hour work-day comparison */}
             <div
-              className="relative overflow-hidden rounded-3xl border border-white/8 p-8 md:p-10"
+              className="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] p-8 md:p-10"
               style={{
                 background:
-                  'linear-gradient(155deg, hsl(240 12% 8% / 0.9) 0%, hsl(240 14% 5%) 100%)',
+                  'linear-gradient(155deg, hsl(40 12% 98% / 0.9) 0%, hsl(0 0% 100%) 100%)',
               }}
             >
               <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
@@ -387,7 +384,7 @@ export function RoiSection() {
                       </span>
                       <span className="font-mono text-xs text-[hsl(var(--muted))]">8h Tag</span>
                     </div>
-                    <div className="relative flex h-14 overflow-hidden rounded-xl border border-white/8">
+                    <div className="relative flex h-14 overflow-hidden rounded-xl border border-[hsl(var(--border))]">
                       <div
                         className="flex items-center justify-start pl-4 text-xs font-bold uppercase tracking-wider text-white/95"
                         style={{
@@ -404,7 +401,7 @@ export function RoiSection() {
                         style={{
                           width: '32%',
                           background:
-                            'linear-gradient(to right, hsl(240 12% 14%), hsl(174 100% 50% / 0.4))',
+                            'linear-gradient(to right, hsl(240 12% 14%), hsl(255 71% 37% / 0.4))',
                         }}
                       >
                         2,6h Verkaufen
@@ -447,8 +444,8 @@ export function RoiSection() {
                         style={{
                           width: '80%',
                           background:
-                            'linear-gradient(to right, hsl(174 100% 50% / 0.95), hsl(174 100% 60%))',
-                          boxShadow: '0 0 40px hsl(174 100% 50% / 0.5) inset',
+                            'linear-gradient(to right, hsl(255 71% 37% / 0.95), hsl(174 100% 60%))',
+                          boxShadow: '0 0 40px hsl(255 71% 37% / 0.5) inset',
                         }}
                       >
                         6,4h Verkaufen · Wertschöpfung
@@ -465,14 +462,14 @@ export function RoiSection() {
                 </div>
 
                 {/* Side panel: gained */}
-                <div className="flex flex-col justify-center gap-5 lg:border-l lg:border-white/8 lg:pl-8">
+                <div className="flex flex-col justify-center gap-5 lg:border-l lg:border-[hsl(var(--border))] lg:pl-8">
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[hsl(var(--muted))]">
                       Pro Mitarbeiter gewonnen
                     </p>
                     <p
                       className="mt-1 font-display text-5xl font-bold leading-none tracking-tight text-[hsl(var(--neon))] md:text-6xl"
-                      style={{ textShadow: '0 0 40px hsl(174 100% 50% / 0.5)' }}
+                      style={{ textShadow: '0 0 40px hsl(255 71% 37% / 0.5)' }}
                     >
                       +3,8h
                     </p>
@@ -480,7 +477,7 @@ export function RoiSection() {
                       Verkaufszeit · jeden Tag
                     </p>
                   </div>
-                  <div className="border-t border-white/8 pt-5">
+                  <div className="border-t border-[hsl(var(--border))] pt-5">
                     <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[hsl(var(--muted))]">
                       Im Team ({employees} MA) gewonnen
                     </p>
@@ -502,10 +499,10 @@ export function RoiSection() {
             <div className="grid gap-6 lg:grid-cols-12">
               {/* 5-Year projection — bigger & more dramatic */}
               <div
-                className="relative overflow-hidden rounded-3xl border border-white/8 p-8 lg:col-span-7"
+                className="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] p-8 lg:col-span-7"
                 style={{
                   background:
-                    'linear-gradient(155deg, hsl(271 91% 65% / 0.07) 0%, hsl(240 14% 5%) 100%)',
+                    'linear-gradient(155deg, hsl(255 71% 37% / 0.07) 0%, hsl(0 0% 100%) 100%)',
                 }}
               >
                 <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--muted))]">
@@ -513,7 +510,7 @@ export function RoiSection() {
                 </p>
                 <h3 className="mt-2 font-display text-2xl tracking-tight md:text-3xl">
                   In 5 Jahren holst du dir{' '}
-                  <span className="text-[hsl(var(--neon))]" style={{ textShadow: '0 0 30px hsl(174 100% 50% / 0.5)' }}>
+                  <span className="text-[hsl(var(--neon))]" style={{ textShadow: '0 0 30px hsl(255 71% 37% / 0.5)' }}>
                     {Math.round((scaledSavings * 5) / 1000)}K €
                   </span>{' '}
                   zurück.
@@ -533,9 +530,9 @@ export function RoiSection() {
                           style={{
                             height: `${Math.max(40, heightPct * 1.8)}px`,
                             background:
-                              'linear-gradient(to top, hsl(271 91% 65% / 0.95), hsl(174 100% 50% / 0.85))',
+                              'linear-gradient(to top, hsl(255 71% 37% / 0.95), hsl(255 71% 37% / 0.85))',
                             boxShadow:
-                              '0 0 30px hsl(271 91% 65% / 0.45), 0 0 60px hsl(174 100% 50% / 0.15)',
+                              '0 0 30px hsl(255 71% 37% / 0.45), 0 0 60px hsl(255 71% 37% / 0.15)',
                           }}
                         />
                         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[hsl(var(--muted))]">
@@ -550,10 +547,10 @@ export function RoiSection() {
               {/* Tangibles — what can you DO with the money */}
               {equivalents.length > 0 && (
                 <div
-                  className="relative overflow-hidden rounded-3xl border border-white/8 p-8 lg:col-span-5"
+                  className="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] p-8 lg:col-span-5"
                   style={{
                     background:
-                      'linear-gradient(155deg, hsl(174 100% 50% / 0.06) 0%, hsl(240 14% 5%) 100%)',
+                      'linear-gradient(155deg, hsl(255 71% 37% / 0.06) 0%, hsl(0 0% 100%) 100%)',
                   }}
                 >
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--muted))]">
@@ -566,14 +563,14 @@ export function RoiSection() {
                     {equivalents.map((eq) => (
                       <li
                         key={eq.label}
-                        className="flex items-center gap-4 rounded-2xl border border-white/8 bg-white/[0.02] px-5 py-4 transition-colors hover:border-[hsl(var(--accent))/30]"
+                        className="flex items-center gap-4 rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] px-5 py-4 transition-colors hover:border-[hsl(var(--accent))/30]"
                       >
                         <span className="text-3xl">{eq.icon}</span>
                         <div className="flex-1">
                           <div className="flex items-baseline gap-2">
                             <span
                               className="font-display text-4xl font-bold leading-none text-[hsl(var(--accent))]"
-                              style={{ textShadow: '0 0 25px hsl(271 91% 65% / 0.4)' }}
+                              style={{ textShadow: '0 0 25px hsl(255 71% 37% / 0.4)' }}
                             >
                               {eq.count}
                             </span>

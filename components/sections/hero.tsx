@@ -1,173 +1,175 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
-import { useGSAP } from '@gsap/react';
-import { ArrowRight, Calculator } from 'lucide-react';
+import { ArrowUpRight, Calculator } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
-import { KineticTypo } from '@/components/hero/kinetic-typo';
-import { LensFlare } from '@/components/hero/lens-flare';
-import { VideoBackground } from '@/components/hero/video-background';
-import { Magnetic } from '@/components/effects/magnetic';
-import { Button } from '@/components/ui/button';
-import { gsap } from '@/lib/gsap';
 
+const EASE = [0.16, 1, 0.3, 1] as const;
 
+/**
+ * Editorial hero — typography first, Hohrising rising-stripes mark as
+ * signature element. Indigo accent on the final headline word.
+ */
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      // Multi-speed parallax: as the hero scrolls past, each layer drifts
-      // at a different rate so they separate cinematically.
-      const trig = {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1.1,
-      } as const;
-
-      gsap.to('[data-hero-eyebrow]', { yPercent: -120, opacity: 0.2, ease: 'none', scrollTrigger: trig });
-      gsap.to('[data-hero-headline]', { yPercent: -55, ease: 'none', scrollTrigger: trig });
-      gsap.to('[data-hero-subline]', { yPercent: -45, opacity: 0.5, ease: 'none', scrollTrigger: trig });
-      gsap.to('[data-hero-ctas]', { yPercent: -38, ease: 'none', scrollTrigger: trig });
-      gsap.to('[data-hero-chips]', { yPercent: -30, opacity: 0.6, ease: 'none', scrollTrigger: trig });
-      gsap.to('[data-hero-stats]', { yPercent: -18, ease: 'none', scrollTrigger: trig });
-      gsap.to('[data-hero-scroll-hint]', { opacity: 0, ease: 'none', scrollTrigger: trig });
-    },
-    { scope: sectionRef },
-  );
+  const lines = hero.headlineKinetic;
+  const lastIndex = lines.length - 1;
 
   return (
     <section
-      ref={sectionRef}
       id="hero"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden noise"
-      style={{ backgroundColor: 'hsl(240 10% 4%)' }}
+      className="relative overflow-hidden bg-[hsl(var(--bg))] pt-[120px] pb-20 md:pt-[160px] md:pb-28 noise"
     >
-      {/* z:0 — video + overlay */}
-      <VideoBackground />
+      {/* Indigo wash behind the headline */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/3 h-[50vh] w-[60vw] -translate-x-1/2 -translate-y-1/2 lens-flare"
+      />
 
-      {/* z:5 — WebGL particle field above video, below content */}
-      {/* <HeroWebGL /> disabled for flicker */}
+      {/* Rising stripes — signature SVG mark, top-right, parallax-style */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: EASE, delay: 0.6 }}
+        className="pointer-events-none absolute right-6 top-[120px] hidden md:right-10 md:top-[180px] md:block"
+      >
+        <RisingStripes className="h-[clamp(160px,28vw,360px)] w-auto text-[hsl(var(--accent))]" />
+      </motion.div>
 
-      {/* z:10 — brand glow on top of video overlay */}
-      <div className="relative z-10">
-        <LensFlare />
-      </div>
+      <div className="relative mx-auto grid max-w-[1280px] grid-cols-12 gap-x-6 px-6 lg:px-10">
+        {/* Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="col-span-12 mb-10 flex items-center justify-between md:mb-16"
+        >
+          <span className="eyebrow">{hero.eyebrow}</span>
+          <span className="hidden font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))] md:inline">
+            №&nbsp;01 / Vertriebs-KI
+          </span>
+        </motion.div>
 
-      {/* z:10 — WebGL centerpiece (procedural iridescent distort sphere) */}
-      {/* <HeroOrb /> disabled for flicker */}
-
-      {/* z:20 — all text + CTA content */}
-      <div className="relative z-20 flex flex-1 flex-col justify-between px-4 pt-28 pb-10 sm:px-6 md:pt-40 md:pb-12">
-        <div className="mx-auto w-full max-w-7xl">
-          <motion.p
-            data-hero-eyebrow
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]"
-          >
-            {hero.eyebrow}
-          </motion.p>
-
-          <div data-hero-headline className="mt-6">
-            <KineticTypo lines={hero.headlineKinetic} />
-          </div>
-
-          <motion.p
-            data-hero-subline
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-8 max-w-2xl text-balance text-base text-[hsl(var(--muted))] md:text-lg"
-          >
-            {hero.subline}
-          </motion.p>
-
-          <motion.div
-            data-hero-ctas
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            className="mt-10 flex flex-wrap items-center gap-4"
-          >
-            <Magnetic strength={0.3}>
-              <a href={site.cta.meetingUrl} target="_blank" rel="noopener noreferrer">
-                <Button variant="primary" size="lg" className="group">
-                  {hero.ctaPrimary}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </a>
-            </Magnetic>
-            <Magnetic strength={0.25}>
-              <a href="#roi">
-                <Button variant="outline" size="lg">
-                  <Calculator className="h-4 w-4" />
-                  {hero.ctaSecondary}
-                </Button>
-              </a>
-            </Magnetic>
-          </motion.div>
-
-          <motion.ul
-            data-hero-chips
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
-            className="mt-10 flex flex-wrap gap-3 text-xs text-[hsl(var(--muted))]"
-          >
-            {hero.trustChips.map((chip) => (
-              <li
-                key={chip}
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm"
-              >
-                {chip}
-              </li>
+        {/* Headline */}
+        <div className="col-span-12 md:col-span-10">
+          <h1 className="font-display text-[clamp(2.5rem,7.5vw,6.5rem)] font-medium leading-[0.98] tracking-[-0.025em] text-[hsl(var(--ink))]">
+            {lines.map((line, i) => (
+              <span key={i} className="block overflow-hidden">
+                <motion.span
+                  initial={{ y: '105%' }}
+                  animate={{ y: '0%' }}
+                  transition={{ duration: 1.05, ease: EASE, delay: 0.15 + i * 0.12 }}
+                  className={
+                    'inline-block ' +
+                    (i === lastIndex
+                      ? 'font-accent font-light italic text-[hsl(var(--accent))]'
+                      : '')
+                  }
+                >
+                  {line}
+                </motion.span>
+              </span>
             ))}
-          </motion.ul>
+          </h1>
         </div>
 
-        {/* Live-Stats Strip */}
+        {/* Subline + CTAs + trust */}
         <motion.div
-          data-hero-stats
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
-          className="mx-auto mt-8 w-full max-w-7xl md:mt-16"
+          transition={{ duration: 0.9, ease: EASE, delay: 0.9 }}
+          className="col-span-12 mt-16 grid grid-cols-12 gap-x-6 md:mt-24"
         >
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[hsl(var(--muted))]">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inset-0 animate-ping rounded-full bg-[hsl(var(--neon))] opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[hsl(var(--neon))]" />
-            </span>
-            Live — KI-Agent verarbeitet gerade
+          <div className="col-span-12 md:col-span-7">
+            <p className="max-w-2xl text-balance text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))] md:text-[1.125rem]">
+              {hero.subline}
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a
+                href={site.cta.meetingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex h-14 items-center gap-2 rounded-full border border-[hsl(var(--accent))] bg-[hsl(var(--accent))]/90 px-7 font-display text-[0.95rem] font-medium text-white transition-all hover:bg-[hsl(var(--accent-deep))] hover:shadow-[0_8px_24px_-8px_hsl(var(--accent)/0.5)]"
+              >
+                {hero.ctaPrimary}
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <a
+                href="#roi"
+                className="group inline-flex h-14 items-center gap-2 rounded-full border border-[hsl(var(--ink))] px-7 font-display text-[0.95rem] font-medium text-[hsl(var(--ink))] transition-all hover:bg-[hsl(var(--ink))] hover:text-white"
+              >
+                <Calculator className="h-4 w-4" />
+                {hero.ctaSecondary}
+              </a>
+            </div>
           </div>
-          <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/5 pt-6 sm:grid-cols-4 lg:grid-cols-7">
+
+          <div className="col-span-12 mt-12 md:col-span-5 md:mt-0">
+            <div className="border-t border-[hsl(var(--border))] pt-6">
+              <p className="mb-5 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
+                Vertrauensanker
+              </p>
+              <ul className="space-y-3">
+                {hero.trustChips.map((chip) => (
+                  <li
+                    key={chip}
+                    className="flex items-start gap-3 text-[0.95rem] text-[hsl(var(--ink))]"
+                  >
+                    <span aria-hidden className="mt-2 h-px w-4 shrink-0 bg-[hsl(var(--accent))]" />
+                    <span>{chip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Live stats — masthead bottom strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 1.4 }}
+          className="col-span-12 mt-24 border-t border-[hsl(var(--border))] pt-8 md:mt-32"
+        >
+          <div className="mb-6 flex items-center gap-3">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inset-0 animate-ping rounded-full bg-[hsl(var(--accent))] opacity-50" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[hsl(var(--accent))]" />
+            </span>
+            <span className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
+              Live · KI-Agenten in Produktion
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4 lg:grid-cols-7">
             {liveStats.map((s) => (
               <div key={s.label}>
-                <div className="font-display text-2xl text-[hsl(var(--fg))] md:text-3xl">{s.value}</div>
-                <div className="mt-1 text-xs text-[hsl(var(--muted))]">{s.label}</div>
+                <div className="font-display text-[2rem] font-medium leading-none tracking-tight text-[hsl(var(--ink))] md:text-[2.25rem]">
+                  {s.value}
+                </div>
+                <div className="mt-2 text-[0.7rem] uppercase tracking-wider text-[hsl(var(--subtle))]">
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        data-hero-scroll-hint
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2.2 }}
-        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-[hsl(var(--muted))]"
-        aria-hidden
-      >
-        scroll ↓
-      </motion.div>
     </section>
+  );
+}
+
+function RisingStripes({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 110 180"
+      fill="none"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0 178 L40 4 L52 4 L12 178 Z" fill="currentColor" opacity="0.95" />
+      <path d="M30 178 L70 4 L82 4 L42 178 Z" fill="currentColor" opacity="0.55" />
+      <path d="M60 178 L100 4 L112 4 L72 178 Z" fill="currentColor" opacity="0.25" />
+    </svg>
   );
 }

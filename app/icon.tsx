@@ -24,12 +24,12 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #a855f7 0%, #00ffe0 100%)',
+          background: '#0a0a0a',
           borderRadius: '7px',
           fontFamily: 'sans-serif',
-          fontWeight: 900,
+          fontWeight: 700,
           fontSize: 22,
-          color: '#0a0a14',
+          color: '#ffffff',
           letterSpacing: '-0.04em',
         }}
       >

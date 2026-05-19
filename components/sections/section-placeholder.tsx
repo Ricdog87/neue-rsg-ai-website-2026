@@ -26,7 +26,7 @@ export function SectionPlaceholder({
     <section
       id={id}
       className={cn(
-        'relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32',
+        'relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32',
         className
       )}
     >
@@ -42,7 +42,7 @@ export function SectionPlaceholder({
         {subline && (
           <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">{subline}</p>
         )}
-        <div className="mt-12 rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-8 text-sm text-[hsl(var(--muted))]">
+        <div className="mt-12 rounded-2xl border border-dashed border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-8 text-sm text-[hsl(var(--muted))]">
           <span className="font-mono text-xs uppercase tracking-wider text-[hsl(var(--accent))]">
             TODO
           </span>{' '}

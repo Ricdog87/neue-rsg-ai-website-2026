@@ -5,17 +5,24 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--neon))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--bg))] disabled:opacity-50 disabled:pointer-events-none',
+  'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--bg))] disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap',
   {
     variants: {
       variant: {
+        // Solid ink button — editorial / premium primary
         primary:
-          'bg-[hsl(var(--accent))] text-white hover:bg-[hsl(var(--accent))]/90 hover:shadow-[0_0_40px_hsl(var(--accent)/0.55)]',
+          'bg-[hsl(var(--ink))] text-[hsl(var(--bg))] hover:bg-[hsl(var(--ink))]/85',
+        // Burnt-sienna accent — used sparingly for the highest-intent CTA
+        accent:
+          'bg-[hsl(var(--accent))] text-white hover:bg-[hsl(var(--accent-deep))]',
+        // Legacy alias for older sections
         neon:
-          'bg-[hsl(var(--neon))] text-black hover:shadow-[0_0_40px_hsl(var(--neon)/0.55)]',
+          'bg-[hsl(var(--accent))] text-white hover:bg-[hsl(var(--accent-deep))]',
+        // Hairline outlined — secondary
         outline:
-          'border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--fg))] hover:border-[hsl(var(--neon))] hover:text-[hsl(var(--neon))]',
-        ghost: 'bg-transparent text-[hsl(var(--fg))] hover:bg-white/5'
+          'border border-[hsl(var(--ink))] bg-transparent text-[hsl(var(--ink))] hover:bg-[hsl(var(--ink))] hover:text-[hsl(var(--bg))]',
+        ghost:
+          'bg-transparent text-[hsl(var(--ink))] hover:bg-[hsl(var(--surface))]'
       },
       size: {
         sm: 'h-9 px-4 text-sm',

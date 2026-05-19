@@ -71,9 +71,9 @@ const frag = /* glsl */ `
     vec3 col = mix(uColorA, uColorB, smoothstep(-0.2, 0.6, n));
     col = mix(col, uColorC, smoothstep(0.55, 0.95, length(q)));
 
-    // Vignette
-    float v = smoothstep(1.2, 0.2, length(vUv - 0.5));
-    col *= 0.55 + 0.6 * v;
+    // Soft vignette + edge fade to blend into the paper background
+    float v = smoothstep(1.2, 0.25, length(vUv - 0.5));
+    col = mix(uColorA, col, 0.35 + 0.55 * v);
 
     gl_FragColor = vec4(col, 1.0);
   }
@@ -85,9 +85,9 @@ function Plane() {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uColorA: { value: new THREE.Color('#0a0816') }, // near-bg
-      uColorB: { value: new THREE.Color('#a855f7') }, // accent purple
-      uColorC: { value: new THREE.Color('#00ffe0') }, // neon turquoise
+      uColorA: { value: new THREE.Color('#ffffff') }, // paper
+      uColorB: { value: new THREE.Color('#ece6fa') }, // soft indigo wash
+      uColorC: { value: new THREE.Color('#3a1ba0') }, // signature deep indigo
     }),
     [],
   );
@@ -125,7 +125,7 @@ export function DistortionPlane() {
       >
         <Plane />
         <EffectComposer enableNormalPass={false} multisampling={0}>
-          <Bloom intensity={0.5} luminanceThreshold={0.35} luminanceSmoothing={0.6} mipmapBlur />
+          <Bloom intensity={0.15} luminanceThreshold={0.85} luminanceSmoothing={0.6} mipmapBlur />
         </EffectComposer>
       </Canvas>
     </div>

@@ -1,9 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { problems } from '@/lib/content';
-import { ScrollParallax } from '@/components/effects/scroll-parallax';
-import { ScrollScale } from '@/components/effects/scroll-scale';
 
 const REAL_STATS = ['67%', '40%', '89.000 €', '74%'];
 
@@ -11,67 +10,80 @@ export function ProblemsSection() {
   return (
     <section
       id="problems"
-      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))] px-6 py-24 md:py-32 lg:px-10"
     >
-      <div className="mx-auto max-w-7xl">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
-          {problems.eyebrow}
-        </p>
-        <ScrollParallax x={-8}>
-          <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
-            {problems.headline}
-          </h2>
-        </ScrollParallax>
-        <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
-          {problems.subline}
-        </p>
+      <div className="mx-auto max-w-[1280px]">
+        {/* Section header — editorial two-column */}
+        <div className="grid grid-cols-12 gap-x-6 gap-y-8">
+          <div className="col-span-12 md:col-span-5">
+            <span className="eyebrow">{problems.eyebrow}</span>
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-light leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+              {problems.headline}
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
+            <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
+              {problems.subline}
+            </p>
+          </div>
+        </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        {/* Problems grid — bordered cards on paper */}
+        <div className="mt-20 grid gap-px overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--border))] md:grid-cols-2">
           {problems.items.map((item, i) => (
-            <ScrollScale key={item.title} from={0.92} to={1} out={1}>
-            <motion.div
+            <motion.article
+              key={item.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="rounded-2xl border border-white/8 bg-white/[0.03] p-7"
+              transition={{ duration: 0.55, delay: i * 0.08 }}
+              className="group flex flex-col gap-6 bg-[hsl(var(--bg))] p-8 transition-colors hover:bg-[hsl(var(--surface))] md:p-10"
             >
-              <div className="mb-4 flex items-start gap-3">
-                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[hsl(var(--accent))/30] bg-[hsl(var(--accent))/10] font-mono text-xs text-[hsl(var(--accent))]">
-                  {i + 1}
+              <div className="flex items-start justify-between gap-6">
+                <span className="font-mono text-[0.75rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))]">
+                  №&nbsp;{String(i + 1).padStart(2, '0')}
                 </span>
-                <h3 className="text-lg font-semibold leading-snug">{item.title}</h3>
-              </div>
-              <p className="text-sm text-[hsl(var(--muted))] leading-relaxed">{item.body}</p>
-              <div className="mt-5 rounded-xl border border-[hsl(var(--neon))/15] bg-[hsl(var(--neon))/5] px-4 py-3">
-                <span className="font-mono text-2xl font-bold text-[hsl(var(--neon))]">
+                <span className="font-display text-[2.5rem] font-light leading-none tracking-tight text-[hsl(var(--accent))]">
                   {REAL_STATS[i] ?? '—'}
                 </span>
-                <p className="mt-0.5 text-xs text-[hsl(var(--muted))]">
-                  {item.stat.label.replace('TODO:%', '').replace('TODO:K€', '')}
-                </p>
               </div>
-            </motion.div>
-            </ScrollScale>
+              <h3 className="font-display text-[1.5rem] font-medium leading-tight tracking-tight text-[hsl(var(--ink))]">
+                {item.title}
+              </h3>
+              <p className="text-[0.95rem] leading-[1.65] text-[hsl(var(--muted))]">
+                {item.body}
+              </p>
+              <p className="mt-auto text-[0.75rem] uppercase tracking-wider text-[hsl(var(--subtle))]">
+                {item.stat.label.replace('TODO:%', '').replace('TODO:K€', '')}
+              </p>
+            </motion.article>
           ))}
         </div>
 
+        {/* Outro */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 rounded-2xl border border-white/8 bg-white/[0.02] p-7"
+          className="mt-16 grid grid-cols-12 gap-x-6 border-t border-[hsl(var(--border))] pt-12"
         >
-          <h3 className="text-xl font-semibold">{problems.outro.title}</h3>
-          <p className="mt-3 max-w-3xl text-sm text-[hsl(var(--muted))] leading-relaxed">
-            {problems.outro.body}
-          </p>
-          <a
-            href="#solutions"
-            className="mt-5 inline-flex items-center gap-2 rounded-full border border-[hsl(var(--accent))] px-5 py-2.5 text-sm font-medium text-[hsl(var(--accent))] transition hover:bg-[hsl(var(--accent))/10]"
-          >
-            {problems.outro.cta} →
-          </a>
+          <div className="col-span-12 md:col-span-7">
+            <h3 className="font-display text-[1.625rem] font-medium leading-tight tracking-tight text-[hsl(var(--ink))]">
+              {problems.outro.title}
+            </h3>
+            <p className="mt-4 max-w-2xl text-[0.95rem] leading-[1.65] text-[hsl(var(--muted))]">
+              {problems.outro.body}
+            </p>
+          </div>
+          <div className="col-span-12 mt-6 flex md:col-span-5 md:mt-0 md:items-end md:justify-end">
+            <a
+              href="#solutions"
+              className="group inline-flex h-12 items-center gap-2 rounded-full border border-[hsl(var(--ink))] px-6 text-sm font-medium text-[hsl(var(--ink))] transition-all hover:bg-[hsl(var(--ink))] hover:text-[hsl(var(--bg))]"
+            >
+              {problems.outro.cta}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -66,10 +66,10 @@ export function BreakevenChart({ scaledSavings }: Props) {
 
   return (
     <div
-      className="relative overflow-hidden rounded-3xl border border-white/8 p-8 md:p-10"
+      className="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] p-8 md:p-10"
       style={{
         background:
-          'linear-gradient(155deg, hsl(174 100% 50% / 0.06) 0%, hsl(271 91% 65% / 0.04) 60%, hsl(240 14% 5%) 100%)',
+          'linear-gradient(155deg, hsl(255 71% 37% / 0.06) 0%, hsl(255 71% 37% / 0.04) 60%, hsl(0 0% 100%) 100%)',
       }}
     >
       <div className="flex flex-wrap items-start justify-between gap-4">
@@ -83,7 +83,7 @@ export function BreakevenChart({ scaledSavings }: Props) {
         </div>
 
         {/* Tier toggle */}
-        <div className="flex rounded-full border border-white/10 bg-white/[0.03] p-1">
+        <div className="flex rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-1">
           {roi.visual.breakeven.tiers.map((t) => (
             <button
               key={t.id}
@@ -151,12 +151,12 @@ export function BreakevenChart({ scaledSavings }: Props) {
               <stop offset="100%" stopColor="hsl(0 75% 60%)" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="be-area-profit" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="hsl(174 100% 50%)" stopOpacity="0.45" />
-              <stop offset="100%" stopColor="hsl(174 100% 50%)" stopOpacity="0" />
+              <stop offset="0%" stopColor="hsl(255 71% 37%)" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="hsl(255 71% 37%)" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="be-savings-line" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="hsl(271 91% 65%)" />
-              <stop offset="100%" stopColor="hsl(174 100% 50%)" />
+              <stop offset="0%" stopColor="hsl(255 71% 37%)" />
+              <stop offset="100%" stopColor="hsl(255 71% 37%)" />
             </linearGradient>
             <filter id="be-glow">
               <feGaussianBlur stdDeviation="3" result="b" />
@@ -287,7 +287,7 @@ export function BreakevenChart({ scaledSavings }: Props) {
                 x2={breakevenX}
                 y1={padT}
                 y2={H - padB}
-                stroke="hsl(174 100% 50%)"
+                stroke="hsl(255 71% 37%)"
                 strokeWidth="1.5"
                 strokeDasharray="4 4"
               />
@@ -295,17 +295,17 @@ export function BreakevenChart({ scaledSavings }: Props) {
                 cx={breakevenX}
                 cy={investY}
                 r="9"
-                fill="hsl(174 100% 50%)"
+                fill="hsl(255 71% 37%)"
                 filter="url(#be-glow)"
               />
-              <circle cx={breakevenX} cy={investY} r="4" fill="hsl(240 14% 5%)" />
+              <circle cx={breakevenX} cy={investY} r="4" fill="hsl(0 0% 100%)" />
               <g transform={`translate(${breakevenX + 10},${investY - 30})`}>
                 <rect
                   width="120"
                   height="38"
                   rx="8"
-                  fill="hsl(174 100% 50% / 0.15)"
-                  stroke="hsl(174 100% 50% / 0.5)"
+                  fill="hsl(255 71% 37% / 0.15)"
+                  stroke="hsl(255 71% 37% / 0.5)"
                 />
                 <text
                   x="60"
@@ -334,7 +334,7 @@ export function BreakevenChart({ scaledSavings }: Props) {
         </svg>
       </div>
 
-      <p className="mt-6 border-t border-white/8 pt-5 text-sm italic text-[hsl(var(--muted))]">
+      <p className="mt-6 border-t border-[hsl(var(--border))] pt-5 text-sm italic text-[hsl(var(--muted))]">
         {roi.visual.breakeven.footer}
       </p>
     </div>
@@ -359,9 +359,9 @@ function Kpi({
       className={`rounded-2xl border p-4 ${
         highlight
           ? 'border-[hsl(var(--neon))/40] bg-[hsl(var(--neon))/8]'
-          : 'border-white/10 bg-white/[0.025]'
+          : 'border-[hsl(var(--border))] bg-white/[0.025]'
       }`}
-      style={highlight ? { boxShadow: '0 0 30px -10px hsl(174 100% 50% / 0.5)' } : undefined}
+      style={highlight ? { boxShadow: '0 0 30px -10px hsl(255 71% 37% / 0.5)' } : undefined}
     >
       <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
         {label}

@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import { geistSans, geistMono, displayFont } from '@/lib/fonts';
+import { geistSans, geistMono, displayFont, accentFont } from '@/lib/fonts';
 import { LenisProvider } from '@/components/providers/lenis-provider';
 import { CookieBanner } from '@/components/providers/cookie-banner';
 import { Navbar } from '@/components/sections/navbar';
 import { Footer } from '@/components/sections/footer';
-import { MagneticCursor } from '@/components/effects/magnetic-cursor';
 import { ScrollProgress } from '@/components/effects/scroll-progress';
 import { PageTransition } from '@/components/effects/page-transition';
 import { site } from '@/lib/content';
@@ -50,8 +49,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#a855f7',
-  colorScheme: 'dark',
+  themeColor: '#ffffff',
+  colorScheme: 'light',
   width: 'device-width',
   initialScale: 1
 };
@@ -60,13 +59,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="de"
-      className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} ${accentFont.variable}`}
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-[hsl(var(--bg))] text-[hsl(var(--fg))] antialiased">
         <PageTransition />
         <ScrollProgress />
-        <MagneticCursor />
         <LenisProvider>
           <Navbar />
           <main>{children}</main>

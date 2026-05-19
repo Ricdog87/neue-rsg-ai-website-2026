@@ -1,69 +1,69 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Quote } from 'lucide-react';
 import { testimonials } from '@/lib/content';
-import { ScrollParallax } from '@/components/effects/scroll-parallax';
-import { ScrollScale } from '@/components/effects/scroll-scale';
 
 export function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))] px-6 py-24 md:py-32 lg:px-10"
     >
-      <div className="mx-auto max-w-7xl">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
-          {testimonials.eyebrow}
-        </p>
-        <ScrollParallax x={-8}>
-          <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
-            {testimonials.headline}
-          </h2>
-        </ScrollParallax>
-        <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
-          {testimonials.subline}
-        </p>
+      <div className="mx-auto max-w-[1280px]">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-8">
+          <div className="col-span-12 md:col-span-5">
+            <span className="eyebrow">{testimonials.eyebrow}</span>
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-light leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+              {testimonials.headline}
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
+            <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
+              {testimonials.subline}
+            </p>
+          </div>
+        </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="mt-20 grid gap-px overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--border))] md:grid-cols-3">
           {testimonials.items.map((item, i) => (
-            <ScrollScale key={i} from={0.93} to={1} out={1}>
-            <ScrollParallax y={i % 2 === 0 ? -10 : 10}>
-            <motion.div
+            <motion.figure
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="flex flex-col gap-4 rounded-2xl border border-white/8 bg-white/[0.03] p-7"
+              transition={{ delay: i * 0.08, duration: 0.55 }}
+              className="flex flex-col gap-8 bg-[hsl(var(--bg))] p-8 transition-colors hover:bg-[hsl(var(--surface))] md:p-10"
             >
-              {/* Stars */}
-              <div className="flex gap-1 text-[hsl(var(--neon))]">
-                {'★★★★★'.split('').map((s, j) => (
-                  <span key={j} className="text-sm">{s}</span>
-                ))}
-              </div>
-
-              <p className="flex-1 text-sm italic leading-relaxed text-[hsl(var(--fg))]">
-                "{item.quote}"
-              </p>
-
-              <div className="border-t border-white/8 pt-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-semibold">{item.author}</p>
-                    <p className="text-xs text-[hsl(var(--muted))]">{item.company}</p>
-                    <p className="text-xs text-[hsl(var(--muted))]">{item.meta}</p>
-                  </div>
-                  <div className="rounded-lg border border-[hsl(var(--neon))/25] bg-[hsl(var(--neon))/8] px-3 py-2 text-center">
-                    <span className="font-mono text-sm font-bold text-[hsl(var(--neon))]">
-                      {item.saved}
-                    </span>
-                    <p className="text-[10px] text-[hsl(var(--muted))]">gespart</p>
-                  </div>
+              <Quote
+                className="h-7 w-7 text-[hsl(var(--accent))] -scale-x-100"
+                aria-hidden
+              />
+              <blockquote className="flex-1 font-display text-[1.15rem] font-light leading-[1.45] tracking-tight text-[hsl(var(--ink))] md:text-[1.25rem]">
+                „{item.quote}"
+              </blockquote>
+              <figcaption className="flex items-end justify-between border-t border-[hsl(var(--border))] pt-6">
+                <div>
+                  <p className="text-[0.875rem] font-medium text-[hsl(var(--ink))]">
+                    {item.author}
+                  </p>
+                  <p className="mt-0.5 text-[0.8rem] text-[hsl(var(--muted))]">
+                    {item.company}
+                  </p>
+                  <p className="text-[0.75rem] text-[hsl(var(--subtle))]">
+                    {item.meta}
+                  </p>
                 </div>
-              </div>
-            </motion.div>
-            </ScrollParallax>
-            </ScrollScale>
+                <div className="text-right">
+                  <p className="font-display text-[1.5rem] font-light leading-none tracking-tight text-[hsl(var(--accent))]">
+                    {item.saved}
+                  </p>
+                  <p className="mt-1 text-[0.65rem] uppercase tracking-wider text-[hsl(var(--subtle))]">
+                    gespart
+                  </p>
+                </div>
+              </figcaption>
+            </motion.figure>
           ))}
         </div>
       </div>

@@ -80,13 +80,13 @@ export function StatsRevealSection() {
     <section
       ref={sectionRef}
       id="stats-reveal"
-      className="relative h-[100svh] overflow-hidden border-t border-white/5 bg-[hsl(var(--bg))]"
+      className="relative h-[100svh] overflow-hidden border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]"
       aria-label="Live-Zahlen aus Produktion"
     >
       <DistortionPlane />
 
-      <div className="absolute left-1/2 top-10 z-20 -translate-x-1/2 text-center">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-[hsl(var(--neon))]">
+      <div className="absolute left-1/2 top-12 z-20 -translate-x-1/2 text-center">
+        <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
           Live aus Produktion · gerade jetzt
         </p>
       </div>
@@ -106,7 +106,7 @@ export function StatsRevealSection() {
             aria-hidden={i > 0}
           >
             <span
-              className="font-display font-bold leading-none tracking-tighter text-[hsl(var(--fg))] drop-shadow-[0_0_60px_hsl(var(--accent)/0.55)]"
+              className="font-display font-medium leading-none tracking-tighter text-[hsl(var(--ink))]"
               style={{
                 fontSize: 'clamp(7rem, 28vw, 22rem)',
                 textRendering: 'geometricPrecision',
@@ -116,14 +116,14 @@ export function StatsRevealSection() {
             >
               {kpi.value}
             </span>
-            <span className="mt-6 max-w-[80vw] font-mono text-sm uppercase tracking-[0.25em] text-[hsl(var(--neon))] md:text-base">
+            <span className="mt-6 max-w-[80vw] font-mono text-[0.75rem] uppercase tracking-[0.25em] text-[hsl(var(--accent))] md:text-sm">
               {kpi.label}
             </span>
           </div>
         ))}
       </div>
 
-      <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-[hsl(var(--muted))]">
+      <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 font-mono text-[0.625rem] uppercase tracking-[0.3em] text-[hsl(var(--subtle))]">
         weiterscrollen ↓
       </div>
     </section>

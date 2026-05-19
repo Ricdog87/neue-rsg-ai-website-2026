@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ScrollScale } from '@/components/effects/scroll-scale';
-import { ScrollParallax } from '@/components/effects/scroll-parallax';
 
 const STREAM = [
   { delay: 0,    text: '> Neuer Lead eingehend: "TechVision GmbH"' },
@@ -42,11 +40,12 @@ function KpiCounter({ target, suffix, label }: { target: number; suffix: string;
   }, [target]);
 
   return (
-    <div ref={ref} className="flex flex-col gap-2 rounded-2xl border border-white/8 bg-white/[0.03] p-6">
-      <span className="font-mono text-3xl font-bold tabular-nums text-[hsl(var(--neon))] md:text-4xl">
-        {v}{suffix}
+    <div ref={ref} className="flex flex-col gap-2 bg-[hsl(var(--bg))] p-7">
+      <span className="font-display text-[2.25rem] font-medium leading-none tabular-nums tracking-tight text-[hsl(var(--ink))] md:text-[2.75rem]">
+        {v}
+        {suffix}
       </span>
-      <span className="text-sm text-[hsl(var(--muted))]">{label}</span>
+      <span className="mt-1 text-[0.875rem] text-[hsl(var(--muted))]">{label}</span>
     </div>
   );
 }
@@ -101,65 +100,70 @@ export function SimulationSection() {
   return (
     <section
       id="simulation"
-      className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 md:py-32"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))] px-6 py-24 md:py-32 lg:px-10"
     >
-      <div className="mx-auto max-w-7xl">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
-          Live-Simulation
-        </p>
-        <ScrollParallax x={-8}>
-          <h2 className="mt-4 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
-            Sieh deinem KI-Agenten beim Denken zu.
-          </h2>
-        </ScrollParallax>
-        <p className="mt-6 max-w-3xl text-base text-[hsl(var(--muted))] md:text-lg">
-          Echtzeit-Output aus einer echten Lead-Qualifizierungs-Pipeline — von Webhook bis Termin-Buchung in unter 5 Sekunden.
-        </p>
+      <div className="mx-auto max-w-[1280px]">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-8">
+          <div className="col-span-12 md:col-span-5">
+            <span className="eyebrow">Live-Simulation</span>
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
+              Sieh deinem KI-Agenten beim{' '}
+              <span className="font-accent italic text-[hsl(var(--accent))]">Denken</span> zu.
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
+            <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
+              Echtzeit-Output aus einer echten Lead-Qualifizierungs-Pipeline —
+              von Webhook bis Termin-Buchung in unter 5 Sekunden.
+            </p>
+          </div>
+        </div>
 
-        <ScrollScale from={0.92} to={1.02} out={1}>
-        <div className="mt-14 grid gap-8 lg:grid-cols-2">
-          {/* Terminal */}
+        <div className="mt-16 grid gap-8 lg:grid-cols-12 lg:gap-x-6">
           <div
             ref={containerRef}
-            className="rounded-2xl border border-white/8 bg-black/70 p-6 font-mono"
+            className="rounded-md bg-[hsl(var(--ink))] p-6 font-mono shadow-[var(--shadow-lift)] lg:col-span-7"
           >
-            <div className="mb-4 flex items-center gap-2 border-b border-white/8 pb-3">
-              <span className="h-3 w-3 rounded-full bg-red-500/70" />
-              <span className="h-3 w-3 rounded-full bg-yellow-500/70" />
-              <span className="h-3 w-3 rounded-full bg-emerald-500/70" />
-              <span className="ml-3 text-xs text-[hsl(var(--muted))]">rsg-agent · sales-pipeline</span>
-              <span className="ml-auto flex items-center gap-1.5 text-xs text-[hsl(var(--neon))]">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[hsl(var(--neon))]" />
+            <div className="mb-4 flex items-center gap-2 border-b border-white/10 pb-3">
+              <span className="h-3 w-3 rounded-full bg-red-400/70" />
+              <span className="h-3 w-3 rounded-full bg-yellow-400/70" />
+              <span className="h-3 w-3 rounded-full bg-emerald-400/70" />
+              <span className="ml-3 font-mono text-[0.75rem] text-white/50">
+                rsg-agent · sales-pipeline
+              </span>
+              <span className="ml-auto inline-flex items-center gap-1.5 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--accent-soft))]">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[hsl(var(--accent-soft))]" />
                 LIVE
               </span>
             </div>
-            <div className="min-h-[220px] space-y-1.5 text-xs leading-relaxed">
+            <div className="min-h-[280px] space-y-1.5 text-[0.75rem] leading-relaxed">
               {lines.slice(-12).map((line, i) => (
                 <p
                   key={i}
                   className={
                     line.startsWith('>')
-                      ? 'text-[hsl(var(--neon))] font-medium'
-                      : 'text-[hsl(var(--muted))]'
+                      ? 'font-medium text-[hsl(var(--accent-soft))]'
+                      : 'text-white/65'
                   }
                 >
                   {line}
                 </p>
               ))}
               <span
-                className={`inline-block h-3.5 w-2 bg-[hsl(var(--neon))] transition-opacity duration-75 ${cursor ? 'opacity-100' : 'opacity-0'}`}
+                className={
+                  'inline-block h-3.5 w-2 bg-[hsl(var(--accent-soft))] transition-opacity duration-75 ' +
+                  (cursor ? 'opacity-100' : 'opacity-0')
+                }
               />
             </div>
           </div>
 
-          {/* KPI counters */}
-          <div className="grid grid-cols-2 gap-4 content-start">
-            {KPIS.map(kpi => (
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-[hsl(var(--border))] bg-[hsl(var(--border))] content-start lg:col-span-5">
+            {KPIS.map((kpi) => (
               <KpiCounter key={kpi.label} {...kpi} />
             ))}
           </div>
         </div>
-        </ScrollScale>
       </div>
     </section>
   );

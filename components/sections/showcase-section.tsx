@@ -55,7 +55,7 @@ export function ShowcaseSection() {
       slides.forEach((card) => {
         gsap.fromTo(
           card.querySelector('.showcase-card-inner'),
-          { scale: 0.92, opacity: 0.5 },
+          { scale: 0.94, opacity: 0.6 },
           {
             scale: 1,
             opacity: 1,
@@ -82,34 +82,37 @@ export function ShowcaseSection() {
 
   return (
     <>
-      {/* ── Mobile / tablet: simple card grid ──────────────────────────── */}
+      {/* Mobile / tablet — simple editorial card grid */}
       <section
         id="showcase"
-        className="relative border-t border-white/5 bg-[hsl(var(--bg))] px-4 py-20 sm:px-6 lg:hidden"
+        className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))] px-6 py-24 lg:hidden"
       >
-        <div className="mx-auto max-w-7xl">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
-            {useCases.eyebrow}
-          </p>
-          <h2 className="mt-3 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
+        <div className="mx-auto max-w-[1280px]">
+          <span className="eyebrow">{useCases.eyebrow}</span>
+          <h2 className="mt-6 font-display text-[clamp(2rem,6vw,3rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
             {useCases.headline}
           </h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-[hsl(var(--border))] bg-[hsl(var(--border))] sm:grid-cols-2">
             {useCases.items.map((item, i) => (
-              <div
-                key={item.name}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl"
-              >
+              <div key={item.name} className="flex flex-col justify-between bg-[hsl(var(--bg))] p-7">
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[hsl(var(--muted))]">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
                     0{i + 1} / 0{useCases.items.length}
                   </span>
-                  <h3 className="mt-4 font-display text-2xl tracking-tight">{item.name}</h3>
-                  <p className="mt-3 text-sm text-[hsl(var(--muted))] leading-relaxed">{item.body}</p>
+                  <h3 className="mt-4 font-display text-[1.375rem] font-medium tracking-tight text-[hsl(var(--ink))]">
+                    {item.name}
+                  </h3>
+                  <p className="mt-3 text-[0.9rem] leading-relaxed text-[hsl(var(--muted))]">
+                    {item.body}
+                  </p>
                 </div>
-                <div className="mt-6 border-t border-white/10 pt-4">
-                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">KPI</span>
-                  <p className="mt-1 font-display text-xl text-[hsl(var(--fg))]">{item.kpi}</p>
+                <div className="mt-6 border-t border-[hsl(var(--border))] pt-4">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
+                    KPI
+                  </span>
+                  <p className="mt-1 font-display text-[1.5rem] font-medium text-[hsl(var(--ink))]">
+                    {item.kpi}
+                  </p>
                 </div>
               </div>
             ))}
@@ -117,11 +120,11 @@ export function ShowcaseSection() {
         </div>
       </section>
 
-      {/* ── Desktop: pinned horizontal scroll ─────────────────────────── */}
+      {/* Desktop — pinned horizontal scroll over indigo fluid simulation */}
       <section
         id="showcase-desktop"
         ref={wrapRef}
-        className="relative hidden h-screen w-full overflow-hidden border-t border-white/5 lg:block"
+        className="relative hidden h-screen w-full overflow-hidden border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))] lg:block"
       >
         <DistortionPlane />
         <div
@@ -130,22 +133,23 @@ export function ShowcaseSection() {
           style={{
             zIndex: 1,
             background:
-              'linear-gradient(to right, hsl(240 10% 4% / 0.85) 0%, hsl(240 10% 4% / 0.5) 18%, hsl(240 10% 4% / 0.5) 82%, hsl(240 10% 4% / 0.85) 100%)',
+              'linear-gradient(to right, hsl(0 0% 100% / 0.95) 0%, hsl(0 0% 100% / 0.5) 15%, hsl(0 0% 100% / 0.5) 85%, hsl(0 0% 100% / 0.95) 100%)',
           }}
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 px-6 pt-32">
-          <div className="mx-auto max-w-7xl">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">
-              {useCases.eyebrow}
-            </p>
-            <h2 className="mt-3 font-display text-balance text-3xl tracking-tight sm:text-4xl md:text-6xl">
+
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 px-10 pt-32">
+          <div className="mx-auto max-w-[1280px]">
+            <span className="eyebrow">{useCases.eyebrow}</span>
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--ink))]">
               {useCases.headline}
             </h2>
           </div>
         </div>
-        <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-[hsl(var(--muted))]">
+
+        <div className="pointer-events-none absolute bottom-8 left-1/2 z-20 -translate-x-1/2 font-mono text-[0.625rem] uppercase tracking-[0.3em] text-[hsl(var(--subtle))]">
           scroll →
         </div>
+
         <div
           ref={trackRef}
           className="relative z-10 flex h-full items-center gap-8 px-[10vw] will-change-transform"
@@ -154,26 +158,27 @@ export function ShowcaseSection() {
           {useCases.items.map((item, i) => (
             <div
               key={item.name}
-              className="showcase-card relative h-[58vh] w-[34vw] shrink-0"
+              className="showcase-card relative h-[60vh] w-[34vw] shrink-0"
             >
-              <div className="showcase-card-inner group relative flex h-full w-full flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl transition-colors hover:border-[hsl(var(--neon))/40]">
-                <div
-                  className="absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{
-                    background:
-                      'radial-gradient(circle at 30% 20%, hsl(271 91% 65% / 0.18), transparent 60%)',
-                  }}
-                />
+              <div className="showcase-card-inner relative flex h-full w-full flex-col justify-between overflow-hidden rounded-md border border-[hsl(var(--border))] bg-[hsl(var(--bg))] p-10 shadow-[var(--shadow-lift)] transition-colors hover:border-[hsl(var(--accent))]">
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[hsl(var(--muted))]">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
                     0{i + 1} / 0{useCases.items.length}
                   </span>
-                  <h3 className="mt-6 font-display text-3xl tracking-tight md:text-4xl">{item.name}</h3>
-                  <p className="mt-4 max-w-md text-sm text-[hsl(var(--muted))] md:text-base">{item.body}</p>
+                  <h3 className="mt-6 font-display text-[2rem] font-medium leading-tight tracking-tight text-[hsl(var(--ink))] md:text-[2.5rem]">
+                    {item.name}
+                  </h3>
+                  <p className="mt-5 max-w-md text-[1rem] leading-[1.6] text-[hsl(var(--muted))]">
+                    {item.body}
+                  </p>
                 </div>
-                <div className="mt-8 border-t border-white/10 pt-5">
-                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))]">KPI</span>
-                  <p className="mt-2 font-display text-2xl text-[hsl(var(--fg))] md:text-3xl">{item.kpi}</p>
+                <div className="mt-8 border-t border-[hsl(var(--border))] pt-6">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
+                    KPI
+                  </span>
+                  <p className="mt-2 font-display text-[1.75rem] font-medium text-[hsl(var(--ink))] md:text-[2rem]">
+                    {item.kpi}
+                  </p>
                 </div>
               </div>
             </div>

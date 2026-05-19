@@ -152,27 +152,25 @@ export function BreakevenChart({ scaledSavings }: Props) {
       </div>
 
       {/* The chart */}
-      <div className="mt-8 overflow-x-auto">
+      <div className="mt-10 overflow-x-auto">
         <svg
           viewBox={`0 0 ${W} ${H}`}
           className="w-full"
           style={{ minWidth: 560, height: 'auto' }}
         >
           <defs>
-            <linearGradient id="be-area-loss" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="hsl(0 75% 60%)" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="hsl(0 75% 60%)" stopOpacity="0" />
+            {/* Gradient fill UNDER the cumulative savings curve */}
+            <linearGradient id="be-curve-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0.32" />
+              <stop offset="60%" stopColor="hsl(var(--accent))" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0" />
             </linearGradient>
-            <linearGradient id="be-area-profit" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="hsl(255 71% 37%)" stopOpacity="0.45" />
-              <stop offset="100%" stopColor="hsl(255 71% 37%)" stopOpacity="0" />
+            <linearGradient id="be-line-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0.7" />
+              <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="1" />
             </linearGradient>
-            <linearGradient id="be-savings-line" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="hsl(255 71% 37%)" />
-              <stop offset="100%" stopColor="hsl(255 71% 37%)" />
-            </linearGradient>
-            <filter id="be-glow">
-              <feGaussianBlur stdDeviation="3" result="b" />
+            <filter id="be-soft-glow">
+              <feGaussianBlur stdDeviation="2" result="b" />
               <feMerge>
                 <feMergeNode in="b" />
                 <feMergeNode in="SourceGraphic" />
@@ -180,7 +178,21 @@ export function BreakevenChart({ scaledSavings }: Props) {
             </filter>
           </defs>
 
-          {/* Background grid */}
+          <style>{`
+            @keyframes be-draw {
+              to { stroke-dashoffset: 0; }
+            }
+            @keyframes be-fade-in {
+              from { opacity: 0; }
+              to   { opacity: 1; }
+            }
+            @keyframes be-pulse {
+              0%, 100% { r: 5; opacity: 0.9; }
+              50%      { r: 8; opacity: 0.5; }
+            }
+          `}</style>
+
+          {/* Y-axis hairline gridlines — barely visible, 1px solid */}
           {ticks.map((t) => (
             <line
               key={`grid-${t}`}
@@ -188,21 +200,22 @@ export function BreakevenChart({ scaledSavings }: Props) {
               x2={W - padR}
               y1={yForValue(t)}
               y2={yForValue(t)}
-              stroke="hsl(0 0% 100% / 0.05)"
-              strokeDasharray="3 6"
+              stroke="hsl(0 0% 100% / 0.06)"
+              strokeWidth={1}
             />
           ))}
 
-          {/* Y-axis labels */}
+          {/* Y-axis labels — refined mono in margin */}
           {ticks.map((t) => (
             <text
               key={`tick-${t}`}
-              x={padL - 10}
+              x={padL - 14}
               y={yForValue(t) + 4}
               textAnchor="end"
-              fontSize="11"
+              fontSize="10"
               fontFamily="var(--font-mono)"
-              fill="hsl(0 0% 65%)"
+              fill="hsl(0 0% 55%)"
+              letterSpacing="0.05em"
             >
               {t === 0 ? '0' : `${Math.round(t / 1000)}K €`}
             </text>
@@ -213,162 +226,163 @@ export function BreakevenChart({ scaledSavings }: Props) {
             <text
               key={`m-${m}`}
               x={xForMonth(m)}
-              y={H - 18}
+              y={H - 16}
               textAnchor="middle"
-              fontSize="11"
+              fontSize="10"
               fontFamily="var(--font-mono)"
-              fill="hsl(0 0% 65%)"
+              fill="hsl(0 0% 55%)"
+              letterSpacing="0.1em"
             >
-              {m === 0 ? 'Start' : `M${m}`}
+              {m === 0 ? 'START' : `M${m}`}
             </text>
           ))}
 
-          {/* Filled area: loss zone (under investment line, up to break-even) */}
-          {breakevenX && (
-            <path
-              d={`
-                M ${padL} ${yForValue(0)}
-                L ${padL} ${investY}
-                L ${breakevenX} ${investY}
-                Z
-              `}
-              fill="url(#be-area-loss)"
-            />
-          )}
-          {/* Filled area: profit zone (above savings line after break-even) */}
-          {breakevenX && breakevenWithin12 && (
-            <path
-              d={`
-                M ${breakevenX} ${investY}
-                L ${xForMonth(minMonths)} ${investY}
-                L ${xForMonth(minMonths)} ${savingsEndY}
-                Z
-              `}
-              fill="url(#be-area-profit)"
-            />
-          )}
+          {/* Filled area UNDER the savings curve — gradient that fades to ground */}
+          <path
+            d={`
+              M ${padL} ${yForValue(0)}
+              L ${savingsPath.split(' ').join(' L ')}
+              L ${xForMonth(minMonths)} ${yForValue(0)}
+              Z
+            `}
+            fill="url(#be-curve-fill)"
+            style={{
+              opacity: 0,
+              animation: 'be-fade-in 0.8s ease-out 0.9s forwards',
+            }}
+          />
 
-          {/* Investment horizontal line */}
+          {/* Investment horizontal reference line — subtle dashed crimson */}
           <line
             x1={padL}
             x2={W - padR}
             y1={investY}
             y2={investY}
-            stroke="hsl(0 75% 60%)"
-            strokeWidth="2"
-            strokeDasharray="6 4"
+            stroke="hsl(0 70% 65%)"
+            strokeOpacity={0.45}
+            strokeWidth={1}
+            strokeDasharray="3 5"
           />
-          <text
-            x={W - padR}
-            y={investY - 8}
-            textAnchor="end"
-            fontSize="11"
-            fontFamily="var(--font-mono)"
-            fontWeight="700"
-            fill="hsl(0 75% 65%)"
-          >
-            {roi.visual.breakeven.manualLineLabel} · {invest.toLocaleString('de-DE')} €
-          </text>
+          {/* Investment label — pinned right outside the chart edge */}
+          <g transform={`translate(${W - padR}, ${investY})`}>
+            <text
+              x={-6}
+              y={-10}
+              textAnchor="end"
+              fontSize="9"
+              fontFamily="var(--font-mono)"
+              fill="hsl(0 70% 70%)"
+              letterSpacing="0.18em"
+            >
+              {roi.visual.breakeven.manualLineLabel.toUpperCase()} · {invest.toLocaleString('de-DE')} €
+            </text>
+          </g>
 
           {/* Cumulative savings line — drawn-in animation */}
           <polyline
             points={savingsPath}
             fill="none"
-            stroke="url(#be-savings-line)"
-            strokeWidth="3"
+            stroke="url(#be-line-grad)"
+            strokeWidth={2.5}
             strokeLinecap="round"
             strokeLinejoin="round"
-            filter="url(#be-glow)"
+            filter="url(#be-soft-glow)"
             pathLength={1}
             strokeDasharray="1 1"
             strokeDashoffset={1}
-            style={{ animation: 'roi-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards' }}
+            style={{ animation: 'be-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards' }}
           />
-          <style>{`
-            @keyframes roi-draw {
-              to { stroke-dashoffset: 0; }
-            }
-            @keyframes roi-pulse {
-              0%, 100% { r: 4; opacity: 1; }
-              50%      { r: 7; opacity: 0.7; }
-            }
-            @keyframes roi-trail {
-              0%   { offset-distance: 0%; opacity: 0; }
-              10%  { opacity: 1; }
-              90%  { opacity: 1; }
-              100% { offset-distance: 100%; opacity: 0; }
-            }
-          `}</style>
-          <text
-            x={xForMonth(minMonths) - 6}
-            y={savingsEndY - 10}
-            textAnchor="end"
-            fontSize="11"
-            fontFamily="var(--font-mono)"
-            fontWeight="700"
-            fill="hsl(174 100% 70%)"
-          >
-            {roi.visual.breakeven.aiLineLabel}
-          </text>
 
-          {/* Break-even marker */}
+          {/* End-of-line label — sits right of the final point, on its own row */}
+          <g transform={`translate(${xForMonth(minMonths)}, ${savingsEndY})`}>
+            <circle r={3.5} fill="hsl(var(--accent))" />
+            <text
+              x={-8}
+              y={-12}
+              textAnchor="end"
+              fontSize="9"
+              fontFamily="var(--font-mono)"
+              fill="hsl(var(--accent))"
+              letterSpacing="0.18em"
+              style={{
+                opacity: 0,
+                animation: 'be-fade-in 0.5s ease-out 1.9s forwards',
+              }}
+            >
+              {roi.visual.breakeven.aiLineLabel.toUpperCase()}
+            </text>
+          </g>
+
+          {/* Break-even marker — subtle hairline + clean badge in margin */}
           {breakevenX && breakevenWithin12 && (
-            <>
+            <g
+              style={{
+                opacity: 0,
+                animation: 'be-fade-in 0.6s ease-out 1.4s forwards',
+              }}
+            >
+              {/* Soft vertical hairline from x-axis to the meeting point */}
               <line
                 x1={breakevenX}
                 x2={breakevenX}
-                y1={padT}
+                y1={investY}
                 y2={H - padB}
-                stroke="hsl(255 71% 37%)"
-                strokeWidth="1.5"
-                strokeDasharray="4 4"
+                stroke="hsl(var(--accent) / 0.35)"
+                strokeWidth={1}
+                strokeDasharray="2 4"
               />
+              {/* Marker dot */}
               <circle
                 cx={breakevenX}
                 cy={investY}
-                r="9"
-                fill="hsl(255 71% 37%)"
-                filter="url(#be-glow)"
-                opacity={0.85}
+                r={6}
+                fill="hsl(var(--accent))"
+                filter="url(#be-soft-glow)"
+                opacity={0.55}
+                style={{ animation: 'be-pulse 2.6s ease-in-out infinite 2.2s' }}
               />
-              <circle
-                cx={breakevenX}
-                cy={investY}
-                r="4"
-                fill="hsl(0 0% 100%)"
-                style={{ animation: 'roi-pulse 2.4s ease-in-out infinite 2s' }}
-              />
-              <g transform={`translate(${breakevenX + 10},${investY - 30})`}>
-                <rect
-                  width="120"
-                  height="38"
-                  rx="8"
-                  fill="hsl(255 71% 37% / 0.15)"
-                  stroke="hsl(255 71% 37% / 0.5)"
-                />
-                <text
-                  x="60"
-                  y="16"
-                  textAnchor="middle"
-                  fontSize="10"
-                  fontFamily="var(--font-mono)"
-                  fill="hsl(174 100% 70%)"
-                  letterSpacing="1"
-                >
-                  BREAK-EVEN
-                </text>
-                <text
-                  x="60"
-                  y="31"
-                  textAnchor="middle"
-                  fontSize="13"
-                  fontWeight="700"
-                  fill="hsl(0 0% 98%)"
-                >
-                  Tag {Math.max(1, breakevenDays)}
-                </text>
+              <circle cx={breakevenX} cy={investY} r={3} fill="hsl(0 0% 100%)" />
+
+              {/* Badge — sits ABOVE the chart, anchored to break-even x */}
+              <g transform={`translate(${breakevenX}, ${padT - 6})`}>
+                <line x1={0} y1={2} x2={0} y2={investY - padT + 4} stroke="transparent" />
+                <g transform="translate(0, -14)">
+                  <rect
+                    x={-48}
+                    y={-14}
+                    width={96}
+                    height={28}
+                    rx={4}
+                    fill="hsl(var(--bg))"
+                    stroke="hsl(var(--accent) / 0.5)"
+                    strokeWidth={1}
+                  />
+                  <text
+                    x={0}
+                    y={-2}
+                    textAnchor="middle"
+                    fontSize="8"
+                    fontFamily="var(--font-mono)"
+                    fill="hsl(var(--accent))"
+                    letterSpacing="0.22em"
+                  >
+                    BREAK-EVEN
+                  </text>
+                  <text
+                    x={0}
+                    y={9}
+                    textAnchor="middle"
+                    fontSize="11"
+                    fontFamily="var(--font-display)"
+                    fontWeight={500}
+                    fill="hsl(0 0% 98%)"
+                    letterSpacing="-0.01em"
+                  >
+                    Tag {Math.max(1, breakevenDays)}
+                  </text>
+                </g>
               </g>
-            </>
+            </g>
           )}
         </svg>
       </div>

@@ -153,8 +153,6 @@ export function ContactSection() {
 
             <a
               href={`${site.cta.meetingUrl}${selected ? `?agent=${encodeURIComponent(selected)}` : ''}`}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group mt-8 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full border border-[hsl(var(--accent))] bg-[hsl(var(--accent))]/90 px-6 font-display text-[0.95rem] font-medium text-white transition-all hover:bg-[hsl(var(--accent-deep))]"
             >
               <Calendar className="h-4 w-4" />

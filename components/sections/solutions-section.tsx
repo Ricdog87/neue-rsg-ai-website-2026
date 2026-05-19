@@ -53,8 +53,6 @@ export function SolutionsSection() {
             <div className="mt-10">
               <a
                 href={site.cta.meetingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group inline-flex h-14 items-center gap-2 rounded-full bg-[hsl(var(--ink))] px-7 text-[0.95rem] font-medium text-[hsl(var(--bg))] transition-all hover:bg-[hsl(var(--accent))]"
               >
                 {solutions.cta}

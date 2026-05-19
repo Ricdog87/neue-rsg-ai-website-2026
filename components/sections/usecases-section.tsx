@@ -63,8 +63,6 @@ export function UseCasesSection() {
         <div className="mt-12 flex justify-start">
           <a
             href={site.cta.meetingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             className="group inline-flex h-14 items-center gap-2 rounded-full border border-[hsl(var(--ink))] px-7 font-display text-[0.95rem] font-medium text-[hsl(var(--fg))] transition-all hover:bg-[hsl(var(--ink))] hover:text-white"
           >
             Meinen Agenten besprechen

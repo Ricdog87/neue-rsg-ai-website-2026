@@ -79,8 +79,6 @@ export function TimelineSection() {
           </div>
           <a
             href={site.cta.meetingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             className="group inline-flex h-14 items-center gap-2 rounded-full border border-[hsl(var(--accent))] bg-[hsl(var(--accent))]/90 px-7 font-display text-[0.95rem] font-medium text-white transition-all hover:bg-[hsl(var(--accent-deep))]"
           >
             Jetzt starten

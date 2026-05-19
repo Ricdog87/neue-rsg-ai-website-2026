@@ -77,8 +77,6 @@ export function Navbar() {
           </div>
           <a
             href={site.cta.meetingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             className="group inline-flex items-center gap-1.5 font-mono text-[0.625rem] uppercase tracking-[0.24em] text-[hsl(174_100%_70%)] transition-colors hover:text-white"
           >
             <span className="hidden sm:inline">Slot sichern</span>
@@ -168,8 +166,6 @@ export function Navbar() {
           <div className="hidden items-center gap-2 md:flex">
             <a
               href={site.cta.meetingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group relative inline-flex h-10 items-center gap-2 overflow-hidden rounded-full bg-white/[0.04] px-5 font-display text-[0.85rem] font-medium text-white backdrop-blur-sm transition-all hover:bg-white/[0.08]"
               style={{
                 border: '1px solid rgba(255,255,255,0.12)',
@@ -235,8 +231,6 @@ export function Navbar() {
               <li className="pt-6">
                 <a
                   href={site.cta.meetingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--accent))] text-sm font-medium text-white"
                 >
                   {site.cta.primary}

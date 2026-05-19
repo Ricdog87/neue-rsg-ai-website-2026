@@ -18,8 +18,6 @@ export function Footer() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
               href={site.cta.meetingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group inline-flex h-14 items-center gap-2 rounded-full bg-[hsl(var(--bg))] px-7 text-[0.95rem] font-medium text-[hsl(var(--fg))] transition-all hover:bg-[hsl(var(--accent))] hover:text-white"
             >
               {site.cta.primary}

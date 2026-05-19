@@ -42,29 +42,27 @@ export function MagneticCursor() {
       setRingY(target.y);
     };
 
-    // Hover-Feedback: kleinere Scale + Blend-Mode-Switch.
-    // Mit mix-blend-difference und großem Ring wird kleiner Text (z.B.
-    // Nav-Links) optisch invertiert und unlesbar. Deshalb auf Hover:
-    // Ring schrumpft minimal, wechselt zu solidem Neon ohne Blend.
+    // Hover-Feedback: ring grows slightly and gets a subtle border tint.
+    // Keep mix-blend-difference throughout — no jarring color switch.
+    // The cursor should READ premium, not signal "look at me" with a
+    // bright cyan halo every time it's near a link.
     const enterInteractive = () => {
-      ring.style.mixBlendMode = 'normal';
       gsap.to(ring, {
-        scale: 1.25,
-        borderColor: 'hsl(174 100% 50%)',
-        backgroundColor: 'hsl(174 100% 50% / 0.12)',
-        duration: 0.25,
+        scale: 1.6,
+        borderColor: 'hsl(0 0% 100% / 0.85)',
+        duration: 0.3,
+        ease: 'power3.out',
       });
-      gsap.to(dot, { scale: 0, duration: 0.18 });
+      gsap.to(dot, { scale: 0, duration: 0.2 });
     };
     const leaveInteractive = () => {
-      ring.style.mixBlendMode = 'difference';
       gsap.to(ring, {
         scale: 1,
-        borderColor: 'hsl(0 0% 98% / 0.6)',
-        backgroundColor: 'transparent',
-        duration: 0.25,
+        borderColor: 'hsl(0 0% 98% / 0.5)',
+        duration: 0.3,
+        ease: 'power3.out',
       });
-      gsap.to(dot, { scale: 1, duration: 0.18 });
+      gsap.to(dot, { scale: 1, duration: 0.2 });
     };
 
     const interactiveSelector = 'a, button, [role="button"], input, textarea, label, [data-cursor="hover"]';

@@ -35,13 +35,29 @@ export function Hero() {
       className="relative overflow-hidden text-white"
       style={{ minHeight: '100svh' }}
     >
-      {/* Single legibility veil — gradient at very bottom only */}
+      {/* Layered legibility veils — radial wash under headline + vignette */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            'linear-gradient(180deg, rgba(3,2,12,0.35) 0%, rgba(3,2,12,0) 20%, rgba(3,2,12,0) 70%, rgba(3,2,12,0.95) 100%)',
+            'radial-gradient(ellipse 90% 50% at 30% 38%, rgba(3,2,12,0.78) 0%, rgba(3,2,12,0.55) 35%, rgba(3,2,12,0.15) 65%, transparent 85%)',
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(3,2,12,0.55) 0%, rgba(3,2,12,0) 12%, rgba(3,2,12,0) 70%, rgba(3,2,12,0.95) 100%)',
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 80% at 50% 50%, transparent 40%, rgba(3,2,12,0.45) 100%)',
         }}
       />
 

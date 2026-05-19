@@ -17,7 +17,7 @@ test.describe('Smoke — Hero & CTA', () => {
       .getByRole('link', { name: /Agenten-Demo anfragen/i })
       .first();
     await expect(ctaLink).toBeVisible();
-    await expect(ctaLink).toHaveAttribute('href', /meetings-eu1\.hubspot\.com/);
+    await expect(ctaLink).toHaveAttribute('href', /\/termin/);
   });
 
   test('Alle Sektionen sind rendered (Anchor-IDs vorhanden)', async ({ page }) => {

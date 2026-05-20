@@ -89,7 +89,7 @@ export function NewsletterSection() {
                   LinkedIn · Empfohlen
                 </span>
                 <h3 className="font-display text-[1.25rem] font-medium leading-tight text-[hsl(var(--fg))]">
-                  Folge dem RSG-AI-Newsletter auf LinkedIn
+                  „Mittelstand automatisiert" — Newsletter auf LinkedIn
                 </h3>
                 <p className="text-[0.9rem] leading-[1.55] text-[hsl(var(--muted))]">
                   Wöchentlich · Pipeline-Teardowns, KPI-Reverse-Engineering,

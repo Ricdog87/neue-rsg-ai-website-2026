@@ -40,7 +40,7 @@ export const site = {
   /** Newsletter funnel — dual-track (LinkedIn primary + own email capture). */
   newsletter: {
     linkedinUrl:
-      'https://www.linkedin.com/newsletters/rsg-ai-automation-7000000000000000000/',
+      'https://www.linkedin.com/newsletters/mittelstand-automatisiert-7458498915005431808/',
     leadMagnet: 'roi-checkliste-ki-agent',
     leadMagnetTitle: 'KI-Agent · ROI-Checkliste',
     leadMagnetSub:

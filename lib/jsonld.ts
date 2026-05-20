@@ -1,0 +1,193 @@
+/**
+ * JSON-LD schema builders for SEO + Answer Engine Optimization (AEO).
+ *
+ * Goal: be cite-able in Perplexity, ChatGPT, Google AI Overviews, Bing Copilot.
+ * Schemas follow schema.org + Google's structured-data guidelines.
+ */
+
+import { site } from './content';
+
+export function organizationLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${site.url}#organization`,
+    name: site.name,
+    alternateName: site.legal.brandName,
+    legalName: site.legal.company,
+    url: site.url,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${site.url}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
+    description: site.positioning,
+    foundingLocation: {
+      '@type': 'Place',
+      address: { '@type': 'PostalAddress', addressLocality: 'Wiesbaden', addressCountry: 'DE' },
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: site.contact.email,
+      telephone: site.contact.phone,
+      areaServed: 'DE',
+      availableLanguage: ['German', 'English'],
+    },
+    sameAs: [site.social.linkedin, site.social.instagram, site.social.youtube],
+  };
+}
+
+/**
+ * LocalBusiness — picks up local-pack signals for "KI Agentur Wiesbaden" etc.
+ */
+export function localBusinessLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${site.url}#localbusiness`,
+    name: site.name,
+    image: `${site.url}/opengraph-image`,
+    url: site.url,
+    telephone: site.contact.phone,
+    email: site.contact.email,
+    priceRange: '€€€',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Wiesbaden',
+      addressRegion: 'Hessen',
+      addressCountry: 'DE',
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: 50.0826, longitude: 8.2493 },
+    areaServed: [
+      { '@type': 'Country', name: 'Deutschland' },
+      { '@type': 'Country', name: 'Österreich' },
+      { '@type': 'Country', name: 'Schweiz' },
+    ],
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+    parentOrganization: { '@id': `${site.url}#organization` },
+  };
+}
+
+/**
+ * Catalog of services — anchored to LocalBusiness so they show up as
+ * "Offers" in rich results.
+ */
+export function servicesLd() {
+  const services = [
+    {
+      name: 'KI-Agent-Entwicklung',
+      description:
+        'Custom KI-Agenten für Vertrieb, Support und Operations. LangChain/LangGraph, DSGVO-konform, EU-Cloud-Hosting in Deutschland.',
+    },
+    {
+      name: 'KI-Beratung für Mittelstand',
+      description:
+        'Strategie-Audit, ROI-Analyse, Prozess-Mapping. Ehrliche Antwort: KI-Agent ja oder nein — bevor du Geld verbrennst.',
+    },
+    {
+      name: 'Sales-Agent · Lead-Qualifizierung',
+      description:
+        'Inbound-Lead → KI-Qualifizierung → CRM → Slack. 24/7, mit messbarem Intent-Score pro Lead.',
+    },
+    {
+      name: 'Support-Agent · Tier-1-Automatisierung',
+      description:
+        '94 % der Tier-1-Tickets autonom gelöst. RAG · Markenton · klare Eskalation für komplexe Fälle.',
+    },
+  ];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'OfferCatalog',
+    '@id': `${site.url}#services`,
+    name: 'KI-Agent-Services',
+    itemListElement: services.map((s, i) => ({
+      '@type': 'Offer',
+      position: i + 1,
+      itemOffered: {
+        '@type': 'Service',
+        name: s.name,
+        description: s.description,
+        provider: { '@id': `${site.url}#organization` },
+        areaServed: { '@type': 'Country', name: 'Deutschland' },
+      },
+    })),
+  };
+}
+
+export function faqPageLd(qa: Array<{ q: string; a: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: qa.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  };
+}
+
+export function websiteLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${site.url}#website`,
+    url: site.url,
+    name: site.name,
+    inLanguage: 'de-DE',
+    publisher: { '@id': `${site.url}#organization` },
+  };
+}
+
+export function breadcrumbLd(trail: Array<{ name: string; url: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: it.url,
+    })),
+  };
+}
+
+export function caseStudyArticleLd(cs: {
+  slug: string;
+  title: string;
+  summary: string;
+  headline: string;
+  meta: Array<{ k: string; v: string }>;
+}) {
+  const yearMeta = cs.meta.find((m) => m.k === 'Year')?.v;
+  const datePublished = yearMeta ? `${yearMeta}-01-01` : new Date().toISOString().slice(0, 10);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: cs.headline,
+    name: cs.title,
+    description: cs.summary,
+    author: { '@id': `${site.url}#organization` },
+    publisher: { '@id': `${site.url}#organization` },
+    datePublished,
+    inLanguage: 'de-DE',
+    mainEntityOfPage: `${site.url}/cases/${cs.slug}`,
+    image: `${site.url}/opengraph-image`,
+  };
+}
+
+/**
+ * Inline JSON-LD as a string for direct injection via
+ * <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ... }} />
+ */
+export function ldJson(...nodes: unknown[]): string {
+  return JSON.stringify(nodes.length === 1 ? nodes[0] : nodes);
+}

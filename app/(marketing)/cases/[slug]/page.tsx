@@ -8,6 +8,7 @@ import { CaseStudyPipeline } from '@/components/sections/case-study/pipeline';
 import { CaseStudyResults } from '@/components/sections/case-study/results';
 import { CaseStudyQuote } from '@/components/sections/case-study/quote';
 import { site } from '@/lib/content';
+import { breadcrumbLd, caseStudyArticleLd, ldJson } from '@/lib/jsonld';
 
 export function generateStaticParams() {
   return CASE_STUDIES.map((c) => ({ slug: c.slug }));
@@ -43,6 +44,19 @@ export default async function CaseStudyPage(
 
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ldJson(
+            caseStudyArticleLd(cs),
+            breadcrumbLd([
+              { name: 'RSG AI', url: site.url },
+              { name: 'Case Studies', url: `${site.url}/#pipelines` },
+              { name: cs.title, url: `${site.url}/cases/${cs.slug}` },
+            ]),
+          ),
+        }}
+      />
       <CaseStudyHero cs={cs} />
       <CaseStudyPipeline cs={cs} />
       <CaseStudyResults cs={cs} />

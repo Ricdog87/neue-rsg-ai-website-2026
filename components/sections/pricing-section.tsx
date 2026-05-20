@@ -205,6 +205,7 @@ function PricingCard({
           href={site.cta.meetingUrl}
           data-sound="tick"
           data-cursor-label="Buchen"
+          data-event="meeting-cta-pricing"
           className={
             'group/cta inline-flex h-14 w-full items-center justify-center gap-2 rounded-full font-display text-[0.95rem] font-medium transition-all ' +
             (isReco

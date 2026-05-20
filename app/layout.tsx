@@ -15,7 +15,15 @@ import { EntryLoader } from '@/components/system/entry-loader';
 import { PersistentCanvas } from '@/components/system/persistent-canvas';
 import { RouteTransition } from '@/components/system/route-transition';
 import { SoundProvider } from '@/components/system/sound-engine';
+import { Analytics } from '@/components/system/analytics';
 import { site } from '@/lib/content';
+import {
+  organizationLd,
+  localBusinessLd,
+  servicesLd,
+  websiteLd,
+  ldJson,
+} from '@/lib/jsonld';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -69,6 +77,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="relative min-h-screen bg-[#03020c] text-[hsl(var(--fg))] antialiased">
+        {/* JSON-LD · Org + LocalBusiness + Services + WebSite. Single graph node. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: ldJson(
+              websiteLd(),
+              organizationLd(),
+              localBusinessLd(),
+              servicesLd(),
+            ),
+          }}
+        />
         {/* Skip-to-content — invisible until focused via keyboard (Tab). A11y essential. */}
         <a
           href="#main-content"
@@ -94,6 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </LenisProvider>
           <CookieBanner />
         </SoundProvider>
+        <Analytics />
       </body>
     </html>
   );

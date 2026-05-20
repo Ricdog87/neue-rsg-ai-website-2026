@@ -8,8 +8,11 @@ import { RoiSection } from '@/components/sections/roi-section';
 import { PricingSection } from '@/components/sections/pricing-section';
 import { CommitmentSection } from '@/components/sections/commitment-section';
 import { FaqSection } from '@/components/sections/faq-section';
+import { FAQ } from '@/lib/faq';
+import { NewsletterSection } from '@/components/sections/newsletter-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import { SectionReveal } from '@/components/ui/section-reveal';
+import { faqPageLd, ldJson } from '@/lib/jsonld';
 
 /**
  * Sales-pitch composition — 8 sections, designed for live meeting use.
@@ -26,6 +29,10 @@ import { SectionReveal } from '@/components/ui/section-reveal';
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: ldJson(faqPageLd(FAQ)) }}
+      />
       <Hero />
       <TechMarquee />
       <SectionReveal>
@@ -49,6 +56,9 @@ export default function HomePage() {
       </SectionReveal>
       <SectionReveal>
         <FaqSection />
+      </SectionReveal>
+      <SectionReveal>
+        <NewsletterSection />
       </SectionReveal>
       <SectionReveal>
         <ContactSection />

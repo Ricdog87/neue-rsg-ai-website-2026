@@ -186,6 +186,7 @@ export function Hero() {
                 href={site.cta.meetingUrl}
                 data-sound="tick"
                 data-cursor-label="Buchen"
+                data-event="meeting-cta-hero"
                 className="group relative inline-flex h-14 items-center gap-2 overflow-hidden rounded-full bg-white px-7 font-display text-[0.95rem] font-medium text-[hsl(var(--bg))] transition-shadow hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.55)]"
               >
                 <span

@@ -11,34 +11,57 @@ const NeuralSpace = dynamic(
 /**
  * Persistent WebGL backdrop — Active-Theory pattern (lite).
  *
- * One Three.js scene that lives at z-index -1 on the body, behind all
- * sections. Stays mounted for the entire session — no re-init cost
- * when scrolling between sections.
+ * Mobile-aware:
+ *   - Auto-pauses the scene when the document is hidden (tab inactive)
+ *     to save mobile battery.
+ *   - Detects narrow viewports + coarse pointers and skips the WebGL
+ *     entirely on the smallest devices — falling back to a static
+ *     radial gradient. Saves ~200ms on slow phones + huge battery win.
+ *   - Reduced-motion users get the static fallback too.
  *
- * As you scroll, opacity is driven by scroll position:
- *   · Hero viewport: full opacity (1.0)
- *   · Beyond hero: fades to 0.18 — present but quiet
- *
- * Sections sit on top with their normal `bg-[hsl(var(--bg))]` —
- * giving the canvas a chance to peek through where the background
- * is slightly translucent (or where we leave it transparent).
- *
- * Mounted ONCE in app/layout.tsx.
+ * Scroll-driven opacity:
+ *   - Hero viewport (0 → 1 viewport): full 1.0
+ *   - Beyond hero: fades to 0.55 (still present, atmospheric)
  */
 export function PersistentCanvas() {
   const ref = useRef<HTMLDivElement>(null);
   const [reduced, setReduced] = useState(false);
+  const [skipWebgl, setSkipWebgl] = useState(false);
+  const [paused, setPaused] = useState(false);
 
+  // Detect reduced-motion + low-end / mobile devices
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReduced(mq.matches);
-    const onChange = () => setReduced(mq.matches);
-    mq.addEventListener?.('change', onChange);
-    return () => mq.removeEventListener?.('change', onChange);
+
+    const mqMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mqMobile = window.matchMedia('(max-width: 640px), (pointer: coarse) and (max-width: 900px)');
+    const mqDataSaver = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+
+    setReduced(mqMotion.matches);
+    setSkipWebgl(mqMotion.matches || mqMobile.matches || mqDataSaver === true);
+
+    const onMotion = () => {
+      setReduced(mqMotion.matches);
+      setSkipWebgl(mqMotion.matches || mqMobile.matches);
+    };
+    const onMobile = () => setSkipWebgl(mqMotion.matches || mqMobile.matches);
+    mqMotion.addEventListener?.('change', onMotion);
+    mqMobile.addEventListener?.('change', onMobile);
+    return () => {
+      mqMotion.removeEventListener?.('change', onMotion);
+      mqMobile.removeEventListener?.('change', onMobile);
+    };
   }, []);
 
-  // Drive opacity from scroll position — Hero (100vh) full, then fade
+  // Pause when the document is hidden (tab inactive, screen locked)
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const onVis = () => setPaused(document.hidden);
+    document.addEventListener('visibilitychange', onVis);
+    return () => document.removeEventListener('visibilitychange', onVis);
+  }, []);
+
+  // Scroll-driven opacity
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const el = ref.current;
@@ -48,10 +71,7 @@ export function PersistentCanvas() {
     const update = () => {
       const vh = window.innerHeight;
       const y = window.scrollY;
-      // 0 → 1 over the hero viewport
       const heroProgress = Math.min(1, y / (vh * 0.9));
-      // Stays mostly present across the whole site — cosmos breathes
-      // behind every section. 1.0 → 0.55 (was 0.18 → too dim).
       const op = 1 - heroProgress * 0.45;
       el.style.opacity = op.toFixed(3);
       raf = 0;
@@ -68,6 +88,21 @@ export function PersistentCanvas() {
     };
   }, []);
 
+  // Static fallback gradient — mobile / reduced-motion / data-saver
+  if (skipWebgl) {
+    return (
+      <div
+        ref={ref}
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 100% 80% at 50% 30%, hsl(240 14% 8%) 0%, hsl(240 14% 4%) 45%, hsl(240 14% 2%) 100%)',
+        }}
+      />
+    );
+  }
+
   return (
     <div
       ref={ref}
@@ -75,7 +110,7 @@ export function PersistentCanvas() {
       className="pointer-events-none fixed inset-0 z-0"
       style={{ contain: 'strict' }}
     >
-      <NeuralSpace reduced={reduced} />
+      <NeuralSpace reduced={reduced || paused} />
     </div>
   );
 }

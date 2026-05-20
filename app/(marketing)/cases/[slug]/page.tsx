@@ -105,6 +105,11 @@ export default async function CaseStudyPage(
                 Solche Pipeline für dich bauen
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
+              <p className="mt-4 font-mono text-[0.75rem] text-[hsl(var(--muted))]">
+                Zuerst den ROI prüfen?{' '}
+                <Link href="/roi-checkliste-ki-agent" className="text-[hsl(var(--accent))] hover:underline">
+                ROI-Checkliste für KI-Agenten →</Link>
+              </p>
             </div>
           </div>
         </div>

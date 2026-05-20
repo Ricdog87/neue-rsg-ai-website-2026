@@ -118,7 +118,32 @@ export default async function InsightPage(
             <ArrowRight className="h-5 w-5 shrink-0 text-[hsl(var(--subtle))] transition-all group-hover:translate-x-1 group-hover:text-[hsl(var(--accent))]" />
           </a>
         )}
-
+        {/* Related Insights — T12 internal linking */}        
+        {(() => {
+          const related = INSIGHTS.filter((i) => i.slug !== post.slug).slice(0, 2);
+          return related.length > 0 ? (
+          <div className="mt-16 border-t border-[hsl(var(--border))] pt-10">
+            <span className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
+              Weitere Insights
+            </span>
+            <div className="mt-4 space-y-3">
+              {related.map((r) => (
+                <Link
+                  key={r.slug}
+                  href={`/insights/${r.slug}`}
+                  className="group flex items-center justify-between gap-4 rounded-xl border border-[hsl(var(--border))] p-4 transition-colors hover:border-[hsl(var(--accent))/50]"
+                >
+                  <div>
+                    <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">{r.tag}</span>
+                    <p className="mt-1 font-display text-[0.95rem] font-medium text-[hsl(var(--fg))] group-hover:text-[hsl(var(--accent))]">{r.title}</p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-[hsl(var(--subtle))] transition-all group-hover:translate-x-1 group-hover:text-[hsl(var(--accent))]" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        ) : null;
+      })()}
         <div className="mt-20 border-t border-[hsl(var(--border))] pt-10">
           <span className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
             Bereit für deinen Agent?

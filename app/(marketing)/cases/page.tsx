@@ -112,6 +112,13 @@ export default function CasesIndexPage() {
             </Link>
           ))}
         </div>
+        <div className="mt-16 text-center">
+          <p className="text-[0.95rem] text-[hsl(var(--muted))]">
+          Noch unsicher, ob ein KI-Agent sich lohnt?{' '}
+          <Link href="/roi-checkliste-ki-agent" className="text-[hsl(var(--accent))] hover:underline">
+          Die ROI-Checkliste hilft dir →</Link>
+          </p>
+        </div>
       </div>
     </article>
   );

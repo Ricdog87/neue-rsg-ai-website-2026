@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { INSIGHTS } from '@/lib/insights';
+import { site } from '@/lib/content';
+import { breadcrumbLd, ldJson } from '@/lib/jsonld';
 
 export const metadata: Metadata = {
   title: 'Insights — Pipeline-Teardowns aus dem Mittelstand',
@@ -21,6 +23,17 @@ export default function InsightsIndexPage() {
 
   return (
     <article className="relative min-h-screen px-6 pb-24 pt-[150px] lg:px-10 lg:pt-[180px]">
+            <script
+                    type="application/ld+json"
+                            dangerouslySetInnerHTML={{
+                                      __html: ldJson(
+                                                  breadcrumbLd([
+                                                                { name: 'RSG AI', url: site.url },
+                                                                              { name: 'Insights', url: `${site.url}/insights` },
+                                                                                          ]),
+                                                                                                    ),
+                                                                                                            }}
+                                                                                                                  />
       <div className="mx-auto max-w-[1080px]">
         <Link
           href="/"

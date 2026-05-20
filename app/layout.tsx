@@ -71,6 +71,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="relative min-h-screen bg-[#03020c] text-[hsl(var(--fg))] antialiased">
+        {/* Skip-to-content — invisible until focused via keyboard (Tab). A11y essential. */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-[hsl(var(--accent))] focus:px-5 focus:py-2.5 focus:font-mono focus:text-[0.75rem] focus:uppercase focus:tracking-[0.18em] focus:text-white"
+        >
+          Zum Inhalt springen
+        </a>
         <PersistentCanvas />
         <EntryLoader />
         <RouteTransition />
@@ -84,7 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ChapterHud />
             <FloatingCta />
             <KeyboardShortcuts />
-            <main className="relative z-[1]">{children}</main>
+            <main id="main-content" className="relative z-[1]">{children}</main>
             <Footer />
           </LenisProvider>
           <CookieBanner />

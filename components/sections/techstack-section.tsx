@@ -7,7 +7,7 @@ export function TechStackSection() {
   return (
     <section
       id="techstack"
-      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))] px-6 py-24 md:py-32 lg:px-10"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))] px-6 py-20 md:py-28 lg:px-10"
     >
       <div className="mx-auto max-w-[1280px]">
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">

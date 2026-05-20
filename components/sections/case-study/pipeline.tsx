@@ -41,7 +41,7 @@ export function CaseStudyPipeline({ cs }: { cs: CaseStudy }) {
   return (
     <section
       id="case-pipeline"
-      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-24 md:py-32 lg:px-10"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-20 md:py-28 lg:px-10"
     >
       <div className="mx-auto max-w-[1280px]">
         {/* Problem framing */}

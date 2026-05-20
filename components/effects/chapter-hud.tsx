@@ -20,7 +20,9 @@ const CHAPTERS = [
   { id: 'solutions', n: '04', label: 'Wie wir liefern' },
   { id: 'roi', n: '05', label: 'Was du sparst' },
   { id: 'pricing', n: '06', label: 'Investment' },
-  { id: 'contact', n: '07', label: 'Termin' },
+  { id: 'commitment', n: '07', label: 'Versprechen' },
+  { id: 'faq', n: '08', label: 'FAQ' },
+  { id: 'contact', n: '09', label: 'Termin' },
 ] as const;
 
 export function ChapterHud() {

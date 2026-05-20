@@ -1,11 +1,60 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Calculator } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
 import { CharSplit } from '@/components/effects/reveal';
+
+/**
+ * Live ticker — the hero KPI that actually increments every few seconds
+ * so the "Tasks/Tag" number feels truly alive. Increments by 1–3 every
+ * 2–5 seconds with a soft flash on the last digit each time.
+ */
+function LiveTicker({ base }: { base: number }) {
+  const [value, setValue] = useState(base);
+  const [flash, setFlash] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let cancel = false;
+    const tick = () => {
+      if (cancel) return;
+      setValue((v) => v + 1 + Math.floor(Math.random() * 3));
+      setFlash(true);
+      window.setTimeout(() => setFlash(false), 380);
+      window.setTimeout(tick, 2000 + Math.random() * 3000);
+    };
+    const initial = window.setTimeout(tick, 1800);
+    return () => {
+      cancel = true;
+      window.clearTimeout(initial);
+    };
+  }, []);
+
+  const formatted = value.toLocaleString('de-DE');
+  return (
+    <span className="relative inline-flex items-baseline">
+      <span>{formatted}</span>
+      <span
+        aria-hidden
+        className={
+          'pointer-events-none absolute inset-0 transition-opacity duration-300 ' +
+          (flash ? 'opacity-100' : 'opacity-0')
+        }
+        style={{
+          color: 'hsl(var(--accent))',
+          textShadow: '0 0 30px hsl(var(--accent) / 0.65)',
+        }}
+      >
+        {formatted}
+      </span>
+    </span>
+  );
+}
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const EASE_INOUT = [0.65, 0, 0.35, 1] as const;
@@ -27,7 +76,6 @@ const EASE_INOUT = [0.65, 0, 0.35, 1] as const;
 export function Hero() {
   const lines = hero.headlineKinetic;
 
-  const heroKpi = liveStats[0];
   const tickerKpis = liveStats.slice(1);
 
   // Mouse-following spotlight — soft purple glow that tracks the cursor
@@ -254,11 +302,11 @@ export function Hero() {
                   Live · jetzt
                 </span>
               </div>
-              <div className="font-display text-[clamp(4.5rem,11vw,8.5rem)] font-medium leading-[0.85] tracking-[-0.04em] text-white">
-                {heroKpi.value}
+              <div className="font-display text-[clamp(4.5rem,11vw,8.5rem)] font-medium leading-[0.85] tabular-nums tracking-[-0.04em] text-white">
+                <LiveTicker base={1247} />
               </div>
               <div className="mt-3 font-mono text-[0.75rem] uppercase tracking-[0.24em] text-white/45">
-                {heroKpi.label} · von 12+ Agenten in Produktion
+                Tasks heute · von 12+ Agenten in Produktion
               </div>
             </div>
 

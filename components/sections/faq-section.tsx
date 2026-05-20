@@ -2,23 +2,16 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus, Clock, Code2, Lock, Shield } from 'lucide-react';
 import { MaskWipe, SplitLines } from '@/components/effects/reveal';
 import { FAQ } from '@/lib/faq';
 
-/**
- * FAQ section — premium B2B standard.
- *
- * Editorial accordion: each question is a row, opening reveals the
- * answer with a y-slide. Only ONE answer open at a time (radio-style)
- * to keep the section compact.
- *
- * Selected from real buyer concerns we hear in calls — DSGVO, costs,
- * timeline, integration, vendor lock-in, ownership.
- *
- * Note: the FAQ array itself lives in lib/faq.ts so the homepage server
- * component can import it for JSON-LD without crossing the client boundary.
- */
+const GUARANTEES = [
+  { Icon: Clock, label: '30-Tage-SLA', detail: 'oder Anpassung auf unsere Kosten' },
+  { Icon: Code2, label: 'Du besitzt alles', detail: 'Code · Daten · Konfig' },
+  { Icon: Lock, label: 'DSGVO · EU', detail: 'Frankfurt + Berlin · AVV inkl.' },
+  { Icon: Shield, label: 'Festpreis', detail: 'vor dem ersten Commit' },
+] as const;
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -32,10 +25,10 @@ export function FaqSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">Vor dem Termin</span>
+              <span className="eyebrow">Bevor du buchst</span>
             </MaskWipe>
             <SplitLines
-              lines={['Sieben Fragen,', 'die du sonst', 'erst im Call stellen würdest.']}
+              lines={['Vier Garantien.', 'Sieben Antworten.']}
               className="mt-6"
               lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.025em] text-[hsl(var(--fg))]"
             />
@@ -43,15 +36,40 @@ export function FaqSection() {
           <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
             <MaskWipe delay={0.2}>
               <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-                Antworten auf das, was die meisten Buyer in Minute 17 fragen.
-                Spar dir den Smalltalk — komm direkt mit den konkreten Fragen
-                ins Erstgespräch.
+                Erst was wir dir vertraglich schwarz auf weiß geben. Dann die
+                sieben Fragen, die Buyer sonst erst in Minute 17 stellen.
               </p>
             </MaskWipe>
           </div>
         </div>
 
-        <ul className="mt-20 border-t border-[hsl(var(--border))]">
+        {/* Four hard guarantees — compact strip */}
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {GUARANTEES.map(({ Icon, label, detail }, i) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10% 0px' }}
+              transition={{ duration: 0.6, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-start gap-3 rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-5"
+            >
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[hsl(var(--border-strong))] text-[hsl(var(--accent))]">
+                <Icon className="h-4 w-4" strokeWidth={1.5} />
+              </span>
+              <div>
+                <div className="font-display text-[0.95rem] font-medium leading-tight text-[hsl(var(--fg))]">
+                  {label}
+                </div>
+                <div className="mt-0.5 font-mono text-[0.7rem] uppercase tracking-wider text-[hsl(var(--subtle))]">
+                  {detail}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <ul className="mt-16 border-t border-[hsl(var(--border))]">
           {FAQ.map((item, i) => {
             const isOpen = openIndex === i;
             return (

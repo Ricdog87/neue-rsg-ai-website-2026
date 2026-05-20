@@ -6,6 +6,8 @@ import { PipelineSection } from '@/components/sections/pipeline-section';
 import { SolutionsSection } from '@/components/sections/solutions-section';
 import { RoiSection } from '@/components/sections/roi-section';
 import { PricingSection } from '@/components/sections/pricing-section';
+import { CommitmentSection } from '@/components/sections/commitment-section';
+import { FaqSection } from '@/components/sections/faq-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import { SectionReveal } from '@/components/ui/section-reveal';
 
@@ -41,6 +43,12 @@ export default function HomePage() {
       </SectionReveal>
       <SectionReveal>
         <PricingSection />
+      </SectionReveal>
+      <SectionReveal>
+        <CommitmentSection />
+      </SectionReveal>
+      <SectionReveal>
+        <FaqSection />
       </SectionReveal>
       <SectionReveal>
         <ContactSection />

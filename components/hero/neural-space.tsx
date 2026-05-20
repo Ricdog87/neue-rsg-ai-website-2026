@@ -249,9 +249,9 @@ function NebulaPulse() {
         transparent
         uniforms={{
           uTime: { value: 0 },
-          uColorA: { value: new THREE.Color('#1a0d3d') },
-          uColorB: { value: new THREE.Color('#3a1ba0') },
-          uColorC: { value: new THREE.Color('#7d5cf0') },
+          uColorA: { value: new THREE.Color('#03020c') }, // near-black space
+          uColorB: { value: new THREE.Color('#0a0a18') }, // deep blue-black
+          uColorC: { value: new THREE.Color('#161528') }, // subtle highlight
         }}
         vertexShader={/* glsl */ `
           varying vec2 vUv;
@@ -718,7 +718,7 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
       {/* Two-point key/fill lighting for the glass */}
       <ambientLight intensity={0.2} />
       <directionalLight position={[4, 6, 4]} intensity={1.2} color="#e2d6ff" />
-      <directionalLight position={[-3, -2, 2]} intensity={0.5} color="#7d5cf0" />
+      <directionalLight position={[-3, -2, 2]} intensity={0.4} color="#a9b6ff" />
 
       <GlassCenterpiece />
 

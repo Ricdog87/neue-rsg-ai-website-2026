@@ -70,7 +70,7 @@ export const hero = {
   // Used as a refined sub-statement below the headline
   subStatement: 'Live in vier Wochen — nicht in vier Quartalen.',
   subline:
-    'Für anspruchsvolle Mittelständler. Designed, gehostet und operiert in Deutschland. Aufnahme aktuell für Kohorte 04 (Q1 2026).',
+    'Für anspruchsvolle Mittelständler. Designed, gehostet und operiert in Deutschland. Aufnahme aktuell für Kohorte 05 (Q2 2026).',
   ctaPrimary: 'Erstgespräch',
   ctaSecondary: 'ROI berechnen',
   trustChips: [

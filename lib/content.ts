@@ -770,8 +770,7 @@ export const footer = {
       title: 'Cases & Insights',
       links: [
         { label: 'Alle Case Studies', href: '/cases' },
-        { label: 'Sales-Agent · Live', href: '/cases/sales-agent' },
-        { label: 'Support-Agent · Live', href: '/cases/support-agent' },
+        { label: 'Insights · Essays', href: '/insights' },
         { label: 'ROI-Checkliste (PDF)', href: '/roi-checkliste-ki-agent' }
       ]
     },

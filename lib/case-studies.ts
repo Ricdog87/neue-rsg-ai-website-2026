@@ -157,4 +157,60 @@ export const CASE_STUDIES: CaseStudy[] = [
       company: 'E-Commerce · 150 Mitarbeiter',
     },
   },
+  {
+    slug: 'email-agent',
+    title: 'E-Mail-Agent — Posteingang ohne Posteingangs-Gefühl',
+    summary:
+      'Eingang → Klassifikation → Antwort-Draft oder Auto-Reply. Der Geschäftsführer öffnet morgens 8 Mails statt 80 — der Rest ist sortiert, beantwortet oder eskaliert.',
+    meta: [
+      { k: 'Year', v: '2026' },
+      { k: 'Industry', v: 'B2B Dienstleister' },
+      { k: 'Stack', v: 'LangGraph · Gmail API · Notion' },
+      { k: 'Duration', v: '2 Wochen' },
+      { k: 'Status', v: 'Live · Produktion' },
+    ],
+    eyebrow: 'Case Study № 03 · E-Mail-Agent',
+    headline: '180 Mails am Tag — heute liest der CEO noch 8.',
+    subline:
+      'Ein Geschäftsführer mit 180 Mails täglich, davon 70 % CC-Müll und Status-Pings. Der Agent sortiert, beantwortet wo erlaubt, eskaliert was zählt — und liefert morgens eine Brief-Übersicht in Notion.',
+    problem: {
+      headline: 'Das Problem',
+      body:
+        'Ein 60-MA-Dienstleister, Geschäftsführer im operativen Tagesgeschäft. 180 Mails/Tag, 4 h Lesezeit ohne dass eine einzige Entscheidung getroffen wurde. Kunden-Anfragen versandeten unter Status-Pings, Newslettern und CC-Schleifen.',
+      bullets: [
+        '180 Mails/Tag · 70 % „nur zur Info" · 20 % beantwortbar · 10 % entscheidungsrelevant',
+        '4 h tägliche Lesezeit ohne messbaren Output',
+        'Kunden-Mails warteten ø 11 h auf Antwort — verlorene Deals nicht messbar, aber spürbar',
+        'Kein System für „später lesen", „Team weiterleiten", „selbst entscheiden"',
+      ],
+    },
+    pipeline: {
+      title: 'E-Mail-Agent · Inbox-Triage',
+      timeSaved: 'Ø 3,5 h pro Tag gespart',
+      steps: [
+        { icon: 'Mail', label: 'Mail-Eingang', detail: 'Gmail · IMAP · Webhook', tone: 'input' },
+        { icon: 'Brain', label: 'Klassifikation', detail: '5 Kategorien · Confidence', tone: 'ai' },
+        { icon: 'FileText', label: 'Antwort-Draft', detail: 'Tonalität · Kontext aus Notion', tone: 'ai' },
+        { icon: 'Workflow', label: 'Routing', detail: 'Auto · Draft · Team · Eskalation', tone: 'ai' },
+        { icon: 'CheckCircle2', label: 'Briefing', detail: 'Notion · 8 Uhr morgens · 8 Mails', tone: 'output' },
+      ],
+    },
+    results: {
+      headline: 'Was sich nach 3 Monaten geändert hat.',
+      kpis: [
+        { value: '8', label: 'Mails/Tag für den CEO', sub: 'von 180 Eingang' },
+        { value: '3,5 h', label: 'Lesezeit gespart', sub: 'pro Werktag' },
+        { value: '94 %', label: 'Kategorisierungs-Trefferquote', sub: 'gemessen über 4 Wochen' },
+        { value: '2,3 h', label: 'Ø Antwortzeit Kunden-Mails', sub: 'vorher 11 h' },
+        { value: '0', label: 'verschlafene Kunden-Anfragen', sub: 'seit Go-Live' },
+        { value: '12', label: 'auto-beantwortete Routine-Mails/Tag', sub: 'ohne Mensch-Touch' },
+      ],
+    },
+    quote: {
+      text:
+        'Ich habe morgens früher eine Stunde gebraucht, um zu wissen, was wichtig ist. Heute öffne ich Notion, lese 8 Zeilen und weiß, was heute brennt. Mein Posteingang ist endlich nur noch ein Werkzeug — keine Aufgabe mehr.',
+      author: 'Geschäftsführer',
+      company: 'B2B Dienstleister · 60 Mitarbeiter',
+    },
+  },
 ];

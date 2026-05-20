@@ -159,6 +159,26 @@ export function breadcrumbLd(trail: Array<{ name: string; url: string }>) {
   };
 }
 
+export function articleLd(post: {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    author: { '@id': `${site.url}#organization` },
+    publisher: { '@id': `${site.url}#organization` },
+    datePublished: post.datePublished,
+    inLanguage: 'de-DE',
+    mainEntityOfPage: post.url,
+    image: `${site.url}/opengraph-image`,
+  };
+}
+
 export function caseStudyArticleLd(cs: {
   slug: string;
   title: string;

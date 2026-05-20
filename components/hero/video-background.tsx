@@ -285,6 +285,7 @@ export function VideoBackground() {
             muted
             loop
             playsInline
+            preload="metadata"
             aria-hidden
             className="absolute inset-0 h-full w-full object-cover"
             style={{ zIndex: 1, opacity: 0.45 }}

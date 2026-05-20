@@ -45,13 +45,11 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} | ${site.tagline}`,
     description: site.positioning,
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: `${site.name} — ${site.tagline}` }]
   },
   twitter: {
     card: 'summary_large_image',
     title: `${site.name} | ${site.tagline}`,
     description: site.positioning,
-    images: ['/og-image.jpg']
   },
   robots: { index: true, follow: true }
 };

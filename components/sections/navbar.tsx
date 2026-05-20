@@ -175,7 +175,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white md:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-white md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menü umschalten"
             aria-expanded={open}

@@ -32,7 +32,7 @@ export function FaqSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">№ 07 · Vor dem Termin</span>
+              <span className="eyebrow">Vor dem Termin</span>
             </MaskWipe>
             <SplitLines
               lines={['Sieben Fragen,', 'die du sonst', 'erst im Call stellen würdest.']}

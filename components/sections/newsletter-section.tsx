@@ -53,7 +53,7 @@ export function NewsletterSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-10">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">§ 08 · Lead-Magnet</span>
+              <span className="eyebrow">Lead-Magnet</span>
             </MaskWipe>
             <SplitLines
               lines={['Die ROI-Checkliste,', 'die wir Kunden geben.']}

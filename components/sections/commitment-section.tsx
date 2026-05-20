@@ -52,7 +52,7 @@ export function CommitmentSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">№ 08 · Unser Versprechen</span>
+              <span className="eyebrow">Unser Versprechen</span>
             </MaskWipe>
             <SplitLines
               lines={['Vier Sätze,', 'die wir dir', 'schriftlich geben.']}

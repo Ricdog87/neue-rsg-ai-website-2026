@@ -39,7 +39,7 @@ export function PricingSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">№ 06 · Investment</span>
+              <span className="eyebrow">Investment</span>
             </MaskWipe>
             <SplitLines
               lines={[pricing.headline]}

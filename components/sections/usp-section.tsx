@@ -125,7 +125,7 @@ export function UspSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">№ 02 · Warum RSG AI</span>
+              <span className="eyebrow">Warum RSG AI</span>
             </MaskWipe>
             <SplitLines
               lines={['Drei Gründe,', 'warum du keinen', 'zweiten Anbieter brauchst.']}

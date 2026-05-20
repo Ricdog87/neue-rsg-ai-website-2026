@@ -35,7 +35,7 @@ export function Footer() {
 
         {/* Footer grid */}
         <div className="mt-16 grid gap-12 md:grid-cols-2 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4">
             <Link
               href="/"
               className="inline-block"

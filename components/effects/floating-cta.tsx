@@ -78,6 +78,7 @@ export function FloatingCta() {
             href={site.cta.meetingUrl}
             data-cursor-label="Buchen"
             data-sound="tick"
+            data-event="meeting-cta-floating"
             aria-label="Erstgespräch buchen — Q2 2026, 3 Plätze frei"
             className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-white/15 bg-[hsl(var(--bg))]/90 backdrop-blur-md transition-all hover:border-[hsl(var(--accent))] hover:bg-[hsl(var(--bg))]/95
                        h-12 w-12 justify-center p-0 md:h-auto md:w-auto md:py-3 md:pl-3 md:pr-5"

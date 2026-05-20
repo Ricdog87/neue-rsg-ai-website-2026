@@ -57,6 +57,13 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
 
       // Start ambient pad
       ambientRef.current = startAmbient(ctx, master);
+
+      // Hero swell — fires 700 ms after sound activation so the ambient
+      // pad lands first, then the cinematic filtered-noise sweep layers
+      // on top. Premium 'welcome to sound' moment.
+      window.setTimeout(() => {
+        if (ctxRef.current === ctx) playSwell(ctx, master);
+      }, 700);
     } else if (!enabled && ctxRef.current) {
       const ctx = ctxRef.current;
       const master = masterRef.current!;

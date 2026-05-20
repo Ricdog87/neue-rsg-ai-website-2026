@@ -37,6 +37,16 @@ export const site = {
     instagram: 'https://www.instagram.com/rsg_ai_automation/',
     youtube: 'https://www.youtube.com/@ricardo_builds_ai'
   },
+  /** Newsletter funnel — dual-track (LinkedIn primary + own email capture). */
+  newsletter: {
+    linkedinUrl:
+      'https://www.linkedin.com/newsletters/mittelstand-automatisiert-7458498915005431808/',
+    leadMagnet: 'roi-checkliste-ki-agent',
+    leadMagnetTitle: 'KI-Agent · ROI-Checkliste',
+    leadMagnetSub:
+      '12 harte Fragen — am Ende weißt du, ob ein KI-Agent dein Geschäft wirklich beschleunigt.',
+    fromEmail: 'RSG AI <hello@rsg-ai.de>'
+  },
   legal: {
     company: 'RSG Recruiting Solutions Group GmbH',
     brandName: 'RSG AI',
@@ -754,6 +764,15 @@ export const footer = {
         { label: 'Prozess', href: '/#solutions' },
         { label: 'ROI-Rechner', href: '/#roi' },
         { label: 'Investment', href: '/#pricing' }
+      ]
+    },
+    {
+      title: 'Cases & Insights',
+      links: [
+        { label: 'Alle Case Studies', href: '/cases' },
+        { label: 'Sales-Agent · Live', href: '/cases/sales-agent' },
+        { label: 'Support-Agent · Live', href: '/cases/support-agent' },
+        { label: 'ROI-Checkliste (PDF)', href: '/roi-checkliste-ki-agent' }
       ]
     },
     {

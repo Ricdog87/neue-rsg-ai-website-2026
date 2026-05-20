@@ -115,7 +115,7 @@ function TeamSizePicker({ value, onChange }: { value: number; onChange: (n: numb
             Genau · feinjustieren
           </p>
           <p className="mt-0.5 flex items-baseline gap-2">
-            <span className="font-display text-3xl font-bold text-[hsl(var(--neon))]">
+            <span className="font-display text-3xl font-semibold text-[hsl(var(--neon))]">
               {value}
             </span>
             <span className="text-sm text-[hsl(var(--muted))]">
@@ -128,7 +128,7 @@ function TeamSizePicker({ value, onChange }: { value: number; onChange: (n: numb
             onClick={stepDown}
             disabled={value <= active.min}
             aria-label="Weniger"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 text-lg font-bold text-[hsl(var(--fg))] transition hover:border-[hsl(var(--neon))/40] hover:bg-[hsl(var(--neon))/8] disabled:opacity-30"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 text-lg font-semibold text-[hsl(var(--fg))] transition hover:border-[hsl(var(--neon))/40] hover:bg-[hsl(var(--neon))/8] disabled:opacity-30"
           >
             −
           </button>
@@ -136,7 +136,7 @@ function TeamSizePicker({ value, onChange }: { value: number; onChange: (n: numb
             onClick={stepUp}
             disabled={value >= active.max}
             aria-label="Mehr"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 text-lg font-bold text-[hsl(var(--fg))] transition hover:border-[hsl(var(--neon))/40] hover:bg-[hsl(var(--neon))/8] disabled:opacity-30"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 text-lg font-semibold text-[hsl(var(--fg))] transition hover:border-[hsl(var(--neon))/40] hover:bg-[hsl(var(--neon))/8] disabled:opacity-30"
           >
             +
           </button>
@@ -231,7 +231,7 @@ export function RoiSection() {
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">{dept.label}</span>
                       {active ? (
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[hsl(var(--neon))] text-[10px] font-bold text-black">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[hsl(var(--neon))] text-[10px] font-semibold text-black">
                           ✓
                         </span>
                       ) : (
@@ -294,12 +294,12 @@ export function RoiSection() {
                   <ScrollParallax y={-12}>
                     <div className="flex items-baseline gap-2">
                       <span
-                        className="font-display text-[clamp(4.5rem,11vw,8rem)] font-bold leading-[0.85] tracking-tight text-[hsl(var(--neon))]"
+                        className="font-display text-[clamp(4.5rem,11vw,8rem)] font-semibold leading-[0.85] tracking-tight text-[hsl(var(--neon))]"
                         style={{ textShadow: '0 0 60px hsl(255 71% 37% / 0.6)' }}
                       >
                         {scaledSavings > 0 ? `${Math.round(animatedSavings / 1000)}K` : '—'}
                       </span>
-                      <span className="font-display text-4xl font-bold text-[hsl(var(--neon))] md:text-5xl">
+                      <span className="font-display text-4xl font-semibold text-[hsl(var(--neon))] md:text-5xl">
                         €
                       </span>
                     </div>
@@ -314,7 +314,7 @@ export function RoiSection() {
                       <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[hsl(var(--accent))]">
                         {roi.result.roiLabel}
                       </p>
-                      <p className="mt-0.5 font-display text-3xl font-bold text-[hsl(var(--fg))]">
+                      <p className="mt-0.5 font-display text-3xl font-semibold text-[hsl(var(--fg))]">
                         {animatedMonths} {animatedMonths === 1 ? 'Monat' : 'Monate'}
                       </p>
                     </div>
@@ -322,12 +322,12 @@ export function RoiSection() {
                 )}
 
                 {scaledSavings > 0 && (
-                  <div className="rounded-2xl border border-red-500/30 bg-red-500/[0.06] p-4">
-                    <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-red-400">
+                  <div className="rounded-2xl border border-[hsl(0_72%_58%/0.32)] bg-[hsl(0_72%_58%/0.08)] p-4">
+                    <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(0_72%_70%)]">
                       <TrendingUp className="h-3 w-3 rotate-180" />
                       Verloren, seit du diese Sektion offen hast
                     </p>
-                    <p className="mt-1.5 font-mono text-2xl font-bold text-red-400">
+                    <p className="mt-1.5 font-mono text-2xl font-semibold text-[hsl(0_72%_70%)]">
                       {lostSinceLoad.toLocaleString('de-DE', { maximumFractionDigits: 2 })} €
                     </p>
                   </div>
@@ -340,7 +340,7 @@ export function RoiSection() {
                 <Magnetic strength={0.22}>
                   <a
                     href={site.cta.meetingUrl}
-                    className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--neon))] px-6 py-4 text-sm font-bold text-black transition hover:opacity-90"
+                    className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--neon))] px-6 py-4 text-sm font-semibold text-black transition hover:opacity-90"
                     style={{ boxShadow: '0 20px 50px -10px hsl(255 71% 37% / 0.6)' }}
                   >
                     {roi.result.cta} →
@@ -390,7 +390,7 @@ export function RoiSection() {
                   {/* HEUTE — animated bar */}
                   <AnimatedDayBar
                     label="Heute · ohne KI"
-                    labelClass="text-red-400"
+                    labelClass="text-[hsl(0_72%_70%)]"
                     routinePct={68}
                     routineLabel="5,4h Routine"
                     sellingLabel="2,6h Verkaufen"
@@ -555,7 +555,7 @@ export function RoiSection() {
                             >
                               {eq.count}
                             </span>
-                            <span className="text-xs font-bold text-[hsl(var(--accent))]/70">×</span>
+                            <span className="text-xs font-semibold text-[hsl(var(--accent))]/70">×</span>
                           </div>
                           <span className="mt-0.5 block text-[0.875rem] font-medium text-[hsl(var(--fg))]">
                             {eq.label}
@@ -622,7 +622,7 @@ function AnimatedDayBar({
           whileInView={{ width: `${routinePct}%` }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay }}
-          className="relative flex items-center justify-start overflow-hidden whitespace-nowrap pl-4 font-mono text-[0.7rem] font-bold uppercase tracking-wider text-white/95"
+          className="relative flex items-center justify-start overflow-hidden whitespace-nowrap pl-4 font-mono text-[0.7rem] font-semibold uppercase tracking-wider text-white/95"
           style={{ background: routineFill }}
         >
           <motion.span
@@ -639,7 +639,7 @@ function AnimatedDayBar({
           whileInView={{ width: `${sellingPct}%` }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: delay + 0.15 }}
-          className="relative flex items-center justify-end overflow-hidden whitespace-nowrap pr-4 font-mono text-[0.7rem] font-bold uppercase tracking-wider text-white/95"
+          className="relative flex items-center justify-end overflow-hidden whitespace-nowrap pr-4 font-mono text-[0.7rem] font-semibold uppercase tracking-wider text-white/95"
           style={{
             background: sellingFill,
             boxShadow: sellingGlow

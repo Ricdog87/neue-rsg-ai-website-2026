@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { ArrowUpRight, Calculator } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
@@ -78,45 +78,12 @@ export function Hero() {
 
   const tickerKpis = liveStats.slice(1);
 
-  // Mouse-following spotlight — soft purple glow that tracks the cursor
-  const sectionRef = useRef<HTMLElement>(null);
-  const mouseX = useMotionValue(50);
-  const mouseY = useMotionValue(50);
-  const spotlightX = useSpring(mouseX, { stiffness: 120, damping: 25, mass: 0.4 });
-  const spotlightY = useSpring(mouseY, { stiffness: 120, damping: 25, mass: 0.4 });
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-    const onMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      mouseX.set(x);
-      mouseY.set(y);
-    };
-    el.addEventListener('mousemove', onMove);
-    return () => el.removeEventListener('mousemove', onMove);
-  }, [mouseX, mouseY]);
-
   return (
     <section
-      ref={sectionRef}
       id="hero"
       className="relative overflow-hidden text-white"
       style={{ minHeight: '100svh' }}
     >
-      {/* Mouse-following spotlight (Cursor.com / Linear pattern) */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-[2] mix-blend-screen"
-        style={{
-          background: useMotionTemplate`radial-gradient(circle 400px at ${spotlightX}% ${spotlightY}%, hsl(var(--accent) / 0.18), transparent 70%)`,
-        }}
-      />
       {/* Layered legibility veils — radial wash under headline + vignette */}
       <div
         aria-hidden

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { site } from '@/lib/content';
+import { breadcrumbLd, faqPageLd, howToLd, ldJson } from '@/lib/jsonld';
 import { PrintButton } from './print-button';
 
 export const metadata: Metadata = {
@@ -132,8 +133,38 @@ export default function RoiChecklistePage({
 }: {
   searchParams?: Promise<{ status?: string }>;
 }) {
+  const allItems = BLOCKS.flatMap((b) => b.items);
+  const faqQA = allItems.map((it) => ({
+    q: it.q,
+    a: `Faustregel: Pausieren wenn ${it.red}. Go wenn ${it.green}. Hintergrund: ${it.hint}`,
+  }));
+  const howToSteps = allItems.map((it) => ({
+    name: `Frage ${it.num}: ${it.q}`,
+    text: `${it.hint} Pausieren wenn: ${it.red}. Go wenn: ${it.green}.`,
+  }));
+
   return (
     <article className="relative min-h-screen bg-[hsl(var(--bg))] px-6 py-24 print:bg-white print:py-12 lg:px-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ldJson(
+            breadcrumbLd([
+              { name: 'RSG AI', url: site.url },
+              { name: 'ROI-Checkliste KI-Agent', url: `${site.url}/roi-checkliste-ki-agent` },
+            ]),
+            howToLd({
+              name: 'ROI-Checkliste für KI-Agenten — 12 harte Fragen',
+              description:
+                'Strukturierte Selbst-Evaluation in 12 Fragen — bist du bereit für einen KI-Agenten?',
+              url: `${site.url}/roi-checkliste-ki-agent`,
+              totalTime: 'PT30M',
+              steps: howToSteps,
+            }),
+            faqPageLd(faqQA),
+          ),
+        }}
+      />
       <div className="mx-auto max-w-[820px]">
         {/* Top bar — hidden in print */}
         <div className="flex items-center justify-between print:hidden">

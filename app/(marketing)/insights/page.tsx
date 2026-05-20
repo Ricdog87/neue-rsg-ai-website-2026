@@ -23,17 +23,17 @@ export default function InsightsIndexPage() {
 
   return (
     <article className="relative min-h-screen px-6 pb-24 pt-[150px] lg:px-10 lg:pt-[180px]">
-            <script
-                    type="application/ld+json"
-                            dangerouslySetInnerHTML={{
-                                      __html: ldJson(
-                                                  breadcrumbLd([
-                                                                { name: 'RSG AI', url: site.url },
-                                                                              { name: 'Insights', url: `${site.url}/insights` },
-                                                                                          ]),
-                                                                                                    ),
-                                                                                                            }}
-                                                                                                                  />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ldJson(
+            breadcrumbLd([
+              { name: 'RSG AI', url: site.url },
+              { name: 'Insights', url: `${site.url}/insights` },
+            ]),
+          ),
+        }}
+      />
       <div className="mx-auto max-w-[1080px]">
         <Link
           href="/"

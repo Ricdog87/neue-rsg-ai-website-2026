@@ -80,6 +80,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} ${accentFont.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Preconnect to Plausible — saves ~100 ms on first event flush */}
+        <link rel="preconnect" href="https://plausible.io" />
+        <link rel="dns-prefetch" href="https://plausible.io" />
+      </head>
       <body className="relative min-h-screen bg-[#03020c] text-[hsl(var(--fg))] antialiased">
         {/* JSON-LD · Org + LocalBusiness + Services + WebSite. Single graph node. */}
         <script

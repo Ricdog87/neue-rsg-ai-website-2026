@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, MapPin, Phone, Mail, Check } from 'lucide-react';
 import { site } from '@/lib/content';
+import { breadcrumbLd, ldJson } from '@/lib/jsonld';
 
 export const metadata: Metadata = {
   title: 'KI-Beratung Wiesbaden — KI-Agenten für den Mittelstand',
@@ -56,6 +57,17 @@ const PROOF = [
 export default function KIBeratungWiesbadenPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[hsl(var(--bg))] px-6 pb-24 pt-32 md:pt-40">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ldJson(
+            breadcrumbLd([
+              { name: 'RSG AI', url: site.url },
+              { name: 'KI-Beratung Wiesbaden', url: `${site.url}/ki-beratung-wiesbaden` },
+            ]),
+          ),
+        }}
+      />
       {/* Ambient glows */}
       <div
         aria-hidden

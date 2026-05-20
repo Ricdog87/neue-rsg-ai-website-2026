@@ -23,6 +23,7 @@ export async function generateMetadata(
   return {
     title: `${cs.title} — Case Study`,
     description: cs.summary,
+    alternates: { canonical: `/cases/${cs.slug}` },
     openGraph: {
       title: `${cs.title} · RSG AI Case Study`,
       description: cs.summary,

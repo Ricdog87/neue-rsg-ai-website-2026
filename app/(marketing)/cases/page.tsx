@@ -6,7 +6,8 @@ import { CASE_STUDIES } from '@/lib/case-studies';
 export const metadata: Metadata = {
   title: 'Case Studies — Live-Pipelines aus echten Mittelstands-Projekten',
   description:
-    'Zwei Pipelines, die heute im Mittelstand laufen — Sales-Agent und Support-Agent. Konkrete KPIs, Stack, Zeit-Ersparnis.',
+    'Drei Pipelines, die heute im Mittelstand laufen — Sales-Agent, Support-Agent, E-Mail-Agent. Konkrete KPIs, Stack, Zeit-Ersparnis.',
+  alternates: { canonical: '/cases' },
   openGraph: {
     title: 'Case Studies · RSG AI',
     description:

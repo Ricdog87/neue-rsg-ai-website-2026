@@ -7,6 +7,43 @@
 
 import { site } from './content';
 
+/**
+ * Person — Ricardo Serrano, Geschäftsführer & Founder.
+ * Verknüpft Brand mit Founder für E-E-A-T und LLM-Discoverability.
+ */
+export function personLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${site.url}/#ricardo-serrano`,
+    name: 'Ricardo Serrano',
+    givenName: 'Ricardo',
+    familyName: 'Serrano',
+    jobTitle: 'Geschäftsführer & Founder',
+    worksFor: { '@id': `${site.url}#organization` },
+    url: site.url,
+    image: `${site.url}/images/ricardo-serrano.png`,
+    sameAs: [
+      'https://www.linkedin.com/in/ricardo-serrano-frsg/',
+      site.social.youtube,
+      'https://github.com/Ricdog87',
+    ],
+    knowsAbout: [
+      'Künstliche Intelligenz',
+      'AI Agents',
+      'B2B Vertriebsautomatisierung',
+      'LangChain',
+      'LangGraph',
+      'n8n',
+      'Recruiting Automatisierung',
+      'Personalmarketing',
+      'DSGVO-konforme KI',
+    ],
+    knowsLanguage: ['de', 'en'],
+    nationality: { '@type': 'Country', name: 'DE' },
+  };
+}
+
 export function organizationLd() {
   return {
     '@context': 'https://schema.org',
@@ -35,6 +72,7 @@ export function organizationLd() {
       areaServed: 'DE',
       availableLanguage: ['German', 'English'],
     },
+    founder: { '@id': `${site.url}/#ricardo-serrano` },
     sameAs: [site.social.linkedin, site.social.instagram, site.social.youtube],
   };
 }
@@ -170,7 +208,7 @@ export function articleLd(post: {
     '@type': 'Article',
     headline: post.title,
     description: post.description,
-    author: { '@id': `${site.url}#organization` },
+    author: { '@id': `${site.url}/#ricardo-serrano` },
     publisher: { '@id': `${site.url}#organization` },
     datePublished: post.datePublished,
     inLanguage: 'de-DE',
@@ -195,7 +233,7 @@ export function caseStudyArticleLd(cs: {
     headline: cs.headline,
     name: cs.title,
     description: cs.summary,
-    author: { '@id': `${site.url}#organization` },
+    author: { '@id': `${site.url}/#ricardo-serrano` },
     publisher: { '@id': `${site.url}#organization` },
     datePublished,
     inLanguage: 'de-DE',

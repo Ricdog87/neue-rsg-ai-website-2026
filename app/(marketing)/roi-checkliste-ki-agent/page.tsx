@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'ROI-Checkliste für KI-Agenten — 12 harte Fragen',
   description:
     'Bist du bereit für einen KI-Agenten? 12 harte Fragen aus echten Discovery-Calls. Druck sie aus, geh sie mit deinem Team durch.',
+  alternates: { canonical: '/roi-checkliste-ki-agent' },
   robots: { index: true, follow: true },
 };
 

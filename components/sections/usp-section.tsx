@@ -111,7 +111,7 @@ export function UspSection() {
     <section
       ref={sectionRef}
       id="usp"
-      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-24 md:py-32 lg:px-10"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-20 md:py-28 lg:px-10"
     >
       {/* Subtle accent wash top-right */}
       <div
@@ -125,7 +125,7 @@ export function UspSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">№ 02 · Warum RSG AI</span>
+              <span className="eyebrow">Warum RSG AI</span>
             </MaskWipe>
             <SplitLines
               lines={['Drei Gründe,', 'warum du keinen', 'zweiten Anbieter brauchst.']}

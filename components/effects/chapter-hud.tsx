@@ -22,7 +22,8 @@ const CHAPTERS = [
   { id: 'pricing', n: '06', label: 'Investment' },
   { id: 'commitment', n: '07', label: 'Versprechen' },
   { id: 'faq', n: '08', label: 'FAQ' },
-  { id: 'contact', n: '09', label: 'Termin' },
+  { id: 'newsletter', n: '09', label: 'Insights' },
+  { id: 'contact', n: '10', label: 'Termin' },
 ] as const;
 
 export function ChapterHud() {

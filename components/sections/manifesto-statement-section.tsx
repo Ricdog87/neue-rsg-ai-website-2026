@@ -100,7 +100,7 @@ export function ManifestoStatementSection() {
             transition={{ duration: 0.5 }}
             className="col-span-12 mb-12 flex items-center justify-between"
           >
-            <span className="eyebrow">№ 04 · Manifesto</span>
+            <span className="eyebrow">Manifesto</span>
             <span className="hidden font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))] md:inline">
               Drei Sätze · Eine Position
             </span>

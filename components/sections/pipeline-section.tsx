@@ -79,14 +79,14 @@ export function PipelineSection() {
   return (
     <section
       id="pipelines"
-      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-24 md:py-32 lg:px-10"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-20 md:py-28 lg:px-10"
     >
       <div className="mx-auto max-w-[1280px]">
         {/* Header */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">№ 04 · Was wir bauen</span>
+              <span className="eyebrow">Was wir bauen</span>
             </MaskWipe>
             <SplitLines
               lines={['Zwei Pipelines,', 'die heute live laufen.']}

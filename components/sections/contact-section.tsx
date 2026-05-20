@@ -14,7 +14,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))] px-6 py-24 md:py-32 lg:px-10"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))] px-6 py-20 md:py-28 lg:px-10"
     >
       <div className="relative mx-auto max-w-[1280px]">
         {/* Header */}

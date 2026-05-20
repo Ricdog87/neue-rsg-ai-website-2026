@@ -45,14 +45,14 @@ export function CommitmentSection() {
   return (
     <section
       id="commitment"
-      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-24 md:py-32 lg:px-10"
+      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-20 md:py-28 lg:px-10"
     >
       <div className="relative mx-auto max-w-[1280px]">
         {/* Header */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">№ 08 · Unser Versprechen</span>
+              <span className="eyebrow">Unser Versprechen</span>
             </MaskWipe>
             <SplitLines
               lines={['Vier Sätze,', 'die wir dir', 'schriftlich geben.']}

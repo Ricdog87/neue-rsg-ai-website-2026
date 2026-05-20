@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { CASE_STUDIES } from '@/lib/case-studies';
+import { site } from '@/lib/content';
+import { breadcrumbLd, ldJson } from '@/lib/jsonld';
 
 export const metadata: Metadata = {
   title: 'Case Studies — Live-Pipelines aus echten Mittelstands-Projekten',
@@ -19,6 +21,17 @@ export const metadata: Metadata = {
 export default function CasesIndexPage() {
   return (
     <article className="relative min-h-screen px-6 pb-24 pt-[150px] lg:px-10 lg:pt-[180px]">
+            <script
+                    type="application/ld+json"
+                            dangerouslySetInnerHTML={{
+                                      __html: ldJson(
+                                                  breadcrumbLd([
+                                                                { name: 'RSG AI', url: site.url },
+                                                                              { name: 'Case Studies', url: `${site.url}/cases` },
+                                                                                          ]),
+                                                                                                    ),
+                                                                                                            }}
+                                                                                                                  />
       <div className="mx-auto max-w-[1280px]">
         {/* Top bar */}
         <Link

@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: site.url,                                    lastModified: now, changeFrequency: 'weekly',  priority: 1.0 },
     { url: `${site.url}/ki-beratung-wiesbaden`,         lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${site.url}/roi-checkliste-ki-agent`,       lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${site.url}/cases`,                         lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     ...CASE_STUDIES.map((cs) => ({
       url: `${site.url}/cases/${cs.slug}`,
       lastModified: now,

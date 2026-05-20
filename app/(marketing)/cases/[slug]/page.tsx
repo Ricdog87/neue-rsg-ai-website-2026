@@ -51,7 +51,7 @@ export default async function CaseStudyPage(
             caseStudyArticleLd(cs),
             breadcrumbLd([
               { name: 'RSG AI', url: site.url },
-              { name: 'Case Studies', url: `${site.url}/#pipelines` },
+              { name: 'Case Studies', url: `${site.url}/cases` },
               { name: cs.title, url: `${site.url}/cases/${cs.slug}` },
             ]),
           ),
@@ -67,12 +67,12 @@ export default async function CaseStudyPage(
         <div className="mx-auto grid max-w-[1280px] grid-cols-12 gap-x-6 gap-y-10">
           <div className="col-span-12 md:col-span-5">
             <Link
-              href="/"
-              data-cursor-label="Home"
+              href="/cases"
+              data-cursor-label="Übersicht"
               className="group inline-flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--muted))] transition-colors hover:text-[hsl(var(--fg))]"
             >
               <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
-              Zurück zur Werkstatt
+              Alle Case Studies
             </Link>
           </div>
           <div className="col-span-12 md:col-span-7">

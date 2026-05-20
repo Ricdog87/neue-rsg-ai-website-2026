@@ -1,7 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail, Database, Slack, Calendar, Brain, FileSearch, MessageSquare, FileText, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Mail, Database, Slack, Calendar, Brain, FileSearch, MessageSquare, FileText, CheckCircle2 } from 'lucide-react';
 import { MaskWipe, SplitLines } from '@/components/effects/reveal';
 import type { LucideIcon } from 'lucide-react';
 
@@ -19,6 +20,7 @@ type Pipeline = {
   body: string;
   stat: { value: string; label: string };
   steps: PipelineStep[];
+  caseStudySlug: string;
 };
 
 const PIPELINES: Pipeline[] = [
@@ -36,6 +38,7 @@ const PIPELINES: Pipeline[] = [
       { icon: Slack, label: 'Slack-Ping', detail: '#sales · Hot-Lead', tone: 'system' },
       { icon: Calendar, label: 'Termin gebucht', detail: 'Calendly · 30 Min', tone: 'output' },
     ],
+    caseStudySlug: 'sales-agent',
   },
   {
     id: 'support',
@@ -51,6 +54,7 @@ const PIPELINES: Pipeline[] = [
       { icon: FileText, label: 'Antwort-Draft', detail: 'oder Eskalation', tone: 'system' },
       { icon: CheckCircle2, label: 'Ticket gelöst', detail: 'Ø 12 Sek statt 2 h', tone: 'output' },
     ],
+    caseStudySlug: 'support-agent',
   },
 ];
 
@@ -271,6 +275,22 @@ function PipelineCard({ pipeline, index }: { pipeline: Pipeline; index: number }
             );
           })}
         </div>
+      </div>
+
+      {/* Case-study link — bridges the homepage teaser to the deep-dive page */}
+      <div className="relative mt-8 flex items-center justify-between border-t border-[hsl(var(--border))] pt-6">
+        <span className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
+          Case-Study № {String(index + 1).padStart(2, '0')} · {pipeline.badge}
+        </span>
+        <Link
+          href={`/cases/${pipeline.caseStudySlug}`}
+          data-cursor-label="Lesen"
+          data-event={`case-study-link-${pipeline.id}`}
+          className="group inline-flex items-center gap-2 font-display text-[0.9rem] font-medium text-[hsl(var(--fg))] transition-colors hover:text-[hsl(var(--accent))]"
+        >
+          Tiefer in den Case schauen
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </Link>
       </div>
     </motion.article>
   );

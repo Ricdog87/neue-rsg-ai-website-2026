@@ -172,6 +172,34 @@ export function faqPageLd(qa: Array<{ q: string; a: string }>) {
   };
 }
 
+/**
+ * HowTo — for a step-by-step checklist or guide. Eligible for
+ * "rich result" how-to carousel in Google Search.
+ */
+export function howToLd(args: {
+  name: string;
+  description: string;
+  url: string;
+  totalTime?: string; // ISO 8601 duration e.g. "PT30M"
+  steps: Array<{ name: string; text: string }>;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: args.name,
+    description: args.description,
+    url: args.url,
+    inLanguage: 'de-DE',
+    ...(args.totalTime ? { totalTime: args.totalTime } : {}),
+    step: args.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  };
+}
+
 export function websiteLd() {
   return {
     '@context': 'https://schema.org',

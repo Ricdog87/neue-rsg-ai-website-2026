@@ -1,0 +1,28 @@
+name: Lighthouse CI
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Wöchentlich Montag 06:00 UTC — falls Production-Performance regrediert
+    - cron: '0 6 * * 1'
+
+jobs:
+  lighthouse:
+    name: Production Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lighthouse audit (mobile, 3 runs)
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://www.rsg-ai.de/
+            https://www.rsg-ai.de/ki-beratung-wiesbaden
+            https://www.rsg-ai.de/cases/sales-agent
+            https://www.rsg-ai.de/insights/warum-94-prozent-ki-projekte-scheitern
+            https://www.rsg-ai.de/roi-checkliste-ki-agent
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          runs: 3
+          configPath: ./.lighthouserc.json

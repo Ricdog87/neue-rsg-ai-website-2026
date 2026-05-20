@@ -21,17 +21,17 @@ export const metadata: Metadata = {
 export default function CasesIndexPage() {
   return (
     <article className="relative min-h-screen px-6 pb-24 pt-[150px] lg:px-10 lg:pt-[180px]">
-            <script
-                    type="application/ld+json"
-                            dangerouslySetInnerHTML={{
-                                      __html: ldJson(
-                                                  breadcrumbLd([
-                                                                { name: 'RSG AI', url: site.url },
-                                                                              { name: 'Case Studies', url: `${site.url}/cases` },
-                                                                                          ]),
-                                                                                                    ),
-                                                                                                            }}
-                                                                                                                  />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ldJson(
+            breadcrumbLd([
+              { name: 'RSG AI', url: site.url },
+              { name: 'Case Studies', url: `${site.url}/cases` },
+            ]),
+          ),
+        }}
+      />
       <div className="mx-auto max-w-[1280px]">
         {/* Top bar */}
         <Link
@@ -114,9 +114,10 @@ export default function CasesIndexPage() {
         </div>
         <div className="mt-16 text-center">
           <p className="text-[0.95rem] text-[hsl(var(--muted))]">
-          Noch unsicher, ob ein KI-Agent sich lohnt?{' '}
-          <Link href="/roi-checkliste-ki-agent" className="text-[hsl(var(--accent))] hover:underline">
-          Die ROI-Checkliste hilft dir →</Link>
+            Noch unsicher, ob ein KI-Agent sich lohnt?{' '}
+            <Link href="/roi-checkliste-ki-agent" className="text-[hsl(var(--accent))] hover:underline">
+              Die ROI-Checkliste hilft dir →
+            </Link>
           </p>
         </div>
       </div>

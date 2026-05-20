@@ -111,8 +111,7 @@ export function Hero() {
       />
 
       <div
-        className="relative z-10 mx-auto grid max-w-[1280px] grid-cols-12 gap-x-6 px-6 pt-[150px] pb-20 lg:px-10 lg:pt-[180px] lg:pb-24"
-        style={{ minHeight: '100svh' }}
+        className="relative z-10 mx-auto grid min-h-[100svh] max-w-[1280px] grid-cols-12 gap-x-6 px-6 pt-[120px] pb-14 lg:px-10 lg:pt-[180px] lg:pb-24"
       >
         {/* ── Pre-headline rail — refined eyebrow + masthead ── */}
         <motion.div

@@ -186,11 +186,11 @@ export function Hero() {
                 href={site.cta.meetingUrl}
                 data-sound="tick"
                 data-cursor-label="Buchen"
-                className="group relative inline-flex h-14 items-center gap-2 overflow-hidden rounded-full bg-white px-7 font-display text-[0.95rem] font-medium text-[#0a0a0a] transition-shadow hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.55)]"
+                className="group relative inline-flex h-14 items-center gap-2 overflow-hidden rounded-full bg-white px-7 font-display text-[0.95rem] font-medium text-[hsl(var(--bg))] transition-shadow hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.55)]"
               >
                 <span
                   aria-hidden
-                  className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#a855f7] via-[#5e7cff] to-[#00ffe0] transition-transform duration-500 group-hover:translate-x-0"
+                  className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#a855f7] via-[hsl(220_85%_65%)] to-[#00ffe0] transition-transform duration-500 group-hover:translate-x-0"
                 />
                 <span className="relative z-10 transition-colors group-hover:text-white">
                   {hero.ctaPrimary}

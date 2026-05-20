@@ -125,9 +125,9 @@ export function SimulationSection() {
             className="rounded-md bg-[hsl(var(--ink))] p-6 font-mono shadow-[var(--shadow-lift)] lg:col-span-7"
           >
             <div className="mb-4 flex items-center gap-2 border-b border-white/10 pb-3">
-              <span className="h-3 w-3 rounded-full bg-red-400/70" />
-              <span className="h-3 w-3 rounded-full bg-yellow-400/70" />
-              <span className="h-3 w-3 rounded-full bg-emerald-400/70" />
+              <span className="h-3 w-3 rounded-full bg-[hsl(2_80%_62%/0.72)]" />
+              <span className="h-3 w-3 rounded-full bg-[hsl(42_92%_58%/0.72)]" />
+              <span className="h-3 w-3 rounded-full bg-[hsl(142_62%_55%/0.72)]" />
               <span className="ml-3 font-mono text-[0.75rem] text-white/50">
                 rsg-agent · sales-pipeline
               </span>

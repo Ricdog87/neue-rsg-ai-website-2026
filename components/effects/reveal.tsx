@@ -224,48 +224,52 @@ export function CharSplit({
       className={className}
       style={{ display: 'inline-block', perspective: 600 }}
     >
-      {words.map((word, wi) => (
-        <span
-          key={wi}
-          style={{
-            display: 'inline-block',
-            whiteSpace: 'nowrap',
-            marginRight: wi < words.length - 1 ? '0.25em' : 0,
-          }}
-        >
-          {Array.from(word).map((ch, ci) => {
-            const index = words.slice(0, wi).reduce((s, w) => s + w.length, 0) + ci;
-            return (
-              <span
-                key={ci}
-                style={{ display: 'inline-block', overflow: 'hidden' }}
-              >
-                <motion.span
-                  initial={{ y: '110%', rotateX: -42, opacity: 0 }}
-                  animate={
-                    inView
-                      ? { y: '0%', rotateX: 0, opacity: 1 }
-                      : { y: '110%', rotateX: -42, opacity: 0 }
-                  }
-                  transition={{
-                    duration,
-                    ease: EASE,
-                    delay: delay + index * stagger,
-                  }}
-                  style={{
-                    display: 'inline-block',
-                    transformOrigin: '50% 100%',
-                    transformStyle: 'preserve-3d',
-                  }}
-                  className={charClassName}
+      {/* Real text for crawlers + screen-readers — animated spans are aria-hidden */}
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true" style={{ display: 'inline-block' }}>
+        {words.map((word, wi) => (
+          <span
+            key={wi}
+            style={{
+              display: 'inline-block',
+              whiteSpace: 'nowrap',
+              marginRight: wi < words.length - 1 ? '0.25em' : 0,
+            }}
+          >
+            {Array.from(word).map((ch, ci) => {
+              const index = words.slice(0, wi).reduce((s, w) => s + w.length, 0) + ci;
+              return (
+                <span
+                  key={ci}
+                  style={{ display: 'inline-block', overflow: 'hidden' }}
                 >
-                  {ch}
-                </motion.span>
-              </span>
-            );
-          })}
-        </span>
-      ))}
+                  <motion.span
+                    initial={{ y: '110%', rotateX: -42, opacity: 0 }}
+                    animate={
+                      inView
+                        ? { y: '0%', rotateX: 0, opacity: 1 }
+                        : { y: '110%', rotateX: -42, opacity: 0 }
+                    }
+                    transition={{
+                      duration,
+                      ease: EASE,
+                      delay: delay + index * stagger,
+                    }}
+                    style={{
+                      display: 'inline-block',
+                      transformOrigin: '50% 100%',
+                      transformStyle: 'preserve-3d',
+                    }}
+                    className={charClassName}
+                  >
+                    {ch}
+                  </motion.span>
+                </span>
+              );
+            })}
+          </span>
+        ))}
+      </span>
     </span>
   );
 }

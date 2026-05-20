@@ -19,11 +19,13 @@ export async function generateMetadata(
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/insights/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
       publishedTime: post.date,
+      authors: [`${site.url}/#ricardo-serrano`],
     },
   };
 }

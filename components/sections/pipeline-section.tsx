@@ -286,7 +286,7 @@ function PipelineCard({ pipeline, index }: { pipeline: Pipeline; index: number }
           href={`/cases/${pipeline.caseStudySlug}`}
           data-cursor-label="Lesen"
           data-event={`case-study-link-${pipeline.id}`}
-          className="group inline-flex items-center gap-2 font-display text-[0.9rem] font-medium text-[hsl(var(--fg))] transition-colors hover:text-[hsl(var(--accent))]"
+          className="group inline-flex h-11 items-center gap-2 font-display text-[0.9rem] font-medium text-[hsl(var(--fg))] transition-colors hover:text-[hsl(var(--accent))]"
         >
           Tiefer in den Case schauen
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

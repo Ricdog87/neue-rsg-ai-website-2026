@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Insights — Pipeline-Teardowns aus dem Mittelstand',
   description:
     'Wöchentliche Essays zu KI-Agent-Pipelines, Pricing und Anti-Patterns aus echten Discovery-Calls.',
+  alternates: { canonical: '/insights' },
 };
 
 const DATE_FMT = new Intl.DateTimeFormat('de-DE', {

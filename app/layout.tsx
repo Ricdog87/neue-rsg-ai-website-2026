@@ -20,6 +20,7 @@ import { site } from '@/lib/content';
 import {
   organizationLd,
   localBusinessLd,
+  personLd,
   servicesLd,
   websiteLd,
   ldJson,
@@ -28,6 +29,9 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: `${site.name} | ${site.tagline}`,
     template: `%s | ${site.name}`
@@ -85,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               websiteLd(),
               organizationLd(),
               localBusinessLd(),
+              personLd(),
               servicesLd(),
             ),
           }}

@@ -15,14 +15,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const CHAPTERS = [
   { id: 'usp', n: '01', label: 'Warum uns' },
-  { id: 'manifesto-statement', n: '02', label: 'Manifesto' },
-  { id: 'pipelines', n: '03', label: 'Was wir bauen' },
-  { id: 'solutions', n: '04', label: 'Wie wir liefern' },
-  { id: 'roi', n: '05', label: 'Was du sparst' },
-  { id: 'pricing', n: '06', label: 'Investment' },
-  { id: 'faq', n: '07', label: 'FAQ' },
-  { id: 'newsletter', n: '08', label: 'Insights' },
-  { id: 'contact', n: '09', label: 'Termin' },
+  { id: 'pipelines', n: '02', label: 'Was wir bauen' },
+  { id: 'solutions', n: '03', label: 'Wie wir liefern' },
+  { id: 'roi', n: '04', label: 'Was du sparst' },
+  { id: 'pricing', n: '05', label: 'Investment' },
+  { id: 'faq', n: '06', label: 'FAQ' },
+  { id: 'newsletter', n: '07', label: 'Insights' },
+  { id: 'contact', n: '08', label: 'Termin' },
 ] as const;
 
 export function ChapterHud() {

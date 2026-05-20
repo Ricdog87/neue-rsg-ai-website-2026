@@ -13,7 +13,7 @@ import { RsgLogoMark } from '@/components/icons/rsg-logo';
  * Premium "members-club" header.
  *
  *  ┌── Announcement strip ─────────────────────────────────────┐
- *  │  ●  Q1 2026 · Kohorte 04 · 3 von 5 Plätzen vergeben    →  │
+ *  │  ●  Q2 2026 · Kohorte 05 · 2 von 5 Plätzen vergeben    →  │
  *  ├── Navbar ─────────────────────────────────────────────────┤
  *  │  ◤◤◤ RSGAI.    Problem  Live  Lösung  ROI  Preise    CTA │
  *  └───────────────────────────────────────────────────────────┘
@@ -73,9 +73,9 @@ export function Navbar() {
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(174_100%_50%)]" />
             </span>
             <span className="hidden sm:inline">
-              Q1 2026 · Kohorte 04 · 3 von 5 Plätzen vergeben
+              Q2 2026 · Kohorte 05 · 2 von 5 Plätzen vergeben
             </span>
-            <span className="sm:hidden">3 / 5 Plätze · Q1 2026</span>
+            <span className="sm:hidden">2 / 5 Plätze · Q2 2026</span>
           </div>
           <a
             href={site.cta.meetingUrl}

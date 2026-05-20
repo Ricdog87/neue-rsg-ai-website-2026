@@ -78,7 +78,7 @@ export function FloatingCta() {
 
             <div className="flex flex-col leading-tight">
               <span className="font-mono text-[0.55rem] uppercase tracking-[0.22em] text-white/55">
-                Q1 2026 · 3 Plätze frei
+                Q2 2026 · 3 Plätze frei
               </span>
               <span className="font-display text-[0.875rem] font-medium tracking-tight text-white">
                 Erstgespräch buchen

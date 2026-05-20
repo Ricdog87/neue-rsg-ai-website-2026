@@ -24,7 +24,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 const SECTIONS = [
   'hero',
   'usp',
-  'manifesto-statement',
   'pipelines',
   'solutions',
   'roi',

@@ -1,7 +1,6 @@
 import { Hero } from '@/components/sections/hero';
 import { TechMarquee } from '@/components/sections/tech-marquee';
 import { UspSection } from '@/components/sections/usp-section';
-import { ManifestoStatementSection } from '@/components/sections/manifesto-statement-section';
 import { PipelineSection } from '@/components/sections/pipeline-section';
 import { SolutionsSection } from '@/components/sections/solutions-section';
 import { RoiSection } from '@/components/sections/roi-section';
@@ -18,14 +17,13 @@ import { faqPageLd, ldJson } from '@/lib/jsonld';
  *
  *  №01 Hero        · Wer wir sind        (5-Sek-Eindruck)
  *  №02 USP         · Warum RSG AI        (3 Differenzierer)
- *  №03 Manifesto   · Drei Sätze          (pinned scroll-jacked)
- *  №04 Pipelines   · Was wir bauen       (2 Workflows → Case-Studies)
- *  №05 Solutions   · Wie wir liefern     (4 Schritte)
- *  №06 ROI         · Was du sparst       (Rechner)
- *  №07 Pricing     · Investment          (2 Tiers)
- *  №08 FAQ         · 4 Garantien + 7 Antworten
- *  №09 Newsletter  · Lead-Magnet         (LinkedIn + E-Mail)
- *  №10 Contact     · Termin              (Buchung)
+ *  №03 Pipelines   · Was wir bauen       (2 Workflows → Case-Studies)
+ *  №04 Solutions   · Wie wir liefern     (4 Schritte)
+ *  №05 ROI         · Was du sparst       (Rechner)
+ *  №06 Pricing     · Investment          (2 Tiers)
+ *  №07 FAQ         · 4 Garantien + 7 Antworten
+ *  №08 Newsletter  · Lead-Magnet         (LinkedIn + E-Mail)
+ *  №09 Contact     · Termin              (Buchung)
  */
 export default function HomePage() {
   return (
@@ -39,7 +37,6 @@ export default function HomePage() {
       <SectionReveal>
         <UspSection />
       </SectionReveal>
-      <ManifestoStatementSection />
       <SectionReveal>
         <PipelineSection />
       </SectionReveal>

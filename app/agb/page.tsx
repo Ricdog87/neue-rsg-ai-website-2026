@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Allgemeine Geschäftsbedingungen',
   description:
     'Allgemeine Geschäftsbedingungen der RSG Recruiting Solutions Group GmbH für KI-Agenten- und Beratungsleistungen.',
+  alternates: { canonical: '/agb' },
   robots: { index: true, follow: true },
 };
 

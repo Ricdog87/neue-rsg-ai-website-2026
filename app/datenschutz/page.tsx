@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Datenschutzerklärung',
   description:
     'Datenschutzerklärung der RSG Recruiting Solutions Group GmbH — wie wir personenbezogene Daten verarbeiten.',
+  alternates: { canonical: '/datenschutz' },
   robots: { index: true, follow: true },
 };
 

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Impressum',
   description:
     'Impressum und Anbieterkennzeichnung gemäß § 5 DDG der RSG Recruiting Solutions Group GmbH.',
+  alternates: { canonical: '/impressum' },
   robots: { index: true, follow: true },
 };
 

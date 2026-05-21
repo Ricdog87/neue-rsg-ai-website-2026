@@ -30,7 +30,7 @@ export function FaqSection() {
             <SplitLines
               lines={['Vier Garantien.', 'Sieben Antworten.']}
               className="mt-6"
-              lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.025em] text-[hsl(var(--fg))]"
+              lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]"
             />
           </div>
           <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">

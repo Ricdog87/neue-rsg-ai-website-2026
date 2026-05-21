@@ -199,7 +199,7 @@ export function RoiSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <span className="eyebrow">{roi.eyebrow}</span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]">
+            <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.08] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {roi.headline}
             </h2>
           </div>
@@ -375,7 +375,7 @@ export function RoiSection() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-[hsl(var(--neon))]">
                     Dein Arbeitstag · in Echtzeit
                   </p>
-                  <h3 className="mt-3 max-w-xl font-display text-[clamp(1.75rem,3vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-[hsl(var(--fg))]">
+                  <h3 className="mt-3 max-w-xl font-display text-[clamp(1.75rem,3vw,2.5rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
                     8 Stunden.{' '}
                     <span className="font-accent italic text-[hsl(var(--neon))]">
                       5,4 davon
@@ -464,7 +464,7 @@ export function RoiSection() {
                 <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
                   {roi.visual.projectionLabel}
                 </p>
-                <h3 className="mt-3 font-display text-[clamp(1.5rem,2.5vw,2.25rem)] font-medium leading-[1.05] tracking-[-0.02em] text-[hsl(var(--fg))]">
+                <h3 className="mt-3 font-display text-[clamp(1.5rem,2.5vw,2.25rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
                   In 5 Jahren holst du dir{' '}
                   <span
                     className="text-[hsl(var(--neon))]"

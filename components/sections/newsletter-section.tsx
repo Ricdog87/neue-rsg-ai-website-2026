@@ -58,7 +58,7 @@ export function NewsletterSection() {
             <SplitLines
               lines={['Die ROI-Checkliste,', 'die wir Kunden geben.']}
               className="mt-6"
-              lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.025em] text-[hsl(var(--fg))]"
+              lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]"
             />
             <MaskWipe delay={0.25}>
               <p className="mt-8 max-w-md text-[1rem] leading-[1.65] text-[hsl(var(--muted))]">

@@ -20,7 +20,7 @@ export function SolutionsSection() {
             <SplitLines
               lines={[solutions.headline]}
               className="mt-6"
-              lineClassName="font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.02] tracking-[-0.02em] text-[hsl(var(--fg))]"
+              lineClassName="font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.08] tracking-[-0.02em] text-[hsl(var(--fg))]"
             />
           </div>
           <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
@@ -34,52 +34,58 @@ export function SolutionsSection() {
 
         <div className="mt-20 grid gap-12 lg:grid-cols-12 lg:gap-x-6">
           {/* Steps with animated connector line on the left */}
-          <div className="relative lg:col-span-6">
-            {/* Animated vertical line */}
-            <svg
-              aria-hidden
-              className="pointer-events-none absolute left-3 top-0 h-full w-px overflow-visible"
-              preserveAspectRatio="none"
-            >
-              <motion.line
-                x1={0}
-                x2={0}
-                y1={0}
-                y2="100%"
-                stroke="hsl(var(--accent))"
-                strokeWidth={1.5}
-                strokeDasharray="2 4"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true, margin: '-15% 0px' }}
-                transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </svg>
+          <div className="lg:col-span-6">
+            {/* Timeline scope: relative-wrapper that ONLY covers the steps,
+                not the CTA below — so the line doesn't bleed into the button. */}
+            <div className="relative pl-10">
+              <svg
+                aria-hidden
+                className="pointer-events-none absolute left-4 top-0 h-full w-px overflow-visible"
+                preserveAspectRatio="none"
+              >
+                <motion.line
+                  x1={0}
+                  x2={0}
+                  y1={0}
+                  y2="100%"
+                  stroke="hsl(var(--accent))"
+                  strokeWidth={1.5}
+                  strokeDasharray="2 4"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true, margin: '-15% 0px' }}
+                  transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+                />
+              </svg>
 
-            <Stagger
-              delayStep={0.12}
-              className="ml-0 flex flex-col"
-            >
-              {solutions.steps.map((step, i) => (
-                <div
-                  key={step.title}
-                  data-cursor="hover"
-                  className="group relative grid grid-cols-[auto_1fr] gap-x-6 border-t border-[hsl(var(--border))] py-7 last:border-b"
-                >
-                  <span className="font-mono text-[0.75rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))] pt-1.5 transition-colors group-hover:text-[hsl(var(--accent))]">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-[1.375rem] font-medium leading-tight tracking-tight text-[hsl(var(--fg))]">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-[0.95rem] leading-[1.6] text-[hsl(var(--muted))]">
-                      {step.body}
-                    </p>
+              <Stagger delayStep={0.12} className="flex flex-col">
+                {solutions.steps.map((step, i) => (
+                  <div
+                    key={step.title}
+                    data-cursor="hover"
+                    className="group relative grid grid-cols-[2rem_1fr] gap-x-5 border-t border-[hsl(var(--border))] py-7 last:border-b"
+                  >
+                    {/* Node dot on the timeline */}
+                    <span
+                      aria-hidden
+                      className="absolute -left-[1.625rem] top-9 h-2.5 w-2.5 rounded-full border-2 border-[hsl(var(--bg))] bg-[hsl(var(--accent))]"
+                      style={{ boxShadow: '0 0 0 1px hsl(var(--accent))' }}
+                    />
+                    <span className="font-mono text-[0.75rem] uppercase tracking-[0.18em] text-[hsl(var(--accent))] pt-1.5 transition-colors">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-[1.375rem] font-medium leading-tight tracking-tight text-[hsl(var(--fg))]">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 text-[0.95rem] leading-[1.6] text-[hsl(var(--muted))]">
+                        {step.body}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </Stagger>
+                ))}
+              </Stagger>
+            </div>
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}

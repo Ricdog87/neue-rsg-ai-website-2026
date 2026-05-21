@@ -131,7 +131,7 @@ export function Hero() {
 
         {/* ── Headline — per-letter kinetic (Lusion-style) ── */}
         <div className="col-span-12 md:col-span-10">
-          <h1 className="font-display text-[clamp(2.25rem,5.6vw,5.25rem)] font-medium leading-[1.04] tracking-[-0.025em] text-white">
+          <h1 className="font-display text-[clamp(2.25rem,5.6vw,5.25rem)] font-medium leading-[1.08] tracking-[-0.025em] text-white">
             {lines.map((line, i) => {
               const offset = lines
                 .slice(0, i)

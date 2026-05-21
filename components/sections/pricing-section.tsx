@@ -44,7 +44,7 @@ export function PricingSection() {
             <SplitLines
               lines={[pricing.headline]}
               className="mt-6"
-              lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.025em] text-[hsl(var(--fg))]"
+              lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]"
             />
           </div>
           <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
@@ -130,7 +130,7 @@ function PricingCard({
       </header>
 
       {/* Tier name + tagline */}
-      <h3 className="mt-8 font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-medium leading-[1.05] tracking-[-0.025em] text-[hsl(var(--fg))]">
+      <h3 className="mt-8 font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.025em] text-[hsl(var(--fg))]">
         {tier.name}
       </h3>
       <p className="mt-4 text-[0.975rem] leading-[1.6] text-[hsl(var(--muted))]">

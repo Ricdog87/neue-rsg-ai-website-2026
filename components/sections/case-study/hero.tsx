@@ -50,7 +50,7 @@ export function CaseStudyHero({ cs }: { cs: CaseStudy }) {
 
         {/* Headline */}
         <div className="col-span-12 md:col-span-10">
-          <h1 className="font-display text-[clamp(2rem,5vw,4.5rem)] font-medium leading-[1.04] tracking-[-0.025em] text-white">
+          <h1 className="font-display text-[clamp(2rem,5vw,4.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-white">
             <CharSplit text={cs.headline} delay={1.8} stagger={0.018} duration={0.95} />
           </h1>
         </div>

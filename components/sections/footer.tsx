@@ -12,7 +12,7 @@ export function Footer() {
           <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-white/50">
             — Sprechen wir
           </p>
-          <h2 className="mt-6 max-w-4xl font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-light leading-[1.02] tracking-[-0.02em]">
+          <h2 className="mt-6 max-w-4xl font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-light leading-[1.08] tracking-[-0.02em]">
             Bereit, deinen Vertrieb in vier Wochen{' '}
             <span className="italic text-[hsl(var(--accent))]">neu zu denken</span>?
           </h2>

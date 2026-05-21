@@ -86,7 +86,7 @@ export function BreakevenChart({ scaledSavings }: Props) {
           <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--neon))]">
             {roi.visual.breakeven.eyebrow}
           </p>
-          <h3 className="mt-3 max-w-2xl font-display text-[clamp(1.5rem,3vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-[hsl(var(--fg))]">
+          <h3 className="mt-3 max-w-2xl font-display text-[clamp(1.5rem,3vw,2.5rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
             {roi.visual.breakeven.headline}
           </h3>
         </div>

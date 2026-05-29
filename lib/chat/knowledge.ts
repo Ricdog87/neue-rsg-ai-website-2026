@@ -84,15 +84,15 @@ Telefonanlage.
 
 ## Live-Demo · Anruf JETZT möglich
 - Telefonnummer: ${voiceAgents.liveDemo.phoneDisplay}
-- Was läuft dort: RSG KI Empfangs-Assistentin („Christian", DE-Voice).
+- Was läuft dort: RSG KI Empfangs-Assistent („Christian", DE-Voice).
 - Beste Hörqualität: ${voiceAgents.liveDemo.disclaimer}
 - Wichtig: Wenn der Nutzer im Chat Interesse zeigt, biete proaktiv den
-  Anruf an: „Du kannst sie sofort live testen — ruf an unter ${voiceAgents.liveDemo.phoneDisplay}.
+  Anruf an: „Du kannst ihn sofort live testen — ruf an unter ${voiceAgents.liveDemo.phoneDisplay}.
   60 Sekunden reichen, dann hörst du, ob du den Unterschied zu einem
   Menschen hörst." Das ist unser stärkster Closing-Hebel und steht
   prominent auf der Homepage.
 
-CTA-Hinweis: Im Erstgespräch hört der Interessent eine echte Agentin
+CTA-Hinweis: Im Erstgespräch hört der Interessent einen echten Agenten
 live — und entscheidet selbst, ob er den Unterschied zu einem Menschen hört.
 `.trim();
 

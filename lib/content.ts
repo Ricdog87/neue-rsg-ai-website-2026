@@ -59,6 +59,7 @@ export const site = {
 } as const;
 
 export const nav = [
+  { label: 'Voice · NEU', href: '#voice' },
   { label: 'Warum uns', href: '#usp' },
   { label: 'Pipelines', href: '#pipelines' },
   { label: 'Prozess', href: '#solutions' },
@@ -90,6 +91,106 @@ export const hero = {
     '312 % Ø ROI nach 4 Monaten',
     'Hosting in Deutschland'
   ]
+} as const;
+
+/* ─────────────────────────────────────────────────────────
+   VOICE AGENTS — Highlight-Sektion „JETZT NEU"
+   Echte Telefon-Stimmen, die qualifizieren, beraten, verkaufen.
+   ───────────────────────────────────────────────────────── */
+export const voiceAgents = {
+  badge: 'Jetzt neu · ab Q2 2026',
+  eyebrow: 'RSG AI · Voice-Suite',
+  headline: 'Deine Telefon-Agentin, die nie schläft.',
+  subheadline:
+    'Inbound annehmen. Outbound qualifizieren. Termine setzen. In natürlichem Deutsch — mit deinem Markenton, deinem CRM, deiner Sprechweise.',
+  subline:
+    'Echte Gespräche, kein Voice-Mail-Roboter. Trainiert auf deine Cases, eingebunden in HubSpot, Salesforce, Pipedrive oder deine bestehende Telefonanlage. Hosting in Deutschland (Nürnberg), DSGVO- und EU-AI-Act-konform.',
+  /** Konkrete, belegte Vertrauens-Anker — werden über trustRow ausgespielt. */
+  trustChips: [
+    'Server in Nürnberg · DE',
+    'DSGVO + EU AI Act',
+    '6 Sprachen · DE first',
+    '< 10 Min eingerichtet',
+    '24/7 · niemand wartet',
+  ],
+  /** Bewährte Use-Cases nach Branchen — für die Branchen-Marquee. */
+  industries: [
+    'Arztpraxen',
+    'Zahnärzte',
+    'Physiotherapeuten',
+    'Hotels',
+    'Handwerker',
+    'Anwälte',
+    'Hausverwaltungen',
+    'Autohäuser',
+    'Steuerberater',
+    'Restaurants',
+    'Immobilienmakler',
+    'Apotheken',
+    'Recruiter',
+    'Einzelhandel',
+  ],
+  offers: [
+    {
+      id: 'sales-outbound',
+      tag: 'Sales · Outbound',
+      title: 'Outbound-Closerin',
+      tagline: 'Sie ruft an. Sie qualifiziert. Sie bucht den Termin.',
+      body:
+        'Aus deiner Kalt-Liste werden warme Termine. Die Agentin ruft Leads strukturiert ab, klärt Bedarf in 3 Minuten und schiebt qualifizierte Interessenten direkt in deinen Kalender. Deine Vertriebler kommen morgens ans Telefon — und reden nur noch mit Interessenten, die ihren Pain bereits erkannt haben.',
+      kpi: { value: '5.000+ Calls/Mo.', label: 'pro Agentin · parallel skalierbar' },
+      bullets: [
+        'Skript-Training auf deine Top-Closer',
+        'Live-Übergabe an Mensch bei Kaufsignal',
+        'CRM-Datensatz nach jedem Gespräch',
+        'Lead-Scoring + Follow-Up automatisch',
+      ],
+    },
+    {
+      id: 'inbound',
+      tag: 'Service · Inbound',
+      title: 'Empfangs-Assistentin',
+      tagline: 'Sie hebt ab. Beim ersten Klingeln. Immer.',
+      body:
+        'Kein „Drücken Sie die 1"-Menü. Keine Warteschleife. Die Agentin nimmt jeden Anruf an, klärt das Anliegen, leitet sauber weiter oder löst Standard-Fragen sofort. Aus 60 % Tier-1-Anfragen werden 0 — der Rest landet beim richtigen Menschen mit vollem Kontext.',
+      kpi: { value: '< 1 Sek.', label: 'Annahme · keine Warteschleife' },
+      bullets: [
+        '6 Sprachen: DE · EN · FR · IT · PL · PT',
+        'Erkennt VIP-Kunden + priorisiert',
+        'Termin-Buchung direkt im Gespräch',
+        'Voicemail-Transkript per E-Mail',
+      ],
+    },
+    {
+      id: 'custom',
+      tag: 'Custom · Enterprise',
+      title: 'Custom Voice-Agent',
+      tagline: 'Dein Use-Case. Deine Stimme. Dein Workflow.',
+      body:
+        'Recall-Kampagnen, Mahnwesen, Termin-Erinnerungen, Bestandskunden-Recovery — wir bauen die Agentin auf deinen exakten Prozess. Inklusive Stimm-Klon (mit Consent), Integrationen in jede CRM-/ERP-Welt und Compliance-Logging für regulierte Branchen.',
+      kpi: { value: '4 Wochen', label: 'bis Go-Live · Festpreis' },
+      bullets: [
+        'Stimm-Klon optional · mit Consent-Workflow',
+        'Compliance-Logging für regulierte Branchen',
+        'Eigene Rufnummer oder Anbindung deiner Anlage',
+        'WhatsApp- + SMS-Hand-off als Add-On',
+      ],
+    },
+  ],
+  /** Quantifizierte Kunden-Outcomes — werden in der „Proof-Row" angezeigt. */
+  proofPoints: [
+    { value: '30h-Stelle', label: 'eingespart pro Agentin · Ø Mittelstand' },
+    { value: '7.500+', label: 'Voice-Agenten produktiv im Markt' },
+    { value: '9.000 Calls/Mo.', label: 'Spitzenkunden-Volumen verarbeitet' },
+    { value: '4,9 / 5', label: 'Ø Bewertung · Trustpilot · Google · OMR' },
+  ],
+  cta: {
+    primary: 'Live-Demo anhören',
+    primaryHref: '#contact',
+    secondary: 'Erstgespräch buchen',
+    secondaryHref: '/termin',
+    note: 'Du hörst im Erstgespräch eine echte Agentin live — und entscheidest selbst, ob du den Unterschied zu einem Menschen hörst.',
+  },
 } as const;
 
 export const liveStats = [
@@ -370,6 +471,7 @@ export const footer = {
     {
       title: 'Produkt',
       links: [
+        { label: 'Voice-Suite · NEU', href: '/#voice' },
         { label: 'Warum uns', href: '/#usp' },
         { label: 'Pipelines', href: '/#pipelines' },
         { label: 'Prozess', href: '/#solutions' },

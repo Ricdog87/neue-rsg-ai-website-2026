@@ -100,7 +100,7 @@ export const hero = {
 export const voiceAgents = {
   badge: 'Jetzt neu · ab Q2 2026',
   eyebrow: 'RSG AI · Voice-Suite',
-  headline: 'Deine Telefon-Agentin, die nie schläft.',
+  headline: 'Dein Telefon-Agent, der nie schläft.',
   subheadline:
     'Inbound annehmen. Outbound qualifizieren. Termine setzen. In natürlichem Deutsch — mit deinem Markenton, deinem CRM, deiner Sprechweise.',
   subline:
@@ -137,8 +137,8 @@ export const voiceAgents = {
       title: 'Outbound-Closerin',
       tagline: 'Sie ruft an. Sie qualifiziert. Sie bucht den Termin.',
       body:
-        'Aus deiner Kalt-Liste werden warme Termine. Die Agentin ruft Leads strukturiert ab, klärt Bedarf in 3 Minuten und schiebt qualifizierte Interessenten direkt in deinen Kalender. Deine Vertriebler kommen morgens ans Telefon — und reden nur noch mit Interessenten, die ihren Pain bereits erkannt haben.',
-      kpi: { value: '5.000+ Calls/Mo.', label: 'pro Agentin · parallel skalierbar' },
+        'Aus deiner Kalt-Liste werden warme Termine. Der Agent ruft Leads strukturiert ab, klärt Bedarf in 3 Minuten und schiebt qualifizierte Interessenten direkt in deinen Kalender. Deine Vertriebler kommen morgens ans Telefon — und reden nur noch mit Interessenten, die ihren Pain bereits erkannt haben.',
+      kpi: { value: '5.000+ Calls/Mo.', label: 'pro Agent · parallel skalierbar' },
       bullets: [
         'Skript-Training auf deine Top-Closer',
         'Live-Übergabe an Mensch bei Kaufsignal',
@@ -149,10 +149,10 @@ export const voiceAgents = {
     {
       id: 'inbound',
       tag: 'Service · Inbound',
-      title: 'Empfangs-Assistentin',
+      title: 'Empfangs-Assistent',
       tagline: 'Sie hebt ab. Beim ersten Klingeln. Immer.',
       body:
-        'Kein „Drücken Sie die 1"-Menü. Keine Warteschleife. Die Agentin nimmt jeden Anruf an, klärt das Anliegen, leitet sauber weiter oder löst Standard-Fragen sofort. Aus 60 % Tier-1-Anfragen werden 0 — der Rest landet beim richtigen Menschen mit vollem Kontext.',
+        'Kein „Drücken Sie die 1"-Menü. Keine Warteschleife. Der Agent nimmt jeden Anruf an, klärt das Anliegen, leitet sauber weiter oder löst Standard-Fragen sofort. Aus 60 % Tier-1-Anfragen werden 0 — der Rest landet beim richtigen Menschen mit vollem Kontext.',
       kpi: { value: '< 1 Sek.', label: 'Annahme · keine Warteschleife' },
       bullets: [
         '6 Sprachen: DE · EN · FR · IT · PL · PT',
@@ -167,7 +167,7 @@ export const voiceAgents = {
       title: 'Custom Voice-Agent',
       tagline: 'Dein Use-Case. Deine Stimme. Dein Workflow.',
       body:
-        'Recall-Kampagnen, Mahnwesen, Termin-Erinnerungen, Bestandskunden-Recovery — wir bauen die Agentin auf deinen exakten Prozess. Inklusive Stimm-Klon (mit Consent), Integrationen in jede CRM-/ERP-Welt und Compliance-Logging für regulierte Branchen.',
+        'Recall-Kampagnen, Mahnwesen, Termin-Erinnerungen, Bestandskunden-Recovery — wir bauen den Agenten auf deinen exakten Prozess. Inklusive Stimm-Klon (mit Consent), Integrationen in jede CRM-/ERP-Welt und Compliance-Logging für regulierte Branchen.',
       kpi: { value: '4 Wochen', label: 'bis Go-Live · Festpreis' },
       bullets: [
         'Stimm-Klon optional · mit Consent-Workflow',
@@ -177,16 +177,16 @@ export const voiceAgents = {
       ],
     },
   ],
-  /** Live-Demo-Anruf — echte gehostete Empfangs-Assistentin (Christian). */
+  /** Live-Demo-Anruf — echte gehosteter Empfangs-Assistent (Christian). */
   liveDemo: {
     eyebrow: 'Live-Demo · echte Stimme',
-    claim: 'Die Agentin, die nie schläft.',
+    claim: 'Der Agent, der nie schläft.',
     headline: 'Hör live, was wir bauen.',
     subline:
-      'Ruf jetzt unsere Empfangs-Assistentin an. Sie nimmt ab beim ersten Klingeln. Echte Stimme, echte Antworten, in unter 0,4 Sekunden — wie für deine eigene Hotline.',
+      'Ruf jetzt unseren Empfangs-Assistenten an. Sie nimmt ab beim ersten Klingeln. Echte Stimme, echte Antworten, in unter 0,4 Sekunden — wie für deine eigene Hotline.',
     phoneDisplay: '+49 30 826 83906',
     phoneHref: 'tel:+493082683906',
-    phoneLabel: 'RSG KI Empfangs-Assistentin · live',
+    phoneLabel: 'RSG KI Empfangs-Assistent · live',
     callCta: 'Jetzt anrufen',
     copyCta: 'Nummer kopieren',
     copyConfirm: 'Nummer kopiert — wähl jetzt an',
@@ -204,11 +204,11 @@ export const voiceAgents = {
       { icon: 'infinity', label: '24/7 verfügbar' },
     ],
     footer:
-      'Sie sprechen mit einer echten KI-Agentin, gebaut auf demselben Stack, den wir für Mittelständler ausrollen. Wenn Sie den Unterschied zu einem Menschen nicht hören, hört ihn auch Ihr Kunde nicht.',
+      'Sie sprechen mit einem echten KI-Agenten, gebaut auf demselben Stack, den wir für Mittelständler ausrollen. Wenn Sie den Unterschied zu einem Menschen nicht hören, hört ihn auch Ihr Kunde nicht.',
   },
   /** Quantifizierte Kunden-Outcomes — werden in der „Proof-Row" angezeigt. */
   proofPoints: [
-    { value: '30h-Stelle', label: 'eingespart pro Agentin · Ø Mittelstand' },
+    { value: '30h-Stelle', label: 'eingespart pro Agent · Ø Mittelstand' },
     { value: '7.500+', label: 'Voice-Agenten produktiv im Markt' },
     { value: '9.000 Calls/Mo.', label: 'Spitzenkunden-Volumen verarbeitet' },
     { value: '4,9 / 5', label: 'Ø Bewertung · Trustpilot · Google · OMR' },
@@ -218,7 +218,7 @@ export const voiceAgents = {
     primaryHref: '#contact',
     secondary: 'Erstgespräch buchen',
     secondaryHref: '/termin',
-    note: 'Du hörst im Erstgespräch eine echte Agentin live — und entscheidest selbst, ob du den Unterschied zu einem Menschen hörst.',
+    note: 'Du hörst im Erstgespräch einen echten Agenten live — und entscheidest selbst, ob du den Unterschied zu einem Menschen hörst.',
   },
 } as const;
 

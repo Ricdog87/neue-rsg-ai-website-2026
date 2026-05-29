@@ -1,5 +1,6 @@
 import { Hero } from '@/components/sections/hero';
 import { TechMarquee } from '@/components/sections/tech-marquee';
+import { VoiceAgentsSection } from '@/components/sections/voice-agents-section';
 import { UspSection } from '@/components/sections/usp-section';
 import { PipelineSection } from '@/components/sections/pipeline-section';
 import { SolutionsSection } from '@/components/sections/solutions-section';
@@ -34,6 +35,9 @@ export default function HomePage() {
       />
       <Hero />
       <TechMarquee />
+      <SectionReveal>
+        <VoiceAgentsSection />
+      </SectionReveal>
       <SectionReveal>
         <UspSection />
       </SectionReveal>

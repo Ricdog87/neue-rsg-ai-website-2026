@@ -9,7 +9,16 @@
  * Prompt-Cache invalidiert (siehe shared/prompt-caching.md).
  */
 
-import { site, hero, solutions, roi, pricing, finalCta, about } from '../content';
+import {
+  site,
+  hero,
+  solutions,
+  roi,
+  pricing,
+  finalCta,
+  about,
+  voiceAgents,
+} from '../content';
 import { FAQ } from '../faq';
 import { CASE_STUDIES } from '../case-studies';
 
@@ -35,6 +44,46 @@ const companyBlock = `
 const trustBlock = `
 # Trust-Anker (faktisch belegt — niemals übertreiben)
 ${bullets(hero.trustChips)}
+`.trim();
+
+const voiceBlock = `
+# RSG AI Voice-Suite — Telefon-Agenten (JETZT NEU, ab Q2 2026)
+RSG AI baut und betreibt natürlich klingende KI-Telefon-Agenten für den
+Mittelstand. Hosting in Nürnberg (DE), DSGVO + EU AI Act konform.
+Einrichtung typischerweise unter 10 Minuten für Standard-Use-Cases,
+4 Wochen Festpreis-Projekt für Custom-Agenten.
+
+Drei Angebote:
+${voiceAgents.offers
+  .map(
+    (o) => `## ${o.title} (${o.tag})
+- Tagline: ${o.tagline}
+- Beschreibung: ${o.body}
+- KPI-Anker: ${o.kpi.value} (${o.kpi.label})
+- Leistungsmerkmale:
+${bullets(o.bullets)}`,
+  )
+  .join('\n\n')}
+
+Trust-Anker (faktisch belegt):
+${bullets(voiceAgents.trustChips)}
+
+Erprobte Outcomes:
+${bullets(voiceAgents.proofPoints.map((p) => `${p.value} — ${p.label}`))}
+
+Bewährte Branchen:
+${voiceAgents.industries.join(' · ')}
+
+Verfügbare Sprachen: Deutsch (Hauptsprache) · Englisch · Französisch ·
+Italienisch · Polnisch · Portugiesisch.
+
+Integrationen: HubSpot · Salesforce · Pipedrive · Personio · Kalender
+(Calendly/Outlook/Google) · WhatsApp-Add-On · SMS · CRM-/ERP-Anbindung
+über API & Webhooks · eigene Rufnummer oder Anbindung der bestehenden
+Telefonanlage.
+
+CTA-Hinweis: Im Erstgespräch hört der Interessent eine echte Agentin
+live — und entscheidet selbst, ob er den Unterschied zu einem Menschen hört.
 `.trim();
 
 const solutionsBlock = `
@@ -105,6 +154,7 @@ const meetingBlock = `
 export const KNOWLEDGE_BASE = [
   companyBlock,
   trustBlock,
+  voiceBlock,
   solutionsBlock,
   departmentsBlock,
   pricingBlock,

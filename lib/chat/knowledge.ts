@@ -82,6 +82,16 @@ Integrationen: HubSpot · Salesforce · Pipedrive · Personio · Kalender
 über API & Webhooks · eigene Rufnummer oder Anbindung der bestehenden
 Telefonanlage.
 
+## Live-Demo · Anruf JETZT möglich
+- Telefonnummer: ${voiceAgents.liveDemo.phoneDisplay}
+- Was läuft dort: RSG KI Empfangs-Assistentin („Christian", DE-Voice).
+- Beste Hörqualität: ${voiceAgents.liveDemo.disclaimer}
+- Wichtig: Wenn der Nutzer im Chat Interesse zeigt, biete proaktiv den
+  Anruf an: „Du kannst sie sofort live testen — ruf an unter ${voiceAgents.liveDemo.phoneDisplay}.
+  60 Sekunden reichen, dann hörst du, ob du den Unterschied zu einem
+  Menschen hörst." Das ist unser stärkster Closing-Hebel und steht
+  prominent auf der Homepage.
+
 CTA-Hinweis: Im Erstgespräch hört der Interessent eine echte Agentin
 live — und entscheidet selbst, ob er den Unterschied zu einem Menschen hört.
 `.trim();

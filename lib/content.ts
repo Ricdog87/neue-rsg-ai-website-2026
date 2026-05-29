@@ -177,6 +177,35 @@ export const voiceAgents = {
       ],
     },
   ],
+  /** Live-Demo-Anruf — echte gehostete Empfangs-Assistentin (Christian). */
+  liveDemo: {
+    eyebrow: 'Live-Demo · echte Stimme',
+    claim: 'Die Agentin, die nie schläft.',
+    headline: 'Hör live, was wir bauen.',
+    subline:
+      'Ruf jetzt unsere Empfangs-Assistentin an. Sie nimmt ab beim ersten Klingeln. Echte Stimme, echte Antworten, in unter 0,4 Sekunden — wie für deine eigene Hotline.',
+    phoneDisplay: '+49 30 826 83906',
+    phoneHref: 'tel:+493082683906',
+    phoneLabel: 'RSG KI Empfangs-Assistentin · live',
+    callCta: 'Jetzt anrufen',
+    copyCta: 'Nummer kopieren',
+    copyConfirm: 'Nummer kopiert — wähl jetzt an',
+    disclaimer:
+      'Keine Aufzeichnung. Mo–Fr 9–18 Uhr beste Hörqualität.',
+    callerHint:
+      'Live mit „Christian" — Senior-Sales-Tonalität, kennt rsg-ai.de und pitcht im Gespräch den Buchungslink.',
+    counterTemplate: 'Heute schon · CALLS · live beantwortet',
+    counterValue: '47',
+    trustStrip: [
+      { icon: 'zap', label: '0,4 s Reaktion' },
+      { icon: 'server', label: 'Server in Nürnberg' },
+      { icon: 'shield', label: 'DSGVO + EU AI Act' },
+      { icon: 'languages', label: '6 Sprachen · DE first' },
+      { icon: 'infinity', label: '24/7 verfügbar' },
+    ],
+    footer:
+      'Sie sprechen mit einer echten KI-Agentin, gebaut auf demselben Stack, den wir für Mittelständler ausrollen. Wenn Sie den Unterschied zu einem Menschen nicht hören, hört ihn auch Ihr Kunde nicht.',
+  },
   /** Quantifizierte Kunden-Outcomes — werden in der „Proof-Row" angezeigt. */
   proofPoints: [
     { value: '30h-Stelle', label: 'eingespart pro Agentin · Ø Mittelstand' },

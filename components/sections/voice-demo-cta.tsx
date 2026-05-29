@@ -110,9 +110,9 @@ export function VoiceDemoCta() {
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        'relative isolate mt-16 overflow-hidden rounded-3xl border border-[hsl(var(--accent))]/30',
+        'relative isolate overflow-hidden rounded-3xl border border-[hsl(var(--accent))]/30',
         'bg-gradient-to-br from-[hsl(var(--surface))]/95 via-[hsl(var(--surface-2))]/95 to-[hsl(var(--ink))]/95',
-        'p-6 backdrop-blur-xl sm:mt-20 sm:p-10 lg:p-14',
+        'p-6 backdrop-blur-xl sm:p-10 lg:p-14',
         'shadow-[0_30px_80px_-30px_hsl(var(--accent)/0.45)]',
       )}
     >

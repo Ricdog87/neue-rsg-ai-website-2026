@@ -14,7 +14,6 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import { voiceAgents } from '@/lib/content';
 import { cn } from '@/lib/utils';
-import { VoiceDemoCta } from './voice-demo-cta';
 
 const OFFER_ICONS: Record<string, LucideIcon> = {
   'sales-outbound': PhoneOutgoing,
@@ -159,9 +158,6 @@ export function VoiceAgentsSection() {
             <OfferCard key={offer.id} offer={offer} index={i} />
           ))}
         </div>
-
-        {/* ── Live demo call CTA ────────────────────────────── */}
-        <VoiceDemoCta />
 
         {/* ── Industries marquee ────────────────────────────── */}
         <div className="mt-16 sm:mt-20">

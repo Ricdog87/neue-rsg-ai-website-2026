@@ -1,5 +1,6 @@
 import { Hero } from '@/components/sections/hero';
 import { TechMarquee } from '@/components/sections/tech-marquee';
+import { VoiceDemoCta } from '@/components/sections/voice-demo-cta';
 import { VoiceAgentsSection } from '@/components/sections/voice-agents-section';
 import { UspSection } from '@/components/sections/usp-section';
 import { PipelineSection } from '@/components/sections/pipeline-section';
@@ -35,6 +36,17 @@ export default function HomePage() {
       />
       <Hero />
       <TechMarquee />
+      <SectionReveal>
+        <section
+          id="voice-demo"
+          aria-label="Live-Demo · ruf jetzt an"
+          className="px-4 pb-4 pt-16 sm:pb-6 sm:pt-24"
+        >
+          <div className="mx-auto max-w-6xl">
+            <VoiceDemoCta />
+          </div>
+        </section>
+      </SectionReveal>
       <SectionReveal>
         <VoiceAgentsSection />
       </SectionReveal>

@@ -73,7 +73,7 @@ export function VoiceAgentsSection() {
               {voiceAgents.subheadline}
             </p>
 
-            <p className="max-w-xl text-sm leading-relaxed text-[hsl(var(--subtle))]">
+            <p className="max-w-xl text-[15px] leading-relaxed text-[hsl(var(--muted))]">
               {voiceAgents.subline}
             </p>
 
@@ -104,7 +104,7 @@ export function VoiceAgentsSection() {
                 {voiceAgents.cta.secondary}
               </Link>
             </div>
-            <p className="max-w-md font-mono text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--subtle))]">
+            <p className="max-w-md text-sm italic leading-relaxed text-[hsl(var(--muted))]">
               {voiceAgents.cta.note}
             </p>
           </motion.div>
@@ -145,7 +145,7 @@ export function VoiceAgentsSection() {
               <div className="font-display text-2xl font-medium leading-tight text-[hsl(var(--fg))]">
                 {p.value}
               </div>
-              <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--muted))]">
+              <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[hsl(var(--fg))]/75">
                 {p.label}
               </div>
             </div>
@@ -161,7 +161,7 @@ export function VoiceAgentsSection() {
 
         {/* ── Industries marquee ────────────────────────────── */}
         <div className="mt-16 sm:mt-20">
-          <p className="text-center font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
+          <p className="text-center font-mono text-[11px] uppercase tracking-[0.22em] text-[hsl(var(--muted))]">
             Bewährt in
           </p>
           <IndustriesMarquee items={voiceAgents.industries} />
@@ -246,8 +246,8 @@ function TrustChipRow({ chips }: { chips: readonly string[] }) {
           transition={{ delay: 0.4 + i * 0.07, duration: 0.4 }}
           className={cn(
             'inline-flex items-center gap-1.5 rounded-full',
-            'border border-[hsl(var(--border))] bg-[hsl(var(--surface))]/60 px-3 py-1',
-            'font-mono text-[10px] uppercase tracking-[0.14em] text-[hsl(var(--muted))]',
+            'border border-[hsl(var(--border-strong))] bg-[hsl(var(--surface))]/80 px-3 py-1.5',
+            'font-mono text-[11px] uppercase tracking-[0.14em] text-[hsl(var(--fg))]/85',
           )}
         >
           <span className="h-1 w-1 rounded-full bg-[hsl(var(--accent))]" />
@@ -499,7 +499,7 @@ function OfferCard({
           <div className="text-xl font-medium leading-none text-[hsl(var(--fg))]">
             {offer.kpi.value}
           </div>
-          <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--muted))]">
+          <div className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-[hsl(var(--fg))]/70">
             {offer.kpi.label}
           </div>
         </div>

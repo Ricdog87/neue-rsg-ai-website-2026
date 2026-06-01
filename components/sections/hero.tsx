@@ -6,6 +6,7 @@ import { ArrowUpRight, Calculator } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
 import { CharSplit } from '@/components/effects/reveal';
+import { HeroCallbackCard } from '@/components/sections/hero-callback-card';
 
 /**
  * Live ticker — the hero KPI that actually increments every few seconds
@@ -168,63 +169,64 @@ export function Hero() {
           )}
         </div>
 
-        {/* ── Subline + CTAs + trust ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 2.7 }}
-          className="col-span-12 mt-14 max-w-2xl md:mt-20"
-        >
-          <p className="text-balance text-[1rem] leading-[1.65] text-white/65 md:text-[1.05rem]">
-            {hero.subline}
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Magnetic strength={0.14} radius={90}>
-              <a
-                href={site.cta.meetingUrl}
-                data-sound="tick"
-                data-cursor-label="Buchen"
-                data-event="meeting-cta-hero"
-                className="group relative inline-flex h-14 items-center gap-2 overflow-hidden rounded-full bg-white px-7 font-display text-[0.95rem] font-medium text-[hsl(var(--bg))] transition-shadow hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.55)]"
-              >
-                <span
-                  aria-hidden
-                  className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#a855f7] via-[hsl(220_85%_65%)] to-[#00ffe0] transition-transform duration-500 group-hover:translate-x-0"
-                />
-                <span className="relative z-10 transition-colors group-hover:text-white">
-                  {hero.ctaPrimary}
-                </span>
-                <ArrowUpRight className="relative z-10 h-4 w-4 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
-              </a>
-            </Magnetic>
-            <Magnetic strength={0.12} radius={80}>
-              <a
-                href="#roi"
-                data-sound="tick"
-                data-cursor-label="Rechnen"
-                className="group inline-flex h-14 items-center gap-2 rounded-full border border-white/25 px-7 font-display text-[0.95rem] font-medium text-white transition-all hover:border-white"
-              >
-                <Calculator className="h-4 w-4 transition-transform group-hover:rotate-[-6deg]" />
-                {hero.ctaSecondary}
-              </a>
-            </Magnetic>
-          </div>
-
-          <motion.ul
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 3.1 }}
-            className="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/45"
+        {/* ── Conversion grid: left = subline + secondary CTAs · right = callback card ── */}
+        <div className="col-span-12 mt-14 grid items-start gap-x-10 gap-y-10 md:mt-20 lg:grid-cols-[1fr_minmax(360px,460px)] lg:gap-x-14">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: EASE, delay: 2.7 }}
+            className="max-w-2xl"
           >
-            {hero.trustChips.slice(0, 3).map((chip) => (
-              <li key={chip} className="flex items-center gap-2">
-                <span aria-hidden className="h-px w-3 bg-white/30" />
-                {chip}
-              </li>
-            ))}
-          </motion.ul>
-        </motion.div>
+            <p className="text-balance text-[1rem] leading-[1.65] text-white/65 md:text-[1.05rem]">
+              {hero.subline}
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Magnetic strength={0.14} radius={90}>
+                <a
+                  href={site.cta.meetingUrl}
+                  data-sound="tick"
+                  data-cursor-label="Buchen"
+                  data-event="meeting-cta-hero"
+                  className="group relative inline-flex h-12 items-center gap-2 overflow-hidden rounded-full border border-white/25 px-6 font-display text-[0.9rem] font-medium text-white transition-all hover:border-white hover:shadow-[0_12px_30px_-10px_rgba(168,85,247,0.4)]"
+                >
+                  <span className="relative z-10">{hero.ctaPrimary}</span>
+                  <ArrowUpRight className="relative z-10 h-4 w-4 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.12} radius={80}>
+                <a
+                  href="#roi"
+                  data-sound="tick"
+                  data-cursor-label="Rechnen"
+                  className="group inline-flex h-12 items-center gap-2 rounded-full border border-white/15 px-6 font-display text-[0.9rem] font-medium text-white/85 transition-all hover:border-white/40 hover:text-white"
+                >
+                  <Calculator className="h-4 w-4 transition-transform group-hover:rotate-[-6deg]" />
+                  {hero.ctaSecondary}
+                </a>
+              </Magnetic>
+            </div>
+
+            <motion.ul
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 3.1 }}
+              className="mt-7 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/45"
+            >
+              {hero.trustChips.slice(0, 3).map((chip) => (
+                <li key={chip} className="flex items-center gap-2">
+                  <span aria-hidden className="h-px w-3 bg-white/30" />
+                  {chip}
+                </li>
+              ))}
+            </motion.ul>
+          </motion.div>
+
+          {/* Hero-Conversion: Live-Callback-Karte */}
+          <div className="w-full">
+            <HeroCallbackCard />
+          </div>
+        </div>
 
         {/* Project-meta strip — Lusion case-study language */}
         <motion.dl

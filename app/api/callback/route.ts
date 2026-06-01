@@ -16,14 +16,17 @@ export const dynamic = 'force-dynamic';
  *   prüfen ein simples In-Memory-Rate-Limit pro IP,
  *   und POSTen an die Fonio Outbound API.
  *
- * WICHTIG: Die Variable `first_name` im JSON-Body muss exakt dem
- * Variablen-Placeholder im Fonio-Agent-Prompt entsprechen
- * (im Agent-Prompt referenzierbar als {{first_name}}).
+ * WICHTIG — Body-Format laut Fonio-Dashboard
+ * (Assistent → Webhooks → Outbound API):
+ *   - camelCase Felder: apiKey, fromNumber, toNumber, agentId
+ *   - dynamische Variablen liegen im verschachtelten `context`-Objekt
+ *   - die Variable `name` im context muss dem Placeholder {{name}}
+ *     im Fonio-Agent-Prompt entsprechen
  *
  * Env-Vars (Vercel → Settings → Environment Variables):
- *   FONIO_API_URL     — z.B. https://api.fonio.ai/v1/outbound/start
+ *   FONIO_API_URL     — https://app.fonio.ai/api/public/v1/outbound_call
  *   FONIO_API_KEY     — fonio_xxxx (NIEMALS im Repo)
- *   FONIO_FROM_NUMBER — eigene Outbound-Nummer (E.164)
+ *   FONIO_FROM_NUMBER — importierte Outbound-Nummer (E.164), z.B. +493082683906
  *   FONIO_AGENT_ID    — der Fonio-Agent, der den Call führen soll
  */
 
@@ -115,15 +118,18 @@ export async function POST(req: Request) {
     );
   }
 
-  // 6) Build Fonio payload. Variablen-Namen müssen mit dem Agent-Prompt
-  //    übereinstimmen ({{first_name}}, {{source}} im Fonio-Agent referenzierbar).
+  // 6) Build Fonio payload (camelCase + context — exakt wie im Fonio-Dashboard).
+  //    Variablen-Namen in `context` müssen mit dem Agent-Prompt übereinstimmen
+  //    (im Fonio-Agent referenzierbar als {{name}}, {{source}}).
   const payload = {
-    api_key: apiKey,
-    from_number: fromNumber,
-    to_number: e164,
-    agent_id: agentId,
-    first_name: parsed.data.firstName,
-    source: 'rsg-ai.de hero callback',
+    apiKey,
+    fromNumber,
+    toNumber: e164,
+    agentId,
+    context: {
+      name: parsed.data.firstName,
+      source: 'rsg-ai.de hero callback',
+    },
   };
 
   // 7) Fire-and-respond. 8s timeout, defensive parsing.
@@ -134,8 +140,7 @@ export async function POST(req: Request) {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        // Fonio prüft den Key im Body laut Doku — wir senden ihn zusätzlich
-        // als Bearer-Header, falls die API das erwartet.
+        // Fonio akzeptiert den Key zusätzlich als Bearer-Header.
         authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify(payload),

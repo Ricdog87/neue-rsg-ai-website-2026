@@ -181,13 +181,22 @@ export function HeroCallbackCard() {
                   type="tel"
                   inputMode="tel"
                   autoComplete="tel"
-                  placeholder="+49 30 826 83906"
+                  placeholder="+49 151 23456789"
                   disabled={submitting}
                   emphasized
                   ref={phoneRef}
                   required
                 />
               </div>
+
+              {/* Format-Hinweis für die Telefonnummer */}
+              <p className="-mt-1 text-[11px] leading-relaxed text-white/45">
+                Bitte mit Ländervorwahl eingeben — z.&nbsp;B.{' '}
+                <span className="font-medium text-white/70">+49&nbsp;151&nbsp;23456789</span>{' '}
+                (Mobil) oder{' '}
+                <span className="font-medium text-white/70">+49&nbsp;30&nbsp;12345678</span>{' '}
+                (Festnetz). Keine Leerzeichen nötig.
+              </p>
 
               <button
                 type="submit"

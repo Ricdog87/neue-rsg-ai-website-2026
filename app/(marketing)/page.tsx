@@ -7,7 +7,7 @@ import { UspSection } from '@/components/sections/usp-section';
 import { PipelineSection } from '@/components/sections/pipeline-section';
 import { SolutionsSection } from '@/components/sections/solutions-section';
 import { RoiSection } from '@/components/sections/roi-section';
-import { PricingSection } from '@/components/sections/pricing-section';
+import { PricingPlansSection } from '@/components/sections/pricing-plans-section';
 import { FaqSection } from '@/components/sections/faq-section';
 import { FAQ } from '@/lib/faq';
 import { NewsletterSection } from '@/components/sections/newsletter-section';
@@ -67,7 +67,7 @@ export default function HomePage() {
         <RoiSection />
       </SectionReveal>
       <SectionReveal>
-        <PricingSection />
+        <PricingPlansSection />
       </SectionReveal>
       <SectionReveal>
         <FaqSection />

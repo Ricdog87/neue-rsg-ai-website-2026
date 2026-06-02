@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Copy, Check } from 'lucide-react';
+import { Phone, Copy, Check, ShieldCheck, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /**
@@ -31,7 +31,7 @@ export function HeroCallbackCard() {
   return (
     <div className="relative">
       {/* Glow */}
-      <div className="pointer-events-none absolute -inset-6 rounded-[28px] bg-[radial-gradient(60%_60%_at_50%_0%,hsl(var(--accent)/0.25),transparent_70%)] opacity-60 blur-2xl" />
+      <div className="pointer-events-none absolute -inset-6 rounded-[28px] bg-[radial-gradient(60%_60%_at_50%_0%,hsl(var(--accent)/0.28),transparent_70%)] opacity-70 blur-2xl" />
 
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -68,11 +68,12 @@ export function HeroCallbackCard() {
         <div className="mt-5 space-y-3">
           <a
             href={`tel:${PHONE_DIAL}`}
-            className="group flex w-full items-center justify-center gap-2.5 rounded-xl bg-[hsl(var(--accent))] px-5 py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_30px_-8px_hsl(var(--accent)/0.6)] transition-all hover:brightness-110 active:scale-[0.99]"
+            className="group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-[hsl(var(--accent))] px-5 py-4 text-[16px] font-semibold text-white shadow-[0_10px_40px_-8px_hsl(var(--accent)/0.7)] transition-all hover:brightness-110 active:scale-[0.99]"
           >
-            <Phone className="h-4 w-4 transition-transform group-hover:-rotate-12" />
-            {PHONE_DISPLAY}
-            <span className="text-white/70">· Jetzt anrufen</span>
+            <span className="pointer-events-none absolute inset-0 -z-10 animate-pulse bg-[hsl(var(--accent))] opacity-40 blur-md" />
+            <Phone className="h-5 w-5 transition-transform group-hover:-rotate-12" />
+            <span className="tabular-nums tracking-tight">{PHONE_DISPLAY}</span>
+            <span className="text-white/75">· Jetzt anrufen</span>
           </a>
 
           <button
@@ -88,13 +89,34 @@ export function HeroCallbackCard() {
           </button>
         </div>
 
-        {/* Trust-Row */}
-        <div className="mt-4 flex items-start gap-2.5 pt-1 text-[12px] leading-relaxed text-white/65">
-          <Check className="mt-0.5 h-4 w-4 shrink-0 text-[hsl(var(--neon))]" />
+                {/* Social-Proof direkt an der Aktion */}
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-white/65">
+          <span className="flex items-center gap-1.5">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--neon))] opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--neon))]" />
+            </span>
+            <strong className="font-semibold text-white">47</strong>&nbsp;heute live beantwortet
+          </span>
+          <span className="flex items-center gap-1.5">
+            <Star className="h-3.5 w-3.5 fill-current text-[hsl(var(--accent))]" />
+            <strong className="font-semibold text-white">4,9/5</strong>&nbsp;Bewertung
+          </span>
           <span>
-            Kostenlos &amp; unverbindlich2· keine Aufzeichnung · DSGVO · EU-Hosting.
-            <br />
-            <span className="text-white/45">Mo–Fr 9–18 Uhr beste Hörqualität.</span>
+            <strong className="font-semibold text-white">7.500+</strong>&nbsp;Agenten produktiv
+          </span>
+        </div>
+
+        {/* Trust-Badges */}
+        <div className="mt-4 flex flex-wrap gap-2 border-t border-white/5 pt-4 text-[11px] text-white/55">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1">
+            <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--neon))]" /> DSGVO · EU-Hosting
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1">
+            <Check className="h-3.5 w-3.5 text-[hsl(var(--neon))]" /> Keine Aufzeichnung
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1">
+            Kostenlos · Mo–Fr 9–18 Uhr
           </span>
         </div>
       </motion.div>

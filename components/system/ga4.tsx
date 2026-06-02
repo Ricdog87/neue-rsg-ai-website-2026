@@ -10,10 +10,10 @@ import { useEffect, useState } from 'react';
  *  - Hoert auf das Event `rsg-consent-change` (granted | denied) aus dem Banner.
  *  - Liest bei Rueckkehr die bestehende Einwilligung aus dem Cookie `rsg-ai-consent`.
  *  - Google Consent Mode v2: Marketing-Speicher bleibt verweigert, nur Analyse.
- *  - IP-Anonymisierung aktiv. Ohne NEXT_PUBLIC_GA_ID passiert nichts (No-op).
+ *  - IP-Anonymisierung aktiv. Default-ID G-802V5XE827, via NEXT_PUBLIC_GA_ID ueberschreibbar.
  */
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-802V5XE827';
 const CONSENT_COOKIE = 'rsg-ai-consent';
 
 function hasConsentCookie(): boolean {

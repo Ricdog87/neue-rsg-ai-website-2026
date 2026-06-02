@@ -103,7 +103,7 @@ export function HeroCallbackCard() {
             <strong className="font-semibold text-white">4,9/5</strong>&nbsp;Bewertung
           </span>
           <span>
-            <strong className="font-semibold text-white">7.500+</strong>&nbsp;Agenten produktiv
+            <strong className="font-semibold text-white">200+</strong>&nbsp;Agenten online
           </span>
         </div>
 

@@ -4,17 +4,17 @@ test.describe('Smoke — Hero & CTA', () => {
   test('Hero rendert mit kinetischer Headline', async ({ page }) => {
     await page.goto('/');
     // Eyebrow
-    await expect(page.getByText('Deutschlands erste KI-Builder aus dem Vertrieb')).toBeVisible();
+    await expect(page.getByText(/KI-Werkstatt für den Vertrieb/i)).toBeVisible();
     // Headline (mindestens ein Fragment)
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Vertriebsalltag');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('KI-Agenten');
     // Subline
-    await expect(page.getByText(/15 Jahre B2B-Vertrieb/)).toBeVisible();
+    await expect(page.getByText(/Live in vier Wochen/i)).toBeVisible();
   });
 
-  test('Primary-CTA verlinkt auf HubSpot Meetings', async ({ page }) => {
+  test('Primary-CTA verlinkt auf Terminbuchung', async ({ page }) => {
     await page.goto('/');
     const ctaLink = page
-      .getByRole('link', { name: /Agenten-Demo anfragen/i })
+      .getByRole('link', { name: /Erstgespräch/i })
       .first();
     await expect(ctaLink).toBeVisible();
     await expect(ctaLink).toHaveAttribute('href', /\/termin/);

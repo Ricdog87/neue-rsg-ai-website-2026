@@ -16,7 +16,7 @@ type Card = {
   marketPrice?: string;
   idealFor?: string;
   bestFor?: string;
-  features: string[];
+  features: readonly string[];
   cta: string;
   ctaHref: string;
   recommended?: boolean;

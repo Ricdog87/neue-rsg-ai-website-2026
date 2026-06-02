@@ -24,20 +24,15 @@ test.describe('Smoke — Hero & CTA', () => {
     await page.goto('/');
     for (const id of [
       'hero',
-      'trust',
-      'live-agents',
-      'problems',
+      'voice-demo',
+      'voice',
+      'usp',
+      'pipelines',
       'solutions',
-      'simulation',
-      'usecases',
-      'manifesto',
       'roi',
-      'tech-explainer',
       'pricing',
-      'testimonials',
-      'timeline',
-      'techstack',
-      'about',
+      'faq',
+      'newsletter',
       'contact'
     ]) {
       await expect(page.locator(`#${id}`)).toBeAttached();

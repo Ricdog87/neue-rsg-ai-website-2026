@@ -16,6 +16,7 @@ import { PersistentCanvas } from '@/components/system/persistent-canvas';
 import { RouteTransition } from '@/components/system/route-transition';
 import { SoundProvider } from '@/components/system/sound-engine';
 import { Analytics } from '@/components/system/analytics';
+import { GA4 } from '@/components/system/ga4';
 import { AiChatWidget } from '@/components/sections/ai-chat-widget';
 import { site } from '@/lib/content';
 import {
@@ -127,6 +128,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AiChatWidget />
         </SoundProvider>
         <Analytics />
+        <GA4 />
       </body>
     </html>
   );

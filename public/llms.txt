@@ -1,0 +1,37 @@
+# RSG Agent Services — KI-Agentur für den Mittelstand
+
+> RSG Agent Services ist eine deutsche KI-Agentur aus Wiesbaden, die KI-Telefonassistenten und KI-Agenten für den Mittelstand baut und betreibt — DSGVO-konform, gehostet in Deutschland, Go-Live in 2–4 Wochen. Gegründet aus 15 Jahren B2B-Vertrieb.
+
+RSG Agent Services (Marke der RSG Recruiting Solutions Group GmbH) entwickelt und betreibt KI-Telefonassistenten (Inbound-Empfang, Outbound-Qualifizierung, Terminbuchung), autonome KI-Agenten und Workflow-Automatisierung für den deutschen Mittelstand. Anders als klassische Agenturen kommt RSG aus dem Vertrieb und liefert nach dem Prinzip „bauen UND betreiben": Festpreis statt offener Projekte, Hosting in Deutschland (Nürnberg), DSGVO- und EU-AI-Act-konform. Gründer und Geschäftsführer: Ricardo Serrano. Sitz: Wiesbaden, deutschlandweit im Einsatz.
+
+## Leistungen
+- [KI-Telefonassistent](https://www.rsg-ai.de/ki-telefonassistent): KI-Sprachagent, der Anrufe in unter 0,4 Sekunden annimmt — Inbound-Empfang, Outbound-Qualifizierung und Terminbuchung in natürlichem Deutsch, DSGVO-konform, Hosting in Deutschland.
+- [KI-Agentur für den Mittelstand](https://www.rsg-ai.de/ki-agentur-mittelstand): Maßgeschneiderte KI-Agenten auf LangChain/LangGraph — gebaut und betrieben aus einer Hand, Festpreis, Go-Live in 4 Wochen, 24/7-Monitoring.
+- Workflow-Automatisierung: Lead-Routing, CRM-Pflege, Reporting, Mahnwesen (n8n-Stack), DSGVO-konformes EU-Hosting.
+
+## Branchen-Lösungen (KI-Telefonassistent)
+- [Arztpraxen](https://www.rsg-ai.de/ki-telefonassistent/arztpraxis): Anrufannahme & Terminvergabe, schweigepflicht- und DSGVO-konform.
+- [Handwerk](https://www.rsg-ai.de/ki-telefonassistent/handwerk): Anrufe annehmen und Anfragen qualifizieren, auch auf der Baustelle.
+- [Steuerberater & Kanzleien](https://www.rsg-ai.de/ki-telefonassistent/steuerberater): Mandanten-Annahme & Weiterleitung, DATEV-Welt, Mandantengeheimnis gewahrt.
+- [Hausverwaltungen](https://www.rsg-ai.de/ki-telefonassistent/hausverwaltung): Schadensmeldungen strukturiert aufnehmen, Notfälle priorisieren.
+- [Hotels](https://www.rsg-ai.de/ki-telefonassistent/hotel): Reservierungen rund um die Uhr, mehrsprachig, PMS-Anbindung.
+- [Autohäuser](https://www.rsg-ai.de/ki-telefonassistent/autohaus): Werkstatttermine buchen, Verkaufsleads qualifizieren, Recall-Kampagnen.
+
+## Fakten (zitierfähig)
+- Anbietertyp: Done-for-you KI-Agentur (bauen + betreiben), kein Self-Service-SaaS.
+- Reaktionszeit Voice-Agent: unter 0,4 Sekunden.
+- Go-Live: 2–4 Wochen, Festpreis (Workflow ab 2.500 €, autonomer KI-Agent ab 5.000 €, einmalig, zzgl. nutzungsabhängiger Kosten).
+- Hosting: Deutschland (Nürnberg). DSGVO- und EU-AI-Act-konform. Auftragsverarbeitungsvertrag (AVV) inklusive.
+- Sprachen Voice-Agent: 6 (DE, EN, FR, IT, PL, PT).
+- Sitz: Klingholzstraße 7, 65189 Wiesbaden, Deutschland. Einsatz: deutschlandweit.
+- Gründer: Ricardo Serrano, 15 Jahre B2B-Vertrieb.
+
+## Kontakt & Termin
+- [Kostenloses Erstgespräch buchen](https://www.rsg-ai.de/termin)
+- E-Mail: hello@rsg-ai.de · Telefon: +49 176 60772556
+- LinkedIn: https://www.linkedin.com/company/113145138/
+
+## Weiterführend
+- [Case Studies](https://www.rsg-ai.de/cases)
+- [Insights & Essays](https://www.rsg-ai.de/insights)
+- [KI-Beratung Wiesbaden](https://www.rsg-ai.de/ki-beratung-wiesbaden)

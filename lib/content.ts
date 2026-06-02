@@ -104,7 +104,7 @@ export const voiceAgents = {
   subheadline:
     'Eingehende Anrufe annehmen. Anliegen klären. Termine direkt setzen. In natürlichem Deutsch — mit deinem Markenton, deinem CRM, deiner Sprechweise.',
   subline:
-    'Echte Gespräche, kein Voice-Mail-Roboter. Trainiert auf deine Cases, eingebunden in HubSpot, Salesforce, Pipedrive oder deine bestehende Telefonanlage. Hosting in Deutschland (Nürnberg), DSGVO- und EU-AI-Act-konform.',
+    'Echte Gespräche, kein Voice-Mail-Roboter. Trainiert auf deine Cases, eingebunden in dein CRM oder deine bestehende Telefonanlage. Hosting in Deutschland (Nürnberg), DSGVO- und EU-AI-Act-konform.',
   /** Konkrete, belegte Vertrauens-Anker — werden über trustRow ausgespielt. */
   trustChips: [
     'Server in Nürnberg · DE',
@@ -254,7 +254,7 @@ export const solutions = {
     },
     {
       title: 'CRM-Integration ohne IT-Ticket.',
-      body: 'HubSpot · Salesforce · Pipedrive · Personio · DATEV · Slack · Teams. Tag 1 produktiv.'
+      body: 'Dein CRM-System · Team-Chat. Tag 1 produktiv.'
     }
   ],
   cta: 'Termin buchen',
@@ -265,9 +265,9 @@ export const solutions = {
     steps: [
       { n: '01', title: 'Lead trifft ein', detail: 'Web-Formular · LinkedIn · CRM' },
       { n: '02', title: 'KI-Agent qualifiziert', detail: 'Firmenprofil · Score · Intent' },
-      { n: '03', title: 'CRM-Datensatz automatisch', detail: 'HubSpot · Salesforce · Pipedrive' },
-      { n: '04', title: 'Vertrieb benachrichtigt', detail: 'Slack · Teams · E-Mail' },
-      { n: '05', title: 'Termin gebucht', detail: 'Calendly · Outlook · Google Cal' }
+      { n: '03', title: 'CRM-Datensatz automatisch', detail: 'Dein CRM-System' },
+      { n: '04', title: 'Vertrieb benachrichtigt', detail: 'Team-Chat · E-Mail' },
+      { n: '05', title: 'Termin gebucht', detail: 'Kalender' }
     ]
   }
 } as const;
@@ -282,6 +282,12 @@ export const roi = {
     'Klick die Abteilungen an, die in deinem Unternehmen am meisten Zeit verlieren. Wir zeigen dir live, wieviel ein KI-Agent dir pro Jahr zurückbringt — und nach wieviel Monaten er sich amortisiert hat.',
   hint: 'Werte basieren auf realen Implementierungen bei Mittelständlern (50–300 MA).',
   departments: [
+    {
+      id: 'telefon',
+      label: 'Telefon & Empfang',
+      body: 'Anrufannahme, Terminvergabe, Auskunft & Weiterleitung',
+      pain: 'Jeder verpasste Anruf ist ein verlorener Kunde — niemand nimmt ab',
+    },
     {
       id: 'recruiting',
       label: 'Recruiting',
@@ -427,7 +433,7 @@ export const pricing = {
       bestFor: 'Kundenservice · Account Management · Mittelstand',
       features: [
         'Autonomer KI-Agent mit Entscheidungslogik',
-        'Multi-System-Integration (CRM, ERP, E-Mail, Slack)',
+        'Multi-System-Integration (CRM, ERP, E-Mail, Team-Chat)',
         'DSGVO-konformes EU-Hosting & Monitoring',
         'Custom Prompt-Engineering im Markenton',
         'Priorisierter Support · Wöchentliches Reporting',

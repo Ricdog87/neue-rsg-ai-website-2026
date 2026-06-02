@@ -10,6 +10,7 @@ import { BreakevenChart } from '@/components/sections/roi-breakeven';
 import { TrendingDown, TrendingUp, Clock } from 'lucide-react';
 
 const SAVINGS: Record<string, number> = {
+  telefon: 42000,
   recruiting: 28000,
   marketing: 18000,
   accounting: 22000,

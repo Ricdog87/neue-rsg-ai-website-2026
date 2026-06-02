@@ -1,4 +1,5 @@
 import { Hero } from '@/components/sections/hero';
+import { LiveVoiceAgent } from '@/components/sections/live-voice-agent';
 import { TechMarquee } from '@/components/sections/tech-marquee';
 import { VoiceDemoCta } from '@/components/sections/voice-demo-cta';
 import { VoiceAgentsSection } from '@/components/sections/voice-agents-section';
@@ -35,6 +36,9 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: ldJson(faqPageLd(FAQ)) }}
       />
       <Hero />
+      <SectionReveal>
+        <LiveVoiceAgent />
+      </SectionReveal>
       <TechMarquee />
       <SectionReveal>
         <section

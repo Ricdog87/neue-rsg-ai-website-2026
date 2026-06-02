@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Star, ArrowRight } from 'lucide-react';
+import { LiveVoiceAgent } from '@/components/sections/live-voice-agent';
 
 /**
  * VoiceDemoCta — schlanker Social-Proof-Streifen statt zweiter Anruf-CTA.
@@ -23,6 +24,7 @@ const STATS = [
 export function VoiceDemoCta() {
   return (
     <section aria-labelledby="voice-demo-headline" className="mx-auto max-w-6xl px-6 py-20">
+      <LiveVoiceAgent />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

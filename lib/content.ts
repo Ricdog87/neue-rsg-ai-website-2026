@@ -407,7 +407,7 @@ export const pricing = {
       roiHint: 'Ø ROI nach < 2 Monaten bei 25K€ Ersparnis',
       bestFor: 'Sales-Ops · HR-Ops · Buchhaltung',
       features: [
-        'Individuelle Workflow-Entwicklung (n8n / Zapier-Stack)',
+        'Individuelle Workflow-Entwicklung & Automatisierung',
         'Integration in deine bestehenden Systeme',
         'DSGVO-konformes EU-Hosting',
         'Dokumentation & Team-Schulung',

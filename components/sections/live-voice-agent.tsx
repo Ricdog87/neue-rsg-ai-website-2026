@@ -6,7 +6,7 @@ import {
   useConversationControls,
   useConversationStatus,
 } from '@elevenlabs/react';
-import { Mic, PhoneOff, Loader2, Sparkles } from 'lucide-react';
+import { Mic, PhoneOff, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /**
@@ -119,16 +119,31 @@ export function LiveVoiceButton({
 export function LiveVoiceAgent() {
   if (!AGENT_ID) return null;
   return (
-    <div className="mx-auto mb-12 max-w-xl rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center backdrop-blur-xl">
-      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-white/50">
-        <Sparkles className="h-3 w-3 text-[hsl(var(--accent))]" /> Live-Sprachagent
+    <section className="relative overflow-hidden">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[420px] w-[680px] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,hsl(var(--accent)/0.18),transparent_70%)] blur-3xl" />
+      <div className="mx-auto max-w-5xl px-6 py-24 text-center">
+        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--neon))] opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--neon))]" />
+          </span>
+          Live · im Browser · keine Wartezeit
+        </div>
+        <h2 className="mx-auto max-w-3xl font-display text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-white">
+          Sprich mit einem unserer KI-Agenten.
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-[clamp(1rem,1.7vw,1.25rem)] leading-relaxed text-white/65">
+          Lies nicht über KI-Telefonie — erlebe sie. Ein Klick, deine Stimme, Antwort in
+          unter 0,4 Sekunden. Sprich wie mit einem echten Mitarbeiter — und entscheide selbst,
+          ob du den Unterschied zu einem Menschen noch hörst.
+        </p>
+        <div className="mx-auto mt-9 max-w-sm">
+          <LiveVoiceButton label="Sprich mit einem unserer KI-Agenten" className="px-8 py-4 text-base" />
+        </div>
+        <p className="mx-auto mt-4 text-[12px] text-white/40">
+          Kostenlos · max. 3 Min · Mikrofon erforderlich · DSGVO · EU
+        </p>
       </div>
-      <h3 className="font-display text-[clamp(1.25rem,2vw,1.5rem)] font-medium text-white">
-        Sprich jetzt direkt mit dem Agenten.
-      </h3>
-      <div className="mx-auto mt-5 max-w-xs">
-        <LiveVoiceButton label="Sprich mit einem unserer KI-Agenten" />
-      </div>
-    </div>
+    </section>
   );
 }

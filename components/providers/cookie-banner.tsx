@@ -37,8 +37,18 @@ export function CookieBanner() {
         fontSize: '14px'
       }}
       expires={365}
+      onAccept={() => {
+        window.dispatchEvent(
+          new CustomEvent('rsg-consent-change', { detail: 'granted' }),
+        );
+      }}
+      onDecline={() => {
+        window.dispatchEvent(
+          new CustomEvent('rsg-consent-change', { detail: 'denied' }),
+        );
+      }}
     >
-      Wir verwenden Cookies für Analytics & Performance. Details in der{' '}
+      Mit deiner Einwilligung nutzen wir Google Analytics, um anonymisiert zu verstehen, wie die Website genutzt wird — und sie laufend zu verbessern. Du entscheidest frei und kannst jederzeit widerrufen. Details in der{' '}
       <a href="/datenschutz" className="underline">
         Datenschutzerklärung
       </a>

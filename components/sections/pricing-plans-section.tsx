@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
 import { Check, Mic, Workflow } from 'lucide-react';
 import { pricing } from '@/lib/content';
 import { voicePlans } from '@/lib/pricing-voice';
@@ -57,15 +56,12 @@ const GROUPS = [
   { id: 'agents', label: 'KI-Agenten & Workflows', Icon: Workflow, cards: agentCards },
 ];
 
-function PlanCard({ card, reduce }: { card: Card; reduce: boolean }) {
+function PlanCard({ card }: { card: Card }) {
   const rec = !!card.recommended;
   return (
-    <motion.div
-      initial={reduce ? false : { opacity: 0, y: 18 }}
-      animate={reduce ? false : { opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+    <div
       className={
-        'relative flex flex-col rounded-xl border p-7 ' +
+        'relative flex flex-col rounded-xl border p-7 transition-transform duration-300 hover:-translate-y-1 ' +
         (rec
           ? 'border-[hsl(var(--accent))/40] bg-[hsl(var(--accent))/10] shadow-[0_0_40px_hsl(var(--accent)/0.45)]'
           : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60')
@@ -109,13 +105,12 @@ function PlanCard({ card, reduce }: { card: Card; reduce: boolean }) {
       >
         {card.cta}
       </a>
-    </motion.div>
+    </div>
   );
 }
 
 export function PricingPlansSection() {
   const [active, setActive] = useState('voice');
-  const reduce = useReducedMotion() || false;
   const group = GROUPS.find((g) => g.id === active) || GROUPS[0];
 
   return (
@@ -165,7 +160,7 @@ export function PricingPlansSection() {
           className={'mt-12 grid gap-6 ' + (group.cards.length === 3 ? 'md:grid-cols-3' : 'mx-auto max-w-3xl md:grid-cols-2')}
         >
           {group.cards.map((c) => (
-            <PlanCard key={c.id} card={c} reduce={reduce} />
+            <PlanCard key={c.id} card={c} />
           ))}
         </div>
 

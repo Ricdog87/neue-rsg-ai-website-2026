@@ -62,8 +62,7 @@ function PlanCard({ card, reduce }: { card: Card; reduce: boolean }) {
   return (
     <motion.div
       initial={reduce ? false : { opacity: 0, y: 18 }}
-      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      animate={reduce ? false : { opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={
         'relative flex flex-col rounded-xl border p-7 ' +

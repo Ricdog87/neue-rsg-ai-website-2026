@@ -87,6 +87,18 @@ export default function DatenschutzPage() {
         ausdrücklicher Einwilligung über den Cookie-Banner gesetzt
         (Art. 6 Abs. 1 lit. a DSGVO). Ihre Einwilligung können Sie jederzeit widerrufen.
       </p>
+      <p>
+        <strong>Google Analytics 4.</strong> Sofern Sie im Cookie-Banner zustimmen,
+        setzen wir Google Analytics 4 ein, einen Dienst der Google Ireland Limited
+        (Gordon House, Barrow Street, Dublin 4, Irland). Verarbeitet werden
+        Nutzungsdaten wie aufgerufene Seiten, ungefährer Standort sowie Geräte- und
+        Browser-Typ zur statistischen Reichweitenanalyse. Die IP-Adresse wird vor jeder
+        Speicherung gekürzt (IP-Anonymisierung). Rechtsgrundlage ist Ihre Einwilligung
+        (Art. 6 Abs. 1 lit. a DSGVO i.&nbsp;V.&nbsp;m. § 25 Abs. 1 TTDSG). Dabei kann
+        eine Übermittlung in die USA erfolgen; Google LLC ist unter dem EU-US Data
+        Privacy Framework zertifiziert. Ihre Einwilligung können Sie jederzeit mit
+        Wirkung für die Zukunft über den Cookie-Banner widerrufen.
+      </p>
 
       <h2>7. Ihre Rechte</h2>
       <p>Ihnen stehen folgende Rechte zu:</p>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Copy, Check, ShieldCheck, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { LiveVoiceButton } from '@/components/sections/live-voice-agent';
 
 /**
  * Inbound Call-to-Action für die Hero-Sektion.
@@ -66,6 +67,7 @@ export function HeroCallbackCard() {
 
         {/* Call-Action */}
         <div className="mt-5 space-y-3">
+          <LiveVoiceButton />
           <a
             href={`tel:${PHONE_DIAL}`}
             className="group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-[hsl(var(--accent))] px-5 py-4 text-[16px] font-semibold text-white shadow-[0_10px_40px_-8px_hsl(var(--accent)/0.7)] transition-all hover:brightness-110 active:scale-[0.99]"

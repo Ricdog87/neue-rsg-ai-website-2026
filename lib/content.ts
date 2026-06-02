@@ -209,7 +209,7 @@ export const voiceAgents = {
   /** Quantifizierte Kunden-Outcomes — werden in der „Proof-Row" angezeigt. */
   proofPoints: [
     { value: '30h-Stelle', label: 'eingespart pro Agent · Ø Mittelstand' },
-    { value: '7.500+', label: 'Voice-Agenten produktiv im Markt' },
+    { value: '200+', label: 'Voice-Agenten online & in Wartung' },
     { value: '9.000 Calls/Mo.', label: 'Spitzenkunden-Volumen verarbeitet' },
     { value: '4,9 / 5', label: 'Ø Bewertung · Trustpilot · Google · OMR' },
   ],

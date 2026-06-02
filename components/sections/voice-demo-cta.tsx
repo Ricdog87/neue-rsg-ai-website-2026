@@ -14,7 +14,7 @@ import { LiveVoiceAgent } from '@/components/sections/live-voice-agent';
 
 const STATS = [
   { value: '4,9/5', label: 'Ø Bewertung · Trustpilot · Google · OMR' },
-  { value: '7.500+', label: 'Voice-Agenten produktiv im Markt' },
+  { value: '200+', label: 'Voice-Agenten online & in Wartung' },
   { value: '9.000', label: 'Calls/Monat · Spitzen-Volumen verarbeitet' },
   { value: '0,4 s', label: 'Ø Reaktionszeit · schneller als ein Mensch' },
   { value: '24/7', label: 'verfügbar · niemand wartet in der Leitung' },
@@ -39,7 +39,7 @@ export function VoiceDemoCta() {
           id="voice-demo-headline"
           className="mx-auto mt-3 max-w-3xl font-display text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.02em] text-white"
         >
-          Über 7.500 Voice-Agenten arbeiten bereits — täglich, fehlerfrei, rund um die Uhr.
+          Bereits über 200 Voice-Agenten online & in Wartung — täglich im Einsatz, rund um die Uhr.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-white/65">
           Kein Prototyp, kein Demo-Mockup. Dieselbe Technik, die heute im Mittelstand

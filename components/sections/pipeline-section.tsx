@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, Mail, Database, Slack, Calendar, Brain, FileSearch, MessageSquare, FileText, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Database, Phone, Calendar, Brain, FileSearch, MessageSquare, FileText, CheckCircle2 } from 'lucide-react';
 import { MaskWipe, SplitLines } from '@/components/effects/reveal';
 import type { LucideIcon } from 'lucide-react';
 
@@ -26,17 +26,17 @@ type Pipeline = {
 const PIPELINES: Pipeline[] = [
   {
     id: 'sales',
-    badge: 'Sales-Agent',
-    title: 'Lead → CRM → Termin · in 4,8 Sekunden',
+    badge: 'Telefonassistent',
+    title: 'Anruf → Qualifiziert → Termin · in Echtzeit',
     body:
-      'Inbound-Lead kommt rein. Agent reichert mit Firmen­daten an, scored die Intent-Wahrscheinlichkeit, legt im HubSpot an, benachrichtigt Slack, bucht Calendly-Slot. Dein Vertrieb kriegt morgens nur noch die heißen Leads serviert.',
-    stat: { value: '47 Leads/Tag', label: 'durchschnittlich qualifiziert' },
+      'Ein Anruf kommt rein. Agent reichert mit Firmen­daten an, scored die Intent-Wahrscheinlichkeit, legt den CRM-Datensatz an, informiert dein Team, bucht den Termin im Kalender. Dein Vertrieb kriegt morgens nur noch die heißen Leads serviert.',
+    stat: { value: '47 Anrufe/Tag', label: 'durchschnittlich qualifiziert' },
     steps: [
-      { icon: Mail, label: 'Web-Formular', detail: 'Inbound · Webhook', tone: 'input' },
-      { icon: Brain, label: 'KI-Analyse', detail: 'Firma · Intent · Score', tone: 'ai' },
-      { icon: Database, label: 'HubSpot', detail: 'Datensatz angelegt', tone: 'system' },
-      { icon: Slack, label: 'Slack-Ping', detail: '#sales · Hot-Lead', tone: 'system' },
-      { icon: Calendar, label: 'Termin gebucht', detail: 'Calendly · 30 Min', tone: 'output' },
+      { icon: Phone, label: 'Anruf rein', detail: 'Erste Klingel · 0,4 s', tone: 'input' },
+      { icon: Brain, label: 'KI-Gespräch', detail: 'Anliegen · Intent · Stimmung', tone: 'ai' },
+      { icon: Database, label: 'CRM-Datensatz', detail: 'Datensatz angelegt', tone: 'system' },
+      { icon: MessageSquare, label: 'Team-Info', detail: 'Team-Chat · Hot-Lead', tone: 'system' },
+      { icon: Calendar, label: 'Termin gebucht', detail: 'Kalender · 30 Min', tone: 'output' },
     ],
     caseStudySlug: 'sales-agent',
   },
@@ -98,8 +98,8 @@ export function PipelineSection() {
             <MaskWipe delay={0.2}>
               <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
                 Kein Demo-Mockup. Zwei reale End-to-End-Workflows aus aktiven
-                Kunden-Setups — von Webhook bis Ergebnis, mit Tools, Schritten
-                und Zeit-Ersparnis.
+                Kunden-Setups — vom ersten Kontakt bis zum Ergebnis, mit klaren Schritten
+                und Zeit-Ersparnis. Unser Schwerpunkt sind Telefonassistenten — automatisierte Workflows und KI-Agenten laufen direkt daneben.
               </p>
             </MaskWipe>
           </div>

@@ -35,10 +35,10 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: ldJson(faqPageLd(FAQ)) }}
       />
-      <Hero />
       <SectionReveal>
         <LiveVoiceAgent />
       </SectionReveal>
+      <Hero />
       <TechMarquee />
       <SectionReveal>
         <section

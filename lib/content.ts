@@ -102,7 +102,7 @@ export const voiceAgents = {
   eyebrow: 'RSG AI · Voice-Suite',
   headline: 'Dein Telefon-Agent, der nie schläft.',
   subheadline:
-    'Inbound annehmen. Outbound qualifizieren. Termine setzen. In natürlichem Deutsch — mit deinem Markenton, deinem CRM, deiner Sprechweise.',
+    'Eingehende Anrufe annehmen. Anliegen klären. Termine direkt setzen. In natürlichem Deutsch — mit deinem Markenton, deinem CRM, deiner Sprechweise.',
   subline:
     'Echte Gespräche, kein Voice-Mail-Roboter. Trainiert auf deine Cases, eingebunden in HubSpot, Salesforce, Pipedrive oder deine bestehende Telefonanlage. Hosting in Deutschland (Nürnberg), DSGVO- und EU-AI-Act-konform.',
   /** Konkrete, belegte Vertrauens-Anker — werden über trustRow ausgespielt. */
@@ -132,18 +132,18 @@ export const voiceAgents = {
   ],
   offers: [
     {
-      id: 'sales-outbound',
-      tag: 'Sales · Outbound',
-      title: 'Outbound-Closerin',
-      tagline: 'Sie ruft an. Sie qualifiziert. Sie bucht den Termin.',
+      id: 'inbound-termin',
+      tag: 'Service · Inbound',
+      title: 'Termin- & Reservierungs-Assistent',
+      tagline: 'Anrufer nennen ihren Wunsch — der Agent bucht direkt.',
       body:
-        'Aus deiner Kalt-Liste werden warme Termine. Der Agent ruft Leads strukturiert ab, klärt Bedarf in 3 Minuten und schiebt qualifizierte Interessenten direkt in deinen Kalender. Deine Vertriebler kommen morgens ans Telefon — und reden nur noch mit Interessenten, die ihren Pain bereits erkannt haben.',
-      kpi: { value: '5.000+ Calls/Mo.', label: 'pro Agent · parallel skalierbar' },
+        'Terminvereinbarung, Reservierung, Status-Rückfrage: Der Agent nimmt den Anruf entgegen, prüft live deine Verfügbarkeit und trägt den Termin direkt in Kalender oder CRM ein. Kein Telefon-Tag, keine vergessene Rückmeldung — der Anrufer hat seinen Slot, bevor er aufgelegt hat.',
+      kpi: { value: '24/7', label: 'Termine rund um die Uhr · ohne Personal' },
       bullets: [
-        'Skript-Training auf deine Top-Closer',
-        'Live-Übergabe an Mensch bei Kaufsignal',
-        'CRM-Datensatz nach jedem Gespräch',
-        'Lead-Scoring + Follow-Up automatisch',
+        'Live-Verfügbarkeit aus Kalender/CRM',
+        'Bucht, verschiebt & storniert im Gespräch',
+        'Bestätigung per SMS/E-Mail automatisch',
+        'Übergabe an Mensch bei Sonderfällen',
       ],
     },
     {

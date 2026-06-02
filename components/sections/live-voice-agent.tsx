@@ -6,22 +6,22 @@ import {
   useConversationControls,
   useConversationStatus,
 } from '@elevenlabs/react';
-import { Mic, PhoneOff, Loader2, Sparkles } from 'lucide-react';
+import { Mic, PhoneOff, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /**
- * In-Browser-Sprachagent (ElevenLabs / ElevenAgents React-SDK).
- * Inline-Button startet das Gespraech direkt auf der Seite (WebRTC, kein schwebendes Widget).
+ * In-Browser-Sprachagent (ElevenLabs React-SDK).
+ * Inline-Button startet das Gespraech direkt auf der Seite (WebRTC).
  * Sicher ohne NEXT_PUBLIC_ELEVENLABS_AGENT_ID -> rendert nichts.
- * Kosten-Schutz: Session endet automatisch nach MAX_MIN Minuten.
+ * Kosten-Schutz: Session endet automatisch nach 3 Minuten.
  */
 
 const AGENT_ID = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID;
 const MAX_MS = 3 * 60 * 1000;
 const BASE =
-  'group inline-flex w-full items-center justify-center gap-2.5 rounded-xl px-5 py-3.5 text-[15px] font-semibold transition-all';
+  'group inline-flex w-full items-center justify-center gap-2.5 rounded-full px-6 py-3 text-sm font-medium transition-all';
 
-function ButtonInner({ className }: { className?: string }) {
+function ButtonInner({ className, label }: { className?: string; label: string }) {
   const { startSession, endSession } = useConversationControls();
   const { status } = useConversationStatus();
   const [err, setErr] = useState(false);
@@ -80,32 +80,38 @@ function ButtonInner({ className }: { className?: string }) {
       onClick={start}
       className={cn(
         BASE,
-        'bg-[hsl(var(--accent))] text-white shadow-[0_8px_30px_-8px_hsl(var(--accent)/0.6)] hover:brightness-110 active:scale-[0.99]',
+        'bg-[hsl(var(--accent))] text-white hover:bg-[hsl(var(--accent-deep))] hover:shadow-[0_0_40px_hsl(var(--accent)/0.6)] active:scale-[0.99]',
         className,
       )}
     >
       <Mic className="h-4 w-4" />
-      {err ? 'Mikrofon erlauben & nochmal klicken' : 'Jetzt live sprechen'}
+      {err ? 'Mikrofon erlauben & nochmal klicken' : label}
     </button>
   );
 }
 
-function StaticButton({ className }: { className?: string }) {
+function StaticButton({ className, label }: { className?: string; label: string }) {
   return (
     <button type="button" disabled className={cn(BASE, 'bg-[hsl(var(--accent))] text-white opacity-90', className)}>
-      <Mic className="h-4 w-4" /> Jetzt live sprechen
+      <Mic className="h-4 w-4" /> {label}
     </button>
   );
 }
 
-export function LiveVoiceButton({ className }: { className?: string }) {
+export function LiveVoiceButton({
+  className,
+  label = 'Jetzt live sprechen',
+}: {
+  className?: string;
+  label?: string;
+}) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   if (!AGENT_ID) return null;
-  if (!mounted) return <StaticButton className={className} />;
+  if (!mounted) return <StaticButton className={className} label={label} />;
   return (
     <ConversationProvider>
-      <ButtonInner className={className} />
+      <ButtonInner className={className} label={label} />
     </ConversationProvider>
   );
 }
@@ -113,23 +119,31 @@ export function LiveVoiceButton({ className }: { className?: string }) {
 export function LiveVoiceAgent() {
   if (!AGENT_ID) return null;
   return (
-    <div className="mx-auto mb-12 max-w-xl rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center backdrop-blur-xl">
-      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-white/50">
-        <Sparkles className="h-3 w-3 text-[hsl(var(--accent))]" /> Live-Sprachagent · im Browser
+    <section className="relative overflow-hidden">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[420px] w-[680px] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,hsl(var(--accent)/0.18),transparent_70%)] blur-3xl" />
+      <div className="mx-auto max-w-5xl px-6 py-24 text-center">
+        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--neon))] opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--neon))]" />
+          </span>
+          Live · im Browser · keine Wartezeit
+        </div>
+        <h2 className="mx-auto max-w-3xl font-display text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-white">
+          Sprich mit einem unserer KI-Agenten.
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-[clamp(1rem,1.7vw,1.25rem)] leading-relaxed text-white/65">
+          Lies nicht über KI-Telefonie — erlebe sie. Ein Klick, deine Stimme, Antwort in
+          unter 0,4 Sekunden. Sprich wie mit einem echten Mitarbeiter — und entscheide selbst,
+          ob du den Unterschied zu einem Menschen noch hörst.
+        </p>
+        <div className="mx-auto mt-9 max-w-sm">
+          <LiveVoiceButton label="Sprich mit einem unserer KI-Agenten" className="px-8 py-4 text-base" />
+        </div>
+        <p className="mx-auto mt-4 text-[12px] text-white/40">
+          Kostenlos · max. 3 Min · Mikrofon erforderlich · DSGVO · EU
+        </p>
       </div>
-      <h3 className="font-display text-[clamp(1.25rem,2vw,1.5rem)] font-medium text-white">
-        Sprich jetzt direkt mit dem Agenten.
-      </h3>
-      <p className="mx-auto mt-2 max-w-md text-[13px] leading-relaxed text-white/60">
-        Kein Anruf, kein Formular — klick, erlaube dein Mikrofon und unterhalte dich live.
-        Echte Stimme, in Echtzeit.
-      </p>
-      <div className="mx-auto mt-5 max-w-xs">
-        <LiveVoiceButton />
-      </div>
-      <p className="mx-auto mt-4 max-w-md text-[11px] leading-relaxed text-white/35">
-        Kostenlos · max. 3 Min · Mikrofon erforderlich. Sprachverarbeitung via ElevenLabs.
-      </p>
-    </div>
+    </section>
   );
 }

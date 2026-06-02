@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, Mail, Database, Phone, Calendar, Brain, FileSearch, MessageSquare, FileText, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Database, Phone, Calendar, Brain, FileSearch, MessageSquare, FileText, CheckCircle2 } from 'lucide-react';
 import { MaskWipe, SplitLines } from '@/components/effects/reveal';
 import type { LucideIcon } from 'lucide-react';
 

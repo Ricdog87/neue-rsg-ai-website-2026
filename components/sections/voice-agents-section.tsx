@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import {
   Phone,
   PhoneIncoming,
-  PhoneOutgoing,
+  CalendarCheck,
   Sparkles,
   Headphones,
   ArrowRight,
@@ -16,7 +16,7 @@ import { voiceAgents } from '@/lib/content';
 import { cn } from '@/lib/utils';
 
 const OFFER_ICONS: Record<string, LucideIcon> = {
-  'sales-outbound': PhoneOutgoing,
+  'inbound-termin': CalendarCheck,
   inbound: PhoneIncoming,
   custom: Headphones,
 };

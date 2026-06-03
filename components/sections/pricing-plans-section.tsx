@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Check, Mic, Workflow, ArrowUpRight } from 'lucide-react';
 import { pricing } from '@/lib/content';
 import { voicePlans, type VoicePlan } from '@/lib/pricing-voice';
@@ -289,9 +290,18 @@ export function PricingPlansSection() {
           </p>
         </div>
 
+        {/* Toggle micro-instruction — makes it obvious the switch is interactive */}
+        <p className="mt-10 text-center font-mono text-[0.625rem] uppercase tracking-[0.28em] text-[hsl(var(--accent))]">
+          Was brauchst du? <span aria-hidden>→</span> Wähl deine Linie
+        </p>
+
         {/* Category toggle */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <div role="tablist" aria-label="Preis-Kategorien" className="inline-flex rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60 p-1">
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-4">
+          <div
+            role="tablist"
+            aria-label="Preis-Kategorien"
+            className="inline-flex rounded-full border border-[hsl(var(--border-strong))] bg-[hsl(var(--surface))] p-1.5 shadow-[inset_0_1px_0_hsl(0_0%_100%/0.04)]"
+          >
             {GROUPS.map((g) => {
               const sel = g.id === active;
               const Icon = g.Icon;
@@ -304,11 +314,24 @@ export function PricingPlansSection() {
                   data-event={!sel ? `pricing_tab_${g.id}` : undefined}
                   onClick={() => setActive(g.id)}
                   className={
-                    'rounded-full px-5 py-2 text-[0.85rem] font-medium transition-all ' +
-                    (sel ? 'bg-[hsl(var(--accent))] text-white' : 'text-[hsl(var(--muted))] hover:text-[hsl(var(--fg))]')
+                    'relative cursor-pointer rounded-full px-5 py-2 text-[0.85rem] font-medium transition-colors duration-300 ' +
+                    (sel
+                      ? 'text-white'
+                      : 'text-[hsl(var(--muted))] hover:bg-[hsl(var(--fg))]/[0.06] hover:text-[hsl(var(--fg))]')
                   }
                 >
-                  <span className="inline-flex items-center gap-2"><Icon className="h-4 w-4" />{g.label}</span>
+                  {sel ? (
+                    <motion.span
+                      layoutId="pricing-tab-pill"
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                      aria-hidden
+                      className="absolute inset-0 -z-10 rounded-full bg-[hsl(var(--accent))] shadow-[0_8px_24px_-8px_hsl(var(--accent)/0.6)]"
+                    />
+                  ) : null}
+                  <span className="relative z-10 inline-flex items-center gap-2">
+                    <Icon className="h-4 w-4" />
+                    {g.label}
+                  </span>
                 </button>
               );
             })}
@@ -388,7 +411,7 @@ export function PricingPlansSection() {
 
         {/* Reassurance strip — voice tab only */}
         {active === 'voice' ? (
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))]">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-[hsl(var(--muted))]">
             <span><span className="text-[hsl(var(--accent))]">▸</span> DSGVO · EU-Hosting (Nürnberg)</span>
             <span><span className="text-[hsl(var(--accent))]">▸</span> Monatlich kündbar</span>
             <span><span className="text-[hsl(var(--accent))]">▸</span> 30-Tage-SLA</span>
@@ -396,7 +419,7 @@ export function PricingPlansSection() {
           </div>
         ) : null}
 
-        <p className="mt-8 text-center text-[0.8rem] text-[hsl(var(--subtle))]">
+        <p className="mt-8 max-w-3xl mx-auto text-center text-[0.85rem] leading-relaxed text-[hsl(var(--muted))]">
           Alle Preise netto, zzgl. MwSt. · Setup-Gebühr Solo 490 € / Team 990 € netto einmalig auf 1. Rechnung. Bei Jahresvorkasse entfällt das Setup für Solo & Team. Scale-Setup ab 1.990 € individuell.
         </p>
       </div>

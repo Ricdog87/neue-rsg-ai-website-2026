@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`
   },
   description:
-    'KI-Agenten für den Mittelstand. 2–4 Wochen Go-Live. 312 % Ø ROI. DSGVO-konform · EU-Cloud · Hosting in Deutschland. 12+ Agenten in Produktion.',
+    'KI-Agenten für den Mittelstand. 2–4 Wochen Go-Live. starker ROI-Hebel. DSGVO-konform · EU-Cloud · Hosting in Deutschland. 12+ Agenten in Produktion.',
   keywords: [
     'KI-Agenten Mittelstand',
     'AI Agents Deutschland',

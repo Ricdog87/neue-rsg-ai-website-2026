@@ -108,7 +108,7 @@ export const voiceAgents = {
   /** Konkrete, belegte Vertrauens-Anker — werden über trustRow ausgespielt. */
   trustChips: [
     'Server in Nürnberg · DE',
-    'DSGVO + EU AI Act',
+    'DSGVO-konform · EU',
     '6 Sprachen · DE first',
     '< 10 Min eingerichtet',
     '24/7 · niemand wartet',
@@ -199,7 +199,7 @@ export const voiceAgents = {
     trustStrip: [
       { icon: 'zap', label: '0,4 s Reaktion' },
       { icon: 'server', label: 'Server in Nürnberg' },
-      { icon: 'shield', label: 'DSGVO + EU AI Act' },
+      { icon: 'shield', label: 'DSGVO-konform · EU' },
       { icon: 'languages', label: '6 Sprachen · DE first' },
       { icon: 'infinity', label: '24/7 verfügbar' },
     ],

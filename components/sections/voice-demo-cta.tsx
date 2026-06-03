@@ -13,8 +13,8 @@ import { Star, ArrowRight } from 'lucide-react';
 
 const STATS = [
 
-  { value: '200+', label: 'Voice-Agenten online & in Wartung' },
-  { value: '9.000', label: 'Calls/Monat · Spitzen-Volumen verarbeitet' },
+  { value: 'Live', label: 'Voice-Agenten im Wirkbetrieb' },
+  { value: 'bis 9.000', label: 'Calls/Monat im Spitzenbetrieb' },
   { value: '0,4 s', label: 'Ø Reaktionszeit · schneller als ein Mensch' },
   { value: '24/7', label: 'verfügbar · niemand wartet in der Leitung' },
   { value: '30h', label: 'Stelle eingespart pro Agent · Ø Mittelstand' },

@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://plausible.io" />
         <link rel="dns-prefetch" href="https://plausible.io" />
       </head>
-      <body className="relative min-h-screen bg-[#03020c] text-[hsl(var(--fg))] antialiased">
+      <body className="relative min-h-screen overflow-x-clip bg-[#03020c] text-[hsl(var(--fg))] antialiased">
         {/* JSON-LD · Org + LocalBusiness + Services + WebSite. Single graph node. */}
         <script
           type="application/ld+json"

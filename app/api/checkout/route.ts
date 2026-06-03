@@ -94,7 +94,7 @@ export async function POST(req: Request) {
       cancel_url: `${siteUrl}/#pricing`,
       locale: 'de',
       allow_promotion_codes: true,
-      automatic_tax: { enabled: false }, // aktivieren, wenn Stripe-Tax konfiguriert
+      automatic_tax: { enabled: true }, // aktivieren, wenn Stripe-Tax konfiguriert
       metadata: { tier, billing },
     });
 

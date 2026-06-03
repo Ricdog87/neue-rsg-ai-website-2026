@@ -113,7 +113,7 @@ export function HeroCallbackCard() {
             <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--neon))]" /> DSGVO · EU-Hosting
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1">
-            <Check className="h-3.5 w-3.5 text-[hsl(var(--neon))]" /> Keine Aufzeichnung
+            <Check className="h-3.5 w-3.5 text-[hsl(var(--neon))]" /> Aufzeichnung nur mit Einwilligung
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1">
             Kostenlos · Mo–Fr 9–18 Uhr

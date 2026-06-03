@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Calculator } from 'lucide-react';
+import { ArrowUpRight, Phone } from 'lucide-react';
 import { hero, liveStats, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
 import { CharSplit } from '@/components/effects/reveal';
@@ -196,12 +196,13 @@ export function Hero() {
               </Magnetic>
               <Magnetic strength={0.12} radius={80}>
                 <a
-                  href="#roi"
+                  href="#voice"
                   data-sound="tick"
-                  data-cursor-label="Rechnen"
+                  data-cursor-label="Ansehen"
+                  data-event="voice_section_open"
                   className="group inline-flex h-12 items-center gap-2 rounded-full border border-white/15 px-6 font-display text-[0.9rem] font-medium text-white/85 transition-all hover:border-white/40 hover:text-white"
                 >
-                  <Calculator className="h-4 w-4 transition-transform group-hover:rotate-[-6deg]" />
+                  <Phone className="h-4 w-4 transition-transform group-hover:rotate-[-6deg]" />
                   {hero.ctaSecondary}
                 </a>
               </Magnetic>

@@ -160,6 +160,56 @@ export function servicesLd() {
   };
 }
 
+/**
+ * Voice Product — KI-Telefonassistentin als schema.org Product
+ * mit AggregateOffer (Solo + Team + Scale). Rich-Result-eligible.
+ */
+export function voiceProductLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': `${site.url}#voice-product`,
+    name: 'RSG KI-Telefonassistentin',
+    description:
+      'KI-Telefonassistentin für den Mittelstand. 24/7 erreichbar, natürlicher Voice, Inbound + Outbound, CRM-integriert. DSGVO, EU-Hosting (Nürnberg). Live in 4 Wochen.',
+    brand: { '@id': `${site.url}#organization` },
+    category: 'AI Voice Assistant · Telefonassistent',
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'EUR',
+      lowPrice: '199',
+      highPrice: '499',
+      offerCount: 3,
+      availability: 'https://schema.org/InStock',
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Solo · monatlich',
+          price: '199',
+          priceCurrency: 'EUR',
+          eligibleQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' },
+          url: `${site.url}/#pricing`,
+        },
+        {
+          '@type': 'Offer',
+          name: 'Team · monatlich',
+          price: '499',
+          priceCurrency: 'EUR',
+          eligibleQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' },
+          url: `${site.url}/#pricing`,
+        },
+        {
+          '@type': 'Offer',
+          name: 'Scale · Preis auf Anfrage',
+          priceCurrency: 'EUR',
+          availability: 'https://schema.org/InStock',
+          url: `${site.url}/termin`,
+        },
+      ],
+    },
+  };
+}
+
 export function faqPageLd(qa: Array<{ q: string; a: string }>) {
   return {
     '@context': 'https://schema.org',

@@ -72,18 +72,18 @@ export const nav = [
    HERO — Hook: "Dein Vertrieb arbeitet. Aber zu 70 % falsch."
    ───────────────────────────────────────────────────────── */
 export const hero = {
-  eyebrow: 'Eine KI-Werkstatt für den Vertrieb',
+  eyebrow: 'KI-Telefonassistentin · Werkstatt für den Vertrieb',
   headlineKinetic: [
-    'Wir bauen',
-    'und betreiben',
-    'KI-Agenten.'
+    'KI-Agenten,',
+    'die ans Telefon gehen —',
+    'und verkaufen.'
   ],
   // Used as a refined sub-statement below the headline
   subStatement: 'Live in vier Wochen — nicht in vier Quartalen.',
   subline:
-    'Für anspruchsvolle Mittelständler. Designed, gehostet und operiert in Deutschland. Aufnahme aktuell für Kohorte 05 (Q2 2026).',
+    'Deine KI-Telefonassistentin nimmt jeden Anruf an, qualifiziert Leads und bucht Termine — 24/7, in natürlichem Deutsch, eingebunden in dein CRM. Aufnahme aktuell für Kohorte 06 (Q3 2026).',
   ctaPrimary: 'Erstgespräch',
-  ctaSecondary: 'ROI berechnen',
+  ctaSecondary: 'Telefonassistentin ansehen',
   trustChips: [
     '4 Wochen bis Live',
     'DSGVO · EU-Server',
@@ -98,7 +98,7 @@ export const hero = {
    Echte Telefon-Stimmen, die qualifizieren, beraten, verkaufen.
    ───────────────────────────────────────────────────────── */
 export const voiceAgents = {
-  badge: 'Jetzt neu · ab Q2 2026',
+  badge: 'Jetzt neu · ab Q3 2026',
   eyebrow: 'RSG AI · Voice-Suite',
   headline: 'Dein Telefon-Agent, der nie schläft.',
   subheadline:
@@ -386,6 +386,80 @@ export const roi = {
       { threshold: 5000,  icon: '💻', label: 'Senior-Workshops', divisor: 3500 }
     ]
   }
+} as const;
+
+/* ─────────────────────────────────────────────────────────
+   VOICE-PRICING — Solo / Team / Scale (Subscription-Model).
+   Setup-Gebühr per Tier · bei Jahresvorkasse entfällt Solo/Team.
+   ───────────────────────────────────────────────────────── */
+export const voicePricing = {
+  annualDiscount: 0.15, // 15 % off bei jährlicher Vorkasse
+  setup: { solo: 490, team: 990, scale: 1990 },
+  reassurance: [
+    'DSGVO · EU-Hosting (Nürnberg)',
+    'Monatlich kündbar',
+    '30-Tage-SLA',
+    'Du besitzt deine Daten',
+  ],
+  tiers: [
+    {
+      id: 'solo',
+      name: 'Solo',
+      tagline: 'Der smarte Einstieg.',
+      monthly: 199,
+      annual: 169, // 199 × 0.85 ≈ 169
+      bestFor: 'Selbstständige · Solo-Berater · 1-Person-Setups',
+      features: [
+        '1 Rufnummer inklusive',
+        '500 Min Inbound/Monat · ⚠️ TBD',
+        'Transkripte ins CRM',
+        'Geführtes Onboarding',
+        'Mo–Fr Standard-Support',
+      ],
+      ctaLabel: 'Solo starten',
+      ctaEvent: 'checkout_started',
+      recommended: false,
+    },
+    {
+      id: 'team',
+      name: 'Team',
+      tagline: 'Alles aus Solo + Volumen + Outbound.',
+      monthly: 499,
+      annual: 424, // 499 × 0.85 ≈ 424
+      bestFor: 'Teams · KMU mit Vertriebs- oder Support-Calls',
+      features: [
+        '2 Rufnummern · ⚠️ TBD',
+        '2.000 Min Inbound + 500 Min Outbound · ⚠️ TBD',
+        'Outbound-Kampagnen (Reaktivierung, Follow-ups)',
+        'Wöchentliches Reporting',
+        'Prioritäts-Support',
+      ],
+      ctaLabel: 'Team buchen',
+      ctaEvent: 'checkout_started',
+      recommended: true,
+    },
+    {
+      id: 'scale',
+      name: 'Scale',
+      tagline: 'Custom-Voice + individuelle Workflows.',
+      monthly: null, // Preis auf Anfrage
+      annual: null,
+      bestFor: 'Größere Teams · Mehrstandort · spezielle Compliance',
+      features: [
+        'Custom-Voice (Brand-Stimme)',
+        'Unbegrenzte Rufnummern + Minuten · ⚠️ TBD',
+        'Individuelle Workflows + n8n/LangGraph-Integration',
+        'Dediziertes SLA + Slack-Support',
+        'Quartalsweise Roadmap-Review',
+      ],
+      ctaLabel: 'Angebot anfragen',
+      ctaEvent: 'booking_clicked',
+      ctaHref: '/termin',
+      recommended: false,
+    },
+  ],
+  footnote:
+    'Alle Preise zzgl. MwSt. · Setup-Gebühr Solo 490 € / Team 990 € netto einmalig, separat auf der ersten Rechnung berechnet. Bei Jahresvorkasse entfällt das Setup für Solo & Team. · Scale-Setup individuell ab 1.990 € netto.',
 } as const;
 
 /* ─────────────────────────────────────────────────────────

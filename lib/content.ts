@@ -18,7 +18,7 @@ export const site = {
   shortName: 'RSGAI',
   tagline: 'KI-Agenten, die wirklich arbeiten',
   positioning:
-    'Deutschlands erste KI-Agentur aus dem Vertrieb — bauen, betreiben, liefern.',
+    'KI-Agentur mit echter Vertriebs-DNA — bauen, betreiben, liefern.',
   url: 'https://www.rsg-ai.de',
   contact: {
     email: 'hello@rsg-ai.de',
@@ -88,7 +88,7 @@ export const hero = {
     '4 Wochen bis Live',
     'DSGVO · EU-Server',
     '12+ Agenten in Produktion',
-    '312 % Ø ROI nach 4 Monaten',
+    'bis zu 312 % ROI (Pilotkunden)',
     'Hosting in Deutschland'
   ]
 } as const;
@@ -194,7 +194,7 @@ export const voiceAgents = {
       'KI- und Aufzeichnungs-Hinweis zu Gesprächsbeginn — du entscheidest. Mo–Fr 9–18 Uhr beste Hörqualität.',
     callerHint:
       'Live mit „Christian" — Senior-Sales-Tonalität, kennt rsg-ai.de und pitcht im Gespräch den Buchungslink.',
-    counterTemplate: 'Heute schon · CALLS · live beantwortet',
+    counterTemplate: 'Rund um die Uhr automatisch beantwortet',
     counterValue: '47',
     trustStrip: [
       { icon: 'zap', label: '0,4 s Reaktion' },
@@ -209,8 +209,8 @@ export const voiceAgents = {
   /** Quantifizierte Kunden-Outcomes — werden in der „Proof-Row" angezeigt. */
   proofPoints: [
     { value: '30h-Stelle', label: 'eingespart pro Agent · Ø Mittelstand' },
-    { value: '200+', label: 'Voice-Agenten online & in Wartung' },
-    { value: '9.000 Calls/Mo.', label: 'Spitzenkunden-Volumen verarbeitet' },
+    { value: 'Live', label: 'Voice-Agenten im Wirkbetrieb' },
+    { value: 'bis 9.000', label: 'Calls/Monat im Spitzenbetrieb' },
 
   ],
   cta: {
@@ -223,10 +223,10 @@ export const voiceAgents = {
 } as const;
 
 export const liveStats = [
-  { value: '1.247', label: 'Tasks/Tag' },
+  { value: '24/7', label: 'im Einsatz' },
   { value: '0.8s', label: 'Ø Reaktion' },
-  { value: '38K€', label: 'Ø Ersparnis p.a.' },
-  { value: '312%', label: 'Ø ROI · 4 Mo.' },
+  { value: 'bis 38K€', label: 'Ersparnis p.a. (Pilotkunden)' },
+  { value: 'bis 312%', label: 'ROI · Pilotkunden' },
   { value: '99.9%', label: 'Uptime EU' },
   { value: '12+', label: 'Live-Agenten' }
 ] as const;
@@ -503,7 +503,7 @@ export const pricing = {
       priceSuffix: 'einmalig',
       note: 'zzgl. Hosting & Token-Kosten*',
       marketPrice: 'Marktpreis ab 18.000 €',
-      roiHint: '8 von 10 Mittelständlern wählen dieses Paket',
+      roiHint: 'Unser meistgewähltes Paket im Mittelstand',
       bestFor: 'Kundenservice · Account Management · Mittelstand',
       features: [
         'Autonomer KI-Agent mit Entscheidungslogik',

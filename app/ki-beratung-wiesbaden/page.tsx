@@ -40,7 +40,7 @@ const REASONS = [
   },
   {
     title: 'DSGVO + EU-Hosting · 100 % made in Germany',
-    body: 'Server in Frankfurt & Berlin. Kein US-Cloud-Risiko. Dein Datenschutzbeauftragter atmet durch.'
+    body: 'Sprachdaten gespeichert in Deutschland (Hetzner, Nürnberg), Verarbeitung über EU-/US-Dienste unter DPF/SCC. Dein Datenschutzbeauftragter atmet durch.'
   },
   {
     title: 'Go-Live in 2–4 Wochen — nicht 4 Monaten',
@@ -104,7 +104,7 @@ export default function KIBeratungWiesbadenPage() {
         <p className="mt-6 max-w-3xl text-base leading-relaxed text-[hsl(var(--muted))] md:text-lg">
           Wir bauen, integrieren und betreiben KI-Agenten für Unternehmen im Rhein-Main-Gebiet.
           Persönlich vor Ort, DSGVO-konform, mit messbarem ROI in 4 Monaten. 15 Jahre B2B-Vertrieb
-          stecken in jedem Agenten — keine Theorie, keine Subunternehmer, kein US-Cloud-Risiko.
+          stecken in jedem Agenten — keine Theorie, EU-Datenschutzniveau, transparente Subprozessoren.
         </p>
 
         {/* Trust stats */}
@@ -166,7 +166,7 @@ export default function KIBeratungWiesbadenPage() {
               'Prozess-Audit vor Ort in Wiesbaden — 60-Minuten-Termin, kein Pitch',
               'Maßgeschneiderte KI-Agenten auf LangChain / LangGraph',
               'Integration in HubSpot, Salesforce, DATEV, Personio, Slack, Teams',
-              'DSGVO-konformes Hosting auf EU-Servern (Frankfurt / Berlin)',
+              'DSGVO-konformes Hosting in Deutschland (Nürnberg) auf EU-Servern',
               '24/7-Monitoring & monatliche Optimierungs-Reviews',
               'Persönliche Ansprechpartner — kein Helpdesk-Outsourcing'
             ].map((s) => (

@@ -11,7 +11,7 @@ export async function GET() {
 
 ## Über uns
 
-RSG Agent Services (Markenname der RSG Recruiting Solutions Group GmbH, Wiesbaden) entwickelt maßgeschneiderte KI-Agenten für Vertrieb, Support und Operations im deutschsprachigen Mittelstand. Geschäftsführer: Ricardo Serrano. Stack: LangChain, LangGraph, n8n, OpenAI, Anthropic. EU-Cloud-Hosting (Frankfurt + Berlin), AVV inklusive.
+RSG Agent Services (Markenname der RSG Recruiting Solutions Group GmbH, Wiesbaden) entwickelt maßgeschneiderte KI-Agenten für Vertrieb, Support und Operations im deutschsprachigen Mittelstand. Geschäftsführer: Ricardo Serrano. Stack: LangChain, LangGraph, n8n, OpenAI, Anthropic. EU-Cloud-Hosting in Deutschland (Nürnberg), AVV inklusive.
 
 ## Kernleistungen
 

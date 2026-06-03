@@ -14,28 +14,40 @@ type AgentCard = {
   price: string;
   priceSuffix?: string;
   marketPrice?: string;
+  roiHint?: string;
   bestFor?: string;
   features: readonly string[];
-  cta: string;
+  /** Direct Stripe Payment-Link (one-time). When present → primary CTA. */
+  checkoutUrl?: string;
+  /** Label for the buy button when checkoutUrl is set */
+  buyLabel?: string;
+  /** Always-shown secondary CTA leading to /termin */
+  secondaryCta: string;
   ctaHref: string;
   recommended?: boolean;
 };
 
 const HREF = '/termin';
 
-const agentCards: AgentCard[] = (pricing.tiers || []).map((t, i) => ({
-  id: 'agent-' + i,
-  name: t.name,
-  tagline: t.tagline,
-  price: t.price,
-  priceSuffix: t.priceSuffix,
-  marketPrice: t.marketPrice,
-  bestFor: t.bestFor,
-  features: t.features,
-  cta: t.cta,
-  ctaHref: HREF,
-  recommended: t.recommended,
-}));
+const agentCards: AgentCard[] = (pricing.tiers || []).map((t, i) => {
+  const tier = t as typeof t & { checkoutUrl?: string; buyLabel?: string; roiHint?: string };
+  return {
+    id: 'agent-' + i,
+    name: t.name,
+    tagline: t.tagline,
+    price: t.price,
+    priceSuffix: t.priceSuffix,
+    marketPrice: t.marketPrice,
+    roiHint: tier.roiHint,
+    bestFor: t.bestFor,
+    features: t.features,
+    checkoutUrl: tier.checkoutUrl,
+    buyLabel: tier.buyLabel,
+    secondaryCta: t.cta,
+    ctaHref: HREF,
+    recommended: t.recommended,
+  };
+});
 
 /* ── Voice Plan Card with annual/monthly logic ── */
 function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
@@ -143,9 +155,10 @@ function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
   );
 }
 
-/* ── Workflow / Agent project card (unchanged behavior) ── */
+/* ── Workflow / Agent project card — Buy-Button + secondary "Erstgespräch" ── */
 function AgentPlanCard({ card }: { card: AgentCard }) {
   const rec = !!card.recommended;
+  const hasBuy = !!card.checkoutUrl;
   return (
     <div
       className={
@@ -163,13 +176,23 @@ function AgentPlanCard({ card }: { card: AgentCard }) {
       <h4 className="font-display text-[1.5rem] font-medium text-[hsl(var(--fg))]">{card.name}</h4>
       <p className="mt-1 min-h-[2.5rem] text-[0.9rem] leading-relaxed text-[hsl(var(--muted))]">{card.tagline}</p>
       <div className="my-6 h-px w-full bg-[hsl(var(--border))]" />
+
       <div className="flex items-end gap-2">
-        <span className="font-display text-[clamp(2.25rem,3.6vw,3rem)] font-medium leading-none tabular-nums tracking-[-0.025em] text-[hsl(var(--fg))]">{card.price}</span>
+        <span className="font-display text-[clamp(2.25rem,3.6vw,3rem)] font-medium leading-none tabular-nums tracking-[-0.025em] text-[hsl(var(--fg))]">
+          {card.price}
+        </span>
         {card.priceSuffix ? <span className="mb-1 text-[0.95rem] text-[hsl(var(--subtle))]">{card.priceSuffix}</span> : null}
       </div>
+
       {card.marketPrice ? (
-        <p className="mt-2 text-[0.8rem] text-[hsl(var(--subtle))]"><span className="line-through">{card.marketPrice}</span> · unser Preis</p>
+        <p className="mt-2 text-[0.8rem] text-[hsl(var(--subtle))]">
+          <span className="line-through">{card.marketPrice}</span>
+          <span className="ml-1.5 rounded-full bg-[hsl(var(--accent))/12] px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-[hsl(var(--accent))]">
+            unser Preis
+          </span>
+        </p>
       ) : null}
+
       <ul className="mt-6 flex-1 space-y-3">
         {card.features.map((f) => (
           <li key={f} className="flex items-start gap-2.5 text-[0.875rem] leading-relaxed text-[hsl(var(--muted))]">
@@ -178,21 +201,62 @@ function AgentPlanCard({ card }: { card: AgentCard }) {
           </li>
         ))}
       </ul>
-      {card.bestFor ? (
-        <p className="mt-5 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))]">{card.bestFor}</p>
+
+      {card.roiHint ? (
+        <p className="mt-5 inline-flex items-center gap-1.5 self-start rounded-full bg-[hsl(var(--accent))/10] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-[hsl(var(--accent))]">
+          ✨ {card.roiHint}
+        </p>
       ) : null}
-      <a
-        href={card.ctaHref}
-        data-event="booking_clicked"
-        className={
-          'mt-6 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-[0.9rem] font-medium transition-all ' +
-          (rec
-            ? 'bg-[hsl(var(--accent))] text-white hover:brightness-110'
-            : 'border border-[hsl(var(--border))] text-[hsl(var(--fg))] hover:border-[hsl(var(--accent))/60] hover:text-[hsl(var(--accent))]')
-        }
-      >
-        {card.cta}
-      </a>
+
+      {card.bestFor ? (
+        <p className="mt-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))]">
+          {card.bestFor}
+        </p>
+      ) : null}
+
+      {/* Primary CTA — Stripe Buy-Button if checkoutUrl present, else /termin */}
+      {hasBuy ? (
+        <a
+          href={card.checkoutUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-event="workflow_buy_click"
+          data-tier={card.id}
+          className={
+            'mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-[0.9rem] font-medium transition-all ' +
+            (rec
+              ? 'bg-[hsl(var(--accent))] text-white hover:brightness-110'
+              : 'bg-[hsl(var(--accent))] text-white hover:brightness-110')
+          }
+        >
+          {card.buyLabel || 'Paket buchen'}
+          <ArrowUpRight className="h-3.5 w-3.5" />
+        </a>
+      ) : (
+        <a
+          href={card.ctaHref}
+          data-event="booking_clicked"
+          className={
+            'mt-6 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-[0.9rem] font-medium transition-all ' +
+            (rec
+              ? 'bg-[hsl(var(--accent))] text-white hover:brightness-110'
+              : 'border border-[hsl(var(--border))] text-[hsl(var(--fg))] hover:border-[hsl(var(--accent))/60] hover:text-[hsl(var(--accent))]')
+          }
+        >
+          {card.secondaryCta}
+        </a>
+      )}
+
+      {/* Secondary CTA — always available when buy button shows, for bigger scope */}
+      {hasBuy ? (
+        <a
+          href={card.ctaHref}
+          data-event="booking_clicked_secondary"
+          className="mt-3 inline-flex w-full items-center justify-center text-[0.8rem] text-[hsl(var(--muted))] underline-offset-2 transition-colors hover:text-[hsl(var(--fg))] hover:underline"
+        >
+          Größerer Scope? {card.secondaryCta} →
+        </a>
+      ) : null}
     </div>
   );
 }
@@ -217,10 +281,11 @@ export function PricingPlansSection() {
             Investment · transparent & netto
           </span>
           <h2 className="mx-auto mt-3 max-w-3xl font-display text-[clamp(1.875rem,3.4vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
-            Zwei Wege zu mehr Output — pro Monat oder als Projekt.
+            Zwei Wege zu mehr Umsatz mit KI — dein Telefon, oder deine Prozesse.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[1rem] leading-relaxed text-[hsl(var(--muted))]">
-            Sprachagenten für dein Telefon oder maßgeschneiderte KI-Agenten & Automatisierung. Wähl deine Linie.
+            <strong className="text-[hsl(var(--fg))]">KI-Sprachagenten</strong> nehmen dein Telefon ab.{' '}
+            <strong className="text-[hsl(var(--fg))]">KI-Agenten & Workflows</strong> nehmen dir die Prozesse ab. Wähl deine Linie — oder kombiniere beide.
           </p>
         </div>
 
@@ -275,6 +340,33 @@ export function PricingPlansSection() {
             </div>
           ) : null}
         </div>
+
+        {/* Cross-tab teaser — surfaces the *other* line so nobody misses it */}
+        <p className="mt-4 text-center text-[0.8rem] text-[hsl(var(--muted))]">
+          {active === 'voice' ? (
+            <>
+              Brauchst du eher Prozess-Automatisierung?{' '}
+              <button
+                type="button"
+                onClick={() => setActive('agents')}
+                className="font-medium text-[hsl(var(--accent))] underline-offset-2 hover:underline"
+              >
+                → KI-Agenten & Workflows
+              </button>
+            </>
+          ) : (
+            <>
+              Brauchst du eher Telefonie?{' '}
+              <button
+                type="button"
+                onClick={() => setActive('voice')}
+                className="font-medium text-[hsl(var(--accent))] underline-offset-2 hover:underline"
+              >
+                → KI-Sprachagenten
+              </button>
+            </>
+          )}
+        </p>
 
         {/* Cards */}
         {active === 'voice' ? (

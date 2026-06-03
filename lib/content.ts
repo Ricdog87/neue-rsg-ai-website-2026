@@ -493,6 +493,8 @@ export const pricing = {
         'Dokumentation & Team-Schulung',
         'Standard-Support (Mo–Fr)'
       ],
+      checkoutUrl: 'https://buy.stripe.com/dRm6oHfcmfIs7ss2xO8bS00',
+      buyLabel: 'Paket buchen — 2.500 €',
       cta: 'Erstgespräch buchen',
       recommended: false
     },
@@ -513,6 +515,8 @@ export const pricing = {
         'Priorisierter Support · Wöchentliches Reporting',
         '14 Tage Optimierungs-SLA nach Go-Live'
       ],
+      checkoutUrl: 'https://buy.stripe.com/8x2eVd2pAdAkcMM2xO8bS01',
+      buyLabel: 'Paket buchen — 5.000 €',
       cta: 'Erstgespräch buchen',
       recommended: true
     }

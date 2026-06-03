@@ -134,7 +134,7 @@ export function VoiceAgentsSection() {
           className={cn(
             'mt-16 grid gap-px overflow-hidden rounded-2xl border border-[hsl(var(--border-strong))]',
             'bg-[hsl(var(--border))]',
-            'sm:grid-cols-2 lg:grid-cols-4',
+            'sm:grid-cols-3',
           )}
         >
           {voiceAgents.proofPoints.map((p) => (

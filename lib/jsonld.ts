@@ -178,7 +178,7 @@ export function voiceProductLd() {
       '@type': 'AggregateOffer',
       priceCurrency: 'EUR',
       lowPrice: '199',
-      highPrice: '299',
+      highPrice: '499',
       offerCount: 3,
       availability: 'https://schema.org/InStock',
       offers: [
@@ -193,7 +193,7 @@ export function voiceProductLd() {
         {
           '@type': 'Offer',
           name: 'Team · monatlich',
-          price: '299',
+          price: '499',
           priceCurrency: 'EUR',
           eligibleQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' },
           url: `${site.url}/#pricing`,

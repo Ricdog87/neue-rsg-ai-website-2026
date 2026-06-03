@@ -15,7 +15,7 @@ type Billing = 'monthly' | 'annual';
  *   ┌─ KI-Telefonassistentin (Voice, default) ─┬─ KI-Agenten & Workflows ─┐
  *   │                                          │                          │
  *   │  Monatlich / Jährlich (−15 %)            │                          │
- *   │  [Solo 199] [Team 299 ★] [Scale →call]   │  [Workflows] [Agent]     │
+ *   │  [Solo 199] [Team 499 ★] [Scale →call]   │  [Workflows] [Agent]     │
  *   └──────────────────────────────────────────┴──────────────────────────┘
  *
  * Solo/Team CTAs → /api/checkout (Stripe — skeleton, ENV-driven).

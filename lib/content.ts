@@ -424,8 +424,8 @@ export const voicePricing = {
       id: 'team',
       name: 'Team',
       tagline: 'Alles aus Solo + Volumen + Outbound.',
-      monthly: 299,
-      annual: 254, // 299 × 0.85 ≈ 254
+      monthly: 499,
+      annual: 424, // 499 × 0.85 ≈ 424
       bestFor: 'Teams · KMU mit Vertriebs- oder Support-Calls',
       features: [
         '2 Rufnummern · ⚠️ TBD',

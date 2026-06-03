@@ -111,7 +111,7 @@ export function UspSection() {
     <section
       ref={sectionRef}
       id="usp"
-      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-20 md:py-28 lg:px-10"
+      className="relative overflow-x-clip border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 backdrop-blur-[2px] px-6 py-20 md:py-28 lg:px-10"
     >
       {/* Subtle accent wash top-right */}
       <div

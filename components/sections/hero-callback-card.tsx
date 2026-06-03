@@ -100,7 +100,7 @@ export function HeroCallbackCard() {
           </span>
           <span className="flex items-center gap-1.5">
             <Star className="h-3.5 w-3.5 fill-current text-[hsl(var(--accent))]" />
-            <strong className="font-semibold text-white">4,9/5</strong>&nbsp;Bewertung
+            <strong className="font-semibold text-white">DSGVO</strong>&nbsp;konform
           </span>
           <span>
             <strong className="font-semibold text-white">200+</strong>&nbsp;Agenten online

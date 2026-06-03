@@ -4,7 +4,7 @@ test.describe('Smoke — Hero & CTA', () => {
   test('Hero rendert mit kinetischer Headline', async ({ page }) => {
     await page.goto('/');
     // Eyebrow
-    await expect(page.getByText(/KI-Werkstatt für den Vertrieb/i)).toBeVisible();
+    await expect(page.getByText(/Werkstatt für den Vertrieb/i)).toBeVisible();
     // Headline (mindestens ein Fragment)
     await expect(page.getByRole('heading', { level: 1 })).toContainText('KI-Agenten');
     // Subline

@@ -211,7 +211,7 @@ export const voiceAgents = {
     { value: '30h-Stelle', label: 'eingespart pro Agent · Ø Mittelstand' },
     { value: '200+', label: 'Voice-Agenten online & in Wartung' },
     { value: '9.000 Calls/Mo.', label: 'Spitzenkunden-Volumen verarbeitet' },
-    { value: '4,9 / 5', label: 'Ø Bewertung · Trustpilot · Google · OMR' },
+
   ],
   cta: {
     primary: 'Live-Demo anhören',

@@ -65,7 +65,7 @@ export default async function OpenGraphImage() {
               maxWidth: 900,
             }}
           >
-            Live in 2–4 Wochen · 312 % Ø ROI · DSGVO · EU-Cloud · Hosting in Deutschland.
+            Live in 2–4 Wochen · starker ROI-Hebel · DSGVO · EU-Cloud · Hosting in Deutschland.
           </div>
         </div>
 

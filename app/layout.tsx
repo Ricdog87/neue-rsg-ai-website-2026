@@ -10,6 +10,7 @@ import { PageTransition } from '@/components/effects/page-transition';
 import { SectionRail } from '@/components/effects/section-rail';
 import { ChapterHud } from '@/components/effects/chapter-hud';
 import { FloatingCta } from '@/components/effects/floating-cta';
+import { MobileVoiceCta } from '@/components/effects/mobile-voice-cta';
 import { KeyboardShortcuts } from '@/components/effects/keyboard-shortcuts';
 import { EntryLoader } from '@/components/system/entry-loader';
 import { PersistentCanvas } from '@/components/system/persistent-canvas';
@@ -24,6 +25,7 @@ import {
   localBusinessLd,
   personLd,
   servicesLd,
+  voiceProductLd,
   websiteLd,
   ldJson,
 } from '@/lib/jsonld';
@@ -98,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               localBusinessLd(),
               personLd(),
               servicesLd(),
+              voiceProductLd(),
             ),
           }}
         />
@@ -120,6 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SectionRail />
             <ChapterHud />
             <FloatingCta />
+            <MobileVoiceCta />
             <KeyboardShortcuts />
             <main id="main-content" className="relative z-[1]">{children}</main>
             <Footer />

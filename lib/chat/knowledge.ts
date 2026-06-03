@@ -47,7 +47,7 @@ ${bullets(hero.trustChips)}
 `.trim();
 
 const voiceBlock = `
-# RSG AI Voice-Suite — Telefon-Agenten (JETZT NEU, ab Q2 2026)
+# RSG AI Voice-Suite — Telefon-Agenten (JETZT NEU, ab Q3 2026)
 RSG AI baut und betreibt natürlich klingende KI-Telefon-Agenten für den
 Mittelstand. Hosting in Nürnberg (DE), DSGVO + EU AI Act konform.
 Einrichtung typischerweise unter 10 Minuten für Standard-Use-Cases,

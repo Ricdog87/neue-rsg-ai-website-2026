@@ -79,7 +79,7 @@ export function FloatingCta() {
             data-cursor-label="Buchen"
             data-sound="tick"
             data-event="meeting-cta-floating"
-            aria-label="Erstgespräch buchen — Q2 2026, 3 Plätze frei"
+            aria-label="Erstgespräch buchen — Q3 2026, 3 Plätze frei"
             className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-white/15 bg-[hsl(var(--bg))]/90 backdrop-blur-md transition-all hover:border-[hsl(var(--accent))] hover:bg-[hsl(var(--bg))]/95
                        h-12 w-12 justify-center p-0 md:h-auto md:w-auto md:py-3 md:pl-3 md:pr-5"
             style={{
@@ -101,7 +101,7 @@ export function FloatingCta() {
             {/* Text label + arrow — desktop only */}
             <span className="hidden md:flex md:flex-col md:leading-tight">
               <span className="font-mono text-[0.55rem] uppercase tracking-[0.22em] text-white/55">
-                Q2 2026 · 3 Plätze frei
+                Q3 2026 · 3 Plätze frei
               </span>
               <span className="font-display text-[0.875rem] font-medium tracking-tight text-white">
                 Erstgespräch buchen

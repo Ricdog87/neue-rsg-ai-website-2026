@@ -411,7 +411,7 @@ export const voicePricing = {
       bestFor: 'Selbstständige · Solo-Berater · 1-Person-Setups',
       features: [
         '1 Rufnummer inklusive',
-        '500 Min Inbound/Monat · ⚠️ TBD',
+        '1.000 Min/Monat inkl. · jede weitere 0,29 €',
         'Transkripte ins CRM',
         'Geführtes Onboarding',
         'Mo–Fr Standard-Support',
@@ -428,8 +428,8 @@ export const voicePricing = {
       annual: 424, // 499 × 0.85 ≈ 424
       bestFor: 'Teams · KMU mit Vertriebs- oder Support-Calls',
       features: [
-        '2 Rufnummern · ⚠️ TBD',
-        '2.000 Min Inbound + 500 Min Outbound · ⚠️ TBD',
+        '2 Rufnummern inklusive',
+        '3.000 Min/Monat inkl. (Inbound + Outbound) · jede weitere 0,25 €',
         'Outbound-Kampagnen (Reaktivierung, Follow-ups)',
         'Wöchentliches Reporting',
         'Prioritäts-Support',
@@ -447,7 +447,7 @@ export const voicePricing = {
       bestFor: 'Größere Teams · Mehrstandort · spezielle Compliance',
       features: [
         'Custom-Voice (Brand-Stimme)',
-        'Unbegrenzte Rufnummern + Minuten · ⚠️ TBD',
+        'ab 5.000 Min/Monat · individuell · unbegrenzt skalierbar',
         'Individuelle Workflows + n8n/LangGraph-Integration',
         'Dediziertes SLA + Slack-Support',
         'Quartalsweise Roadmap-Review',

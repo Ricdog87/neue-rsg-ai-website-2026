@@ -10,7 +10,7 @@ export const FAQ: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Was passiert mit unseren Daten?',
-    a: 'Alle Daten bleiben in deutschen Rechenzentren (Frankfurt + Berlin). Kein US-Cloud-Anbieter, keine Drittland-Übertragung. Auftragsverarbeitungsvertrag inklusive, Daten-Lokation transparent — dein Datenschutzbeauftragter atmet durch.',
+    a: 'Gesprächs- und Sprachdaten werden in einem deutschen Rechenzentrum (Hetzner, Nürnberg) gespeichert. Teile der KI-Sprachverarbeitung laufen über zertifizierte EU-/US-Dienste auf Basis des EU-US Data Privacy Framework bzw. von Standardvertragsklauseln. Auftragsverarbeitungsvertrag inklusive, Daten-Lokation transparent — dein Datenschutzbeauftragter atmet durch.',
   },
   {
     q: 'Sind wir am Ende von eurer Infrastruktur abhängig?',

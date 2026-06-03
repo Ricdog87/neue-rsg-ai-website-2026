@@ -365,14 +365,14 @@ export function PricingPlansSection() {
         </div>
 
         {/* Cross-tab teaser — surfaces the *other* line so nobody misses it */}
-        <p className="mt-4 text-center text-[0.8rem] text-[hsl(var(--muted))]">
+        <p className="mt-5 text-center text-[0.95rem] text-[hsl(var(--muted))]">
           {active === 'voice' ? (
             <>
               Brauchst du eher Prozess-Automatisierung?{' '}
               <button
                 type="button"
                 onClick={() => setActive('agents')}
-                className="font-medium text-[hsl(var(--accent))] underline-offset-2 hover:underline"
+                className="ml-1.5 inline-flex items-center rounded-full border border-[hsl(var(--accent))/45] bg-[hsl(var(--accent))/12] px-3.5 py-1.5 align-middle font-semibold text-[hsl(var(--accent))] transition-colors hover:border-[hsl(var(--accent))] hover:bg-[hsl(var(--accent))/20]"
               >
                 → KI-Agenten & Workflows
               </button>
@@ -383,7 +383,7 @@ export function PricingPlansSection() {
               <button
                 type="button"
                 onClick={() => setActive('voice')}
-                className="font-medium text-[hsl(var(--accent))] underline-offset-2 hover:underline"
+                className="ml-1.5 inline-flex items-center rounded-full border border-[hsl(var(--accent))/45] bg-[hsl(var(--accent))/12] px-3.5 py-1.5 align-middle font-semibold text-[hsl(var(--accent))] transition-colors hover:border-[hsl(var(--accent))] hover:bg-[hsl(var(--accent))/20]"
               >
                 → KI-Sprachagenten
               </button>

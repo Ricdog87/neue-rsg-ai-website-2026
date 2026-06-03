@@ -103,7 +103,7 @@ export function HeroCallbackCard() {
             <strong className="font-semibold text-white">DSGVO</strong>&nbsp;konform
           </span>
           <span>
-            <strong className="font-semibold text-white">200+</strong>&nbsp;Agenten online
+            <strong className="font-semibold text-white">Live</strong>&nbsp;im Wirkbetrieb
           </span>
         </div>
 

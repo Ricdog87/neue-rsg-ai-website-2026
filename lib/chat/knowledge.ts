@@ -34,7 +34,7 @@ const companyBlock = `
 - Rechtsträger: ${site.legal.company} · ${site.legal.hrb}
 - Standort: ${site.contact.city}
 - Geschäftszeiten: ${site.contact.hours}
-- Hosting: EU-Cloud, deutsche Rechenzentren (Frankfurt + Berlin), DSGVO-konform
+- Hosting: Speicherung in Deutschland (Hetzner, Nürnberg); Teile der KI-Sprachverarbeitung über zertifizierte EU-/US-Dienste unter EU-US Data Privacy Framework bzw. Standardvertragsklauseln; DSGVO-konform
 - Gründer & Geschäftsführer: ${about.founder.name} — 15 Jahre B2B-Vertrieb, baut KI für den Mittelstand
 - Kontakt: ${site.contact.email} · ${site.contact.phone}
 - LinkedIn: ${site.social.linkedin}
@@ -49,7 +49,7 @@ ${bullets(hero.trustChips)}
 const voiceBlock = `
 # RSG AI Voice-Suite — Telefon-Agenten (JETZT NEU, ab Q3 2026)
 RSG AI baut und betreibt natürlich klingende KI-Telefon-Agenten für den
-Mittelstand. Hosting in Nürnberg (DE), DSGVO + EU AI Act konform.
+Mittelstand. Speicherung in Nürnberg (DE), Sprachverarbeitung über EU-/US-Dienste (DPF/SCC). DSGVO-konform, auf EU-AI-Act-Transparenz ausgelegt.
 Einrichtung typischerweise unter 10 Minuten für Standard-Use-Cases,
 4 Wochen Festpreis-Projekt für Custom-Agenten.
 

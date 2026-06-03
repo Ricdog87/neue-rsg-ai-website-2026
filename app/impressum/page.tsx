@@ -10,9 +10,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+// USt-IdNr. hier eintragen, sobald vorhanden (z. B. 'DE123456789').
+// Solange leer, wird der USt-ID-Abschnitt bewusst nicht angezeigt
+// (vermeidet die abmahngefährdete Formulierung „wird auf Anfrage mitgeteilt").
+const vatId = '';
+
 export default function ImpressumPage() {
   return (
-    <LegalLayout title="Impressum" updatedAt="Mai 2026">
+    <LegalLayout title="Impressum" updatedAt="Juni 2026">
       <p>
         <strong>{site.legal.brandName}</strong> ist eine Marke der nachfolgend genannten
         Gesellschaft. Diese Website wird betrieben von:
@@ -53,12 +58,16 @@ export default function ImpressumPage() {
         E-Mail: <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
       </p>
 
-      <h2>Umsatzsteuer-ID</h2>
-      <p>
-        Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
-        <br />
-        wird auf Anfrage mitgeteilt.
-      </p>
+      {vatId ? (
+        <>
+          <h2>Umsatzsteuer-ID</h2>
+          <p>
+            Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
+            <br />
+            {vatId}
+          </p>
+        </>
+      ) : null}
 
       <h2>Redaktionell verantwortlich</h2>
       <p>
@@ -67,19 +76,15 @@ export default function ImpressumPage() {
         Am Heiligenhaus 9, 65207 Wiesbaden
       </p>
 
-      <h2>EU-Streitschlichtung</h2>
+      <h2>Verbraucherinformation</h2>
       <p>
-        Die Europäische Kommission stellt eine Plattform zur
-        Online-Streitbeilegung (OS) bereit:{' '}
+        Die Angebote von RSG AI richten sich ausschließlich an Unternehmer. Die
+        Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS)
+        bereit:{' '}
         <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">
           https://ec.europa.eu/consumers/odr/
         </a>
-        . Unsere E-Mail-Adresse finden Sie oben.
-      </p>
-
-      <h2>Verbraucherstreitbeilegung</h2>
-      <p>
-        Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+        . Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
         Verbraucherschlichtungsstelle teilzunehmen.
       </p>
 

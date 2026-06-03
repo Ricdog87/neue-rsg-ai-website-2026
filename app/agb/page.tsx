@@ -5,26 +5,28 @@ import { site } from '@/lib/content';
 export const metadata: Metadata = {
   title: 'Allgemeine Geschäftsbedingungen',
   description:
-    'Allgemeine Geschäftsbedingungen der RSG Recruiting Solutions Group GmbH für KI-Agenten- und Beratungsleistungen.',
+    'Allgemeine Geschäftsbedingungen der RSG Recruiting Solutions Group GmbH für KI-Agenten-, Voice- und Beratungsleistungen.',
   alternates: { canonical: '/agb' },
   robots: { index: true, follow: true },
 };
 
 export default function AgbPage() {
   return (
-    <LegalLayout title="Allgemeine Geschäftsbedingungen" updatedAt="Mai 2026">
+    <LegalLayout title="Allgemeine Geschäftsbedingungen" updatedAt="Juni 2026">
       <p>
         Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen
         der <strong>{site.legal.company}</strong> (nachfolgend „RSG"), die unter der
-        Marke <strong>{site.legal.brandName}</strong> KI-Agenten-, Beratungs- und
+        Marke <strong>{site.legal.brandName}</strong> KI-Agenten-, Voice-, Beratungs- und
         Automatisierungsleistungen anbietet, und ihren Auftraggebern (nachfolgend „Kunde").
       </p>
 
       <h2>§ 1 Geltungsbereich</h2>
       <p>
-        Diese AGB gelten für alle Angebote, Verträge und Leistungen der RSG. Abweichende
-        Bedingungen des Kunden werden nur durch ausdrückliche schriftliche Anerkennung
-        Bestandteil des Vertrages.
+        Diese AGB gelten für alle Angebote, Verträge und Leistungen der RSG. Die Angebote
+        von RSG richten sich ausschließlich an Unternehmer im Sinne des § 14 BGB,
+        juristische Personen des öffentlichen Rechts und öffentlich-rechtliche
+        Sondervermögen. Abweichende Bedingungen des Kunden werden nur durch ausdrückliche
+        schriftliche Anerkennung Bestandteil des Vertrages.
       </p>
 
       <h2>§ 2 Vertragsschluss</h2>
@@ -42,7 +44,11 @@ export default function AgbPage() {
       <ul>
         <li>Analyse bestehender Geschäftsprozesse</li>
         <li>Konzeption und Entwicklung von KI-Agenten und Workflow-Automatisierungen</li>
-        <li>Integration in bestehende Systeme (CRM, ERP, E-Mail, Messaging)</li>
+        <li>
+          Einrichtung und Betrieb von KI-Telefonassistenten (Voice-Agenten) auf Basis der
+          Plattform eines spezialisierten Anbieters (siehe § 8a)
+        </li>
+        <li>Integration in bestehende Systeme (CRM, ERP, E-Mail, Messaging, Telefonanlage)</li>
         <li>Hosting, Monitoring und Wartung der KI-Agenten</li>
         <li>Team-Schulung und Dokumentation</li>
       </ul>
@@ -55,23 +61,23 @@ export default function AgbPage() {
         entsprechend.
       </p>
 
-      <h2>§ 5 Vergütung & Zahlungsbedingungen</h2>
+      <h2>§ 5 Vergütung &amp; Zahlungsbedingungen</h2>
       <p>
         Es gelten die im jeweiligen Angebot vereinbarten Preise. Alle Preise verstehen
         sich zuzüglich der gesetzlichen Mehrwertsteuer. Rechnungen sind innerhalb von
         14 Tagen ohne Abzug zur Zahlung fällig, sofern nicht anders vereinbart.
-        Token- und Hosting-Kosten werden transparent nach tatsächlicher Nutzung
-        abgerechnet.
+        Token-, Gesprächsminuten- und Hosting-Kosten werden transparent nach
+        tatsächlicher Nutzung abgerechnet.
       </p>
 
-      <h2>§ 6 Lieferzeit & Go-Live</h2>
+      <h2>§ 6 Lieferzeit &amp; Go-Live</h2>
       <p>
         RSG strebt einen Go-Live des ersten produktiven KI-Agenten innerhalb von 2–4
         Wochen ab Vertragsschluss an. Verbindliche Termine werden im Kundenvertrag
         festgehalten.
       </p>
 
-      <h2>§ 7 Gewährleistung & Haftung</h2>
+      <h2>§ 7 Gewährleistung &amp; Haftung</h2>
       <p>
         RSG erbringt ihre Leistungen mit der Sorgfalt eines ordentlichen Kaufmanns nach
         dem aktuellen Stand der Technik. Für Schäden haftet RSG nur bei Vorsatz oder
@@ -81,12 +87,63 @@ export default function AgbPage() {
         nach dem Produkthaftungsgesetz bleibt unberührt.
       </p>
 
-      <h2>§ 8 Datenschutz & Vertraulichkeit</h2>
+      <h2>§ 7a Besondere Hinweise zu KI-Leistungen</h2>
+      <p>
+        KI-Systeme erzeugen Ergebnisse auf Basis statistischer Modelle. RSG übernimmt
+        keine Gewähr für die inhaltliche Richtigkeit, Vollständigkeit oder Eignung
+        einzelner durch ein KI-System erzeugter Antworten oder Handlungen. Der Kunde ist
+        verpflichtet, geschäftskritische oder rechtlich relevante Vorgänge durch geeignete
+        Kontroll- und Eskalationsmechanismen abzusichern. Aussagen zu erwartbaren
+        Ergebnissen (z.&nbsp;B. Zeitersparnis oder ROI) sind unverbindliche
+        Erfahrungswerte und keine zugesicherten Eigenschaften.
+      </p>
+
+      <h2>§ 8 Datenschutz &amp; Vertraulichkeit</h2>
       <p>
         Beide Parteien verpflichten sich, sämtliche im Rahmen der Geschäftsbeziehung
         bekannt gewordenen Informationen vertraulich zu behandeln. Bei Verarbeitung
         personenbezogener Daten im Auftrag des Kunden schließen die Parteien einen
         gesonderten Auftragsverarbeitungsvertrag (AVV) gemäß Art. 28 DSGVO.
+      </p>
+
+      <h2>§ 8a Einsatz von Unterauftragsverarbeitern</h2>
+      <p>
+        RSG ist berechtigt, zur Leistungserbringung Unterauftragsverarbeiter einzusetzen.
+        Für den Betrieb der KI-Telefonassistenten nutzt RSG insbesondere die Plattform der
+        fonio GmbH (Wien, Österreich); die Speicherung der Daten erfolgt in einem
+        Rechenzentrum in Deutschland. Für die Sprachverarbeitung werden weitere
+        Unterauftragsverarbeiter (u.&nbsp;a. mit Sitz in den USA) auf Grundlage des EU-US
+        Data Privacy Framework bzw. von Standardvertragsklauseln eingebunden. Eine jeweils
+        aktuelle Liste der Unterauftragsverarbeiter stellt RSG dem Kunden als Anlage zum
+        Auftragsverarbeitungsvertrag zur Verfügung und informiert über beabsichtigte
+        Änderungen rechtzeitig in Textform; der Kunde kann aus wichtigem Grund
+        widersprechen.
+      </p>
+
+      <h2>§ 8b Transparenz- und Einwilligungspflichten am Telefon</h2>
+      <p>
+        Der Kunde ist als Verantwortlicher dafür zuständig, die betroffenen Anrufer
+        datenschutzkonform zu informieren. RSG stellt sicher, dass der KI-Telefonassistent
+        zu Beginn jedes Gesprächs darauf hinweist, dass es sich um einen KI-Assistenten
+        handelt und dass das Gespräch verschriftlicht bzw. aufgezeichnet wird. Lehnt ein
+        Anrufer die Aufzeichnung ab, wird diese – nach Wahl des Kunden im Rahmen der
+        Konfiguration – automatisch gelöscht und/oder das Gespräch an einen Mitarbeiter
+        des Kunden weitergeleitet. Für ausgehende (Outbound-)Anrufe stellt der Kunde
+        sicher, dass die erforderlichen Einwilligungen bzw. die Voraussetzungen des § 7
+        UWG vorliegen; unverlangte Werbeanrufe (Kaltakquise) sind unzulässig.
+      </p>
+
+      <h2>§ 8c Verantwortung des Kunden für Inhalte und besondere Daten</h2>
+      <p>
+        Der Kunde ergänzt seine eigene Datenschutzerklärung um die Verarbeitung durch den
+        KI-Telefonassistenten und richtet interne Prozesse zur Erfüllung von
+        Betroffenenrechten ein. Verarbeitet der Kunde über den Assistenten besondere
+        Kategorien personenbezogener Daten (z.&nbsp;B. Gesundheitsdaten) oder unterliegt er
+        einem Berufsgeheimnis (z.&nbsp;B. § 203 StGB), informiert er RSG vorab und trifft
+        die hierfür erforderlichen zusätzlichen Maßnahmen (u.&nbsp;a. ausdrückliche
+        Einwilligung, ggf. Datenschutz-Folgenabschätzung, Verpflichtung mitwirkender
+        Stellen). Für die inhaltliche Rechtmäßigkeit der von ihm vorgegebenen
+        Gesprächsskripte, Ansagen und Datenfelder ist der Kunde verantwortlich.
       </p>
 
       <h2>§ 9 Nutzungsrechte</h2>
@@ -95,10 +152,11 @@ export default function AgbPage() {
         nicht-ausschließliches, unbefristetes Nutzungsrecht an den im Rahmen des
         Vertrages erstellten KI-Agenten und Workflows zum vereinbarten Einsatzzweck.
         Vorlagen, Frameworks und Komponenten, die RSG bereichsübergreifend einsetzt,
-        verbleiben im Eigentum von RSG.
+        sowie Leistungen eingebundener Plattform-Anbieter verbleiben im Eigentum von RSG
+        bzw. des jeweiligen Anbieters.
       </p>
 
-      <h2>§ 10 Laufzeit & Kündigung</h2>
+      <h2>§ 10 Laufzeit &amp; Kündigung</h2>
       <p>
         Wartungs- und Hosting-Verträge laufen, sofern nicht anders vereinbart, auf
         unbestimmte Zeit und können mit einer Frist von 3 Monaten zum Monatsende

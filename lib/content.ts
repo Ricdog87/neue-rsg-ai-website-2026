@@ -515,7 +515,7 @@ export const footer = {
       ]
     },
     {
-      title: 'Cases & Insights',
+      title: 'KI-Lösungen', links: [{ label: 'KI-Telefonassistent', href: '/ki-telefonassistent' }, { label: 'KI-Agentur Mittelstand', href: '/ki-agentur-mittelstand' }, { label: 'Telefon-Agent Arztpraxis', href: '/ki-telefonassistent/arztpraxis' }, { label: 'Telefon-Agent Handwerk', href: '/ki-telefonassistent/handwerk' }, { label: 'Telefon-Agent Steuerberater', href: '/ki-telefonassistent/steuerberater' }, { label: 'Telefon-Agent Hausverwaltung', href: '/ki-telefonassistent/hausverwaltung' }, { label: 'Telefon-Agent Hotellerie', href: '/ki-telefonassistent/hotel' }, { label: 'Telefon-Agent Autohaus', href: '/ki-telefonassistent/autohaus' }] }, { title: 'Cases & Insights',
       links: [
         { label: 'Alle Case Studies', href: '/cases' },
         { label: 'Insights · Essays', href: '/insights' },

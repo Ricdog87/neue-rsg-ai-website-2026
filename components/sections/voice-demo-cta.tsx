@@ -12,7 +12,7 @@ import { Star, ArrowRight } from 'lucide-react';
  */
 
 const STATS = [
-  { value: '4,9/5', label: 'Ø Bewertung · Trustpilot · Google · OMR' },
+
   { value: '200+', label: 'Voice-Agenten online & in Wartung' },
   { value: '9.000', label: 'Calls/Monat · Spitzen-Volumen verarbeitet' },
   { value: '0,4 s', label: 'Ø Reaktionszeit · schneller als ein Mensch' },

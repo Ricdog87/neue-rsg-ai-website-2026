@@ -50,8 +50,8 @@ const REASONS = [
 
 const PROOF = [
   { value: '12+', label: 'Kunden-Agenten in Produktion' },
-  { value: '38.000+', label: 'Automatisierte Tasks pro Monat' },
-  { value: '312 %', label: 'Ø ROI nach 4 Monaten' }
+  { value: 'bis 38.000', label: 'automatisierte Tasks/Monat' },
+  { value: 'bis 312 %', label: 'ROI (Pilotkunden)' }
 ];
 
 export default function KIBeratungWiesbadenPage() {

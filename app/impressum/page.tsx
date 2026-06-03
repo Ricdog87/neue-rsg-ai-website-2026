@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 // USt-IdNr. hier eintragen, sobald vorhanden (z. B. 'DE123456789').
 // Solange leer, wird der USt-ID-Abschnitt bewusst nicht angezeigt
 // (vermeidet die abmahngefährdete Formulierung „wird auf Anfrage mitgeteilt").
-const vatId = '';
+const vatId = 'DE458027073';
 
 export default function ImpressumPage() {
   return (

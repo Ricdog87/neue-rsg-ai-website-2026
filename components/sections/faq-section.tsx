@@ -9,7 +9,7 @@ import { FAQ } from '@/lib/faq';
 const GUARANTEES = [
   { Icon: Clock, label: '30-Tage-SLA', detail: 'oder Anpassung auf unsere Kosten' },
   { Icon: Code2, label: 'Du besitzt alles', detail: 'Code · Daten · Konfig' },
-  { Icon: Lock, label: 'DSGVO · EU', detail: 'Frankfurt + Berlin · AVV inkl.' },
+  { Icon: Lock, label: 'DSGVO · EU', detail: 'Server in Deutschland (Nürnberg) · AVV inkl.' },
   { Icon: Shield, label: 'Festpreis', detail: 'vor dem ersten Commit' },
 ] as const;
 

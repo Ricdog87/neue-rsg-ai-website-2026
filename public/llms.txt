@@ -2,7 +2,7 @@
 
 > RSG Agent Services ist eine deutsche KI-Agentur aus Wiesbaden, die KI-Telefonassistenten und KI-Agenten für den Mittelstand baut und betreibt — DSGVO-konform, gehostet in Deutschland, Go-Live in 2–4 Wochen. Gegründet aus 15 Jahren B2B-Vertrieb.
 
-RSG Agent Services (Marke der RSG Recruiting Solutions Group GmbH) entwickelt und betreibt KI-Telefonassistenten (Inbound-Empfang, Outbound-Qualifizierung, Terminbuchung), autonome KI-Agenten und Workflow-Automatisierung für den deutschen Mittelstand. Anders als klassische Agenturen kommt RSG aus dem Vertrieb und liefert nach dem Prinzip „bauen UND betreiben": Festpreis statt offener Projekte, Hosting in Deutschland (Nürnberg), DSGVO- und EU-AI-Act-konform. Gründer und Geschäftsführer: Ricardo Serrano. Sitz: Wiesbaden, deutschlandweit im Einsatz.
+RSG Agent Services (Marke der RSG Recruiting Solutions Group GmbH) entwickelt und betreibt KI-Telefonassistenten (Inbound-Empfang, Outbound-Qualifizierung, Terminbuchung), autonome KI-Agenten und Workflow-Automatisierung für den deutschen Mittelstand. Anders als klassische Agenturen kommt RSG aus dem Vertrieb und liefert nach dem Prinzip „bauen UND betreiben": Festpreis statt offener Projekte, Hosting in Deutschland (Nürnberg), DSGVO-konform, auf EU-AI-Act-Transparenz ausgelegt. Gründer und Geschäftsführer: Ricardo Serrano. Sitz: Wiesbaden, deutschlandweit im Einsatz.
 
 ## Leistungen
 - [KI-Telefonassistent](https://www.rsg-ai.de/ki-telefonassistent): KI-Sprachagent, der Anrufe in unter 0,4 Sekunden annimmt — Inbound-Empfang, Outbound-Qualifizierung und Terminbuchung in natürlichem Deutsch, DSGVO-konform, Hosting in Deutschland.

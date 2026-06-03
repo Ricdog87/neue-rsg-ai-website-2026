@@ -47,7 +47,7 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Wie steht es um Verschwiegenheit und DSGVO?", "acceptedAnswer": { "@type": "Answer", "text": "Wir hosten ausschließlich in Deutschland, schließen einen AVV und arbeiten EU-AI-Act-konform. Für regulierte Anforderungen bieten wir Compliance-Logging." } },
+      { "@type": "Question", "name": "Wie steht es um Verschwiegenheit und DSGVO?", "acceptedAnswer": { "@type": "Answer", "text": "Wir hosten ausschließlich in Deutschland, schließen einen AVV und arbeiten nach den Transparenzpflichten des EU AI Act ausgerichtet. Für regulierte Anforderungen bieten wir Compliance-Logging." } },
       { "@type": "Question", "name": "Lässt sich der Agent an die DATEV-Welt anbinden?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, wir binden gängige Kanzlei- und DATEV-nahe Systeme an. Den genauen Integrationsumfang klären wir im 60-Minuten-Audit." } },
       { "@type": "Question", "name": "Was kostet das für eine Kanzlei?", "acceptedAnswer": { "@type": "Answer", "text": "Festpreis ab 2.500 € (Workflow) bzw. ab 5.000 € (autonomer Agent), zzgl. nutzungsabhängiger Kosten. Gerade in der Saison amortisiert sich das über die entlastete Sekretariatszeit schnell." } }
     ]
@@ -66,14 +66,14 @@ export default function Page() {
           <ul>
             <li><strong>Mandanten-Annahme rund um die Uhr</strong> — Jeder Anruf wird angenommen, das Anliegen sauber erfasst und an den richtigen Berater geleitet — auch zur Abgabefrist.</li>
             <li><strong>Routine-Fragen vorqualifiziert</strong> — Belege, Fristen, Statusfragen: strukturiert aufgenommen, sodass Ihr Team nur noch das Wesentliche bearbeitet.</li>
-            <li><strong>Mandantengeheimnis gewahrt</strong> — Hosting in Deutschland, AVV, EU-AI-Act-konform. Compliance-Logging für regulierte Anforderungen.</li>
+            <li><strong>Mandantengeheimnis gewahrt</strong> — Hosting in Deutschland, AVV, nach den Transparenzpflichten des EU AI Act ausgerichtet. Compliance-Logging für regulierte Anforderungen.</li>
             <li><strong>In Ihre DATEV-Welt integriert</strong> — Anbindung an gängige Kanzlei- und DATEV-nahe Systeme.</li>
           </ul>
           <p>Anbindung an Kanzlei-Software und die DATEV-Welt. Eigene Rufnummer oder Anbindung Ihrer Telefonanlage.</p>
         </section>
         <section>
           <h2>Häufige Fragen</h2>
-          <details><summary>Wie steht es um Verschwiegenheit und DSGVO?</summary><p>Wir hosten ausschließlich in Deutschland, schließen einen AVV und arbeiten EU-AI-Act-konform. Für regulierte Anforderungen bieten wir Compliance-Logging.</p></details>
+          <details><summary>Wie steht es um Verschwiegenheit und DSGVO?</summary><p>Wir hosten ausschließlich in Deutschland, schließen einen AVV und arbeiten nach den Transparenzpflichten des EU AI Act ausgerichtet. Für regulierte Anforderungen bieten wir Compliance-Logging.</p></details>
           <details><summary>Lässt sich der Agent an die DATEV-Welt anbinden?</summary><p>Ja, wir binden gängige Kanzlei- und DATEV-nahe Systeme an. Den genauen Integrationsumfang klären wir im 60-Minuten-Audit.</p></details>
           <details><summary>Was kostet das für eine Kanzlei?</summary><p>Festpreis ab 2.500 € (Workflow) bzw. ab 5.000 € (autonomer Agent), zzgl. nutzungsabhängiger Kosten.</p></details>
         </section>

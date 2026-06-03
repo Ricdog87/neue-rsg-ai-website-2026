@@ -104,7 +104,7 @@ export const voiceAgents = {
   subheadline:
     'Eingehende Anrufe annehmen. Anliegen klären. Termine direkt setzen. In natürlichem Deutsch — mit deinem Markenton, deinem CRM, deiner Sprechweise.',
   subline:
-    'Echte Gespräche, kein Voice-Mail-Roboter. Trainiert auf deine Cases, eingebunden in dein CRM oder deine bestehende Telefonanlage. Hosting in Deutschland (Nürnberg), DSGVO- und EU-AI-Act-konform.',
+    'Echte Gespräche, kein Voice-Mail-Roboter. Trainiert auf deine Cases, eingebunden in dein CRM oder deine bestehende Telefonanlage. Speicherung in Deutschland (Hetzner, Nürnberg); Sprachverarbeitung über zertifizierte EU-/US-Dienste nach EU-Datenschutzniveau. Auf DSGVO und die Transparenzpflichten des EU AI Act ausgelegt.',
   /** Konkrete, belegte Vertrauens-Anker — werden über trustRow ausgespielt. */
   trustChips: [
     'Server in Nürnberg · DE',
@@ -191,7 +191,7 @@ export const voiceAgents = {
     copyCta: 'Nummer kopieren',
     copyConfirm: 'Nummer kopiert — wähl jetzt an',
     disclaimer:
-      'Keine Aufzeichnung. Mo–Fr 9–18 Uhr beste Hörqualität.',
+      'KI- und Aufzeichnungs-Hinweis zu Gesprächsbeginn — du entscheidest. Mo–Fr 9–18 Uhr beste Hörqualität.',
     callerHint:
       'Live mit „Christian" — Senior-Sales-Tonalität, kennt rsg-ai.de und pitcht im Gespräch den Buchungslink.',
     counterTemplate: 'Heute schon · CALLS · live beantwortet',
@@ -473,7 +473,7 @@ export const pricing = {
   trustRow: [
     { label: 'Festpreis', sub: 'kein Time-and-Material' },
     { label: '14 Tage SLA', sub: 'nach Go-Live inklusive' },
-    { label: 'DSGVO + EU', sub: 'kein US-Cloud-Risiko' },
+    { label: 'DSGVO + EU', sub: 'Speicherung in der EU' },
     { label: '2–4 Wochen', sub: 'bis Produktiv-Agent' }
   ],
   tiers: [

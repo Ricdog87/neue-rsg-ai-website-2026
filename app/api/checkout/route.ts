@@ -95,7 +95,7 @@ export async function POST(req: Request) {
       locale: 'de',
       allow_promotion_codes: true,
       automatic_tax: { enabled: true }, // aktivieren, wenn Stripe-Tax konfiguriert
-      metadata: { tier, billing },
+      billing_address_collection: 'required', phone_number_collection: { enabled: true }, tax_id_collection: { enabled: true }, metadata: { tier, billing },
     });
 
     return NextResponse.json({ url: session.url });

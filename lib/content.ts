@@ -605,7 +605,7 @@ export const footer = {
       links: [
         { label: 'Termin buchen', href: '/termin' },
         { label: 'Kontakt', href: '/#contact' },
-        { label: 'KI-Beratung Wiesbaden', href: '/ki-beratung-wiesbaden' }
+        { label: 'KI-Beratung Wiesbaden', href: '/ki-beratung-wiesbaden' }, { label: 'Auf Google bewerten', href: 'https://g.page/r/CYC7KblNfDiYEAE/review' }
       ]
     },
     {

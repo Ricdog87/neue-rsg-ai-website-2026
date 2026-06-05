@@ -8,6 +8,19 @@ import { nav, site } from '@/lib/content';
 import { cn } from '@/lib/utils';
 import { SoundToggle } from '@/components/system/sound-engine';
 import { RsgLogoMark } from '@/components/icons/rsg-logo';
+import { useEnglish } from '@/components/system/use-locale';
+import { LangSwitch } from '@/components/system/lang-switch';
+
+// English nav labels mapped to the existing routes (German deep pages
+// remain until their English versions ship — links stay functional).
+const NAV_EN: Record<string, string> = {
+  '/ki-telefonassistent': 'Phone Assistant',
+  '/automatisierung': 'Automation',
+  '/preise': 'Pricing',
+  '/cases': 'Cases',
+  '/insights': 'Insights',
+  '/termin': 'Book a call',
+};
 
 /**
  * Premium "members-club" header.
@@ -22,6 +35,10 @@ import { RsgLogoMark } from '@/components/icons/rsg-logo';
  * indicator + soft blob trail. CTA has gradient-sweep on hover.
  */
 export function Navbar() {
+  const en = useEnglish();
+  const items = en ? nav.map((n) => ({ ...n, label: NAV_EN[n.href] ?? n.label })) : nav;
+  const ctaLabel = en ? 'Book a demo' : site.cta.primary;
+  const homeHref = en ? '/en' : '/';
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -73,16 +90,16 @@ export function Navbar() {
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(174_100%_50%)]" />
             </span>
             <span className="hidden sm:inline">
-              Q3 2026 · Kohorte 06 · 2 von 5 Plätzen vergeben
+              {en ? 'Q3 2026 · Cohort 06 · 2 of 5 seats taken' : 'Q3 2026 · Kohorte 06 · 2 von 5 Plätzen vergeben'}
             </span>
-            <span className="sm:hidden">2 / 5 Plätze · Q3 2026</span>
+            <span className="sm:hidden">{en ? '2 / 5 seats · Q3 2026' : '2 / 5 Plätze · Q3 2026'}</span>
           </div>
           <a
             href={site.cta.meetingUrl}
             className="group inline-flex items-center gap-1.5 font-mono text-[0.625rem] uppercase tracking-[0.24em] text-[hsl(174_100%_70%)] transition-colors hover:text-white"
           >
-            <span className="hidden sm:inline">Slot sichern</span>
-            <span className="sm:hidden">Slot</span>
+            <span className="hidden sm:inline">{en ? 'Grab a slot' : 'Slot sichern'}</span>
+            <span className="sm:hidden">{en ? 'Slot' : 'Slot'}</span>
             <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </a>
         </div>
@@ -108,16 +125,16 @@ export function Navbar() {
       >
         <nav className="mx-auto flex h-[68px] max-w-[1280px] items-center justify-between px-6 lg:px-10">
           <Link
-            href="/"
+            href={homeHref}
             className="group flex items-center"
-            aria-label={`${site.shortName} Startseite`}
+            aria-label={`${site.shortName} ${en ? 'home' : 'Startseite'}`}
           >
             <RsgLogoMark className="h-7 w-auto text-white transition-opacity duration-300 group-hover:opacity-80" />
           </Link>
 
           {/* Nav items with active indicator */}
           <ul className="hidden items-center gap-1 md:flex">
-            {nav.map((item) => {
+            {items.map((item) => {
               const isActive = activeSection === item.href;
               return (
                 <li key={item.href} className="relative">
@@ -151,6 +168,7 @@ export function Navbar() {
           </ul>
 
           <div className="hidden items-center gap-3 md:flex">
+            <LangSwitch />
             <SoundToggle />
             <a
               href={site.cta.meetingUrl}
@@ -169,7 +187,7 @@ export function Navbar() {
                     'linear-gradient(90deg, hsl(271 91% 65%) 0%, hsl(220 90% 55%) 50%, hsl(174 100% 50%) 100%)',
                 }}
               />
-              <span className="relative z-10">{site.cta.primary}</span>
+              <span className="relative z-10">{ctaLabel}</span>
               <ArrowUpRight className="relative z-10 h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           </div>
@@ -195,7 +213,7 @@ export function Navbar() {
             className="overflow-hidden border-t border-white/8 bg-[hsl(var(--bg))]/95 backdrop-blur-xl md:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 py-6">
-              {nav.map((item, i) => (
+              {items.map((item, i) => (
                 <motion.li
                   key={item.href}
                   initial={{ opacity: 0, x: -12 }}
@@ -222,9 +240,12 @@ export function Navbar() {
                   href={site.cta.meetingUrl}
                   className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--accent))] text-sm font-medium text-white"
                 >
-                  {site.cta.primary}
+                  {ctaLabel}
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
+              </li>
+              <li className="pt-4">
+                <LangSwitch className="!bg-white/[0.06]" />
               </li>
             </ul>
           </motion.div>

@@ -6,8 +6,45 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { finalCta, site, about } from '@/lib/content';
 import { ArrowUpRight, Calendar, Mail, Phone, Quote } from 'lucide-react';
+import { useEnglish } from '@/components/system/use-locale';
+
+const FC_EN = {
+  eyebrow: "Let's talk",
+  headline: '30 minutes. No pitch. Just honest answers about your process.',
+  subline:
+    'Ricardo takes the time personally. We look at your 2–3 most painful processes together — and tell you exactly where an AI agent has the biggest leverage. If there is none, we say that too.',
+  badge: 'Free · no obligation · GDPR-compliant',
+  ctaButton: 'Book a call',
+  responseSla: 'Reply within 24h · usually faster',
+  founderTagline:
+    '15 years in B2B sales. Speaks sales, builds AI. You talk straight to the founder — no SDR, no account manager.',
+  liveStatus: { label: 'Online today', sub: 'Usually replies in < 2 hours' },
+  slotsTitle: 'Next available slots',
+  slotMeta: '30 min · video',
+  agentQuestion: 'Which agent are you interested in? (optional)',
+  microProof:
+    '"ROI after 4 months — and Ricardo was just as honest about what would NOT work." — CTO, data-analytics company',
+  founderRole: 'Founder & CEO',
+  contactLabels: {
+    email: 'Email · straight to Ricardo',
+    phone: 'Phone · 9am–6pm',
+    hours: 'Office hours',
+  },
+  slotDays: { Heute: 'Today', Morgen: 'Tomorrow', Übermorgen: 'In 2 days' } as Record<string, string>,
+  agentOptions: [
+    'Support agent',
+    'Email agent',
+    'Sales agent',
+    'Onboarding agent',
+    'Operations agent',
+    'Custom solution',
+  ],
+  hours: 'Mon–Fri · 9:00–18:00',
+};
 
 export function ContactSection() {
+  const en = useEnglish();
+  const fc = en ? FC_EN : finalCta;
   const [selected, setSelected] = useState<string>('');
   const [pickedSlot, setPickedSlot] = useState<string>('');
 
@@ -20,14 +57,14 @@ export function ContactSection() {
         {/* Header */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
-            <span className="eyebrow">{finalCta.eyebrow}</span>
+            <span className="eyebrow">{fc.eyebrow}</span>
             <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.08] tracking-[-0.02em] text-[hsl(var(--fg))]">
-              {finalCta.headline}
+              {fc.headline}
             </h2>
           </div>
           <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
             <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-              {finalCta.subline}
+              {fc.subline}
             </p>
           </div>
         </div>
@@ -49,11 +86,11 @@ export function ContactSection() {
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))]" />
                 </span>
                 <span className="font-mono text-[0.625rem] font-medium uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
-                  {finalCta.liveStatus.label}
+                  {fc.liveStatus.label}
                 </span>
               </span>
               <span className="text-[0.75rem] text-[hsl(var(--muted))]">
-                {finalCta.liveStatus.sub}
+                {fc.liveStatus.sub}
               </span>
             </div>
 
@@ -73,28 +110,28 @@ export function ContactSection() {
                   {about.founder.name}
                 </p>
                 <p className="text-[0.875rem] text-[hsl(var(--muted))]">
-                  {about.founder.role} · {about.founder.company}
+                  {(en ? FC_EN.founderRole : about.founder.role)} · {about.founder.company}
                 </p>
               </div>
             </div>
 
             <p className="mt-6 max-w-xl text-[0.95rem] leading-[1.6] text-[hsl(var(--fg))]">
-              {finalCta.founderTagline}
+              {fc.founderTagline}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-[hsl(var(--accent-soft))] px-3 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[hsl(var(--accent))]">
-                {finalCta.badge}
+                {fc.badge}
               </span>
               <span className="rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--surface))] px-3 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[hsl(var(--muted))]">
-                {finalCta.responseSla}
+                {fc.responseSla}
               </span>
             </div>
 
             {/* Slots */}
             <div className="mt-8 border-t border-[hsl(var(--border))] pt-7">
               <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
-                Nächste freie Slots
+                {en ? FC_EN.slotsTitle : 'Nächste freie Slots'}
               </p>
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
                 {finalCta.nextSlots.map((slot) => {
@@ -120,7 +157,7 @@ export function ContactSection() {
                     >
                       <div className="flex w-full items-center justify-between">
                         <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
-                          {slot.day}
+                          {en ? FC_EN.slotDays[slot.day] ?? slot.day : slot.day}
                         </span>
                         <ArrowUpRight
                           className={
@@ -135,25 +172,26 @@ export function ContactSection() {
                         {slot.time}
                       </span>
                       <span className="text-[0.7rem] text-[hsl(var(--muted))]">
-                        30 Min · Video
+                        {en ? FC_EN.slotMeta : '30 Min · Video'}
                       </span>
                     </Link>
                   );
                 })}
               </div>
               <p className="mt-3 text-[0.75rem] text-[hsl(var(--muted))]">
-                Klick auf einen Slot öffnet direkt den Buchungs-Kalender. Anderer
-                Termin? Im Kalender wählst du deinen Wunsch-Slot.
+                {en
+                  ? 'Clicking a slot opens the booking calendar directly. Different time? Pick your preferred slot in the calendar.'
+                  : 'Klick auf einen Slot öffnet direkt den Buchungs-Kalender. Anderer Termin? Im Kalender wählst du deinen Wunsch-Slot.'}
               </p>
             </div>
 
             {/* Agent picker */}
             <div className="mt-7">
               <p className="mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
-                Welcher Agent interessiert dich? (optional)
+                {en ? FC_EN.agentQuestion : 'Welcher Agent interessiert dich? (optional)'}
               </p>
               <div className="flex flex-wrap gap-2">
-                {finalCta.agentOptions.map((opt) => (
+                {fc.agentOptions.map((opt) => (
                   <button
                     key={opt}
                     onClick={() => setSelected(opt)}
@@ -175,7 +213,7 @@ export function ContactSection() {
               className="group mt-8 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full border border-[hsl(var(--accent))] bg-[hsl(var(--accent))]/90 px-6 font-display text-[0.95rem] font-medium text-white transition-all hover:bg-[hsl(var(--accent-deep))]"
             >
               <Calendar className="h-4 w-4" />
-              {finalCta.ctaButton}
+              {fc.ctaButton}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           </motion.div>
@@ -191,27 +229,27 @@ export function ContactSection() {
             <div className="rounded-md border border-[hsl(var(--border))] bg-[hsl(var(--bg))] p-7">
               <Quote className="h-6 w-6 -scale-x-100 text-[hsl(var(--accent))]" />
               <p className="mt-4 font-display text-[1.05rem] leading-[1.5] text-[hsl(var(--fg))] md:text-[1.15rem]">
-                „{finalCta.microProof}"
+                {en ? fc.microProof : `„${finalCta.microProof}"`}
               </p>
             </div>
 
             {[
               {
                 icon: Mail,
-                label: 'E-Mail · direkt zu Ricardo',
+                label: en ? FC_EN.contactLabels.email : 'E-Mail · direkt zu Ricardo',
                 value: site.contact.email,
                 href: `mailto:${site.contact.email}`
               },
               {
                 icon: Phone,
-                label: 'Telefon · 9–18 Uhr',
+                label: en ? FC_EN.contactLabels.phone : 'Telefon · 9–18 Uhr',
                 value: site.contact.phone,
                 href: site.contact.phoneHref
               },
               {
                 icon: Calendar,
-                label: 'Sprechzeiten',
-                value: site.contact.hours,
+                label: en ? FC_EN.contactLabels.hours : 'Sprechzeiten',
+                value: en ? FC_EN.hours : site.contact.hours,
                 href: null
               }
             ].map((item) => (

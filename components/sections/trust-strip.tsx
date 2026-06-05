@@ -2,12 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { Shield, Zap, Users, Clock } from 'lucide-react';
+import { useEnglish } from '@/components/system/use-locale';
 
 const KPIS = [
-  { Icon: Users, value: '200+', label: 'Voice-Agenten im Betrieb', sub: 'Plattform-Netzwerk' },
-  { Icon: Clock, value: '4 Wo.', label: 'Ø Zeit bis Live', sub: 'Audit → Go-Live' },
-  { Icon: Zap, value: '< 0,4 s', label: 'Antwortzeit Voice', sub: 'natürlicher Sprech-Rhythmus' },
-  { Icon: Shield, value: '100 %', label: 'EU-Hosting · DSGVO', sub: 'Server in Nürnberg' },
+  { Icon: Users, value: '200+', label: 'Voice-Agenten im Betrieb', sub: 'Plattform-Netzwerk', labelEn: 'Voice agents in operation', subEn: 'Platform network' },
+  { Icon: Clock, value: '4 Wo.', label: 'Ø Zeit bis Live', sub: 'Audit → Go-Live', labelEn: 'Avg. time to live', subEn: 'Audit → go-live', valueEn: '4 wks' },
+  { Icon: Zap, value: '< 0,4 s', label: 'Antwortzeit Voice', sub: 'natürlicher Sprech-Rhythmus', labelEn: 'Voice response time', subEn: 'natural speaking rhythm', valueEn: '< 0.4 s' },
+  { Icon: Shield, value: '100 %', label: 'EU-Hosting · DSGVO', sub: 'Server in Nürnberg', labelEn: 'EU hosting · GDPR', subEn: 'Servers in Nuremberg' },
 ];
 
 /**
@@ -17,6 +18,7 @@ const KPIS = [
  * statt drei dedizierter Trust-Sections im Scroll-Verlauf.
  */
 export function TrustStrip() {
+  const en = useEnglish();
   return (
     <section
       id="trust"
@@ -24,7 +26,12 @@ export function TrustStrip() {
     >
       <div className="mx-auto max-w-[1280px]">
         <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
-          {KPIS.map(({ Icon, value, label, sub }, i) => (
+          {KPIS.map((kpi, i) => {
+            const { Icon } = kpi;
+            const value = en ? (kpi.valueEn ?? kpi.value) : kpi.value;
+            const label = en ? kpi.labelEn : kpi.label;
+            const sub = en ? kpi.subEn : kpi.sub;
+            return (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 12 }}
@@ -48,7 +55,8 @@ export function TrustStrip() {
                 </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

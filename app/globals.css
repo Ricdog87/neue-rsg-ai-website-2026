@@ -370,3 +370,11 @@ body {
   border-color: hsl(var(--border-strong));
   box-shadow: var(--shadow-soft);
 }
+
+/* "Beliebt"-Highlight — sanfter Puls-Glow auf der empfohlenen Preiskarte */
+@keyframes rec-pulse {
+  0%, 100% { box-shadow: 0 0 26px -2px hsl(var(--accent) / 0.32); }
+  50%      { box-shadow: 0 0 58px 2px hsl(var(--accent) / 0.62); }
+}
+.rec-pulse { animation: rec-pulse 2.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .rec-pulse { animation: none; box-shadow: 0 0 40px hsl(var(--accent) / 0.45); } }

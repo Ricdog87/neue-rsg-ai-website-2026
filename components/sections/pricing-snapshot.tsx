@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Check, Phone } from 'lucide-react';
 import { voicePlans } from '@/lib/pricing-voice';
+import { useEnglish } from '@/components/system/use-locale';
 
 /**
  * Pricing Snapshot — kompakte 3-Card-Voice-Preview für die Homepage.
@@ -12,6 +13,7 @@ import { voicePlans } from '@/lib/pricing-voice';
  * Volle Details + Toggle + Workflows + ROI + FAQ → eigene /preise-Seite.
  */
 export function PricingSnapshot() {
+  const en = useEnglish();
   return (
     <section
       id="pricing-snapshot"
@@ -22,10 +24,10 @@ export function PricingSnapshot() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-4">
           <div className="col-span-12 md:col-span-7">
             <span className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
-              Preise · Telefonassistentin
+              {en ? 'Pricing · Phone assistant' : 'Preise · Telefonassistentin'}
             </span>
             <h2 className="mt-3 font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
-              Drei Pakete. Ein Anruf reicht zum Start.
+              {en ? 'Three plans. One call to get started.' : 'Drei Pakete. Ein Anruf reicht zum Start.'}
             </h2>
           </div>
           <div className="col-span-12 flex md:col-span-5 md:items-end md:justify-end">
@@ -34,7 +36,7 @@ export function PricingSnapshot() {
               data-event="snapshot_to_pricing_page"
               className="group inline-flex h-12 items-center gap-2 rounded-full border border-[hsl(var(--border-strong))] bg-[hsl(var(--surface))] px-5 font-display text-[0.875rem] font-medium text-[hsl(var(--fg))] transition-all hover:border-[hsl(var(--accent))/50] hover:text-[hsl(var(--accent))]"
             >
-              Alle Pakete vergleichen
+              {en ? 'Compare all plans' : 'Alle Pakete vergleichen'}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
           </div>
@@ -58,7 +60,7 @@ export function PricingSnapshot() {
             >
               {p.recommended && (
                 <span className="absolute -top-2.5 left-6 inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-0.5 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white">
-                  ★ Beliebt
+                  {en ? '★ Popular' : '★ Beliebt'}
                 </span>
               )}
 
@@ -67,7 +69,7 @@ export function PricingSnapshot() {
                   {p.name}
                 </h3>
                 <span className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
-                  {p.idealFor.replace(/^Ideal für ?/, '')}
+                  {(en ? p.idealForEn ?? p.idealFor : p.idealFor).replace(/^Ideal (für|for) ?/, '')}
                 </span>
               </div>
 
@@ -76,17 +78,23 @@ export function PricingSnapshot() {
                   {p.priceMonthly}
                 </span>
                 {p.priceSuffix ? (
-                  <span className="text-[0.85rem] text-[hsl(var(--muted))]">{p.priceSuffix}</span>
+                  <span className="text-[0.85rem] text-[hsl(var(--muted))]">
+                    {en ? '/month' : p.priceSuffix}
+                  </span>
                 ) : null}
               </div>
               {p.setupValue !== null ? (
-                <p className="mt-1.5 text-[0.7rem] text-[hsl(var(--muted))]">+ {p.setupValue} € Setup</p>
+                <p className="mt-1.5 text-[0.7rem] text-[hsl(var(--muted))]">
+                  {en ? `+ €${p.setupValue} setup` : `+ ${p.setupValue} € Setup`}
+                </p>
               ) : (
-                <p className="mt-1.5 text-[0.7rem] text-[hsl(var(--muted))]">{p.setup}</p>
+                <p className="mt-1.5 text-[0.7rem] text-[hsl(var(--muted))]">
+                  {en ? 'Setup from €1,990 · custom' : p.setup}
+                </p>
               )}
 
               <ul className="mt-5 flex-1 space-y-2">
-                {p.features.slice(0, 3).map((f) => (
+                {(en ? p.featuresEn ?? p.features : p.features).slice(0, 3).map((f) => (
                   <li
                     key={f}
                     className="flex items-start gap-2 text-[0.825rem] leading-snug text-[hsl(var(--muted))]"
@@ -108,7 +116,7 @@ export function PricingSnapshot() {
                     : 'border border-[hsl(var(--border-strong))] text-[hsl(var(--fg))] hover:border-[hsl(var(--accent))/60] hover:text-[hsl(var(--accent))]')
                 }
               >
-                {p.cta}
+                {en ? p.ctaEn ?? p.cta : p.cta}
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
             </motion.div>
@@ -117,12 +125,12 @@ export function PricingSnapshot() {
 
         {/* Sub-line — additional context */}
         <p className="mt-6 text-center text-[0.875rem] text-[hsl(var(--muted))]">
-          Du brauchst eher Prozess-Automatisierung statt Telefonie?{' '}
+          {en ? 'Need process automation rather than telephony?' : 'Du brauchst eher Prozess-Automatisierung statt Telefonie?'}{' '}
           <Link
-            href="/automatisierung"
+            href={en ? '/en/automatisierung' : '/automatisierung'}
             className="font-medium text-[hsl(var(--accent))] underline-offset-2 hover:underline"
           >
-            KI-Agenten & Workflows ab 2.500 €
+            {en ? 'AI agents & workflows from €2,500' : 'KI-Agenten & Workflows ab 2.500 €'}
           </Link>
           <span className="mx-2 text-[hsl(var(--subtle))]">·</span>
           <Phone className="-mt-0.5 inline h-3.5 w-3.5 text-[hsl(var(--accent))]" />{' '}
@@ -130,7 +138,7 @@ export function PricingSnapshot() {
             href="tel:+4917660772556"
             className="hover:text-[hsl(var(--fg))] hover:underline"
           >
-            Lieber direkt anrufen?
+            {en ? 'Rather call us directly?' : 'Lieber direkt anrufen?'}
           </a>
         </p>
       </div>

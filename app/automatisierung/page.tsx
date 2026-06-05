@@ -3,7 +3,7 @@ import { AutomationHero } from '@/components/sections/automation-hero';
 import { AgentShowcase } from '@/components/sections/agent-showcase';
 import { PipelineSection } from '@/components/sections/pipeline-section';
 import { AutomationPricing } from '@/components/sections/automation-pricing';
-import { AutomationRoiCalculator } from '@/components/sections/automation-roi-calculator';
+import { RoiSection } from '@/components/sections/roi-section';
 import { SolutionsSection } from '@/components/sections/solutions-section';
 import { UspSection } from '@/components/sections/usp-section';
 import { ContactSection } from '@/components/sections/contact-section';
@@ -92,7 +92,7 @@ export default function AutomatisierungPage() {
         <SolutionsSection />
       </SectionReveal>
       <SectionReveal>
-        <AutomationRoiCalculator />
+        <RoiSection />
       </SectionReveal>
       <SectionReveal>
         <AutomationPricing />

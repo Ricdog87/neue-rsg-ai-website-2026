@@ -5,6 +5,7 @@ import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Phone, Clock } from 'lucide-react';
 import { voicePlans } from '@/lib/pricing-voice';
+import { useEnglish } from '@/components/system/use-locale';
 
 /**
  * Telefonassistentin-Rechner — Einsparpotenzial.
@@ -30,6 +31,7 @@ function recommendPlan(callsPerDay: number) {
 }
 
 export function VoiceRoiCalculator() {
+  const en = useEnglish();
   const [calls, setCalls] = useState(30); // Anrufe/Tag
   const [duration, setDuration] = useState(4); // Ø Minuten/Anruf
   const [manualPlanId, setManualPlanId] = useState<string | null>(null);
@@ -67,15 +69,25 @@ export function VoiceRoiCalculator() {
               <span className="absolute inset-0 animate-ping rounded-full bg-[hsl(var(--accent))] opacity-60" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))]" />
             </span>
-            Kostenrechner
+            {en ? 'Cost calculator' : 'Kostenrechner'}
           </span>
           <h2 className="mt-6 font-display text-[clamp(1.875rem,4vw,3rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
-            Berechne dein monatliches{' '}
-            <span className="text-[hsl(var(--accent))]">Einsparpotenzial</span>.
+            {en ? (
+              <>
+                Calculate your monthly{' '}
+                <span className="text-[hsl(var(--accent))]">savings potential</span>.
+              </>
+            ) : (
+              <>
+                Berechne dein monatliches{' '}
+                <span className="text-[hsl(var(--accent))]">Einsparpotenzial</span>.
+              </>
+            )}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[0.975rem] leading-[1.6] text-[hsl(var(--muted))]">
-            Schieb die Regler auf dein Anrufvolumen — wir rechnen mit unseren
-            echten Paketpreisen gegen, was dein Team die gleiche Telefonie kostet.
+            {en
+              ? 'Slide to your call volume — we compare our real plan prices against what the same telephony costs your team in-house.'
+              : 'Schieb die Regler auf dein Anrufvolumen — wir rechnen mit unseren echten Paketpreisen gegen, was dein Team die gleiche Telefonie kostet.'}
           </p>
         </div>
 
@@ -98,7 +110,7 @@ export function VoiceRoiCalculator() {
           <div className="relative space-y-9">
             <Slider
               icon={<Phone className="h-4 w-4" />}
-              label="Anrufe, die dein Team täglich bearbeitet"
+              label={en ? 'Calls your team handles per day' : 'Anrufe, die dein Team täglich bearbeitet'}
               value={calls}
               display={`${calls}`}
               min={10}
@@ -111,9 +123,9 @@ export function VoiceRoiCalculator() {
             />
             <Slider
               icon={<Clock className="h-4 w-4" />}
-              label="Durchschnittliche Anrufdauer"
+              label={en ? 'Average call duration' : 'Durchschnittliche Anrufdauer'}
               value={duration}
-              display={`${duration} Min`}
+              display={`${duration} ${en ? 'min' : 'Min'}`}
               min={2}
               max={15}
               step={1}
@@ -124,32 +136,40 @@ export function VoiceRoiCalculator() {
           {/* KPI tiles */}
           <div className="relative mt-9 grid gap-3 sm:grid-cols-2">
             <KpiTile
-              label="RSG AI · Kosten / Monat"
-              value={ourCost !== null ? fmtEur(ourCost) : 'Auf Anfrage'}
+              label={en ? 'RSG AI · cost / month' : 'RSG AI · Kosten / Monat'}
+              value={ourCost !== null ? fmtEur(ourCost) : en ? 'On request' : 'Auf Anfrage'}
               sub={
                 ourCost !== null
-                  ? `Paket ${plan.name} · ${plan.includedMinutes.toLocaleString('de-DE')} Min inkl.`
-                  : `Paket ${plan.name} · individuelles Angebot`
+                  ? en
+                    ? `${plan.name} plan · ${plan.includedMinutes.toLocaleString('en-US')} min incl.`
+                    : `Paket ${plan.name} · ${plan.includedMinutes.toLocaleString('de-DE')} Min inkl.`
+                  : en
+                    ? `${plan.name} plan · custom quote`
+                    : `Paket ${plan.name} · individuelles Angebot`
               }
             />
             <KpiTile
-              label="Interne Bearbeitung / Monat"
+              label={en ? 'In-house handling / month' : 'Interne Bearbeitung / Monat'}
               value={fmtEur(internalCost)}
-              sub={`${minutesPerMonth.toLocaleString('de-DE')} Gesprächsminuten/Monat`}
+              sub={
+                en
+                  ? `${minutesPerMonth.toLocaleString('en-US')} talk minutes/month`
+                  : `${minutesPerMonth.toLocaleString('de-DE')} Gesprächsminuten/Monat`
+              }
             />
           </div>
 
           {/* Savings highlight */}
           <div className="relative mt-3 overflow-hidden rounded-xl border border-[hsl(var(--accent))/35] bg-[hsl(var(--accent))/10] p-6 text-center">
             <div className="font-mono text-[0.625rem] uppercase tracking-[0.24em] text-[hsl(var(--accent))]">
-              Geschätzte monatliche Ersparnis
+              {en ? 'Estimated monthly savings' : 'Geschätzte monatliche Ersparnis'}
             </div>
             <div className="mt-2 font-display text-[clamp(2.5rem,6vw,3.75rem)] font-medium leading-none tabular-nums tracking-[-0.03em] text-[hsl(var(--accent))]">
-              {savings !== null ? fmtEur(savings) : 'Sprich mit uns'}
+              {savings !== null ? fmtEur(savings) : en ? "Let's talk" : 'Sprich mit uns'}
             </div>
             {savings !== null && (
               <div className="mt-2 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[hsl(var(--muted))]">
-                ≈ {fmtEur(savings * 12)} pro Jahr · zzgl. 24/7-Erreichbarkeit
+                ≈ {fmtEur(savings * 12)} {en ? 'per year · plus 24/7 availability' : 'pro Jahr · zzgl. 24/7-Erreichbarkeit'}
               </div>
             )}
           </div>
@@ -173,7 +193,7 @@ export function VoiceRoiCalculator() {
                 >
                   {isRec && (
                     <span className="absolute -top-2 right-3 rounded-full bg-[hsl(var(--accent))] px-2 py-0.5 font-mono text-[0.5rem] uppercase tracking-[0.2em] text-white">
-                      Empfohlen
+                      {en ? 'Recommended' : 'Empfohlen'}
                     </span>
                   )}
                   <span className="font-display text-[0.95rem] font-medium text-[hsl(var(--fg))]">
@@ -196,24 +216,25 @@ export function VoiceRoiCalculator() {
               data-tier={plan.id}
               className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[hsl(var(--accent))] px-7 font-display text-[0.9rem] font-medium text-white transition-all hover:bg-[hsl(var(--accent-deep))]"
             >
-              {plan.name === 'Scale' ? 'Individuelles Angebot' : `${plan.name} starten`}
+              {plan.name === 'Scale'
+                ? en ? 'Custom quote' : 'Individuelles Angebot'
+                : en ? `Start with ${plan.name}` : `${plan.name} starten`}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
             <Link
               href="/preise"
               className="font-display text-[0.85rem] font-medium text-[hsl(var(--muted))] underline-offset-4 transition-colors hover:text-[hsl(var(--fg))] hover:underline"
             >
-              Alle Pakete vergleichen →
+              {en ? 'Compare all plans →' : 'Alle Pakete vergleichen →'}
             </Link>
           </div>
         </motion.div>
 
         {/* Footnote */}
         <p className="mt-6 text-center font-mono text-[0.6875rem] leading-relaxed text-[hsl(var(--subtle))]">
-          Berechnung auf Basis von {WORKING_DAYS} Arbeitstagen/Monat und{' '}
-          {HOURLY_RATE} € pro Stunde (vollkostenbelastet, inkl. Lohnnebenkosten).
-          Paketpreise netto laut Preisliste. Werte sind eine Schätzung des
-          Einsparpotenzials, keine garantierte Zusage.
+          {en
+            ? `Based on ${WORKING_DAYS} working days/month and €${HOURLY_RATE} per hour (fully loaded, incl. on-costs). Plan prices net per price list. Figures are an estimate of savings potential, not a guarantee.`
+            : `Berechnung auf Basis von ${WORKING_DAYS} Arbeitstagen/Monat und ${HOURLY_RATE} € pro Stunde (vollkostenbelastet, inkl. Lohnnebenkosten). Paketpreise netto laut Preisliste. Werte sind eine Schätzung des Einsparpotenzials, keine garantierte Zusage.`}
         </p>
       </div>
     </section>

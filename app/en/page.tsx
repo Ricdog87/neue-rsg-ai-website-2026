@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/hero';
+import { PricingSnapshot } from '@/components/sections/pricing-snapshot';
+import { VoiceRoiCalculator } from '@/components/sections/voice-roi-calculator';
 import { TechMarquee } from '@/components/sections/tech-marquee';
 import { TrustStrip } from '@/components/sections/trust-strip';
 import { ContactSection } from '@/components/sections/contact-section';
@@ -38,6 +40,12 @@ export default function EnglishHomePage() {
   return (
     <>
       <Hero />
+      <SectionReveal>
+        <PricingSnapshot />
+      </SectionReveal>
+      <SectionReveal>
+        <VoiceRoiCalculator />
+      </SectionReveal>
       <TechMarquee />
       <SectionReveal>
         <TrustStrip />

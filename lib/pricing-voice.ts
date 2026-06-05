@@ -6,6 +6,11 @@ export type VoicePlan = {
   id: string;
   name: string;
   tagline: string;
+  /** English copy for the bilingual (/en) site */
+  taglineEn?: string;
+  idealForEn?: string;
+  featuresEn?: string[];
+  ctaEn?: string;
   /** Monthly price as displayed (formatted string for layout) */
   priceMonthly: string;
   /** Annual price = 15 % off; bei Jahresvorkasse entfällt das Setup */
@@ -66,6 +71,17 @@ export const voicePlans: VoicePlan[] = [
       'Geführtes Onboarding',
     ],
     cta: 'Solo starten',
+    taglineEn: 'The smart entry point for small teams',
+    idealForEn: 'Ideal for ~1–15 calls/day',
+    featuresEn: [
+      'AI phone assistant for your number — reachable around the clock',
+      '1,000 talk minutes/month included · €0.29 per extra minute',
+      'Automatic call transcripts — straight into your CRM',
+      'Fully automatic lead capture & maintained contact lists',
+      '6 languages · DE first',
+      'Guided onboarding',
+    ],
+    ctaEn: 'Start with Solo',
     ctaHref: '/termin',
     checkoutTier: 'solo',
   },
@@ -93,6 +109,17 @@ export const voicePlans: VoicePlan[] = [
       'Reporting-Dashboard · Prioritäts-Support',
     ],
     cta: 'Team buchen',
+    taglineEn: 'For growing sales & service teams',
+    idealForEn: 'Ideal for ~15–45 calls/day',
+    featuresEn: [
+      'Everything in Solo',
+      '3,000 talk minutes/month incl. (inbound + outbound) · €0.25 per extra minute',
+      'Outbound campaigns via automated call lists',
+      'Automatic lead lists incl. enrichment & prioritisation',
+      'Transcript-to-CRM workflows: meetings, notes & follow-ups run automatically',
+      'Reporting dashboard · priority support',
+    ],
+    ctaEn: 'Book Team',
     ctaHref: '/termin',
     checkoutTier: 'team',
     recommended: true,
@@ -122,6 +149,17 @@ export const voicePlans: VoicePlan[] = [
       'Höchste Datenschutz-Stufe: keine Speicherung über die Verarbeitung hinaus · kein Training auf deinen Daten · EU-Hosting',
     ],
     cta: 'Angebot anfragen',
+    taglineEn: 'Enterprise-grade & fully tailored',
+    idealForEn: 'From ~45 calls/day',
+    featuresEn: [
+      'Everything in Team',
+      'Custom voice (your own brand voice)',
+      'from 5,000 min/month · individual · scales without limit',
+      'Custom automation workflows for your processes',
+      'Dedicated contact person & SLA',
+      'Highest data-protection tier: no storage beyond processing · no training on your data · EU hosting',
+    ],
+    ctaEn: 'Request a quote',
     ctaHref: '/termin',
     checkoutTier: null,
   },

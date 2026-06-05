@@ -16,6 +16,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { site } from '@/lib/content';
+import { VoiceConsole } from '@/components/sections/voice-console';
 
 export const metadata: Metadata = {
   title: 'KI-Telefonassistent — Inbound · Outbound · Termine in unter 0,4 s',
@@ -177,33 +178,7 @@ export default function KiTelefonassistentPage() {
               </div>
             </div>
             <div className="col-span-12 md:col-span-5">
-              {/* Demo-card placeholder — kompakt, ohne nested-section */}
-              <div className="rounded-2xl border border-[hsl(var(--accent))/30] bg-[hsl(var(--surface))]/80 p-6 backdrop-blur-sm">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[hsl(174_100%_50%/0.4)] bg-[hsl(174_100%_50%/0.08)] px-3 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(174_100%_70%)]">
-                  ★ 4,9 / 5 · Mittelstands-Stimmen
-                </div>
-                <p className="mt-4 text-[1.05rem] leading-relaxed text-[hsl(var(--fg))]/85">
-                  „Beim ersten Klingeln abgenommen, Termin im Gespräch fixiert. Mein
-                  Praxis-Team ist 2 Stunden früher Feierabend gegangen."
-                </p>
-                <p className="mt-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))]">
-                  Praxisinhaber · Wiesbaden
-                </p>
-                <div className="mt-6 grid grid-cols-3 gap-3 border-t border-[hsl(var(--border))] pt-5">
-                  <div>
-                    <div className="font-display text-[1.25rem] font-medium tabular-nums leading-none text-[hsl(var(--fg))]">200+</div>
-                    <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-[hsl(var(--muted))]">Voice-Agenten · live</div>
-                  </div>
-                  <div>
-                    <div className="font-display text-[1.25rem] font-medium tabular-nums leading-none text-[hsl(var(--fg))]">9.000</div>
-                    <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-[hsl(var(--muted))]">Calls/Mo · Spitze</div>
-                  </div>
-                  <div>
-                    <div className="font-display text-[1.25rem] font-medium tabular-nums leading-none text-[hsl(var(--fg))]">24/7</div>
-                    <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-[hsl(var(--muted))]">Annahme · Schicht-frei</div>
-                  </div>
-                </div>
-              </div>
+              <VoiceConsole />
             </div>
           </div>
         </div>

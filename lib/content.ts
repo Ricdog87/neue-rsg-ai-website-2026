@@ -59,13 +59,11 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: 'Voice · NEU', href: '#voice' },
-  { label: 'Warum uns', href: '#usp' },
-  { label: 'Pipelines', href: '#pipelines' },
-  { label: 'Prozess', href: '#solutions' },
-  { label: 'ROI', href: '#roi' },
-  { label: 'Investment', href: '#pricing' },
-  { label: 'Termin', href: '#contact' }
+  { label: 'Telefonassistentin', href: '/ki-telefonassistent' },
+  { label: 'Preise', href: '/preise' },
+  { label: 'Cases', href: '/cases' },
+  { label: 'Insights', href: '/insights' },
+  { label: 'Termin', href: '/termin' }
 ] as const;
 
 /* ─────────────────────────────────────────────────────────

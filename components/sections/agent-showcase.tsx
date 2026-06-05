@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Eye, Brain, Wrench, CheckCircle2, Cpu, ArrowUpRight } from 'lucide-react';
+import { LiveVoiceButton } from '@/components/sections/live-voice-agent';
 
 /**
  * Agent Showcase — a self-running visualisation of an autonomous KI-Agent
@@ -305,6 +306,12 @@ export function AgentShowcase() {
                   So einen Agenten für deinen Prozess
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </a>
+              </div>
+
+              {/* Live voice agent — appears only when NEXT_PUBLIC_ELEVENLABS_AGENT_ID
+                  is configured. Lets visitors actually talk to a live agent. */}
+              <div className="mt-4 max-w-xs">
+                <LiveVoiceButton label="Live mit dem Agenten sprechen" />
               </div>
             </div>
           </div>

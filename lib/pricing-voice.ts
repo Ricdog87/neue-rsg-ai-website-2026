@@ -19,6 +19,12 @@ export type VoicePlan = {
   setup: string;
   /** Setup value in € netto (null = Scale individuell) */
   setupValue: number | null;
+  /** Inklusiv-Gesprächsminuten pro Monat (Quelle für den Ersparnis-Rechner) */
+  includedMinutes: number;
+  /** Preis je Zusatzminute über das Inklusivvolumen, € netto (null = individuell) */
+  overagePerMin: number | null;
+  /** Obergrenze Anrufe/Tag für die Auto-Empfehlung im Rechner (null = offen) */
+  maxCallsPerDay: number | null;
   idealFor: string;
   features: string[];
   cta: string;
@@ -47,6 +53,9 @@ export const voicePlans: VoicePlan[] = [
     priceSuffix: '/Monat',
     setup: '+ 490 € einmalig Setup',
     setupValue: 490,
+    includedMinutes: 1000,
+    overagePerMin: 0.29,
+    maxCallsPerDay: 15,
     idealFor: 'Ideal für ~1–15 Anrufe/Tag',
     features: [
       'KI-Telefonassistent für deine Rufnummer — rund um die Uhr erreichbar',
@@ -71,6 +80,9 @@ export const voicePlans: VoicePlan[] = [
     priceSuffix: '/Monat',
     setup: '+ 990 € einmalig Setup',
     setupValue: 990,
+    includedMinutes: 3000,
+    overagePerMin: 0.25,
+    maxCallsPerDay: 45,
     idealFor: 'Ideal für ~15–45 Anrufe/Tag',
     features: [
       'Alles aus Solo',
@@ -97,6 +109,9 @@ export const voicePlans: VoicePlan[] = [
     priceNote: 'individuell',
     setup: 'Setup ab 1.990 € · individuell',
     setupValue: null,
+    includedMinutes: 5000,
+    overagePerMin: null,
+    maxCallsPerDay: null,
     idealFor: 'Ab ~45 Anrufe/Tag',
     features: [
       'Alles aus Team',

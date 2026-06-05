@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { AutomationHero } from '@/components/sections/automation-hero';
+import { AgentShowcase } from '@/components/sections/agent-showcase';
 import { PipelineSection } from '@/components/sections/pipeline-section';
+import { AutomationPricing } from '@/components/sections/automation-pricing';
+import { AutomationRoiCalculator } from '@/components/sections/automation-roi-calculator';
 import { SolutionsSection } from '@/components/sections/solutions-section';
 import { UspSection } from '@/components/sections/usp-section';
-import { RoiSection } from '@/components/sections/roi-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import { SectionReveal } from '@/components/ui/section-reveal';
 
@@ -81,16 +83,22 @@ export default function AutomatisierungPage() {
       />
       <AutomationHero />
       <SectionReveal>
+        <AgentShowcase />
+      </SectionReveal>
+      <SectionReveal>
         <PipelineSection />
       </SectionReveal>
       <SectionReveal>
         <SolutionsSection />
       </SectionReveal>
       <SectionReveal>
-        <UspSection />
+        <AutomationRoiCalculator />
       </SectionReveal>
       <SectionReveal>
-        <RoiSection />
+        <AutomationPricing />
+      </SectionReveal>
+      <SectionReveal>
+        <UspSection />
       </SectionReveal>
       <SectionReveal>
         <ContactSection />

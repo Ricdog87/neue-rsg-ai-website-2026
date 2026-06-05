@@ -6,7 +6,6 @@ import { Navbar } from '@/components/sections/navbar';
 import { Footer } from '@/components/sections/footer';
 import { MagneticCursor } from '@/components/effects/magnetic-cursor';
 import { ScrollProgress } from '@/components/effects/scroll-progress';
-import { PageTransition } from '@/components/effects/page-transition';
 import { SectionRail } from '@/components/effects/section-rail';
 import { ChapterHud } from '@/components/effects/chapter-hud';
 import { FloatingCta } from '@/components/effects/floating-cta';
@@ -115,7 +114,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <EntryLoader />
         <RouteTransition />
         <SoundProvider>
-          <PageTransition />
           <ScrollProgress />
           <MagneticCursor />
           <LenisProvider>

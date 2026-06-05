@@ -7,6 +7,7 @@ import { VoiceRoiCalculator } from '@/components/sections/voice-roi-calculator';
 import { TrustStrip } from '@/components/sections/trust-strip';
 import { ContactSection } from '@/components/sections/contact-section';
 import { SectionReveal } from '@/components/ui/section-reveal';
+import { ScrollZoom } from '@/components/ui/scroll-zoom';
 import { faqPageLd, ldJson } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
 
@@ -36,9 +37,9 @@ export default function HomePage() {
         <LiveVoiceAgent />
       </SectionReveal>
       <Hero />
-      <SectionReveal>
+      <ScrollZoom>
         <PricingSnapshot />
-      </SectionReveal>
+      </ScrollZoom>
       <SectionReveal>
         <VoiceRoiCalculator />
       </SectionReveal>
@@ -46,9 +47,9 @@ export default function HomePage() {
       <SectionReveal>
         <VoiceAgentsSection />
       </SectionReveal>
-      <SectionReveal>
+      <ScrollZoom>
         <TrustStrip />
-      </SectionReveal>
+      </ScrollZoom>
       <SectionReveal>
         <ContactSection />
       </SectionReveal>

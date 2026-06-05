@@ -329,54 +329,55 @@ function CameraDirector({ pointer }: { pointer: React.MutableRefObject<{ x: numb
 
   useFrame((state, dt) => {
     const T = state.clock.elapsedTime;
-    const cycle = 52;
+    const cycle = 44;
     const t = T % cycle;
 
     // ── Camera path (parametric, easing-blended) ───────────
-    // Easing windows stretched across the longer 52s loop — every move
-    // gets more time to breathe, so the motion reads calm and deliberate.
-    const p1 = ss(0, 14, t); // slow zoom in
-    const p2 = ss(14, 25, t); // gentle dolly right
-    const p3 = ss(25, 36, t); // ease back out + lift
-    const p4 = ss(36, 47, t); // drift left
-    const p5 = ss(47, 52, t); // settle home
+    // Easing windows across a 44s loop — alive but never frantic.
+    const p1 = ss(0, 11, t); // zoom in
+    const p2 = ss(11, 21, t); // dolly right
+    const p3 = ss(21, 31, t); // ease back out + lift
+    const p4 = ss(31, 40, t); // drift left
+    const p5 = ss(40, 44, t); // settle home
 
-    // Compose camera position. Amplitudes reduced ~40% vs. before — the
-    // scene now glides rather than swoops, which reads as premium/calm.
+    // Compose camera position — generous amplitudes so the scene clearly
+    // moves (no longer reads as stiff), with smoothstep blends to stay
+    // cinematic rather than jittery.
     let cx = 0, cy = 0, cz = 7.5;
 
-    // Phase 1 — zoom in (z 7.5 → 5.9), tilt up
-    cz += -1.6 * p1;
-    cy += 0.35 * p1;
+    // Phase 1 — zoom in, tilt up
+    cz += -2.4 * p1;
+    cy += 0.5 * p1;
 
     // Phase 2 — dolly right
-    cx += 1.3 * p2;
-    cy += -0.25 * p2;
+    cx += 2.0 * p2;
+    cy += -0.4 * p2;
 
     // Phase 3 — ease back out + lift
-    cz += 2.1 * p3;
-    cy += 0.7 * p3;
+    cz += 3.0 * p3;
+    cy += 1.0 * p3;
 
     // Phase 4 — drift left
-    cx += -2.4 * p4;
-    cy += -0.9 * p4;
+    cx += -3.4 * p4;
+    cy += -1.3 * p4;
 
     // Phase 5 — settle back toward start
-    cx += 1.1 * p5;
-    cy += 0.1 * p5;
-    cz += -0.6 * p5;
+    cx += 1.6 * p5;
+    cy += 0.15 * p5;
+    cz += -0.8 * p5;
 
-    // Add gentle mouse parallax on top (softened)
-    cx += pointer.current.x * 0.38;
-    cy += -pointer.current.y * 0.2;
+    // Mouse parallax on top
+    cx += pointer.current.x * 0.5;
+    cy += -pointer.current.y * 0.28;
 
-    // Slow autonomous breathing
-    cz += Math.sin(T * 0.11) * 0.13;
-    cy += Math.cos(T * 0.08) * 0.1;
+    // Continuous autonomous breathing — keeps the frame alive even between
+    // the keyframed phases, so it never looks frozen.
+    cz += Math.sin(T * 0.16) * 0.22;
+    cy += Math.cos(T * 0.12) * 0.18;
+    cx += Math.sin(T * 0.07) * 0.16;
 
-    // Smooth lerp camera toward target — lower factor = softer, more
-    // cinematic follow with a touch of inertia (frame-rate independent).
-    const lerp = 1 - Math.pow(0.5, dt * 1.6);
+    // Smooth lerp toward target — frame-rate independent, with inertia.
+    const lerp = 1 - Math.pow(0.5, dt * 2.0);
     pos.current.x += (cx - pos.current.x) * lerp;
     pos.current.y += (cy - pos.current.y) * lerp;
     pos.current.z += (cz - pos.current.z) * lerp;
@@ -705,44 +706,47 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
           (frames={1}) into a small cubemap for performance. Lightformers
           are tinted in brand purple/cyan so the glass picks up the RSG
           palette in its refractions. */}
-      <Environment resolution={256} frames={1} environmentIntensity={0.7}>
-        <color attach="background" args={['#03020c']} />
-        {/* Soft white key from above */}
+      <Environment resolution={256} frames={1} environmentIntensity={1.1}>
+        <color attach="background" args={['#060512']} />
+        {/* Bright white key from above — strong, so the chrome catches a
+            crisp silver highlight and the ball reads clearly on dark space. */}
         <Lightformer
-          intensity={1.1}
+          intensity={3.2}
           color="#ffffff"
-          position={[0, 5, -4]}
+          position={[0, 5, -3]}
           rotation={[Math.PI / 2, 0, 0]}
           scale={[12, 12, 1]}
         />
         {/* Silver rim — left (neutral, keeps the ball reading as chrome/silver) */}
         <Lightformer
-          intensity={2.0}
-          color="#dfe2ea"
+          intensity={4.0}
+          color="#eef1f7"
           position={[-6, 1, -1]}
           rotation={[0, Math.PI / 2, 0]}
-          scale={[9, 7, 1]}
+          scale={[10, 8, 1]}
         />
         {/* Bright silver fill — right */}
         <Lightformer
-          intensity={1.5}
-          color="#f2f4f8"
+          intensity={3.0}
+          color="#f6f8fc"
           position={[6, -1, -1]}
           rotation={[0, -Math.PI / 2, 0]}
-          scale={[9, 7, 1]}
+          scale={[10, 8, 1]}
         />
-        {/* Neutral top wash for highlights */}
+        {/* Sharp top streak — gives a defined moving highlight band */}
         <Lightformer
-          intensity={0.8}
+          form="ring"
+          intensity={2.0}
           color="#ffffff"
-          position={[0, 6, 3]}
-          scale={[14, 14, 1]}
+          position={[1, 4, 2]}
+          scale={[4, 4, 1]}
         />
       </Environment>
-      {/* Two-point key/fill lighting — neutral so the glass stays silver */}
-      <ambientLight intensity={0.2} />
-      <directionalLight position={[4, 6, 4]} intensity={1.2} color="#f4f5fa" />
-      <directionalLight position={[-3, -2, 2]} intensity={0.4} color="#cfd6e6" />
+      {/* Two-point key/fill lighting — bright + neutral so the glass reads
+          as a clearly visible silver/chrome ball, never washed-out. */}
+      <ambientLight intensity={0.35} />
+      <directionalLight position={[4, 6, 4]} intensity={2.4} color="#ffffff" />
+      <directionalLight position={[-3, -2, 2]} intensity={0.8} color="#dfe6f5" />
 
       <GlassCenterpiece />
 
@@ -834,11 +838,11 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
             more cinematic glow without the harsh "halo" look. */}
         <EffectComposer enableNormalPass={false} multisampling={4}>
           <Bloom
-            intensity={0.42}
-            luminanceThreshold={0.35}
-            luminanceSmoothing={0.95}
+            intensity={0.6}
+            luminanceThreshold={0.4}
+            luminanceSmoothing={0.9}
             mipmapBlur
-            radius={0.7}
+            radius={0.75}
           />
         </EffectComposer>
       </Canvas>

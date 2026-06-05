@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { geistSans, geistMono, displayFont, accentFont } from '@/lib/fonts';
 import { LenisProvider } from '@/components/providers/lenis-provider';
+import { HtmlLang } from '@/components/system/html-lang';
 import { CookieBanner } from '@/components/providers/cookie-banner';
 import { Navbar } from '@/components/sections/navbar';
 import { Footer } from '@/components/sections/footer';
@@ -8,8 +9,6 @@ import { MagneticCursor } from '@/components/effects/magnetic-cursor';
 import { ScrollProgress } from '@/components/effects/scroll-progress';
 import { SectionRail } from '@/components/effects/section-rail';
 import { ChapterHud } from '@/components/effects/chapter-hud';
-import { FloatingCta } from '@/components/effects/floating-cta';
-import { MobileVoiceCta } from '@/components/effects/mobile-voice-cta';
 import { KeyboardShortcuts } from '@/components/effects/keyboard-shortcuts';
 import { EntryLoader } from '@/components/system/entry-loader';
 import { PersistentCanvas } from '@/components/system/persistent-canvas';
@@ -115,12 +114,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SoundProvider>
           <ScrollProgress />
           <MagneticCursor />
+          <HtmlLang />
           <LenisProvider>
             <Navbar />
             <SectionRail />
             <ChapterHud />
-            <FloatingCta />
-            <MobileVoiceCta />
             <KeyboardShortcuts />
             <main id="main-content" className="relative z-[1]">{children}</main>
             <Footer />

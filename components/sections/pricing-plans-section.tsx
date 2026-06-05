@@ -82,7 +82,7 @@ function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
       className={
         'relative flex flex-col rounded-xl border p-7 transition-transform duration-300 hover:-translate-y-1 ' +
         (rec
-          ? 'border-[hsl(var(--accent))/40] bg-[hsl(var(--accent))/10] shadow-[0_0_40px_hsl(var(--accent)/0.45)]'
+          ? 'border-[hsl(var(--accent))/40] bg-[hsl(var(--accent))/10] rec-pulse'
           : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60')
       }
     >
@@ -165,7 +165,7 @@ function AgentPlanCard({ card }: { card: AgentCard }) {
       className={
         'relative flex flex-col rounded-xl border p-7 transition-transform duration-300 hover:-translate-y-1 ' +
         (rec
-          ? 'border-[hsl(var(--accent))/40] bg-[hsl(var(--accent))/10] shadow-[0_0_40px_hsl(var(--accent)/0.45)]'
+          ? 'border-[hsl(var(--accent))/40] bg-[hsl(var(--accent))/10] rec-pulse'
           : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60')
       }
     >
@@ -394,8 +394,17 @@ export function PricingPlansSection() {
         {/* Cards */}
         {active === 'voice' ? (
           <div role="tabpanel" className="mt-12 grid gap-6 md:grid-cols-3">
-            {voicePlans.map((p) => (
-              <VoiceCard key={p.id} plan={p} billing={billing} />
+            {voicePlans.map((p, i) => (
+              <motion.div
+                key={p.id}
+                initial={{ opacity: 0, y: 30, scale: p.recommended ? 0.95 : 1 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-12% 0px' }}
+                transition={{ delay: i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className={p.recommended ? 'md:-mt-2' : ''}
+              >
+                <VoiceCard plan={p} billing={billing} />
+              </motion.div>
             ))}
           </div>
         ) : (
@@ -403,8 +412,17 @@ export function PricingPlansSection() {
             role="tabpanel"
             className={'mt-12 grid gap-6 ' + (agentCards.length === 3 ? 'md:grid-cols-3' : 'mx-auto max-w-3xl md:grid-cols-2')}
           >
-            {agentCards.map((c) => (
-              <AgentPlanCard key={c.id} card={c} />
+            {agentCards.map((c, i) => (
+              <motion.div
+                key={c.id}
+                initial={{ opacity: 0, y: 30, scale: c.recommended ? 0.95 : 1 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-12% 0px' }}
+                transition={{ delay: i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className={c.recommended ? 'md:-mt-2' : ''}
+              >
+                <AgentPlanCard card={c} />
+              </motion.div>
             ))}
           </div>
         )}

@@ -1,12 +1,13 @@
 import { Hero } from '@/components/sections/hero';
-import { LiveVoiceAgent } from '@/components/sections/live-voice-agent';
+import { VoiceConsole } from '@/components/sections/voice-console';
 import { TechMarquee } from '@/components/sections/tech-marquee';
 import { VoiceAgentsSection } from '@/components/sections/voice-agents-section';
 import { PricingSnapshot } from '@/components/sections/pricing-snapshot';
 import { VoiceRoiCalculator } from '@/components/sections/voice-roi-calculator';
 import { TrustStrip } from '@/components/sections/trust-strip';
 import { ContactSection } from '@/components/sections/contact-section';
-import { SectionReveal } from '@/components/ui/section-reveal';
+import { ScrollSlide } from '@/components/ui/scroll-slide';
+import { ScrollZoom } from '@/components/ui/scroll-zoom';
 import { faqPageLd, ldJson } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
 
@@ -32,26 +33,40 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: ldJson(faqPageLd(FAQ)) }}
       />
-      <SectionReveal>
-        <LiveVoiceAgent />
-      </SectionReveal>
+      <section className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[440px] w-[720px] max-w-[92vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,hsl(174_100%_50%/0.16),transparent_70%)] blur-3xl"
+        />
+        <div className="mx-auto max-w-2xl px-6 pb-16 pt-[130px] text-center lg:pt-[160px]">
+          <h2 className="font-display text-[clamp(2rem,5vw,3.25rem)] font-medium leading-[1.05] tracking-[-0.02em] text-white">
+            Sprich mit einem unserer KI-Agenten.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-[1.05rem] leading-relaxed text-white/65">
+            Lies nicht über KI-Telefonie — erlebe sie. Ein Klick, deine Stimme, Antwort in unter 0,4 Sekunden.
+          </p>
+          <div className="mx-auto mt-9 max-w-md text-left">
+            <VoiceConsole title={null} />
+          </div>
+        </div>
+      </section>
       <Hero />
-      <SectionReveal>
+      <ScrollZoom>
         <PricingSnapshot />
-      </SectionReveal>
-      <SectionReveal>
+      </ScrollZoom>
+      <ScrollSlide direction="right">
         <VoiceRoiCalculator />
-      </SectionReveal>
+      </ScrollSlide>
       <TechMarquee />
-      <SectionReveal>
+      <ScrollSlide direction="left">
         <VoiceAgentsSection />
-      </SectionReveal>
-      <SectionReveal>
+      </ScrollSlide>
+      <ScrollZoom>
         <TrustStrip />
-      </SectionReveal>
-      <SectionReveal>
+      </ScrollZoom>
+      <ScrollZoom>
         <ContactSection />
-      </SectionReveal>
+      </ScrollZoom>
     </>
   );
 }

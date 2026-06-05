@@ -7,7 +7,8 @@ import { RoiSection } from '@/components/sections/roi-section';
 import { SolutionsSection } from '@/components/sections/solutions-section';
 import { UspSection } from '@/components/sections/usp-section';
 import { ContactSection } from '@/components/sections/contact-section';
-import { SectionReveal } from '@/components/ui/section-reveal';
+import { ScrollSlide } from '@/components/ui/scroll-slide';
+import { ScrollZoom } from '@/components/ui/scroll-zoom';
 
 export const metadata: Metadata = {
   title: 'KI-Automatisierung & KI-Agenten für den Mittelstand | RSG AI',
@@ -82,27 +83,27 @@ export default function AutomatisierungPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <AutomationHero />
-      <SectionReveal>
+      <ScrollZoom>
         <AgentShowcase />
-      </SectionReveal>
-      <SectionReveal>
+      </ScrollZoom>
+      <ScrollSlide direction="right">
         <PipelineSection />
-      </SectionReveal>
-      <SectionReveal>
+      </ScrollSlide>
+      <ScrollSlide direction="left">
         <SolutionsSection />
-      </SectionReveal>
-      <SectionReveal>
+      </ScrollSlide>
+      <ScrollZoom>
         <RoiSection />
-      </SectionReveal>
-      <SectionReveal>
+      </ScrollZoom>
+      <ScrollZoom>
         <AutomationPricing />
-      </SectionReveal>
-      <SectionReveal>
+      </ScrollZoom>
+      <ScrollSlide direction="right">
         <UspSection />
-      </SectionReveal>
-      <SectionReveal>
+      </ScrollSlide>
+      <ScrollZoom>
         <ContactSection />
-      </SectionReveal>
+      </ScrollZoom>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { geistSans, geistMono, displayFont, accentFont } from '@/lib/fonts';
 import { LenisProvider } from '@/components/providers/lenis-provider';
+import { HtmlLang } from '@/components/system/html-lang';
 import { CookieBanner } from '@/components/providers/cookie-banner';
 import { Navbar } from '@/components/sections/navbar';
 import { Footer } from '@/components/sections/footer';
@@ -113,6 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SoundProvider>
           <ScrollProgress />
           <MagneticCursor />
+          <HtmlLang />
           <LenisProvider>
             <Navbar />
             <SectionRail />

@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import { site } from '@/lib/content';
 import { VoiceConsole } from '@/components/sections/voice-console';
+import { ScrollZoom } from '@/components/ui/scroll-zoom';
+import { ScrollSlide } from '@/components/ui/scroll-slide';
 
 export const metadata: Metadata = {
   title: 'KI-Telefonassistent — Inbound · Outbound · Termine in unter 0,4 s',
@@ -185,6 +187,7 @@ export default function KiTelefonassistentPage() {
       </section>
 
       {/* Three services */}
+      <ScrollZoom>
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 px-6 py-20 backdrop-blur-[2px] md:py-24 lg:px-10">
         <div className="mx-auto max-w-[1280px]">
           <div className="grid grid-cols-12 gap-x-6 gap-y-6">
@@ -235,8 +238,10 @@ export default function KiTelefonassistentPage() {
           </div>
         </div>
       </section>
+      </ScrollZoom>
 
       {/* Industries */}
+      <ScrollSlide direction="right">
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))]/40 px-6 py-20 backdrop-blur-[2px] md:py-24 lg:px-10">
         <div className="mx-auto max-w-[1280px]">
           <div className="grid grid-cols-12 gap-x-6 gap-y-6">
@@ -279,8 +284,10 @@ export default function KiTelefonassistentPage() {
           </div>
         </div>
       </section>
+      </ScrollSlide>
 
       {/* Trust strip */}
+      <ScrollZoom>
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 px-6 py-16 backdrop-blur-[2px] lg:px-10">
         <div className="mx-auto grid max-w-[1080px] grid-cols-1 gap-8 text-center md:grid-cols-3">
           {[
@@ -302,8 +309,10 @@ export default function KiTelefonassistentPage() {
           ))}
         </div>
       </section>
+      </ScrollZoom>
 
       {/* FAQ */}
+      <ScrollSlide direction="left">
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 px-6 py-20 backdrop-blur-[2px] md:py-24 lg:px-10">
         <div className="mx-auto max-w-[820px]">
           <span className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
@@ -342,8 +351,10 @@ export default function KiTelefonassistentPage() {
           </ul>
         </div>
       </section>
+      </ScrollSlide>
 
       {/* Final CTA */}
+      <ScrollZoom>
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10">
         <div className="mx-auto max-w-[820px] text-center">
           <h2 className="font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
@@ -370,6 +381,7 @@ export default function KiTelefonassistentPage() {
           </div>
         </div>
       </section>
+      </ScrollZoom>
     </article>
   );
 }

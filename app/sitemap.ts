@@ -6,7 +6,10 @@ import { INSIGHTS } from '@/lib/insights';
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   return [
-    { url: site.url, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
+    { url: site.url, lastModified: now, changeFrequency: 'weekly', priority: 1.0,
+      alternates: { languages: { 'de-DE': site.url, en: `${site.url}/en` } } },
+    { url: `${site.url}/en`, lastModified: now, changeFrequency: 'weekly', priority: 0.9,
+      alternates: { languages: { 'de-DE': site.url, en: `${site.url}/en` } } },
     { url: `${site.url}/ki-telefonassistent`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${site.url}/ki-telefonassistent/arztpraxis`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${site.url}/ki-telefonassistent/handwerk`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },

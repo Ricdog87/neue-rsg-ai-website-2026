@@ -10,6 +10,7 @@ import {
 import { Mic, PhoneOff, Loader2, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { site } from '@/lib/content';
+import { useEnglish } from '@/components/system/use-locale';
 
 const AGENT_ID = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID;
 const MAX_MS = 3 * 60 * 1000;
@@ -143,13 +144,10 @@ function Visualizer({ live }: { live: boolean }) {
   return <canvas ref={ref} aria-hidden className="block h-[150px] w-full" />;
 }
 
-function StatusLabel({ state }: { state: VisualState }) {
-  const map: Record<VisualState, string> = {
-    idle: 'bereit',
-    connecting: 'verbinde …',
-    live: 'live · hört zu',
-    off: 'gleich erreichbar',
-  };
+function StatusLabel({ state, en }: { state: VisualState; en: boolean }) {
+  const map: Record<VisualState, string> = en
+    ? { idle: 'ready', connecting: 'connecting …', live: 'live · listening', off: 'available shortly' }
+    : { idle: 'bereit', connecting: 'verbinde …', live: 'live · hört zu', off: 'gleich erreichbar' };
   return (
     <div className="mt-3 flex items-center justify-center gap-2 font-mono text-[0.625rem] uppercase tracking-[0.24em] text-[hsl(var(--subtle))]">
       Status:&nbsp;<span className="text-[hsl(174_100%_70%)]">{map[state]}</span>
@@ -162,6 +160,7 @@ function ConsoleControls() {
   const { status } = useConversationStatus();
   const [err, setErr] = useState(false);
   const live = status === 'connected';
+  const en = useEnglish();
 
   useEffect(() => {
     if (status !== 'connected') return;
@@ -189,7 +188,7 @@ function ConsoleControls() {
   return (
     <>
       <Visualizer live={live} />
-      <StatusLabel state={state} />
+      <StatusLabel state={state} en={en} />
       {live ? (
         <button
           type="button"
@@ -200,12 +199,12 @@ function ConsoleControls() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-red-400" />
           </span>
-          Live — Gespräch beenden
+          {en ? 'Live — end call' : 'Live — Gespräch beenden'}
           <PhoneOff className="h-4 w-4" />
         </button>
       ) : status === 'connecting' ? (
         <button type="button" disabled className={cn(BTN, 'bg-[hsl(174_100%_45%)] text-[#04130f] opacity-80')}>
-          <Loader2 className="h-4 w-4 animate-spin" /> Verbinde …
+          <Loader2 className="h-4 w-4 animate-spin" /> {en ? 'Connecting …' : 'Verbinde …'}
         </button>
       ) : (
         <button
@@ -218,7 +217,7 @@ function ConsoleControls() {
           )}
         >
           <Mic className="h-4 w-4" />
-          {err ? 'Mikrofon erlauben & nochmal' : 'Sprich mit der KI-Agentin'}
+          {err ? (en ? 'Allow mic & retry' : 'Mikrofon erlauben & nochmal') : (en ? 'Talk to the AI agent' : 'Sprich mit der KI-Agentin')}
         </button>
       )}
     </>
@@ -226,16 +225,17 @@ function ConsoleControls() {
 }
 
 function ConsoleFallback({ pending }: { pending: boolean }) {
+  const en = useEnglish();
   return (
     <>
       <Visualizer live={false} />
-      <StatusLabel state={pending ? 'idle' : 'off'} />
+      <StatusLabel state={pending ? 'idle' : 'off'} en={en} />
       <Link
         href={site.cta.meetingUrl}
         data-event="voice_console_fallback"
         className={cn(BTN, 'bg-[hsl(174_100%_45%)] text-[#04130f] hover:bg-[hsl(174_100%_55%)]')}
       >
-        <Mic className="h-4 w-4" /> Erstgespräch buchen
+        <Mic className="h-4 w-4" /> {en ? 'Book intro call' : 'Erstgespräch buchen'}
         <ArrowRight className="h-4 w-4" />
       </Link>
     </>
@@ -247,9 +247,16 @@ function ConsoleFallback({ pending }: { pending: boolean }) {
  * KITT-style voice agent. Reuses the ElevenLabs wiring; degrades to a
  * booking CTA when NEXT_PUBLIC_ELEVENLABS_AGENT_ID is absent (e.g. CI).
  */
-export function VoiceConsole({ title = 'Sprich jetzt mit der KI-Agentin — live im Browser.' }: { title?: string | null }) {
+export function VoiceConsole({ title }: { title?: string | null }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+  const en = useEnglish();
+  const heading =
+    title === undefined
+      ? en
+        ? 'Talk to the AI agent now — live in your browser.'
+        : 'Sprich jetzt mit der KI-Agentin — live im Browser.'
+      : title;
 
   return (
     <div className="rounded-2xl border border-[hsl(174_100%_50%/0.25)] bg-[hsl(var(--surface))]/80 p-6 shadow-[0_0_72px_-16px_hsl(174_100%_50%/0.55)] backdrop-blur-sm">
@@ -258,11 +265,11 @@ export function VoiceConsole({ title = 'Sprich jetzt mit der KI-Agentin — live
           <span className="absolute inset-0 animate-ping rounded-full bg-[hsl(174_100%_50%)] opacity-60" />
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(174_100%_50%)]" />
         </span>
-        Live · im Browser · keine Wartezeit
+        {en ? 'Live · in your browser · no waiting' : 'Live · im Browser · keine Wartezeit'}
       </div>
-      {title ? (
+      {heading ? (
         <p className="mb-4 font-display text-[1.125rem] font-medium leading-tight text-[hsl(var(--fg))]">
-          {title}
+          {heading}
         </p>
       ) : null}
       <div className="rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--bg))]/50 p-3">
@@ -275,14 +282,21 @@ export function VoiceConsole({ title = 'Sprich jetzt mit der KI-Agentin — live
         )}
       </div>
       <p className="mt-3 text-center text-[0.7rem] text-[hsl(var(--subtle))]">
-        Kostenlos · max. 3 Min · Mikrofon erforderlich · DSGVO · EU
+        {en ? 'Free · max 3 min · mic required · GDPR · EU' : 'Kostenlos · max. 3 Min · Mikrofon erforderlich · DSGVO · EU'}
       </p>
       <div className="mt-5 grid grid-cols-3 gap-3 border-t border-[hsl(var(--border))] pt-4">
-        {[
-          ['200+', 'Voice-Agenten · live'],
-          ['9.000', 'Calls/Mo · Spitze'],
-          ['24/7', 'Annahme · Schicht-frei'],
-        ].map(([big, label]) => (
+        {(en
+          ? [
+              ['200+', 'Voice agents · live'],
+              ['9,000', 'Calls/mo · peak'],
+              ['24/7', 'Pickup · shift-free'],
+            ]
+          : [
+              ['200+', 'Voice-Agenten · live'],
+              ['9.000', 'Calls/Mo · Spitze'],
+              ['24/7', 'Annahme · Schicht-frei'],
+            ]
+        ).map(([big, label]) => (
           <div key={label}>
             <div className="font-display text-[1.15rem] font-medium leading-none tabular-nums text-[hsl(var(--fg))]">
               {big}

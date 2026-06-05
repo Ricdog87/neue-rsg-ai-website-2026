@@ -329,55 +329,54 @@ function CameraDirector({ pointer }: { pointer: React.MutableRefObject<{ x: numb
 
   useFrame((state, dt) => {
     const T = state.clock.elapsedTime;
-    const cycle = 38;
+    const cycle = 52;
     const t = T % cycle;
 
     // ── Camera path (parametric, easing-blended) ───────────
-    // Phase 1 (0–10s): slow zoom in
-    const p1 = ss(0, 10, t);
-    // Phase 2 (10–18s): dolly right
-    const p2 = ss(10, 18, t);
-    // Phase 3 (18–26s): zoom out + lift
-    const p3 = ss(18, 26, t);
-    // Phase 4 (26–34s): arc back left
-    const p4 = ss(26, 34, t);
-    // Phase 5 (34–38s): settle
-    const p5 = ss(34, 38, t);
+    // Easing windows stretched across the longer 52s loop — every move
+    // gets more time to breathe, so the motion reads calm and deliberate.
+    const p1 = ss(0, 14, t); // slow zoom in
+    const p2 = ss(14, 25, t); // gentle dolly right
+    const p3 = ss(25, 36, t); // ease back out + lift
+    const p4 = ss(36, 47, t); // drift left
+    const p5 = ss(47, 52, t); // settle home
 
-    // Compose camera position
+    // Compose camera position. Amplitudes reduced ~40% vs. before — the
+    // scene now glides rather than swoops, which reads as premium/calm.
     let cx = 0, cy = 0, cz = 7.5;
 
-    // Phase 1 — zoom in (z 7.5 → 4.8), tilt up
-    cz += -2.7 * p1;
-    cy += 0.6 * p1;
+    // Phase 1 — zoom in (z 7.5 → 5.9), tilt up
+    cz += -1.6 * p1;
+    cy += 0.35 * p1;
 
-    // Phase 2 — dolly right (x 0 → 2.2)
-    cx += 2.2 * p2;
-    cy += -0.4 * p2;
+    // Phase 2 — dolly right
+    cx += 1.3 * p2;
+    cy += -0.25 * p2;
 
-    // Phase 3 — zoom out (z 4.8 → 8.5), lift up
-    cz += 3.7 * p3;
-    cy += 1.2 * p3;
+    // Phase 3 — ease back out + lift
+    cz += 2.1 * p3;
+    cy += 0.7 * p3;
 
-    // Phase 4 — arc back (x 2.2 → -1.8)
-    cx += -4 * p4;
-    cy += -1.5 * p4;
+    // Phase 4 — drift left
+    cx += -2.4 * p4;
+    cy += -0.9 * p4;
 
-    // Phase 5 — settle back to (0, 0, 7.5)
-    cx += 1.8 * p5;
+    // Phase 5 — settle back toward start
+    cx += 1.1 * p5;
     cy += 0.1 * p5;
-    cz += -1 * p5;
+    cz += -0.6 * p5;
 
-    // Add gentle mouse parallax on top
-    cx += pointer.current.x * 0.5;
-    cy += -pointer.current.y * 0.25;
+    // Add gentle mouse parallax on top (softened)
+    cx += pointer.current.x * 0.38;
+    cy += -pointer.current.y * 0.2;
 
     // Slow autonomous breathing
-    cz += Math.sin(T * 0.13) * 0.15;
-    cy += Math.cos(T * 0.09) * 0.12;
+    cz += Math.sin(T * 0.11) * 0.13;
+    cy += Math.cos(T * 0.08) * 0.1;
 
-    // Smooth lerp camera toward target position
-    const lerp = Math.min(1, dt * 1.2);
+    // Smooth lerp camera toward target — lower factor = softer, more
+    // cinematic follow with a touch of inertia (frame-rate independent).
+    const lerp = 1 - Math.pow(0.5, dt * 1.6);
     pos.current.x += (cx - pos.current.x) * lerp;
     pos.current.y += (cy - pos.current.y) * lerp;
     pos.current.z += (cz - pos.current.z) * lerp;
@@ -659,26 +658,32 @@ function GlassCenterpiece() {
       floatingRange={[-0.12, 0.12]}
     >
       <group ref={meshRef} position={[3.4, 0.3, 0]} scale={1.05}>
-        {/* Outer glass sphere — clean, photorealistic, no distortion */}
+        {/* Outer glass sphere — clean, photorealistic, no distortion.
+            Higher poly + transmission resolution + samples = a smooth,
+            premium refraction with no faceting or shimmer. */}
         <mesh>
-          <icosahedronGeometry args={[0.95, 6]} />
+          <icosahedronGeometry args={[0.95, 12]} />
           <MeshTransmissionMaterial
             backside
-            backsideThickness={0.35}
-            samples={8}
-            resolution={512}
+            backsideThickness={0.4}
+            samples={16}
+            resolution={1024}
+            backsideResolution={512}
             transmission={1}
-            roughness={0.04}
-            thickness={1.4}
-            ior={1.5}
-            chromaticAberration={0.04}
-            anisotropy={0.15}
+            roughness={0.02}
+            thickness={1.3}
+            ior={1.45}
+            chromaticAberration={0.025}
+            anisotropy={0.1}
+            anisotropicBlur={0.4}
             distortion={0}
             distortionScale={0}
             temporalDistortion={0}
-            attenuationDistance={2.5}
+            attenuationDistance={2.8}
             attenuationColor="#d4c5ff"
             color="#ffffff"
+            clearcoat={1}
+            clearcoatRoughness={0.04}
           />
         </mesh>
 
@@ -832,22 +837,27 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
       style={{ background: '#03020c' }}
     >
       <Canvas
-        dpr={[1.25, 2]}
-        camera={{ position: [0, 0, 6], fov: 65 }}
+        dpr={[1.5, 2]}
+        camera={{ position: [0, 0, 6], fov: 60 }}
         gl={{
-          antialias: false,
+          antialias: true,
           alpha: false,
           powerPreference: 'high-performance',
+          stencil: false,
+          depth: true,
         }}
       >
         <color attach="background" args={['#03020c']} />
         <Scene pointer={pointer} />
-        <EffectComposer enableNormalPass={false} multisampling={2}>
+        {/* Multisampled AA + a softer, wider bloom = cleaner edges and a
+            more cinematic glow without the harsh "halo" look. */}
+        <EffectComposer enableNormalPass={false} multisampling={4}>
           <Bloom
-            intensity={0.5}
-            luminanceThreshold={0.3}
-            luminanceSmoothing={0.7}
+            intensity={0.42}
+            luminanceThreshold={0.35}
+            luminanceSmoothing={0.95}
             mipmapBlur
+            radius={0.7}
           />
         </EffectComposer>
       </Canvas>

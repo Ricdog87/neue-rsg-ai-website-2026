@@ -119,7 +119,7 @@ export function PricingSnapshot() {
         <p className="mt-6 text-center text-[0.875rem] text-[hsl(var(--muted))]">
           Du brauchst eher Prozess-Automatisierung statt Telefonie?{' '}
           <Link
-            href="/preise#automation"
+            href="/automatisierung"
             className="font-medium text-[hsl(var(--accent))] underline-offset-2 hover:underline"
           >
             KI-Agenten & Workflows ab 2.500 €

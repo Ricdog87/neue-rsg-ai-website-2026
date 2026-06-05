@@ -1,32 +1,28 @@
 import { Hero } from '@/components/sections/hero';
 import { LiveVoiceAgent } from '@/components/sections/live-voice-agent';
 import { TechMarquee } from '@/components/sections/tech-marquee';
-import { VoiceDemoCta } from '@/components/sections/voice-demo-cta';
 import { VoiceAgentsSection } from '@/components/sections/voice-agents-section';
-import { UspSection } from '@/components/sections/usp-section';
-import { PipelineSection } from '@/components/sections/pipeline-section';
-import { SolutionsSection } from '@/components/sections/solutions-section';
-import { RoiSection } from '@/components/sections/roi-section';
-import { PricingPlansSection } from '@/components/sections/pricing-plans-section';
-import { FaqSection } from '@/components/sections/faq-section';
-import { FAQ } from '@/lib/faq';
-import { NewsletterSection } from '@/components/sections/newsletter-section';
+import { PricingSnapshot } from '@/components/sections/pricing-snapshot';
+import { TrustStrip } from '@/components/sections/trust-strip';
 import { ContactSection } from '@/components/sections/contact-section';
 import { SectionReveal } from '@/components/ui/section-reveal';
 import { faqPageLd, ldJson } from '@/lib/jsonld';
+import { FAQ } from '@/lib/faq';
 
 /**
- * Sales-pitch composition — designed for live meeting use.
+ * Homepage — Focused funnel, not encyclopedia.
  *
- *  №01 Hero        · Wer wir sind        (5-Sek-Eindruck)
- *  №02 USP         · Warum RSG AI        (3 Differenzierer)
- *  №03 Pipelines   · Was wir bauen       (2 Workflows → Case-Studies)
- *  №04 Solutions   · Wie wir liefern     (4 Schritte)
- *  №05 ROI         · Was du sparst       (Rechner)
- *  №06 Pricing     · Investment          (2 Tiers)
- *  №07 FAQ         · 4 Garantien + 7 Antworten
- *  №08 Newsletter  · Lead-Magnet         (LinkedIn + E-Mail)
- *  №09 Contact     · Termin              (Buchung)
+ * Strategy: don't dump everything on one page. Land users on the
+ * value-proposition + price, then funnel them to dedicated pages
+ * for depth (/preise, /ki-telefonassistent, /cases, /insights).
+ *
+ *  №01 Live-Voice-Agent · Interactive Hook (im Browser ausprobieren)
+ *  №02 Hero             · Voice-forward Positioning
+ *  №03 PricingSnapshot  · 3 Voice-Cards → /preise
+ *  №04 TechMarquee      · Tech-Stack-Strip (visual breather)
+ *  №05 VoiceAgents      · Live-Demo + Use-Cases (kompakt)
+ *  №06 TrustStrip       · 4 KPIs (DSGVO · Time-to-Live · Performance)
+ *  №07 Contact          · Final CTA → Termin
  */
 export default function HomePage() {
   return (
@@ -39,41 +35,15 @@ export default function HomePage() {
         <LiveVoiceAgent />
       </SectionReveal>
       <Hero />
-      <TechMarquee />
       <SectionReveal>
-        <section
-          id="voice-demo"
-          aria-label="Live-Demo · ruf jetzt an"
-          className="px-4 pb-4 pt-16 sm:pb-6 sm:pt-24"
-        >
-          <div className="mx-auto max-w-6xl">
-            <VoiceDemoCta />
-          </div>
-        </section>
+        <PricingSnapshot />
       </SectionReveal>
+      <TechMarquee />
       <SectionReveal>
         <VoiceAgentsSection />
       </SectionReveal>
       <SectionReveal>
-        <UspSection />
-      </SectionReveal>
-      <SectionReveal>
-        <PipelineSection />
-      </SectionReveal>
-      <SectionReveal>
-        <SolutionsSection />
-      </SectionReveal>
-      <SectionReveal>
-        <RoiSection />
-      </SectionReveal>
-      <SectionReveal>
-        <PricingPlansSection />
-      </SectionReveal>
-      <SectionReveal>
-        <FaqSection />
-      </SectionReveal>
-      <SectionReveal>
-        <NewsletterSection />
+        <TrustStrip />
       </SectionReveal>
       <SectionReveal>
         <ContactSection />

@@ -14,13 +14,11 @@ import { motion, AnimatePresence } from 'framer-motion';
  */
 
 const CHAPTERS = [
-  { id: 'usp', n: '01', label: 'Warum uns' },
-  { id: 'pipelines', n: '02', label: 'Was wir bauen' },
-  { id: 'solutions', n: '03', label: 'Wie wir liefern' },
-  { id: 'roi', n: '04', label: 'Was du sparst' },
-  { id: 'pricing', n: '05', label: 'Investment' },
-  { id: 'faq', n: '06', label: 'FAQ' },
-  { id: 'newsletter', n: '07', label: 'Insights' },
+  { id: 'hero', n: '01', label: 'Voice-Agent live' },
+  { id: 'pricing-snapshot', n: '02', label: 'Preise' },
+  { id: 'voice', n: '03', label: 'Telefonassistentin' },
+  { id: 'trust', n: '04', label: 'Vertrauen' },
+  { id: 'contact', n: '05', label: 'Termin' },
   { id: 'contact', n: '08', label: 'Termin' },
 ] as const;
 

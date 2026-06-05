@@ -2,15 +2,23 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { nav } from '@/lib/content';
 
 /**
  * Vertical "Members Lounge" rail on the right edge of the viewport.
  *
- * Shows the current section the visitor is in + lets them jump.
+ * Shows the current homepage section + lets the visitor jump.
  * Appears after scrolling past the hero, fades back out on hero.
  * Pure decorative on mobile (hidden).
+ *
+ * Hardcoded to the homepage section flow (nav itself is now multi-page).
  */
+const HOMEPAGE_SECTIONS = [
+  { href: '#pricing-snapshot', label: 'Preise' },
+  { href: '#voice', label: 'Telefon' },
+  { href: '#trust', label: 'Vertrauen' },
+  { href: '#contact', label: 'Termin' },
+] as const;
+
 export function SectionRail() {
   const [active, setActive] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
@@ -18,7 +26,7 @@ export function SectionRail() {
   useEffect(() => {
     if (typeof IntersectionObserver === 'undefined') return;
 
-    const ids = nav.map((n) => n.href.replace('#', ''));
+    const ids = HOMEPAGE_SECTIONS.map((n) => n.href.replace('#', ''));
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => !!el);
@@ -57,7 +65,7 @@ export function SectionRail() {
           aria-hidden
           className="pointer-events-none fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-end gap-3 lg:flex"
         >
-          {nav.map((item, i) => {
+          {HOMEPAGE_SECTIONS.map((item, i) => {
             const isActive = active === item.href;
             return (
               <a

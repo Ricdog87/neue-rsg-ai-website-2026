@@ -47,21 +47,26 @@ export function PricingSnapshot() {
           {voicePlans.map((p, i) => (
             <motion.div
               key={p.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-10% 0px' }}
-              transition={{ delay: i * 0.06, duration: 0.5 }}
+              initial={{ opacity: 0, y: 36, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-12% 0px' }}
+              transition={{ delay: i * 0.13, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8 }}
               className={
-                'relative flex flex-col rounded-xl border p-6 ' +
+                'group relative flex flex-col rounded-xl border p-6 transition-colors duration-300 ' +
                 (p.recommended
-                  ? 'border-[hsl(var(--accent))/40] bg-[hsl(var(--accent))/10]'
-                  : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60')
+                  ? 'rec-pulse border-[hsl(var(--accent))/60] bg-[hsl(var(--accent))/12] md:-mt-3 md:mb-3'
+                  : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60 hover:border-[hsl(var(--accent))/45] hover:bg-[hsl(var(--bg))]/75')
               }
             >
               {p.recommended && (
-                <span className="absolute -top-2.5 left-6 inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-0.5 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white">
+                <motion.span
+                  animate={{ scale: [1, 1.09, 1] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -top-2.5 left-6 inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-0.5 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white shadow-[0_0_22px_hsl(var(--accent)/0.55)]"
+                >
                   {en ? '★ Popular' : '★ Beliebt'}
-                </span>
+                </motion.span>
               )}
 
               <div className="flex items-baseline justify-between gap-2">

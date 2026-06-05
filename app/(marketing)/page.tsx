@@ -6,7 +6,7 @@ import { PricingSnapshot } from '@/components/sections/pricing-snapshot';
 import { VoiceRoiCalculator } from '@/components/sections/voice-roi-calculator';
 import { TrustStrip } from '@/components/sections/trust-strip';
 import { ContactSection } from '@/components/sections/contact-section';
-import { SectionReveal } from '@/components/ui/section-reveal';
+import { ScrollSlide } from '@/components/ui/scroll-slide';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
 import { faqPageLd, ldJson } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
@@ -54,19 +54,19 @@ export default function HomePage() {
       <ScrollZoom>
         <PricingSnapshot />
       </ScrollZoom>
-      <SectionReveal>
+      <ScrollSlide direction="right">
         <VoiceRoiCalculator />
-      </SectionReveal>
+      </ScrollSlide>
       <TechMarquee />
-      <SectionReveal>
+      <ScrollSlide direction="left">
         <VoiceAgentsSection />
-      </SectionReveal>
+      </ScrollSlide>
       <ScrollZoom>
         <TrustStrip />
       </ScrollZoom>
-      <SectionReveal>
+      <ScrollZoom>
         <ContactSection />
-      </SectionReveal>
+      </ScrollZoom>
     </>
   );
 }

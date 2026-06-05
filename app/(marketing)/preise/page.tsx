@@ -4,7 +4,8 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { PricingPlansSection } from '@/components/sections/pricing-plans-section';
 import { RoiSection } from '@/components/sections/roi-section';
 import { FaqSection } from '@/components/sections/faq-section';
-import { SectionReveal } from '@/components/ui/section-reveal';
+import { ScrollSlide } from '@/components/ui/scroll-slide';
+import { ScrollZoom } from '@/components/ui/scroll-zoom';
 import { site } from '@/lib/content';
 import { breadcrumbLd, faqPageLd, ldJson, voiceProductLd } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
@@ -87,19 +88,19 @@ export default function PreisePage() {
       </section>
 
       {/* Full pricing toggle */}
-      <SectionReveal>
+      <ScrollZoom>
         <PricingPlansSection />
-      </SectionReveal>
+      </ScrollZoom>
 
       {/* ROI calculator */}
-      <SectionReveal>
+      <ScrollSlide direction="left">
         <RoiSection />
-      </SectionReveal>
+      </ScrollSlide>
 
       {/* FAQ + guarantees */}
-      <SectionReveal>
+      <ScrollSlide direction="right">
         <FaqSection />
-      </SectionReveal>
+      </ScrollSlide>
 
       {/* Final CTA */}
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10">

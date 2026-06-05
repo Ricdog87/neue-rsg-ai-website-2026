@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Copy, Check, ShieldCheck, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useEnglish } from '@/components/system/use-locale';
 
 /**
  * Inbound Call-to-Action für die Hero-Sektion.
@@ -16,6 +17,7 @@ const PHONE_DISPLAY = '+49 30 826 83906';
 const PHONE_DIAL = '+493082683906';
 
 export function HeroCallbackCard() {
+  const en = useEnglish();
   const [copied, setCopied] = useState(false);
 
   async function copyNumber() {
@@ -47,21 +49,24 @@ export function HeroCallbackCard() {
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--neon))]" />
             </span>
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
-              Live-Demo · Jetzt anrufen
+              {en ? 'Live demo · call now' : 'Live-Demo · Jetzt anrufen'}
             </span>
           </span>
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
-            Antwort &lt; 0,4 s
+            {en ? 'Replies < 0.4 s' : 'Antwort < 0,4 s'}
           </span>
         </div>
 
         {/* Headline */}
         <h3 className="font-display text-[clamp(1.5rem,2.4vw,1.875rem)] font-medium leading-[1.15] tracking-[-0.02em] text-white">
-          Ruf unseren KI-Agenten an — er hebt beim ersten Klingeln ab.
+          {en
+            ? 'Call our AI agent — it picks up on the first ring.'
+            : 'Ruf unseren KI-Agenten an — er hebt beim ersten Klingeln ab.'}
         </h3>
         <p className="mt-2 text-[14px] leading-relaxed text-white/65">
-          Echte Stimme, echte Antworten in unter 0,4 Sekunden. Hör selbst, wie sich dein
-          zukünftiger Hotline-Agent anhört — kein Formular, kein Warten.
+          {en
+            ? 'Real voice, real answers in under 0.4 seconds. Hear what your future hotline agent sounds like — no form, no waiting.'
+            : 'Echte Stimme, echte Antworten in unter 0,4 Sekunden. Hör selbst, wie sich dein zukünftiger Hotline-Agent anhört — kein Formular, kein Warten.'}
         </p>
 
         {/* Call-Action */}
@@ -73,7 +78,7 @@ export function HeroCallbackCard() {
             <span className="pointer-events-none absolute inset-0 -z-10 animate-pulse bg-[hsl(var(--accent))] opacity-40 blur-md" />
             <Phone className="h-5 w-5 transition-transform group-hover:-rotate-12" />
             <span className="tabular-nums tracking-tight">{PHONE_DISPLAY}</span>
-            <span className="text-white/75">· Jetzt anrufen</span>
+            <span className="text-white/75">{en ? '· Call now' : '· Jetzt anrufen'}</span>
           </a>
 
           <button
@@ -85,7 +90,9 @@ export function HeroCallbackCard() {
             )}
           >
             {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-            {copied ? 'Nummer kopiert' : 'Nummer kopieren'}
+            {copied
+              ? en ? 'Number copied' : 'Nummer kopiert'
+              : en ? 'Copy number' : 'Nummer kopieren'}
           </button>
         </div>
 
@@ -96,27 +103,27 @@ export function HeroCallbackCard() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--neon))] opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--neon))]" />
             </span>
-            <strong className="font-semibold text-white">47</strong>&nbsp;heute live beantwortet
+            <strong className="font-semibold text-white">47</strong>&nbsp;{en ? 'answered live today' : 'heute live beantwortet'}
           </span>
           <span className="flex items-center gap-1.5">
             <Star className="h-3.5 w-3.5 fill-current text-[hsl(var(--accent))]" />
-            <strong className="font-semibold text-white">DSGVO</strong>&nbsp;konform
+            <strong className="font-semibold text-white">{en ? 'GDPR' : 'DSGVO'}</strong>&nbsp;{en ? 'compliant' : 'konform'}
           </span>
           <span>
-            <strong className="font-semibold text-white">Live</strong>&nbsp;im Wirkbetrieb
+            <strong className="font-semibold text-white">Live</strong>&nbsp;{en ? 'in production' : 'im Wirkbetrieb'}
           </span>
         </div>
 
         {/* Trust-Badges */}
         <div className="mt-4 flex flex-wrap gap-2 border-t border-white/5 pt-4 text-[11px] text-white/55">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1">
-            <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--neon))]" /> DSGVO · EU-Hosting
+            <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--neon))]" /> {en ? 'GDPR · EU hosting' : 'DSGVO · EU-Hosting'}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1">
-            <Check className="h-3.5 w-3.5 text-[hsl(var(--neon))]" /> Aufzeichnung nur mit Einwilligung
+            <Check className="h-3.5 w-3.5 text-[hsl(var(--neon))]" /> {en ? 'Recording only with consent' : 'Aufzeichnung nur mit Einwilligung'}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1">
-            Kostenlos · Mo–Fr 9–18 Uhr
+            {en ? 'Free · Mon–Fri 9am–6pm' : 'Kostenlos · Mo–Fr 9–18 Uhr'}
           </span>
         </div>
       </motion.div>

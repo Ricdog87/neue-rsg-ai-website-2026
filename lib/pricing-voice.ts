@@ -6,6 +6,11 @@ export type VoicePlan = {
   id: string;
   name: string;
   tagline: string;
+  /** English copy for the bilingual (/en) site */
+  taglineEn?: string;
+  idealForEn?: string;
+  featuresEn?: string[];
+  ctaEn?: string;
   /** Monthly price as displayed (formatted string for layout) */
   priceMonthly: string;
   /** Annual price = 15 % off; bei Jahresvorkasse entfällt das Setup */
@@ -19,6 +24,12 @@ export type VoicePlan = {
   setup: string;
   /** Setup value in € netto (null = Scale individuell) */
   setupValue: number | null;
+  /** Inklusiv-Gesprächsminuten pro Monat (Quelle für den Ersparnis-Rechner) */
+  includedMinutes: number;
+  /** Preis je Zusatzminute über das Inklusivvolumen, € netto (null = individuell) */
+  overagePerMin: number | null;
+  /** Obergrenze Anrufe/Tag für die Auto-Empfehlung im Rechner (null = offen) */
+  maxCallsPerDay: number | null;
   idealFor: string;
   features: string[];
   cta: string;
@@ -47,6 +58,9 @@ export const voicePlans: VoicePlan[] = [
     priceSuffix: '/Monat',
     setup: '+ 490 € einmalig Setup',
     setupValue: 490,
+    includedMinutes: 1000,
+    overagePerMin: 0.29,
+    maxCallsPerDay: 15,
     idealFor: 'Ideal für ~1–15 Anrufe/Tag',
     features: [
       'KI-Telefonassistent für deine Rufnummer — rund um die Uhr erreichbar',
@@ -57,6 +71,17 @@ export const voicePlans: VoicePlan[] = [
       'Geführtes Onboarding',
     ],
     cta: 'Solo starten',
+    taglineEn: 'The smart entry point for small teams',
+    idealForEn: 'Ideal for ~1–15 calls/day',
+    featuresEn: [
+      'AI phone assistant for your number — reachable around the clock',
+      '1,000 talk minutes/month included · €0.29 per extra minute',
+      'Automatic call transcripts — straight into your CRM',
+      'Fully automatic lead capture & maintained contact lists',
+      '6 languages · DE first',
+      'Guided onboarding',
+    ],
+    ctaEn: 'Start with Solo',
     ctaHref: '/termin',
     checkoutTier: 'solo',
   },
@@ -71,6 +96,9 @@ export const voicePlans: VoicePlan[] = [
     priceSuffix: '/Monat',
     setup: '+ 990 € einmalig Setup',
     setupValue: 990,
+    includedMinutes: 3000,
+    overagePerMin: 0.25,
+    maxCallsPerDay: 45,
     idealFor: 'Ideal für ~15–45 Anrufe/Tag',
     features: [
       'Alles aus Solo',
@@ -81,6 +109,17 @@ export const voicePlans: VoicePlan[] = [
       'Reporting-Dashboard · Prioritäts-Support',
     ],
     cta: 'Team buchen',
+    taglineEn: 'For growing sales & service teams',
+    idealForEn: 'Ideal for ~15–45 calls/day',
+    featuresEn: [
+      'Everything in Solo',
+      '3,000 talk minutes/month incl. (inbound + outbound) · €0.25 per extra minute',
+      'Outbound campaigns via automated call lists',
+      'Automatic lead lists incl. enrichment & prioritisation',
+      'Transcript-to-CRM workflows: meetings, notes & follow-ups run automatically',
+      'Reporting dashboard · priority support',
+    ],
+    ctaEn: 'Book Team',
     ctaHref: '/termin',
     checkoutTier: 'team',
     recommended: true,
@@ -97,6 +136,9 @@ export const voicePlans: VoicePlan[] = [
     priceNote: 'individuell',
     setup: 'Setup ab 1.990 € · individuell',
     setupValue: null,
+    includedMinutes: 5000,
+    overagePerMin: null,
+    maxCallsPerDay: null,
     idealFor: 'Ab ~45 Anrufe/Tag',
     features: [
       'Alles aus Team',
@@ -107,6 +149,17 @@ export const voicePlans: VoicePlan[] = [
       'Höchste Datenschutz-Stufe: keine Speicherung über die Verarbeitung hinaus · kein Training auf deinen Daten · EU-Hosting',
     ],
     cta: 'Angebot anfragen',
+    taglineEn: 'Enterprise-grade & fully tailored',
+    idealForEn: 'From ~45 calls/day',
+    featuresEn: [
+      'Everything in Team',
+      'Custom voice (your own brand voice)',
+      'from 5,000 min/month · individual · scales without limit',
+      'Custom automation workflows for your processes',
+      'Dedicated contact person & SLA',
+      'Highest data-protection tier: no storage beyond processing · no training on your data · EU hosting',
+    ],
+    ctaEn: 'Request a quote',
     ctaHref: '/termin',
     checkoutTier: null,
   },

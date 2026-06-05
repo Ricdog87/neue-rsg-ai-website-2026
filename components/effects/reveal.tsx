@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView, type Variants } from 'framer-motion';
-import { useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 /**
  * Section-choreography primitives.
@@ -212,8 +212,24 @@ export function CharSplit({
   stagger?: number;
   duration?: number;
 }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: '-10% 0px' });
+
+  // Above-the-fold safety net. CharSplit drives page-hero headlines, which
+  // are on-screen at mount. For an element already in view, the
+  // IntersectionObserver behind useInView can legitimately never fire a
+  // change — which would leave the entire headline stuck at opacity 0.
+  // So if the text is already within the viewport on mount, reveal it
+  // directly. Scroll-triggering is preserved for any below-the-fold use.
+  const [mountedInView, setMountedInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight || 0;
+    if (r.top < vh * 0.95 && r.bottom > 0) setMountedInView(true);
+  }, []);
+  const show = inView || mountedInView;
 
   // Split into words first (so words wrap as units), then into chars
   const words = text.split(' ');
@@ -246,7 +262,7 @@ export function CharSplit({
                   <motion.span
                     initial={{ y: '110%', rotateX: -42, opacity: 0 }}
                     animate={
-                      inView
+                      show
                         ? { y: '0%', rotateX: 0, opacity: 1 }
                         : { y: '110%', rotateX: -42, opacity: 0 }
                     }

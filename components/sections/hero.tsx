@@ -7,6 +7,33 @@ import { hero, liveStats, site } from '@/lib/content';
 import { Magnetic } from '@/components/effects/magnetic';
 import { CharSplit } from '@/components/effects/reveal';
 import { HeroCallbackCard } from '@/components/sections/hero-callback-card';
+import { useEnglish } from '@/components/system/use-locale';
+
+const LIVESTATS_EN: Record<string, string> = {
+  'Ø Reaktion': 'avg response',
+  'Ersparnis p.a. (Pilotkunden)': 'savings p.a. (pilots)',
+  'ROI · Pilotkunden': 'ROI · pilots',
+  'Uptime EU': 'Uptime EU',
+  'Live-Agenten': 'live agents',
+  'im Einsatz': 'in operation',
+};
+
+const HERO_EN = {
+  eyebrow: 'AI phone assistant · A workshop for sales',
+  headlineKinetic: ['AI agents', 'that pick up the phone —', 'and sell.'],
+  subStatement: 'Live in four weeks — not four quarters.',
+  subline:
+    'Your AI phone assistant answers every call, qualifies leads and books meetings — 24/7, in natural language, wired into your CRM. Currently onboarding Cohort 06 (Q3 2026).',
+  ctaPrimary: 'Book intro call',
+  ctaSecondary: 'See the assistant',
+  trustChips: [
+    'Live in 4 weeks',
+    'GDPR · EU servers',
+    '12+ agents in production',
+    'up to 312% ROI (pilots)',
+    'Hosted in Germany',
+  ],
+};
 
 /**
  * Live ticker — the hero KPI that actually increments every few seconds
@@ -75,7 +102,9 @@ const EASE_INOUT = [0.65, 0, 0.35, 1] as const;
  *   · No mouse-tilt, no gradient italic, no editorial grid overlay
  */
 export function Hero() {
-  const lines = hero.headlineKinetic;
+  const en = useEnglish();
+  const h = en ? HERO_EN : hero;
+  const lines = h.headlineKinetic;
 
   const tickerKpis = liveStats.slice(1);
 
@@ -123,10 +152,10 @@ export function Hero() {
         >
           <span aria-hidden className="h-px w-10 bg-white/30" />
           <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-white/65">
-            {hero.eyebrow}
+            {h.eyebrow}
           </span>
           <span className="ml-auto hidden font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-white/30 md:inline">
-            № 01 / Wiesbaden ⇆ Deutschland
+            № 01 / Wiesbaden ⇆ {en ? 'Germany' : 'Deutschland'}
           </span>
         </motion.div>
 
@@ -151,7 +180,7 @@ export function Hero() {
           </h1>
 
           {/* Italic sub-statement — single editorial flourish */}
-          {hero.subStatement && (
+          {h.subStatement && (
             <div className="mt-6 overflow-hidden md:mt-7">
               <motion.p
                 initial={{ y: '105%' }}
@@ -163,7 +192,7 @@ export function Hero() {
                 }}
                 className="font-accent text-[clamp(1.25rem,2.4vw,2.1rem)] font-light italic leading-[1.2] text-white/75"
               >
-                {hero.subStatement}
+                {h.subStatement}
               </motion.p>
             </div>
           )}
@@ -178,7 +207,7 @@ export function Hero() {
             className="max-w-2xl"
           >
             <p className="text-balance text-[1rem] leading-[1.65] text-white/65 md:text-[1.05rem]">
-              {hero.subline}
+              {h.subline}
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -190,7 +219,7 @@ export function Hero() {
                   data-event="meeting-cta-hero"
                   className="group relative inline-flex h-12 items-center gap-2 overflow-hidden rounded-full border border-white/25 px-6 font-display text-[0.9rem] font-medium text-white transition-all hover:border-white hover:shadow-[0_12px_30px_-10px_rgba(168,85,247,0.4)]"
                 >
-                  <span className="relative z-10">{hero.ctaPrimary}</span>
+                  <span className="relative z-10">{h.ctaPrimary}</span>
                   <ArrowUpRight className="relative z-10 h-4 w-4 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </a>
               </Magnetic>
@@ -203,7 +232,7 @@ export function Hero() {
                   className="group inline-flex h-12 items-center gap-2 rounded-full border border-white/15 px-6 font-display text-[0.9rem] font-medium text-white/85 transition-all hover:border-white/40 hover:text-white"
                 >
                   <Phone className="h-4 w-4 transition-transform group-hover:rotate-[-6deg]" />
-                  {hero.ctaSecondary}
+                  {h.ctaSecondary}
                 </a>
               </Magnetic>
             </div>
@@ -214,7 +243,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 3.1 }}
               className="mt-7 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/45"
             >
-              {hero.trustChips.slice(0, 3).map((chip) => (
+              {h.trustChips.slice(0, 3).map((chip) => (
                 <li key={chip} className="flex items-center gap-2">
                   <span aria-hidden className="h-px w-3 bg-white/30" />
                   {chip}
@@ -238,8 +267,8 @@ export function Hero() {
         >
           {[
             { k: 'Year', v: '2026' },
-            { k: 'Type', v: 'KI-Werkstatt' },
-            { k: 'Industry', v: 'B2B · Vertrieb' },
+            { k: 'Type', v: en ? 'AI workshop' : 'KI-Werkstatt' },
+            { k: 'Industry', v: en ? 'B2B · Sales' : 'B2B · Vertrieb' },
             { k: 'Stack', v: 'LangChain · n8n' },
             { k: 'Location', v: 'Wiesbaden, DE' },
           ].map(({ k, v }) => (
@@ -269,14 +298,14 @@ export function Hero() {
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-[hsl(174_100%_50%)]" />
                 </span>
                 <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-white/45">
-                  Live · jetzt
+                  {en ? 'Live · now' : 'Live · jetzt'}
                 </span>
               </div>
               <div className="font-display text-[clamp(4.5rem,11vw,8.5rem)] font-medium leading-[0.85] tabular-nums tracking-[-0.04em] text-white">
                 <LiveTicker base={1247} />
               </div>
               <div className="mt-3 font-mono text-[0.75rem] uppercase tracking-[0.24em] text-white/45">
-                Tasks heute · von 12+ Agenten in Produktion
+                {en ? 'Tasks today · from 12+ agents in production' : 'Tasks heute · von 12+ Agenten in Produktion'}
               </div>
             </div>
 
@@ -289,7 +318,9 @@ export function Hero() {
                   transition={{ duration: 0.6, ease: EASE, delay: 3.5 + i * 0.08 }}
                   className="flex items-baseline justify-between border-b border-white/8 py-2.5 font-mono text-[0.75rem] last:border-b-0"
                 >
-                  <span className="uppercase tracking-[0.18em] text-white/45">{s.label}</span>
+                  <span className="uppercase tracking-[0.18em] text-white/45">
+                    {en ? (LIVESTATS_EN[s.label] ?? s.label) : s.label}
+                  </span>
                   <span className="font-display text-[1.05rem] tracking-tight text-white">
                     {s.value}
                   </span>

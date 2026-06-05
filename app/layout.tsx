@@ -17,7 +17,6 @@ import { RouteTransition } from '@/components/system/route-transition';
 import { SoundProvider } from '@/components/system/sound-engine';
 import { Analytics } from '@/components/system/analytics';
 import { GA4 } from '@/components/system/ga4';
-import { AiChatWidget } from '@/components/sections/ai-chat-widget';
 import { site } from '@/lib/content';
 import {
   organizationLd,
@@ -127,7 +126,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
           </LenisProvider>
           <CookieBanner />
-          <AiChatWidget />
         </SoundProvider>
         <Analytics />
         <GA4 />

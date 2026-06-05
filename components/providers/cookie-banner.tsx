@@ -1,17 +1,19 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { useEnglish } from '@/components/system/use-locale';
 
 // react-cookie-consent ist client-only; lazy laden, damit kein SSR-Mismatch.
 const CookieConsent = dynamic(() => import('react-cookie-consent'), { ssr: false });
 
 export function CookieBanner() {
+  const en = useEnglish();
   return (
     <CookieConsent
       location="bottom"
       cookieName="rsg-ai-consent"
-      buttonText="Akzeptieren"
-      declineButtonText="Ablehnen"
+      buttonText={en ? 'Accept' : 'Akzeptieren'}
+      declineButtonText={en ? 'Decline' : 'Ablehnen'}
       enableDeclineButton
       style={{
         background: 'hsl(240 10% 6%)',
@@ -48,11 +50,27 @@ export function CookieBanner() {
         );
       }}
     >
-      Mit deiner Einwilligung nutzen wir Google Analytics, um anonymisiert zu verstehen, wie die Website genutzt wird — und sie laufend zu verbessern. Du entscheidest frei und kannst jederzeit widerrufen. Details in der{' '}
-      <a href="/datenschutz" className="underline">
-        Datenschutzerklärung
-      </a>
-      .
+      {en ? (
+        <>
+          With your consent we use Google Analytics to understand anonymously how
+          the site is used — and to keep improving it. You decide freely and can
+          withdraw anytime. Details in our{' '}
+          <a href="/datenschutz" className="underline">
+            privacy policy
+          </a>
+          .
+        </>
+      ) : (
+        <>
+          Mit deiner Einwilligung nutzen wir Google Analytics, um anonymisiert zu
+          verstehen, wie die Website genutzt wird — und sie laufend zu verbessern.
+          Du entscheidest frei und kannst jederzeit widerrufen. Details in der{' '}
+          <a href="/datenschutz" className="underline">
+            Datenschutzerklärung
+          </a>
+          .
+        </>
+      )}
     </CookieConsent>
   );
 }

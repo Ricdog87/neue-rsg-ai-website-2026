@@ -1,27 +1,64 @@
+'use client';
+
 import Link from 'next/link';
 import { Linkedin, Instagram, Youtube, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import { footer, site } from '@/lib/content';
 import { RsgLogoFull } from '@/components/icons/rsg-logo';
+import { useEnglish } from '@/components/system/use-locale';
+
+// Footer string translations. Group titles + the common link labels;
+// anything unmapped falls back to the German original.
+const FOOTER_EN: Record<string, string> = {
+  Produkt: 'Product',
+  'KI-Lösungen': 'AI Solutions',
+  'Cases & Insights': 'Cases & Insights',
+  Unternehmen: 'Company',
+  Rechtliches: 'Legal',
+  Impressum: 'Imprint',
+  Datenschutz: 'Privacy',
+  AGB: 'Terms',
+  'Termin buchen': 'Book a call',
+  Kontakt: 'Contact',
+  'Warum uns': 'Why us',
+  Prozess: 'Process',
+  'ROI-Rechner': 'ROI calculator',
+  Investment: 'Investment',
+  Pipelines: 'Pipelines',
+  'Alle Case Studies': 'All case studies',
+  'Insights · Essays': 'Insights · Essays',
+};
 
 export function Footer() {
+  const en = useEnglish();
+  const tl = (s: string) => (en ? FOOTER_EN[s] ?? s : s);
+  const homeHref = en ? '/en' : '/';
   return (
     <footer className="relative bg-[hsl(var(--ink))] text-[hsl(var(--bg))]">
       <div className="mx-auto max-w-[1280px] px-6 pt-24 pb-10 lg:px-10">
         {/* Big editorial statement at the top of the footer */}
         <div className="border-b border-white/10 pb-16">
           <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-white/50">
-            — Sprechen wir
+            {en ? "— Let's talk" : '— Sprechen wir'}
           </p>
           <h2 className="mt-6 max-w-4xl font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-light leading-[1.08] tracking-[-0.02em]">
-            Bereit, deinen Vertrieb in vier Wochen{' '}
-            <span className="italic text-[hsl(var(--accent))]">neu zu denken</span>?
+            {en ? (
+              <>
+                Ready to rethink your sales in{' '}
+                <span className="italic text-[hsl(var(--accent))]">four weeks</span>?
+              </>
+            ) : (
+              <>
+                Bereit, deinen Vertrieb in vier Wochen{' '}
+                <span className="italic text-[hsl(var(--accent))]">neu zu denken</span>?
+              </>
+            )}
           </h2>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
               href={site.cta.meetingUrl}
               className="group inline-flex h-14 items-center gap-2 rounded-full bg-[hsl(var(--bg))] px-7 text-[0.95rem] font-medium text-[hsl(var(--fg))] transition-all hover:bg-[hsl(var(--accent))] hover:text-white"
             >
-              {site.cta.primary}
+              {en ? 'Book a demo' : site.cta.primary}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
             <a
@@ -37,14 +74,16 @@ export function Footer() {
         <div className="mt-16 grid gap-12 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Link
-              href="/"
+              href={homeHref}
               className="inline-block"
-              aria-label={`${site.shortName} Startseite`}
+              aria-label={`${site.shortName} ${en ? 'home' : 'Startseite'}`}
             >
               <RsgLogoFull className="h-12 w-auto text-white" />
             </Link>
             <p className="mt-5 max-w-sm text-[0.9rem] leading-relaxed text-white/65">
-              {footer.description}
+              {en
+                ? 'AI agents that automate your business processes 24/7. GDPR-compliant, made in Germany.'
+                : footer.description}
             </p>
             <ul className="mt-8 space-y-3 text-[0.9rem] text-white/75">
               <li className="flex items-center gap-3">
@@ -87,7 +126,7 @@ export function Footer() {
           {footer.groups.map((group) => (
             <div key={group.title} className="lg:col-span-2">
               <h3 className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-white/50">
-                {group.title}
+                {tl(group.title)}
               </h3>
               <ul className="mt-5 space-y-3 text-[0.9rem] text-white/75">
                 {group.links.map((link) => (
@@ -96,7 +135,7 @@ export function Footer() {
                       href={link.href}
                       className="inline-flex items-center transition-colors hover:text-[hsl(var(--accent))]"
                     >
-                      {link.label}
+                      {tl(link.label)}
                     </Link>
                   </li>
                 ))}
@@ -126,8 +165,14 @@ export function Footer() {
         </div>
 
         <div className="mt-6 flex flex-col items-start justify-between gap-3 text-[0.8rem] text-white/55 md:flex-row md:items-center">
-          <p>{footer.copyright}</p>
-          <p className="italic">{footer.tagline}</p>
+          <p>
+            {en
+              ? '© 2026 RSG Recruiting Solutions Group GmbH · HRB 35951 · All rights reserved.'
+              : footer.copyright}
+          </p>
+          <p className="italic">
+            {en ? 'AI agents · GDPR-compliant · Made in Germany' : footer.tagline}
+          </p>
         </div>
         <p className="mt-3 text-[0.7rem] italic text-white/40">{site.legal.brandNote}</p>
       </div>

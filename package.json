@@ -14,7 +14,6 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.100.1",
     "@elevenlabs/react": "^1.6.4",
     "@gsap/react": "^2.1.2",
     "@react-three/drei": "^10.7.7",

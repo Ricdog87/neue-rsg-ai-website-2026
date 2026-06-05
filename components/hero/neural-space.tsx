@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, MeshTransmissionMaterial, Points, PointMaterial, Stars, Environment } from '@react-three/drei';
+import { Float, MeshTransmissionMaterial, Points, PointMaterial, Stars, Environment, Lightformer } from '@react-three/drei';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
@@ -329,55 +329,55 @@ function CameraDirector({ pointer }: { pointer: React.MutableRefObject<{ x: numb
 
   useFrame((state, dt) => {
     const T = state.clock.elapsedTime;
-    const cycle = 38;
+    const cycle = 44;
     const t = T % cycle;
 
     // ── Camera path (parametric, easing-blended) ───────────
-    // Phase 1 (0–10s): slow zoom in
-    const p1 = ss(0, 10, t);
-    // Phase 2 (10–18s): dolly right
-    const p2 = ss(10, 18, t);
-    // Phase 3 (18–26s): zoom out + lift
-    const p3 = ss(18, 26, t);
-    // Phase 4 (26–34s): arc back left
-    const p4 = ss(26, 34, t);
-    // Phase 5 (34–38s): settle
-    const p5 = ss(34, 38, t);
+    // Easing windows across a 44s loop — alive but never frantic.
+    const p1 = ss(0, 11, t); // zoom in
+    const p2 = ss(11, 21, t); // dolly right
+    const p3 = ss(21, 31, t); // ease back out + lift
+    const p4 = ss(31, 40, t); // drift left
+    const p5 = ss(40, 44, t); // settle home
 
-    // Compose camera position
+    // Compose camera position — generous amplitudes so the scene clearly
+    // moves (no longer reads as stiff), with smoothstep blends to stay
+    // cinematic rather than jittery.
     let cx = 0, cy = 0, cz = 7.5;
 
-    // Phase 1 — zoom in (z 7.5 → 4.8), tilt up
-    cz += -2.7 * p1;
-    cy += 0.6 * p1;
+    // Phase 1 — zoom in, tilt up
+    cz += -2.4 * p1;
+    cy += 0.5 * p1;
 
-    // Phase 2 — dolly right (x 0 → 2.2)
-    cx += 2.2 * p2;
+    // Phase 2 — dolly right
+    cx += 2.0 * p2;
     cy += -0.4 * p2;
 
-    // Phase 3 — zoom out (z 4.8 → 8.5), lift up
-    cz += 3.7 * p3;
-    cy += 1.2 * p3;
+    // Phase 3 — ease back out + lift
+    cz += 3.0 * p3;
+    cy += 1.0 * p3;
 
-    // Phase 4 — arc back (x 2.2 → -1.8)
-    cx += -4 * p4;
-    cy += -1.5 * p4;
+    // Phase 4 — drift left
+    cx += -3.4 * p4;
+    cy += -1.3 * p4;
 
-    // Phase 5 — settle back to (0, 0, 7.5)
-    cx += 1.8 * p5;
-    cy += 0.1 * p5;
-    cz += -1 * p5;
+    // Phase 5 — settle back toward start
+    cx += 1.6 * p5;
+    cy += 0.15 * p5;
+    cz += -0.8 * p5;
 
-    // Add gentle mouse parallax on top
+    // Mouse parallax on top
     cx += pointer.current.x * 0.5;
-    cy += -pointer.current.y * 0.25;
+    cy += -pointer.current.y * 0.28;
 
-    // Slow autonomous breathing
-    cz += Math.sin(T * 0.13) * 0.15;
-    cy += Math.cos(T * 0.09) * 0.12;
+    // Continuous autonomous breathing — keeps the frame alive even between
+    // the keyframed phases, so it never looks frozen.
+    cz += Math.sin(T * 0.16) * 0.22;
+    cy += Math.cos(T * 0.12) * 0.18;
+    cx += Math.sin(T * 0.07) * 0.16;
 
-    // Smooth lerp camera toward target position
-    const lerp = Math.min(1, dt * 1.2);
+    // Smooth lerp toward target — frame-rate independent, with inertia.
+    const lerp = 1 - Math.pow(0.5, dt * 2.0);
     pos.current.x += (cx - pos.current.x) * lerp;
     pos.current.y += (cy - pos.current.y) * lerp;
     pos.current.z += (cz - pos.current.z) * lerp;
@@ -611,7 +611,6 @@ if (typeof window !== 'undefined') {
 
 function GlassCenterpiece() {
   const meshRef = useRef<THREE.Mesh>(null);
-  const coreRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     if (!meshRef.current) return;
@@ -633,12 +632,6 @@ function GlassCenterpiece() {
     meshRef.current.rotation.y = t * 0.12 + e * 0.4;
     meshRef.current.rotation.x = Math.sin(t * 0.08) * 0.15;
 
-    // Inner core: counter-rotates subtly
-    if (coreRef.current) {
-      coreRef.current.rotation.y = -t * 0.18;
-      coreRef.current.rotation.x = t * 0.06;
-    }
-
     // Material params on scroll — kept SUBTLE (no distortion ramp,
     // no chromatic-aberration ramp — those made the shape read as
     // 'broken glass'. Just thickness/iridescence shift.)
@@ -659,38 +652,32 @@ function GlassCenterpiece() {
       floatingRange={[-0.12, 0.12]}
     >
       <group ref={meshRef} position={[3.4, 0.3, 0]} scale={1.05}>
-        {/* Outer glass sphere — clean, photorealistic, no distortion */}
+        {/* Outer glass sphere — clean, photorealistic, no distortion.
+            Higher poly + transmission resolution + samples = a smooth,
+            premium refraction with no faceting or shimmer. */}
         <mesh>
-          <icosahedronGeometry args={[0.95, 6]} />
+          <icosahedronGeometry args={[0.95, 12]} />
           <MeshTransmissionMaterial
             backside
-            backsideThickness={0.35}
-            samples={8}
-            resolution={512}
+            backsideThickness={0.4}
+            samples={16}
+            resolution={1024}
+            backsideResolution={512}
             transmission={1}
-            roughness={0.04}
-            thickness={1.4}
-            ior={1.5}
-            chromaticAberration={0.04}
-            anisotropy={0.15}
+            roughness={0.02}
+            thickness={1.3}
+            ior={1.45}
+            chromaticAberration={0.025}
+            anisotropy={0.1}
+            anisotropicBlur={0.4}
             distortion={0}
             distortionScale={0}
             temporalDistortion={0}
-            attenuationDistance={2.5}
-            attenuationColor="#d4c5ff"
+            attenuationDistance={2.8}
+            attenuationColor="#e8ebf2"
             color="#ffffff"
-          />
-        </mesh>
-
-        {/* Inner core — small emissive sphere = "AI intelligence" signal */}
-        <mesh ref={coreRef} scale={0.32}>
-          <icosahedronGeometry args={[1, 3]} />
-          <meshStandardMaterial
-            color="#b4a0ff"
-            emissive="#a855f7"
-            emissiveIntensity={1.8}
-            roughness={0.4}
-            metalness={0.1}
+            clearcoat={1}
+            clearcoatRoughness={0.04}
           />
         </mesh>
       </group>
@@ -713,12 +700,53 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
   return (
     <>
       <CameraDirector pointer={pointer} />
-      {/* HDRI environment — gives the glass realistic reflections */}
-      <Environment preset="studio" environmentIntensity={0.7} />
-      {/* Two-point key/fill lighting for the glass */}
-      <ambientLight intensity={0.2} />
-      <directionalLight position={[4, 6, 4]} intensity={1.2} color="#e2d6ff" />
-      <directionalLight position={[-3, -2, 2]} intensity={0.4} color="#a9b6ff" />
+      {/* Procedural studio environment — gives the glass realistic
+          reflections WITHOUT fetching an external .hdr (which used to
+          crash the whole page when the CDN was unreachable). Baked once
+          (frames={1}) into a small cubemap for performance. Lightformers
+          are tinted in brand purple/cyan so the glass picks up the RSG
+          palette in its refractions. */}
+      <Environment resolution={256} frames={1} environmentIntensity={1.1}>
+        <color attach="background" args={['#060512']} />
+        {/* Bright white key from above — strong, so the chrome catches a
+            crisp silver highlight and the ball reads clearly on dark space. */}
+        <Lightformer
+          intensity={3.2}
+          color="#ffffff"
+          position={[0, 5, -3]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={[12, 12, 1]}
+        />
+        {/* Silver rim — left (neutral, keeps the ball reading as chrome/silver) */}
+        <Lightformer
+          intensity={4.0}
+          color="#eef1f7"
+          position={[-6, 1, -1]}
+          rotation={[0, Math.PI / 2, 0]}
+          scale={[10, 8, 1]}
+        />
+        {/* Bright silver fill — right */}
+        <Lightformer
+          intensity={3.0}
+          color="#f6f8fc"
+          position={[6, -1, -1]}
+          rotation={[0, -Math.PI / 2, 0]}
+          scale={[10, 8, 1]}
+        />
+        {/* Sharp top streak — gives a defined moving highlight band */}
+        <Lightformer
+          form="ring"
+          intensity={2.0}
+          color="#ffffff"
+          position={[1, 4, 2]}
+          scale={[4, 4, 1]}
+        />
+      </Environment>
+      {/* Two-point key/fill lighting — bright + neutral so the glass reads
+          as a clearly visible silver/chrome ball, never washed-out. */}
+      <ambientLight intensity={0.35} />
+      <directionalLight position={[4, 6, 4]} intensity={2.4} color="#ffffff" />
+      <directionalLight position={[-3, -2, 2]} intensity={0.8} color="#dfe6f5" />
 
       <GlassCenterpiece />
 
@@ -794,22 +822,27 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
       style={{ background: '#03020c' }}
     >
       <Canvas
-        dpr={[1.25, 2]}
-        camera={{ position: [0, 0, 6], fov: 65 }}
+        dpr={[1.5, 2]}
+        camera={{ position: [0, 0, 6], fov: 60 }}
         gl={{
-          antialias: false,
+          antialias: true,
           alpha: false,
           powerPreference: 'high-performance',
+          stencil: false,
+          depth: true,
         }}
       >
         <color attach="background" args={['#03020c']} />
         <Scene pointer={pointer} />
-        <EffectComposer enableNormalPass={false} multisampling={2}>
+        {/* Multisampled AA + a softer, wider bloom = cleaner edges and a
+            more cinematic glow without the harsh "halo" look. */}
+        <EffectComposer enableNormalPass={false} multisampling={4}>
           <Bloom
-            intensity={0.5}
-            luminanceThreshold={0.3}
-            luminanceSmoothing={0.7}
+            intensity={0.6}
+            luminanceThreshold={0.4}
+            luminanceSmoothing={0.9}
             mipmapBlur
+            radius={0.75}
           />
         </EffectComposer>
       </Canvas>

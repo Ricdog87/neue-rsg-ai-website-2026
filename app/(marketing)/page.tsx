@@ -3,6 +3,7 @@ import { LiveVoiceAgent } from '@/components/sections/live-voice-agent';
 import { TechMarquee } from '@/components/sections/tech-marquee';
 import { VoiceAgentsSection } from '@/components/sections/voice-agents-section';
 import { PricingSnapshot } from '@/components/sections/pricing-snapshot';
+import { VoiceRoiCalculator } from '@/components/sections/voice-roi-calculator';
 import { TrustStrip } from '@/components/sections/trust-strip';
 import { ContactSection } from '@/components/sections/contact-section';
 import { SectionReveal } from '@/components/ui/section-reveal';
@@ -37,6 +38,9 @@ export default function HomePage() {
       <Hero />
       <SectionReveal>
         <PricingSnapshot />
+      </SectionReveal>
+      <SectionReveal>
+        <VoiceRoiCalculator />
       </SectionReveal>
       <TechMarquee />
       <SectionReveal>

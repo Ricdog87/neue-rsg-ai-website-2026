@@ -610,7 +610,6 @@ if (typeof window !== 'undefined') {
 
 function GlassCenterpiece() {
   const meshRef = useRef<THREE.Mesh>(null);
-  const coreRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     if (!meshRef.current) return;
@@ -631,12 +630,6 @@ function GlassCenterpiece() {
     // Rotation: slow + steady (no spin acceleration — premium = calm)
     meshRef.current.rotation.y = t * 0.12 + e * 0.4;
     meshRef.current.rotation.x = Math.sin(t * 0.08) * 0.15;
-
-    // Inner core: counter-rotates subtly
-    if (coreRef.current) {
-      coreRef.current.rotation.y = -t * 0.18;
-      coreRef.current.rotation.x = t * 0.06;
-    }
 
     // Material params on scroll — kept SUBTLE (no distortion ramp,
     // no chromatic-aberration ramp — those made the shape read as
@@ -680,22 +673,10 @@ function GlassCenterpiece() {
             distortionScale={0}
             temporalDistortion={0}
             attenuationDistance={2.8}
-            attenuationColor="#d4c5ff"
+            attenuationColor="#e8ebf2"
             color="#ffffff"
             clearcoat={1}
             clearcoatRoughness={0.04}
-          />
-        </mesh>
-
-        {/* Inner core — small emissive sphere = "AI intelligence" signal */}
-        <mesh ref={coreRef} scale={0.32}>
-          <icosahedronGeometry args={[1, 3]} />
-          <meshStandardMaterial
-            color="#b4a0ff"
-            emissive="#a855f7"
-            emissiveIntensity={1.8}
-            roughness={0.4}
-            metalness={0.1}
           />
         </mesh>
       </group>
@@ -734,34 +715,34 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
           rotation={[Math.PI / 2, 0, 0]}
           scale={[12, 12, 1]}
         />
-        {/* Purple rim — left */}
+        {/* Silver rim — left (neutral, keeps the ball reading as chrome/silver) */}
         <Lightformer
-          intensity={2.2}
-          color="#a855f7"
+          intensity={2.0}
+          color="#dfe2ea"
           position={[-6, 1, -1]}
           rotation={[0, Math.PI / 2, 0]}
           scale={[9, 7, 1]}
         />
-        {/* Cyan fill — right */}
+        {/* Bright silver fill — right */}
         <Lightformer
-          intensity={1.6}
-          color="#22d3ee"
+          intensity={1.5}
+          color="#f2f4f8"
           position={[6, -1, -1]}
           rotation={[0, -Math.PI / 2, 0]}
           scale={[9, 7, 1]}
         />
-        {/* Cool top wash for highlights */}
+        {/* Neutral top wash for highlights */}
         <Lightformer
-          intensity={0.7}
-          color="#cdb8ff"
+          intensity={0.8}
+          color="#ffffff"
           position={[0, 6, 3]}
           scale={[14, 14, 1]}
         />
       </Environment>
-      {/* Two-point key/fill lighting for the glass */}
+      {/* Two-point key/fill lighting — neutral so the glass stays silver */}
       <ambientLight intensity={0.2} />
-      <directionalLight position={[4, 6, 4]} intensity={1.2} color="#e2d6ff" />
-      <directionalLight position={[-3, -2, 2]} intensity={0.4} color="#a9b6ff" />
+      <directionalLight position={[4, 6, 4]} intensity={1.2} color="#f4f5fa" />
+      <directionalLight position={[-3, -2, 2]} intensity={0.4} color="#cfd6e6" />
 
       <GlassCenterpiece />
 

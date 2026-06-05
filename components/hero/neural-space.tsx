@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, MeshTransmissionMaterial, Points, PointMaterial, Stars, Environment } from '@react-three/drei';
+import { Float, MeshTransmissionMaterial, Points, PointMaterial, Stars, Environment, Lightformer } from '@react-three/drei';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
@@ -713,8 +713,46 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
   return (
     <>
       <CameraDirector pointer={pointer} />
-      {/* HDRI environment — gives the glass realistic reflections */}
-      <Environment preset="studio" environmentIntensity={0.7} />
+      {/* Procedural studio environment — gives the glass realistic
+          reflections WITHOUT fetching an external .hdr (which used to
+          crash the whole page when the CDN was unreachable). Baked once
+          (frames={1}) into a small cubemap for performance. Lightformers
+          are tinted in brand purple/cyan so the glass picks up the RSG
+          palette in its refractions. */}
+      <Environment resolution={256} frames={1} environmentIntensity={0.7}>
+        <color attach="background" args={['#03020c']} />
+        {/* Soft white key from above */}
+        <Lightformer
+          intensity={1.1}
+          color="#ffffff"
+          position={[0, 5, -4]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={[12, 12, 1]}
+        />
+        {/* Purple rim — left */}
+        <Lightformer
+          intensity={2.2}
+          color="#a855f7"
+          position={[-6, 1, -1]}
+          rotation={[0, Math.PI / 2, 0]}
+          scale={[9, 7, 1]}
+        />
+        {/* Cyan fill — right */}
+        <Lightformer
+          intensity={1.6}
+          color="#22d3ee"
+          position={[6, -1, -1]}
+          rotation={[0, -Math.PI / 2, 0]}
+          scale={[9, 7, 1]}
+        />
+        {/* Cool top wash for highlights */}
+        <Lightformer
+          intensity={0.7}
+          color="#cdb8ff"
+          position={[0, 6, 3]}
+          scale={[14, 14, 1]}
+        />
+      </Environment>
       {/* Two-point key/fill lighting for the glass */}
       <ambientLight intensity={0.2} />
       <directionalLight position={[4, 6, 4]} intensity={1.2} color="#e2d6ff" />

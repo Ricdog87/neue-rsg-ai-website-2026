@@ -1,12 +1,44 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Component, useEffect, useRef, useState, type ReactNode } from 'react';
 import dynamic from 'next/dynamic';
 
 const NeuralSpace = dynamic(
   () => import('@/components/hero/neural-space').then((m) => m.NeuralSpace),
   { ssr: false, loading: () => null }
 );
+
+/**
+ * Static deep-space gradient — the universal fallback. Used for
+ * mobile/reduced-motion devices AND whenever the WebGL scene fails
+ * (lost context, asset error, unsupported GPU). A premium site must
+ * never white-screen because a backdrop couldn't initialise.
+ */
+const STATIC_BACKDROP =
+  'radial-gradient(ellipse 100% 80% at 50% 30%, hsl(240 14% 8%) 0%, hsl(240 14% 4%) 45%, hsl(240 14% 2%) 100%)';
+
+/**
+ * Catches any error thrown while rendering the WebGL backdrop and
+ * degrades gracefully to the static gradient instead of taking the
+ * whole page down with it.
+ */
+class CanvasBoundary extends Component<
+  { fallback: ReactNode; children: ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  componentDidCatch(error: unknown) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('[canvas] WebGL backdrop failed — using static fallback', error);
+    }
+  }
+  render() {
+    return this.state.failed ? this.props.fallback : this.props.children;
+  }
+}
 
 /**
  * Persistent WebGL backdrop — Active-Theory pattern (lite).
@@ -95,13 +127,14 @@ export function PersistentCanvas() {
         ref={ref}
         aria-hidden
         className="pointer-events-none fixed inset-0 z-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 100% 80% at 50% 30%, hsl(240 14% 8%) 0%, hsl(240 14% 4%) 45%, hsl(240 14% 2%) 100%)',
-        }}
+        style={{ background: STATIC_BACKDROP }}
       />
     );
   }
+
+  const fallback = (
+    <div aria-hidden className="absolute inset-0" style={{ background: STATIC_BACKDROP }} />
+  );
 
   return (
     <div
@@ -110,7 +143,9 @@ export function PersistentCanvas() {
       className="pointer-events-none fixed inset-0 z-0"
       style={{ contain: 'strict' }}
     >
-      <NeuralSpace reduced={reduced || paused} />
+      <CanvasBoundary fallback={fallback}>
+        <NeuralSpace reduced={reduced || paused} />
+      </CanvasBoundary>
     </div>
   );
 }

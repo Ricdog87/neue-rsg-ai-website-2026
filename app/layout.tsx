@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: '%s | RSG AI'
   },
   description:
-    'Ihr KI-Telefonassistent: Nimmt Anrufe entgegen, qualifiziert Leads und bucht Termine – automatisch, 24/7, DSGVO-konform. Ab 199€/Monat. Jetzt testen.',
+    'KI-Telefonassistent aus Wiesbaden für B2B: Nimmt Anrufe entgegen, qualifiziert Leads und bucht Termine – automatisch, 24/7, DSGVO-konform. Ab 199€/Monat. Jetzt testen.',
   keywords: [
     'KI-Agenten Mittelstand',
     'AI Agents Deutschland',

@@ -40,11 +40,11 @@ export const metadata: Metadata = {
     },
   },
   title: {
-    default: `${site.name} | ${site.tagline}`,
-    template: `%s | ${site.name}`
+    default: 'KI-Telefonassistent für B2B | RSG AI – DSGVO-konform & 24/7',
+    template: '%s | RSG AI'
   },
   description:
-    'KI-Agenten für den Mittelstand. 2–4 Wochen Go-Live. starker ROI-Hebel. DSGVO-konform · EU-Cloud · Hosting in Deutschland. 12+ Agenten in Produktion.',
+    'Ihr KI-Telefonassistent: Nimmt Anrufe entgegen, qualifiziert Leads und bucht Termine – automatisch, 24/7, DSGVO-konform. Ab 199€/Monat. Jetzt testen.',
   keywords: [
     'KI-Agenten Mittelstand',
     'AI Agents Deutschland',

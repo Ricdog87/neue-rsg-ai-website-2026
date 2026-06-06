@@ -8,6 +8,7 @@ import { Magnetic } from '@/components/effects/magnetic';
 import { CharSplit } from '@/components/effects/reveal';
 import { HeroCallbackCard } from '@/components/sections/hero-callback-card';
 import { useEnglish } from '@/components/system/use-locale';
+import { ScrollSlide } from '@/components/ui/scroll-slide';
 
 const LIVESTATS_EN: Record<string, string> = {
   'Ø Reaktion': 'avg response',
@@ -94,12 +95,12 @@ const EASE_INOUT = [0.65, 0, 0.35, 1] as const;
  * layout level so it bleeds across the whole site. The hero is just
  * the typographic layer on top.
  *
- *   · One idea (the canvas behind us)
- *   · One bold mask-reveal headline
- *   · Asymmetric stat strip (1 huge KPI + quiet ticker)
- *   · One CTA dominant, one secondary
- *   · Inline trust chips below CTAs
- *   · No mouse-tilt, no gradient italic, no editorial grid overlay
+ * · One idea (the canvas behind us)
+ * · One bold mask-reveal headline
+ * · Asymmetric stat strip (1 huge KPI + quiet ticker)
+ * · One CTA dominant, one secondary
+ * · Inline trust chips below CTAs
+ * · No mouse-tilt, no gradient italic, no editorial grid overlay
  */
 export function Hero() {
   const en = useEnglish();
@@ -160,7 +161,7 @@ export function Hero() {
         </motion.div>
 
         {/* ── Headline — per-letter kinetic (Lusion-style) ── */}
-        <div className="col-span-12 md:col-span-10">
+        <ScrollSlide direction="up" delay={0} className="col-span-12 md:col-span-10">
           <h1 className="font-display text-[clamp(2.25rem,5.6vw,5.25rem)] font-medium leading-[1.08] tracking-[-0.025em] text-white">
             {lines.map((line, i) => {
               const offset = lines
@@ -196,7 +197,7 @@ export function Hero() {
               </motion.p>
             </div>
           )}
-        </div>
+        </ScrollSlide>
 
         {/* ── Conversion grid: left = subline + secondary CTAs · right = callback card ── */}
         <div className="col-span-12 mt-14 grid items-start gap-x-10 gap-y-10 md:mt-20 lg:grid-cols-[1fr_minmax(360px,460px)] lg:gap-x-14">
@@ -259,39 +260,31 @@ export function Hero() {
         </div>
 
         {/* Project-meta strip — Lusion case-study language */}
-        <motion.dl
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 3.3, ease: [0.16, 1, 0.3, 1] }}
-          className="col-span-12 mt-16 grid grid-cols-2 gap-y-6 border-y border-white/10 py-6 sm:grid-cols-5 sm:gap-x-6 md:mt-20"
-        >
-          {[
-            { k: 'Year', v: '2026' },
-            { k: 'Type', v: en ? 'AI workshop' : 'KI-Werkstatt' },
-            { k: 'Industry', v: en ? 'B2B · Sales' : 'B2B · Vertrieb' },
-            { k: 'Stack', v: 'LangChain · n8n' },
-            { k: 'Location', v: 'Wiesbaden, DE' },
-          ].map(({ k, v }) => (
-            <div key={k} className="flex flex-col gap-1">
-              <dt className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white/35">
-                {k}
-              </dt>
-              <dd className="font-display text-[0.95rem] font-medium tracking-tight text-white">
-                {v}
-              </dd>
-            </div>
-          ))}
-        </motion.dl>
+        <ScrollSlide delay={0} className="col-span-12">
+          <dl className="mt-16 grid grid-cols-2 gap-y-6 border-y border-white/10 py-6 sm:grid-cols-5 sm:gap-x-6 md:mt-20">
+            {[
+              { k: 'Year', v: '2026' },
+              { k: 'Type', v: en ? 'AI workshop' : 'KI-Werkstatt' },
+              { k: 'Industry', v: en ? 'B2B · Sales' : 'B2B · Vertrieb' },
+              { k: 'Stack', v: 'LangChain · n8n' },
+              { k: 'Location', v: 'Wiesbaden, DE' },
+            ].map(({ k, v }) => (
+              <div key={k} className="flex flex-col gap-1">
+                <dt className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white/35">
+                  {k}
+                </dt>
+                <dd className="font-display text-[0.95rem] font-medium tracking-tight text-white">
+                  {v}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </ScrollSlide>
 
         {/* Asymmetric stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 3.3 }}
-          className="col-span-12 mt-auto pt-16 md:pt-24"
-        >
+        <ScrollSlide direction="up" delay={0} className="col-span-12 mt-auto pt-16 md:pt-24">
           <div className="grid grid-cols-12 items-end gap-x-6 gap-y-8 border-t border-white/12 pt-8">
-            <div className="col-span-12 md:col-span-6">
+            <ScrollSlide delay={200} className="col-span-12 md:col-span-6">
               <div className="mb-3 flex items-center gap-3">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inset-0 animate-ping rounded-full bg-[hsl(174_100%_50%)] opacity-60" />
@@ -307,28 +300,30 @@ export function Hero() {
               <div className="mt-3 font-mono text-[0.75rem] uppercase tracking-[0.24em] text-white/45">
                 {en ? 'Tasks today · from 12+ agents in production' : 'Tasks heute · von 12+ Agenten in Produktion'}
               </div>
-            </div>
+            </ScrollSlide>
 
-            <ul className="col-span-12 md:col-span-6 md:col-start-7">
-              {tickerKpis.map((s, i) => (
-                <motion.li
-                  key={s.label}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, ease: EASE, delay: 3.5 + i * 0.08 }}
-                  className="flex items-baseline justify-between border-b border-white/8 py-2.5 font-mono text-[0.75rem] last:border-b-0"
-                >
-                  <span className="uppercase tracking-[0.18em] text-white/45">
-                    {en ? (LIVESTATS_EN[s.label] ?? s.label) : s.label}
-                  </span>
-                  <span className="font-display text-[1.05rem] tracking-tight text-white">
-                    {s.value}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
+            <ScrollSlide delay={300} className="col-span-12 md:col-span-6 md:col-start-7">
+              <ul>
+                {tickerKpis.map((s, i) => (
+                  <motion.li
+                    key={s.label}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, ease: EASE, delay: 3.5 + i * 0.08 }}
+                    className="flex items-baseline justify-between border-b border-white/8 py-2.5 font-mono text-[0.75rem] last:border-b-0"
+                  >
+                    <span className="uppercase tracking-[0.18em] text-white/45">
+                      {en ? (LIVESTATS_EN[s.label] ?? s.label) : s.label}
+                    </span>
+                    <span className="font-display text-[1.05rem] tracking-tight text-white">
+                      {s.value}
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+            </ScrollSlide>
           </div>
-        </motion.div>
+        </ScrollSlide>
       </div>
     </section>
   );

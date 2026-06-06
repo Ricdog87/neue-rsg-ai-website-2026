@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'KI Telefonassistent Vergleich 2026: Synthflow vs. VAPI vs. RSG AI',
@@ -53,7 +54,7 @@ export default function VergleichPage() {
         <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
           <h3 className="text-2xl font-bold mb-4">RSG AI kostenlos testen</h3>
           <p className="text-white/60 mb-6">Rufen Sie jetzt unseren Demo-Agenten an: +49 30 826 83906</p>
-          <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Demo-Termin anfragen</a>
+          <Link href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Demo-Termin anfragen</Link>
         </div>
 
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":"KI Telefonassistent Vergleich 2026: Synthflow vs. VAPI vs. RSG AI","author":{"@type":"Person","name":"Ricardo Serrano"},"datePublished":"2026-06-06","publisher":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de"}})}} />

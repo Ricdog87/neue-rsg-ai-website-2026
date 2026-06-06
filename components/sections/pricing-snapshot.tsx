@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Check, Phone } from 'lucide-react';
+import { ArrowUpRight, Check, Loader2, Phone } from 'lucide-react';
 import { voicePlans } from '@/lib/pricing-voice';
 import { useEnglish } from '@/components/system/use-locale';
 
@@ -14,6 +15,30 @@ import { useEnglish } from '@/components/system/use-locale';
  */
 export function PricingSnapshot() {
   const en = useEnglish();
+  const [loadingTier, setLoadingTier] = useState<string | null>(null);
+
+  async function handleCheckout(tier: 'solo' | 'team') {
+    setLoadingTier(tier);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tier, billing: 'monthly' }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        // Fallback: Stripe nicht konfiguriert → Terminbuchung
+        window.location.href = data.fallbackHref ?? '/termin';
+      }
+    } catch {
+      window.location.href = '/termin';
+    } finally {
+      setLoadingTier(null);
+    }
+  }
+
   return (
     <section
       id="pricing-snapshot"
@@ -110,20 +135,45 @@ export function PricingSnapshot() {
                 ))}
               </ul>
 
-              <Link
-                href="/preise"
-                data-event={`snapshot_card_${p.id}`}
-                data-tier={p.id}
-                className={
-                  'mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full text-[0.875rem] font-medium transition-all ' +
-                  (p.recommended
-                    ? 'bg-[hsl(var(--accent))] text-white hover:brightness-110'
-                    : 'border border-[hsl(var(--border-strong))] text-[hsl(var(--fg))] hover:border-[hsl(var(--accent))/60] hover:text-[hsl(var(--accent))]')
-                }
-              >
-                {en ? p.ctaEn ?? p.cta : p.cta}
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
+              {p.checkoutTier ? (
+                <button
+                  type="button"
+                  data-event={`snapshot_card_${p.id}`}
+                  data-tier={p.id}
+                  disabled={loadingTier === p.id}
+                  onClick={() => handleCheckout(p.checkoutTier as 'solo' | 'team')}
+                  className={
+                    'mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full text-[0.875rem] font-medium transition-all disabled:opacity-70 ' +
+                    (p.recommended
+                      ? 'bg-[hsl(var(--accent))] text-white hover:brightness-110'
+                      : 'border border-[hsl(var(--border-strong))] text-[hsl(var(--fg))] hover:border-[hsl(var(--accent))/60] hover:text-[hsl(var(--accent))]')
+                  }
+                >
+                  {loadingTier === p.id ? (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  ) : (
+                    <>
+                      {en ? p.ctaEn ?? p.cta : p.cta}
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </>
+                  )}
+                </button>
+              ) : (
+                <Link
+                  href="/termin"
+                  data-event={`snapshot_card_${p.id}`}
+                  data-tier={p.id}
+                  className={
+                    'mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full text-[0.875rem] font-medium transition-all ' +
+                    (p.recommended
+                      ? 'bg-[hsl(var(--accent))] text-white hover:brightness-110'
+                      : 'border border-[hsl(var(--border-strong))] text-[hsl(var(--fg))] hover:border-[hsl(var(--accent))/60] hover:text-[hsl(var(--accent))]')
+                  }
+                >
+                  {en ? p.ctaEn ?? p.cta : p.cta}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              )}
             </motion.div>
           ))}
         </div>

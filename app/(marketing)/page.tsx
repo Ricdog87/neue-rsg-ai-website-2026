@@ -10,6 +10,7 @@ import { ScrollSlide } from '@/components/ui/scroll-slide';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
 import { faqPageLd, ldJson } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
+import { CitiesSection } from '@/components/sections/cities-section'
 
 /**
  * Homepage — Focused funnel, not encyclopedia.
@@ -67,6 +68,7 @@ export default function HomePage() {
       <ScrollZoom>
         <ContactSection />
       </ScrollZoom>
+      <CitiesSection />
     </>
   );
 }

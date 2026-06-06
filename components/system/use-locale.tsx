@@ -14,3 +14,8 @@ export function useEnglish(): boolean {
   const pathname = usePathname();
   return (pathname ?? '').startsWith('/en');
 }
+
+export function useLocale(): 'en' | 'de' {
+    if (typeof window === 'undefined') return 'de'
+    return window.location.pathname.startsWith('/en') ? 'en' : 'de'
+}

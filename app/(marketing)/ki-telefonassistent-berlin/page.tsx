@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'KI-Telefonassistent Berlin | RSG AI – DSGVO-konform & 24/7',
@@ -13,8 +14,8 @@ export default function BerlinPage() {
         <h1 className="text-5xl font-bold mb-6">KI-Telefonassistent<br /><span className="text-white/60">für Berliner Unternehmen</span></h1>
         <p className="text-xl text-white/70 mb-8 max-w-2xl">Ihr KI-Telefonassistent in Berlin: Nimmt Anrufe entgegen, qualifiziert Leads und bucht Termine – vollautomatisch, DSGVO-konform, 24/7. Kein Headcount nötig.</p>
         <div className="flex gap-4 flex-wrap">
-          <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition">Demo anfragen</a>
-          <a href="/#preise" className="border border-white/20 text-white px-8 py-4 rounded-full hover:border-white/60 transition">Preise ansehen</a>
+          <Link href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition">Demo anfragen</Link>
+          <Link href="/#preise" className="border border-white/20 text-white px-8 py-4 rounded-full hover:border-white/60 transition">Preise ansehen</Link>
         </div>
         <div className="mt-16 grid grid-cols-3 gap-8 text-center">
           {[['< 2 Wochen','bis Go-Live'],['24/7','Verfügbarkeit'],['DSGVO','konform']].map(([s,l])=>(<div key={l}><div className="text-3xl font-bold mb-2">{s}</div><div className="text-white/50 text-sm">{l}</div></div>))}

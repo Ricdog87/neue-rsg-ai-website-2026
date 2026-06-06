@@ -17,6 +17,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/ki-telefonassistent/hausverwaltung`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${site.url}/ki-telefonassistent/hotel`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${site.url}/ki-telefonassistent/autohaus`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // Geo-Seiten
+    { url: `${site.url}/ki-telefonassistent-wiesbaden`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${site.url}/ki-automatisierung-wiesbaden`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${site.url}/ki-telefonassistent-frankfurt`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${site.url}/ki-telefonassistent-muenchen`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${site.url}/ki-telefonassistent-hamburg`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${site.url}/ki-telefonassistent-berlin`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${site.url}/ki-telefonassistent-koeln`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${site.url}/ki-telefonassistent-stuttgart`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // Blog
+    { url: `${site.url}/blog/ki-telefonassistent-vergleich-2026`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${site.url}/ki-agentur-mittelstand`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${site.url}/termin`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${site.url}/ki-beratung-wiesbaden`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },

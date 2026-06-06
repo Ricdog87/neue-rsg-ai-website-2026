@@ -27,6 +27,7 @@ import {
   ldJson,
 } from '@/lib/jsonld';
 import './globals.css';
+import { StructuredData } from '@/components/seo/structured-data'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -126,7 +127,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SectionRail />
             <ChapterHud />
             <KeyboardShortcuts />
-            <main id="main-content" className="relative z-[1]">{children}</main>
+            <main id="main-content" className="relative z-[1]"><StructuredData />{children}</main>
             <Footer />
           </LenisProvider>
           <CookieBanner />

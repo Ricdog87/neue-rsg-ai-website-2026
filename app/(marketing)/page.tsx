@@ -5,6 +5,7 @@ import { VoiceAgentsSection } from '@/components/sections/voice-agents-section';
 import { PricingSnapshot } from '@/components/sections/pricing-snapshot';
 import { VoiceRoiCalculator } from '@/components/sections/voice-roi-calculator';
 import { TrustStrip } from '@/components/sections/trust-strip';
+import { GoogleReviews } from '@/components/sections/google-reviews';
 import { ContactSection } from '@/components/sections/contact-section';
 import { ScrollSlide } from '@/components/ui/scroll-slide';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
@@ -65,6 +66,7 @@ export default function HomePage() {
       <ScrollZoom>
         <TrustStrip />
       </ScrollZoom>
+      <GoogleReviews />
       <ScrollZoom>
         <ContactSection />
       </ScrollZoom>

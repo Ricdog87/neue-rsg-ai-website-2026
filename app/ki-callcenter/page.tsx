@@ -3,7 +3,6 @@ import { ScrollSlide } from '@/components/ui/scroll-slide';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
 import { CallcenterHero } from '@/components/sections/callcenter/hero';
 import {
-  CallcenterProblem,
   CallcenterSolution,
   CallcenterSteps,
   CallcenterIndustries,
@@ -21,15 +20,15 @@ import { callcenter } from '@/lib/callcenter';
 const URL = 'https://www.rsg-ai.de/ki-callcenter';
 
 export const metadata: Metadata = {
-  title: 'KI-Callcenter — Inbound & Outbound, 24/7, DSGVO | RSG AI',
+  title: 'Enterprise KI-Callcenter — Inbound & Outbound at scale, SLA, DSGVO | RSG AI',
   description:
-    'Dein KI-Callcenter nimmt jeden Anruf an und ruft Leads proaktiv zurück — 24/7, unbegrenzt parallel, in natürlichem Deutsch, direkt ins CRM. Server in Deutschland, DSGVO-konform, EU AI Act ready. Tarife ab 990 €/Monat.',
+    'KI-Callcenter für Großkunden: hunderte parallele Gespräche, dedizierte Operation mit garantiertem SLA, volle Integration in Telefonie, CRM und ERP. 24/7, DSGVO-konform, Server in Deutschland, EU AI Act ready. Pakete bis Enterprise.',
   alternates: { canonical: URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'KI-Callcenter — Inbound & Outbound, 24/7, DSGVO | RSG AI',
+    title: 'Enterprise KI-Callcenter — at scale, SLA, DSGVO | RSG AI',
     description:
-      'Nie wieder einen Anruf verpassen. KI-Callcenter für Inbound & Outbound, 24/7, DSGVO-konform, Server in Deutschland. Tarife ab 990 €/Monat.',
+      'Tausende Anrufe, null verloren. KI-Callcenter für Großkunden: dedizierte Operation, SLA, volle Integration. 24/7, DSGVO, Server in Deutschland.',
     url: URL,
     siteName: 'RSG Agent Services',
     locale: 'de_DE',
@@ -50,8 +49,8 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'KI-Callcenter (Inbound & Outbound)',
-    name: 'KI-Callcenter',
+    serviceType: 'Enterprise KI-Callcenter (Inbound & Outbound)',
+    name: 'Enterprise KI-Callcenter',
     provider: {
       '@type': 'ProfessionalService',
       name: 'RSG Agent Services',
@@ -68,7 +67,7 @@ const jsonLd = [
     areaServed: { '@type': 'Country', name: 'Deutschland' },
     url: URL,
     description:
-      'KI-Callcenter für Inbound & Outbound: nimmt jeden Anruf an, ruft Leads zurück, 24/7, DSGVO-konform, Server in Deutschland.',
+      'Enterprise KI-Callcenter für hohes Anrufvolumen: dedizierte Operation, SLA, volle Integration, 24/7, DSGVO-konform, Server in Deutschland.',
   },
   {
     '@context': 'https://schema.org',
@@ -82,10 +81,10 @@ const jsonLd = [
 ];
 
 /**
- * /ki-callcenter — dedicated landing page for the AI call center product.
- * Lives inside the existing site (shared layout, nav, WebGL backdrop,
- * design tokens). The ROI calculator and pricing share contract-term
- * state via CallcenterProvider so the term switcher updates both live.
+ * /ki-callcenter — enterprise landing page for the AI call center product.
+ * Pricing is surfaced right after the hero; the pricing table and ROI
+ * calculator share contract-term state via CallcenterProvider so the term
+ * switcher updates both live.
  */
 export default function KiCallcenterPage() {
   return (
@@ -94,9 +93,17 @@ export default function KiCallcenterPage() {
 
       <CallcenterHero />
 
-      <ScrollZoom>
-        <CallcenterProblem />
-      </ScrollZoom>
+      {/* Pricing first (enterprise buyers want the investment early), then the
+          ROI calculator — both share the contract-term state. */}
+      <CallcenterProvider>
+        <ScrollZoom>
+          <CallcenterPricing />
+        </ScrollZoom>
+        <ScrollZoom>
+          <CallcenterRoiCalculator />
+        </ScrollZoom>
+      </CallcenterProvider>
+
       <ScrollSlide direction="left">
         <CallcenterSolution />
       </ScrollSlide>
@@ -106,17 +113,6 @@ export default function KiCallcenterPage() {
       <ScrollSlide direction="right">
         <CallcenterIndustries />
       </ScrollSlide>
-
-      {/* Calculator + pricing share the contract-term state */}
-      <CallcenterProvider>
-        <ScrollZoom>
-          <CallcenterRoiCalculator />
-        </ScrollZoom>
-        <ScrollZoom>
-          <CallcenterPricing />
-        </ScrollZoom>
-      </CallcenterProvider>
-
       <ScrollZoom>
         <CallcenterLegal />
       </ScrollZoom>

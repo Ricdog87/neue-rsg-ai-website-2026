@@ -5,11 +5,14 @@ import { Check, ArrowUpRight, Sparkles } from 'lucide-react';
 import { site } from '@/lib/content';
 import { TARIFFS, ENTERPRISE, priceFor } from '@/lib/callcenter';
 import { useTerm, TermSwitch } from '@/components/sections/callcenter/provider';
+import { useEnglish } from '@/components/system/use-locale';
 
 const fmtEur = (n: number) => n.toLocaleString('de-DE') + ' €';
 
 export function CallcenterPricing() {
   const { term } = useTerm();
+  const en = useEnglish();
+  const perMonth = en ? '/mo' : '/Mon';
 
   return (
     <section
@@ -18,13 +21,14 @@ export function CallcenterPricing() {
     >
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow justify-center">Preise &amp; Laufzeiten</span>
+          <span className="eyebrow justify-center">{en ? 'Pricing & terms' : 'Preise & Laufzeiten'}</span>
           <h2 className="mt-6 font-display text-[clamp(1.875rem,3.8vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
-            Transparente Pakete — bis Enterprise.
+            {en ? 'Transparent plans — up to Enterprise.' : 'Transparente Pakete — bis Enterprise.'}
           </h2>
           <p className="mx-auto mt-4 text-[1rem] leading-relaxed text-[hsl(var(--muted))]">
-            Wähl deine Laufzeit — längere Bindung senkt Monatspreis und Einrichtung.
-            Bei Jahresvorkasse entfällt die Einrichtungsgebühr.
+            {en
+              ? 'Pick your term — a longer commitment lowers the monthly price and setup. With annual prepayment the setup fee is waived.'
+              : 'Wähl deine Laufzeit — längere Bindung senkt Monatspreis und Einrichtung. Bei Jahresvorkasse entfällt die Einrichtungsgebühr.'}
           </p>
           <div className="mt-8 flex justify-center">
             <TermSwitch />
@@ -51,11 +55,11 @@ export function CallcenterPricing() {
               >
                 {rec && (
                   <span className="absolute -top-3 left-6 inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white">
-                    ★ Beliebt
+                    {en ? '★ Popular' : '★ Beliebt'}
                   </span>
                 )}
                 <h3 className="font-display text-[1.35rem] font-medium text-[hsl(var(--fg))]">{t.name}</h3>
-                <p className="mt-1 min-h-[2.6rem] text-[0.85rem] leading-relaxed text-[hsl(var(--muted))]">{t.tagline}</p>
+                <p className="mt-1 min-h-[2.6rem] text-[0.85rem] leading-relaxed text-[hsl(var(--muted))]">{en ? t.taglineEn : t.tagline}</p>
 
                 <div className="my-5 h-px w-full bg-[hsl(var(--border))]" />
 
@@ -63,18 +67,18 @@ export function CallcenterPricing() {
                   <span className="font-display text-[clamp(1.75rem,3vw,2.25rem)] font-medium leading-none tabular-nums tracking-[-0.025em] text-[hsl(var(--fg))]">
                     {fmtEur(monthly)}
                   </span>
-                  <span className="mb-0.5 text-[0.8rem] text-[hsl(var(--muted))]">/Mon</span>
+                  <span className="mb-0.5 text-[0.8rem] text-[hsl(var(--muted))]">{perMonth}</span>
                 </div>
                 <p className="mt-1.5 text-[0.72rem] text-[hsl(var(--subtle))]">
                   {setup > 0 ? (
-                    <>Einrichtung <span className="text-[hsl(var(--fg))]">{fmtEur(setup)}</span></>
+                    <>{en ? 'Setup' : 'Einrichtung'} <span className="text-[hsl(var(--fg))]">{fmtEur(setup)}</span></>
                   ) : (
-                    <span className="text-[hsl(var(--success))]">Einrichtung entfällt</span>
+                    <span className="text-[hsl(var(--success))]">{en ? 'No setup fee' : 'Einrichtung entfällt'}</span>
                   )}
                 </p>
 
                 <ul className="mt-5 flex-1 space-y-2.5">
-                  {t.features.map((f) => (
+                  {(en ? t.featuresEn : t.features).map((f) => (
                     <li key={f} className="flex items-start gap-2 text-[0.825rem] leading-snug text-[hsl(var(--muted))]">
                       <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[hsl(var(--accent))]" strokeWidth={2.5} />
                       <span>{f}</span>
@@ -92,7 +96,7 @@ export function CallcenterPricing() {
                       : 'border border-[hsl(var(--border-strong))] text-[hsl(var(--fg))] hover:border-[hsl(var(--accent))/60] hover:text-[hsl(var(--accent))]')
                   }
                 >
-                  Demo buchen
+                  {en ? 'Book a demo' : 'Demo buchen'}
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </a>
               </motion.div>
@@ -114,20 +118,20 @@ export function CallcenterPricing() {
               style={{ background: 'radial-gradient(circle, hsl(var(--accent)/0.6), transparent 65%)' }}
             />
             <span className="relative inline-flex w-fit items-center gap-1.5 rounded-full border border-white/20 bg-white/[0.06] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.2em] text-white">
-              <Sparkles className="h-3 w-3 text-[hsl(var(--accent-soft))]" /> Für Großkunden
+              <Sparkles className="h-3 w-3 text-[hsl(var(--accent-soft))]" /> {en ? 'For large accounts' : 'Für Großkunden'}
             </span>
             <h3 className="relative mt-4 font-display text-[1.35rem] font-medium text-white">{ENTERPRISE.name}</h3>
-            <p className="relative mt-1 min-h-[2.6rem] text-[0.85rem] leading-relaxed text-white/65">{ENTERPRISE.tagline}</p>
+            <p className="relative mt-1 min-h-[2.6rem] text-[0.85rem] leading-relaxed text-white/65">{en ? ENTERPRISE.taglineEn : ENTERPRISE.tagline}</p>
 
             <div className="relative my-5 h-px w-full bg-white/10" />
 
             <div className="relative font-display text-[clamp(1.75rem,3vw,2.25rem)] font-medium leading-none tracking-[-0.025em] text-white">
-              {ENTERPRISE.price}
+              {en ? ENTERPRISE.priceEn : ENTERPRISE.price}
             </div>
-            <p className="relative mt-1.5 text-[0.72rem] text-white/50">individuell nach Volumen & SLA</p>
+            <p className="relative mt-1.5 text-[0.72rem] text-white/50">{en ? 'individual, by volume & SLA' : 'individuell nach Volumen & SLA'}</p>
 
             <ul className="relative mt-5 flex-1 space-y-2.5">
-              {ENTERPRISE.features.map((f) => (
+              {(en ? ENTERPRISE.featuresEn : ENTERPRISE.features).map((f) => (
                 <li key={f} className="flex items-start gap-2 text-[0.825rem] leading-snug text-white/75">
                   <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[hsl(var(--accent-soft))]" strokeWidth={2.5} />
                   <span>{f}</span>
@@ -140,14 +144,16 @@ export function CallcenterPricing() {
               data-event="callcenter_pricing_enterprise"
               className="relative mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-[0.85rem] font-semibold text-[#1a0b2e] transition-all hover:brightness-95"
             >
-              Enterprise-Demo buchen
+              {en ? 'Book an enterprise demo' : 'Enterprise-Demo buchen'}
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           </motion.div>
         </div>
 
         <p className="mt-8 text-center text-[0.8rem] text-[hsl(var(--subtle))]">
-          Alle Preise netto zzgl. USt. · Inklusiv-Minuten je Tarif, weitere Minuten transparent abgerechnet · Enterprise nach Volumen, Integrationstiefe & SLA.
+          {en
+            ? 'All prices net, plus VAT · included minutes per plan, additional minutes billed transparently · Enterprise by volume, integration depth & SLA.'
+            : 'Alle Preise netto zzgl. USt. · Inklusiv-Minuten je Tarif, weitere Minuten transparent abgerechnet · Enterprise nach Volumen, Integrationstiefe & SLA.'}
         </p>
       </div>
     </section>

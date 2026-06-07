@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, type ReactNode } from 'react';
 import { TERMS, type Term } from '@/lib/callcenter';
+import { useEnglish } from '@/components/system/use-locale';
 
 /**
  * Shares the selected contract term between the ROI calculator and the
@@ -29,6 +30,7 @@ export function useTerm(): Ctx {
 /** Shared pill-style term switcher used by both sections. */
 export function TermSwitch({ className = '' }: { className?: string }) {
   const { term, setTermId } = useTerm();
+  const en = useEnglish();
   return (
     <div
       className={
@@ -50,9 +52,9 @@ export function TermSwitch({ className = '' }: { className?: string }) {
                 : 'text-[hsl(var(--muted))] hover:text-[hsl(var(--fg))]')
             }
           >
-            <span className="font-display">{t.label}</span>
+            <span className="font-display">{en ? t.labelEn : t.label}</span>
             <span className="ml-2 hidden font-mono text-[0.6rem] uppercase tracking-[0.16em] opacity-70 sm:inline">
-              {t.sub}
+              {en ? t.subEn : t.sub}
             </span>
           </button>
         );

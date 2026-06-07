@@ -13,8 +13,15 @@ import {
   type Mode,
 } from '@/lib/callcenter';
 import { useTerm, TermSwitch } from '@/components/sections/callcenter/provider';
+import { useEnglish } from '@/components/system/use-locale';
 
 const fmtEur = (n: number) => Math.round(n).toLocaleString('de-DE') + ' €';
+
+const MODE_LABEL: Record<Mode, { de: string; en: string }> = {
+  inbound: { de: 'Inbound', en: 'Inbound' },
+  outbound: { de: 'Outbound', en: 'Outbound' },
+  both: { de: 'Beides', en: 'Both' },
+};
 
 /** Count toward target whenever it changes (eased). */
 function useCountUp(target: number, ms = 700) {
@@ -45,6 +52,7 @@ const MODES: { id: Mode; label: string; Icon: typeof Phone }[] = [
 
 export function CallcenterRoiCalculator() {
   const { term } = useTerm();
+  const en = useEnglish();
 
   const [calls, setCalls] = useState(CALC_DEFAULTS.callsPerDay);
   const [mode, setMode] = useState<Mode>(CALC_DEFAULTS.mode);
@@ -88,12 +96,18 @@ export function CallcenterRoiCalculator() {
   const gain = useCountUp(r.totalGain);
   const roi = useCountUp(r.roi);
 
-  const wonLabel =
-    mode === 'inbound'
+  const wonLabel = en
+    ? mode === 'inbound'
+      ? 'from missed calls'
+      : mode === 'outbound'
+        ? 'from proactive callbacks'
+        : 'from missed calls & callbacks'
+    : mode === 'inbound'
       ? 'aus verpassten Anrufen'
       : mode === 'outbound'
         ? 'aus proaktiven Rückrufen'
         : 'aus verpassten Anrufen & Rückrufen';
+  const perMonth = en ? '/mo' : '/Mon';
 
   return (
     <section
@@ -102,26 +116,30 @@ export function CallcenterRoiCalculator() {
     >
       <div className="relative mx-auto max-w-[1180px]">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow justify-center">ROI-Rechner</span>
+          <span className="eyebrow justify-center">{en ? 'ROI calculator' : 'ROI-Rechner'}</span>
           <h2 className="mt-6 font-display text-[clamp(1.875rem,4vw,3rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
-            Rechne nach, was dich verpasste Anrufe{' '}
-            <span className="text-[hsl(var(--success))]">wirklich kosten</span>.
+            {en ? (
+              <>What missed calls <span className="text-[hsl(var(--success))]">really cost you</span>.</>
+            ) : (
+              <>Rechne nach, was dich verpasste Anrufe <span className="text-[hsl(var(--success))]">wirklich kosten</span>.</>
+            )}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[0.975rem] leading-[1.6] text-[hsl(var(--muted))]">
-            Stell deine Eckdaten ein — wir rechnen live gegen, was ein KI-Callcenter
-            dir pro Monat bringt. Konservative Schätzung, keine Zusage.
+            {en
+              ? 'Set your key figures — we compute live what an AI call center returns per month. Conservative estimate, not a guarantee.'
+              : 'Stell deine Eckdaten ein — wir rechnen live gegen, was ein KI-Callcenter dir pro Monat bringt. Konservative Schätzung, keine Zusage.'}
           </p>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           {/* ── Inputs ── */}
           <div className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8">
-            <Slider label="Anrufe pro Tag" value={calls} display={`${calls}`} min={5} max={300} step={5} onChange={setCalls} />
+            <Slider label={en ? 'Calls per day' : 'Anrufe pro Tag'} value={calls} display={`${calls}`} min={5} max={300} step={5} onChange={setCalls} />
 
             <div className="mt-7">
-              <Label>Modus</Label>
+              <Label>{en ? 'Mode' : 'Modus'}</Label>
               <div className="mt-3 grid grid-cols-3 gap-2">
-                {MODES.map(({ id, label, Icon }) => {
+                {MODES.map(({ id, Icon }) => {
                   const active = id === mode;
                   return (
                     <button
@@ -135,7 +153,7 @@ export function CallcenterRoiCalculator() {
                           : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--muted))] hover:border-[hsl(var(--accent))/50]')
                       }
                     >
-                      <Icon className="h-4 w-4" /> {label}
+                      <Icon className="h-4 w-4" /> {MODE_LABEL[id][en ? 'en' : 'de']}
                     </button>
                   );
                 })}
@@ -143,24 +161,24 @@ export function CallcenterRoiCalculator() {
             </div>
 
             <div className="mt-7">
-              <Slider label="Aktuell verpasste Anrufe" value={missed} display={`${missed} %`} min={0} max={90} step={5} onChange={setMissed} />
+              <Slider label={en ? 'Currently missed calls' : 'Aktuell verpasste Anrufe'} value={missed} display={`${missed} %`} min={0} max={90} step={5} onChange={setMissed} />
             </div>
             <div className="mt-7">
-              <Slider label="Ø Wert eines Auftrags / Leads" value={orderValue} display={fmtEur(orderValue)} min={50} max={5000} step={50} onChange={setOrderValue} />
+              <Slider label={en ? 'Avg. value of an order / lead' : 'Ø Wert eines Auftrags / Leads'} value={orderValue} display={fmtEur(orderValue)} min={50} max={5000} step={50} onChange={setOrderValue} />
             </div>
 
             <div className="mt-7">
-              <Label>Branche</Label>
+              <Label>{en ? 'Industry' : 'Branche'}</Label>
               <div className="relative mt-3">
                 <select
                   value={industryId}
                   onChange={(e) => pickIndustry(e.target.value)}
-                  aria-label="Branche"
+                  aria-label={en ? 'Industry' : 'Branche'}
                   className="w-full appearance-none rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--bg))] px-4 py-3 pr-10 text-[0.9rem] text-[hsl(var(--fg))] outline-none transition-colors focus:border-[hsl(var(--accent))]"
                 >
                   {INDUSTRIES.map((i) => (
                     <option key={i.id} value={i.id} className="bg-[hsl(var(--bg))]">
-                      {i.label}
+                      {en ? i.labelEn : i.label}
                     </option>
                   ))}
                 </select>
@@ -174,14 +192,14 @@ export function CallcenterRoiCalculator() {
               onClick={() => setAdvanced((v) => !v)}
               className="mt-7 flex w-full items-center justify-between border-t border-[hsl(var(--border))] pt-5 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))] transition-colors hover:text-[hsl(var(--fg))]"
             >
-              Erweiterte Annahmen
+              {en ? 'Advanced assumptions' : 'Erweiterte Annahmen'}
               <ChevronDown className={'h-4 w-4 transition-transform ' + (advanced ? 'rotate-180' : '')} />
             </button>
             {advanced && (
               <div className="mt-6 space-y-7">
-                <Slider label="Ø Gesprächsdauer" value={duration} display={`${duration} Min`} min={1} max={15} step={1} onChange={setDuration} />
-                <Slider label="Abschlussquote" value={closeRate} display={`${closeRate} %`} min={1} max={60} step={1} onChange={setCloseRate} />
-                <Slider label="Vollkosten menschl. Agent" value={agentCost} display={`${fmtEur(agentCost)}/Mon`} min={1500} max={6000} step={100} onChange={setAgentCost} />
+                <Slider label={en ? 'Avg. call duration' : 'Ø Gesprächsdauer'} value={duration} display={`${duration} ${en ? 'min' : 'Min'}`} min={1} max={15} step={1} onChange={setDuration} />
+                <Slider label={en ? 'Close rate' : 'Abschlussquote'} value={closeRate} display={`${closeRate} %`} min={1} max={60} step={1} onChange={setCloseRate} />
+                <Slider label={en ? 'Fully-loaded human agent cost' : 'Vollkosten menschl. Agent'} value={agentCost} display={`${fmtEur(agentCost)}${perMonth}`} min={1500} max={6000} step={100} onChange={setAgentCost} />
               </div>
             )}
           </div>
@@ -191,7 +209,7 @@ export function CallcenterRoiCalculator() {
             <div className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8">
               <div className="mb-5 flex items-center justify-between gap-3">
                 <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
-                  Laufzeit
+                  {en ? 'Term' : 'Laufzeit'}
                 </span>
                 <TermSwitch />
               </div>
@@ -199,7 +217,7 @@ export function CallcenterRoiCalculator() {
               {/* Lost revenue — red */}
               <div className="rounded-xl border border-red-500/25 bg-red-500/[0.06] p-5">
                 <div className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-red-300/90">
-                  Potenziell entgangener Umsatz · pro Monat
+                  {en ? 'Potentially lost revenue · per month' : 'Potenziell entgangener Umsatz · pro Monat'}
                 </div>
                 <div className="mt-1.5 font-display text-[clamp(2rem,5vw,2.75rem)] font-medium leading-none tabular-nums tracking-[-0.02em] text-red-300">
                   {fmtEur(lost)}
@@ -209,11 +227,11 @@ export function CallcenterRoiCalculator() {
 
               {/* Comparison rows */}
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                <Tile label="Menschliches Team würde kosten" value={`${fmtEur(human)}/Mon`} sub="nur Geschäftszeiten" />
+                <Tile label={en ? 'A human team would cost' : 'Menschliches Team würde kosten'} value={`${fmtEur(human)}${perMonth}`} sub={en ? 'business hours only' : 'nur Geschäftszeiten'} />
                 <Tile
                   label={`RSG AI · ${r.tariff.name}`}
-                  value={`${fmtEur(price)}/Mon`}
-                  sub={r.setup > 0 ? `+ Einrichtung ${fmtEur(r.setup)}` : 'keine Einrichtung'}
+                  value={`${fmtEur(price)}${perMonth}`}
+                  sub={r.setup > 0 ? `+ ${en ? 'setup' : 'Einrichtung'} ${fmtEur(r.setup)}` : en ? 'no setup' : 'keine Einrichtung'}
                   accent
                 />
               </div>
@@ -227,7 +245,7 @@ export function CallcenterRoiCalculator() {
                 style={{ background: 'radial-gradient(circle, hsl(var(--success) / 0.5), transparent 65%)' }}
               />
               <div className="relative font-mono text-[0.625rem] uppercase tracking-[0.24em] text-[hsl(var(--success))]">
-                Dein Vorteil · pro Monat
+                {en ? 'Your advantage · per month' : 'Dein Vorteil · pro Monat'}
               </div>
               <div className="relative mt-2 font-display text-[clamp(2.75rem,7vw,4rem)] font-medium leading-none tabular-nums tracking-[-0.03em] text-[hsl(var(--success))]">
                 {fmtEur(gain)}
@@ -236,9 +254,11 @@ export function CallcenterRoiCalculator() {
                 <span>ROI <span className="text-[hsl(var(--success))]">{Math.round(roi).toLocaleString('de-DE')} %</span></span>
                 <span className="hidden sm:inline">·</span>
                 <span>
-                  Einrichtung amortisiert in{' '}
+                  {en ? 'Setup pays off in' : 'Einrichtung amortisiert in'}{' '}
                   <span className="text-[hsl(var(--fg))]">
-                    {r.setup <= 0 ? 'sofort' : `${Math.max(1, Math.round(r.paybackWeeks))} Wochen`}
+                    {r.setup <= 0
+                      ? en ? 'instantly' : 'sofort'
+                      : `${Math.max(1, Math.round(r.paybackWeeks))} ${en ? 'weeks' : 'Wochen'}`}
                   </span>
                 </span>
               </div>
@@ -248,7 +268,7 @@ export function CallcenterRoiCalculator() {
                 whileHover={{ y: -2 }}
                 className="relative mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[hsl(var(--success))] px-7 font-display text-[0.9rem] font-semibold text-[#04130c] transition-all hover:brightness-110"
               >
-                Diese Ersparnis sichern — Demo buchen
+                {en ? 'Lock in these savings — book a demo' : 'Diese Ersparnis sichern — Demo buchen'}
                 <ArrowUpRight className="h-4 w-4" />
               </motion.a>
             </div>
@@ -256,10 +276,9 @@ export function CallcenterRoiCalculator() {
         </div>
 
         <p className="mt-6 text-center font-mono text-[0.6875rem] leading-relaxed text-[hsl(var(--subtle))]">
-          Schätzung auf Basis von {CALC_CONSTANTS.workdays} Arbeitstagen/Monat, ~
-          {CALC_CONSTANTS.minutesPerFte} Gesprächsminuten je Vollzeitkraft und deinen
-          Eingaben. Menschliche Kosten gelten nur für Geschäftszeiten — das KI-Callcenter
-          arbeitet 24/7. Preise netto zzgl. USt. Keine garantierte Zusage.
+          {en
+            ? `Estimate based on ${CALC_CONSTANTS.workdays} working days/month, ~${CALC_CONSTANTS.minutesPerFte} talk minutes per full-time agent and your inputs. Human cost applies to business hours only — the AI call center runs 24/7. Prices net plus VAT. Not a guarantee.`
+            : `Schätzung auf Basis von ${CALC_CONSTANTS.workdays} Arbeitstagen/Monat, ~${CALC_CONSTANTS.minutesPerFte} Gesprächsminuten je Vollzeitkraft und deinen Eingaben. Menschliche Kosten gelten nur für Geschäftszeiten — das KI-Callcenter arbeitet 24/7. Preise netto zzgl. USt. Keine garantierte Zusage.`}
         </p>
       </div>
     </section>

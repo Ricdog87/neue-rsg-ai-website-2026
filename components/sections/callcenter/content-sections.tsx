@@ -7,7 +7,8 @@ import {
   Server, FileCheck, Lock, Plus, Minus, Star,
 } from 'lucide-react';
 import { site } from '@/lib/content';
-import { callcenter, INDUSTRIES } from '@/lib/callcenter';
+import { pickCallcenter, INDUSTRIES } from '@/lib/callcenter';
+import { useEnglish } from '@/components/system/use-locale';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const reveal = {
@@ -24,7 +25,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 /* ── Capabilities (enterprise) ───────────────────────────── */
 const CAP_ICONS = [InfinityIcon, Gauge, Network, Megaphone, Building2, Lock];
 export function CallcenterSolution() {
-  const s = callcenter.capabilities;
+  const s = pickCallcenter(useEnglish()).capabilities;
   return (
     <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))]/82 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10">
       <div className="mx-auto max-w-[1180px]">
@@ -64,7 +65,7 @@ export function CallcenterSolution() {
 
 /* ── Onboarding steps ────────────────────────────────────── */
 export function CallcenterSteps() {
-  const st = callcenter.steps;
+  const st = pickCallcenter(useEnglish()).steps;
   return (
     <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/85 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10">
       <div className="mx-auto max-w-[1180px]">
@@ -96,7 +97,8 @@ export function CallcenterSteps() {
 
 /* ── Industries / use cases ──────────────────────────────── */
 export function CallcenterIndustries() {
-  const head = callcenter.industriesHead;
+  const en = useEnglish();
+  const head = pickCallcenter(en).industriesHead;
   return (
     <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))]/82 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10">
       <div className="mx-auto max-w-[1180px]">
@@ -116,8 +118,8 @@ export function CallcenterIndustries() {
               transition={{ ...reveal.transition, delay: (i % 4) * 0.06 }}
               className="group rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--bg))] p-6 transition-all hover:border-[hsl(var(--accent))/40] hover:bg-[hsl(var(--accent))/5]"
             >
-              <h3 className="font-display text-[1.05rem] font-medium text-[hsl(var(--fg))]">{ind.label}</h3>
-              <p className="mt-2 text-[0.85rem] leading-[1.55] text-[hsl(var(--muted))]">{ind.blurb}</p>
+              <h3 className="font-display text-[1.05rem] font-medium text-[hsl(var(--fg))]">{en ? ind.labelEn : ind.label}</h3>
+              <p className="mt-2 text-[0.85rem] leading-[1.55] text-[hsl(var(--muted))]">{en ? ind.blurbEn : ind.blurb}</p>
             </motion.div>
           ))}
         </div>
@@ -129,7 +131,7 @@ export function CallcenterIndustries() {
 /* ── Security & compliance ───────────────────────────────── */
 const LEGAL_ICONS = [ShieldCheck, FileCheck, Server, Lock];
 export function CallcenterLegal() {
-  const l = callcenter.legal;
+  const l = pickCallcenter(useEnglish()).legal;
   return (
     <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/85 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10">
       <div className="mx-auto max-w-[1180px]">
@@ -140,7 +142,7 @@ export function CallcenterLegal() {
               {l.headline}
             </h2>
             <div className="mt-6 flex flex-wrap gap-2">
-              {['EU AI Act', 'DSGVO · AVV', 'Server in DE', 'SSO · Audit-Logs'].map((b) => (
+              {l.badges.map((b) => (
                 <span key={b} className="rounded-full border border-[hsl(var(--success))/30] bg-[hsl(var(--success))/10] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.16em] text-[hsl(var(--success))]">
                   {b}
                 </span>
@@ -173,17 +175,24 @@ export function CallcenterLegal() {
 
 /* ── Social proof (placeholder) ──────────────────────────── */
 export function CallcenterSocialProof() {
-  const items = [
-    { quote: 'Saisonspitzen mit dem Fünffachen an Anrufen — null Warteschleife, null verlorene Kunden.', who: 'Platzhalter · E-Commerce-Konzern' },
-    { quote: 'Die KI-Operation läuft 24/7 mit SLA. Unser Team kümmert sich nur noch um die echten Sonderfälle.', who: 'Platzhalter · Versicherung' },
-    { quote: 'Outbound-Reaktivierung über Millionen Kontakte — vollautomatisch und DSGVO-konform.', who: 'Platzhalter · Energieversorger' },
-  ];
+  const en = useEnglish();
+  const items = en
+    ? [
+        { quote: 'Seasonal peaks at 5× the calls — zero queue, zero lost customers.', who: 'Placeholder · e-commerce group' },
+        { quote: 'The AI operation runs 24/7 with an SLA. Our team only handles the real edge cases now.', who: 'Placeholder · insurer' },
+        { quote: 'Outbound reactivation across millions of contacts — fully automated and GDPR-compliant.', who: 'Placeholder · energy utility' },
+      ]
+    : [
+        { quote: 'Saisonspitzen mit dem Fünffachen an Anrufen — null Warteschleife, null verlorene Kunden.', who: 'Platzhalter · E-Commerce-Konzern' },
+        { quote: 'Die KI-Operation läuft 24/7 mit SLA. Unser Team kümmert sich nur noch um die echten Sonderfälle.', who: 'Platzhalter · Versicherung' },
+        { quote: 'Outbound-Reaktivierung über Millionen Kontakte — vollautomatisch und DSGVO-konform.', who: 'Platzhalter · Energieversorger' },
+      ];
   return (
     <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))]/82 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10">
       <div className="mx-auto max-w-[1180px]">
         <motion.div {...reveal} className="flex items-center gap-3">
-          <Eyebrow>Vertrauen</Eyebrow>
-          <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))]">Platzhalter — echte Referenzen folgen</span>
+          <Eyebrow>{en ? 'Trust' : 'Vertrauen'}</Eyebrow>
+          <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-[hsl(var(--subtle))]">{en ? 'Placeholder — real references to follow' : 'Platzhalter — echte Referenzen folgen'}</span>
         </motion.div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {items.map((it, i) => (
@@ -213,6 +222,8 @@ export function CallcenterSocialProof() {
 
 /* ── FAQ ─────────────────────────────────────────────────── */
 export function CallcenterFaq() {
+  const en = useEnglish();
+  const faq = pickCallcenter(en).faq;
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/85 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10">
@@ -220,11 +231,11 @@ export function CallcenterFaq() {
         <motion.div {...reveal} className="text-center">
           <Eyebrow>FAQ</Eyebrow>
           <h2 className="mt-6 font-display text-[clamp(1.875rem,3.8vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
-            Enterprise-Fragen
+            {en ? 'Enterprise questions' : 'Enterprise-Fragen'}
           </h2>
         </motion.div>
         <div className="mt-10 divide-y divide-[hsl(var(--border))] border-y border-[hsl(var(--border))]">
-          {callcenter.faq.map((f, i) => {
+          {faq.map((f, i) => {
             const isOpen = open === i;
             return (
               <div key={i}>
@@ -258,7 +269,7 @@ export function CallcenterFaq() {
 
 /* ── Final CTA ───────────────────────────────────────────── */
 export function CallcenterFinalCta() {
-  const c = callcenter.finalCta;
+  const c = pickCallcenter(useEnglish()).finalCta;
   return (
     <section className="relative overflow-hidden border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))] px-6 py-24 md:py-32 lg:px-10">
       <div
@@ -287,14 +298,15 @@ export function CallcenterFinalCta() {
 
 /* ── Sticky mobile CTA ───────────────────────────────────── */
 export function CallcenterStickyCta() {
+  const en = useEnglish();
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[hsl(var(--border))] bg-[hsl(var(--ink))]/95 px-4 py-3 backdrop-blur-md md:hidden">
       <div className="flex items-center gap-3">
         <a href="#preise" className="flex h-11 flex-1 items-center justify-center rounded-full border border-[hsl(var(--border-strong))] text-[0.85rem] font-medium text-[hsl(var(--fg))]">
-          Preise ansehen
+          {en ? 'View pricing' : 'Preise ansehen'}
         </a>
         <a href={site.cta.meetingUrl} data-event="callcenter_sticky_demo" className="flex h-11 flex-1 items-center justify-center gap-1.5 rounded-full bg-[hsl(var(--accent))] text-[0.85rem] font-semibold text-white">
-          Demo buchen <ArrowUpRight className="h-4 w-4" />
+          {en ? 'Book a demo' : 'Demo buchen'} <ArrowUpRight className="h-4 w-4" />
         </a>
       </div>
     </div>

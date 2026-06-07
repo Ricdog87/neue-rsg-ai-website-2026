@@ -1,8 +1,7 @@
 // lib/callcenter.ts
 // Single source of truth for the /ki-callcenter page — repositioned for
-// enterprise / high-volume customers. Tariffs, contract terms, the ROI
-// calculator logic and all copy live here. Prices net (zzgl. USt.).
-// Booking CTA reuses the site-wide meeting URL (site.cta.meetingUrl).
+// enterprise / high-volume customers. Bilingual (DE default + EN under /en).
+// Prices net (zzgl. USt.). Booking CTA reuses site.cta.meetingUrl.
 
 export type TermId = 'flex' | '12m' | '24m';
 export type TariffId = 's' | 'm' | 'l';
@@ -12,14 +11,16 @@ export type Term = {
   id: TermId;
   label: string;
   sub: string;
+  labelEn: string;
+  subEn: string;
   monthlyFactor: number;
   setupFactor: number;
 };
 
 export const TERMS: Term[] = [
-  { id: 'flex', label: 'Flexibel', sub: 'monatlich kündbar', monthlyFactor: 1, setupFactor: 1 },
-  { id: '12m', label: '12 Monate', sub: '−10 % · Einrichtung 50 %', monthlyFactor: 0.9, setupFactor: 0.5 },
-  { id: '24m', label: '24 Monate', sub: '−15 % · keine Einrichtung', monthlyFactor: 0.85, setupFactor: 0 },
+  { id: 'flex', label: 'Flexibel', sub: 'monatlich kündbar', labelEn: 'Flexible', subEn: 'monthly cancellable', monthlyFactor: 1, setupFactor: 1 },
+  { id: '12m', label: '12 Monate', sub: '−10 % · Einrichtung 50 %', labelEn: '12 months', subEn: '−10% · setup 50%', monthlyFactor: 0.9, setupFactor: 0.5 },
+  { id: '24m', label: '24 Monate', sub: '−15 % · keine Einrichtung', labelEn: '24 months', subEn: '−15% · no setup', monthlyFactor: 0.85, setupFactor: 0 },
 ];
 
 export type Tariff = {
@@ -29,7 +30,9 @@ export type Tariff = {
   setup: number;
   minutes: number;
   tagline: string;
+  taglineEn: string;
   features: string[];
+  featuresEn: string[];
   popular?: boolean;
 };
 
@@ -41,11 +44,18 @@ export const TARIFFS: Tariff[] = [
     setup: 1990,
     minutes: 2000,
     tagline: 'Einzelstandort / Anruf-Überlauf',
+    taglineEn: 'Single site / call overflow',
     features: [
       '~2.000 Gesprächsminuten / Monat inkl.',
       'Inbound-Annahme rund um die Uhr',
       'Eigene Rufnummer oder Anbindung deiner Anlage',
       'Termin- & Lead-Erfassung direkt ins CRM',
+    ],
+    featuresEn: [
+      '~2,000 talk minutes / month included',
+      'Inbound answered around the clock',
+      'Own number or connect your existing PBX',
+      'Appointment & lead capture straight into your CRM',
     ],
   },
   {
@@ -55,11 +65,18 @@ export const TARIFFS: Tariff[] = [
     setup: 2990,
     minutes: 4000,
     tagline: 'Inbound + Outbound, wachsendes Volumen',
+    taglineEn: 'Inbound + outbound, growing volume',
     features: [
       '~4.000 Gesprächsminuten / Monat inkl.',
       'Inbound + Outbound-Kampagnen',
       'Viele parallele Gespräche gleichzeitig',
       'Automatische Follow-ups & Recall-Listen',
+    ],
+    featuresEn: [
+      '~4,000 talk minutes / month included',
+      'Inbound + outbound campaigns',
+      'Many concurrent conversations',
+      'Automated follow-ups & recall lists',
     ],
   },
   {
@@ -69,12 +86,19 @@ export const TARIFFS: Tariff[] = [
     setup: 4990,
     minutes: 8000,
     tagline: 'Dedizierte Operation, hohes Volumen',
+    taglineEn: 'Dedicated operation, high volume',
     popular: true,
     features: [
       '~8.000 Gesprächsminuten / Monat inkl.',
       'Hunderte parallele Gespräche',
       'Custom-Voice & Branchen-Skripte',
       'Reporting-Dashboard · Prioritäts-Support',
+    ],
+    featuresEn: [
+      '~8,000 talk minutes / month included',
+      'Hundreds of concurrent conversations',
+      'Custom voice & industry scripts',
+      'Reporting dashboard · priority support',
     ],
   },
 ];
@@ -84,7 +108,9 @@ export const ENTERPRISE = {
   id: 'enterprise',
   name: 'Enterprise',
   price: 'Auf Anfrage',
+  priceEn: 'On request',
   tagline: 'Großkunden · unbegrenztes Volumen · SLA',
+  taglineEn: 'Large accounts · unlimited volume · SLA',
   features: [
     'Unbegrenztes Volumen · elastisch bei Lastspitzen',
     'Dedizierte KI-Operation & garantiertes SLA',
@@ -92,6 +118,14 @@ export const ENTERPRISE = {
     'Multi-Standort & Multi-Team-Steuerung',
     'SSO, Audit-Logs, Rollen- & Rechte-Management',
     'Dedizierter Ansprechpartner & Quartals-Reviews',
+  ],
+  featuresEn: [
+    'Unlimited volume · elastic for peak loads',
+    'Dedicated AI operation & guaranteed SLA',
+    'Full integration: PBX, CRM, ERP, ticketing',
+    'Multi-site & multi-team control',
+    'SSO, audit logs, role & permission management',
+    'Dedicated contact & quarterly reviews',
   ],
 } as const;
 
@@ -109,17 +143,17 @@ export function recommendTariff(minutesMonth: number): Tariff {
 }
 
 // ── Use cases / sectors with call-center scale ───────────────
-export type Industry = { id: string; label: string; blurb: string; orderValue: number };
+export type Industry = { id: string; label: string; labelEn: string; blurb: string; blurbEn: string; orderValue: number };
 
 export const INDUSTRIES: Industry[] = [
-  { id: 'energie', label: 'Energie & Versorger', blurb: 'Tarif-, Zähler- und Störungs-Hotline — Lastspitzen ohne Warteschleife.', orderValue: 700 },
-  { id: 'versicherung', label: 'Versicherung & Finanz', blurb: 'Schadenmeldung, Vertragsservice, Rückrufe — 24/7 und revisionssicher.', orderValue: 1200 },
-  { id: 'ecommerce', label: 'E-Commerce & Retail', blurb: 'Bestell-, Retouren- und Service-Anrufe in jeder Saisonspitze.', orderValue: 150 },
-  { id: 'health', label: 'Gesundheit & MVZ', blurb: 'Terminsteuerung über viele Standorte, ohne Dauerbesetzung.', orderValue: 120 },
-  { id: 'immobilien', label: 'Immobilien & Verwaltung', blurb: 'Mieter- und Interessenten-Anliegen zentral aufnehmen und routen.', orderValue: 1500 },
-  { id: 'b2b', label: 'B2B-Vertrieb & SaaS', blurb: 'Inbound-Leads in Sekunden qualifizieren, Outbound at scale.', orderValue: 2500 },
-  { id: 'logistik', label: 'Logistik & Mobilität', blurb: 'Sendungs- und Buchungsanfragen rund um die Uhr beantworten.', orderValue: 300 },
-  { id: 'public', label: 'Öffentlicher Sektor', blurb: 'Bürger-Hotline mit klarer KI-Transparenz und EU-Hosting.', orderValue: 200 },
+  { id: 'energie', label: 'Energie & Versorger', labelEn: 'Energy & Utilities', blurb: 'Tarif-, Zähler- und Störungs-Hotline — Lastspitzen ohne Warteschleife.', blurbEn: 'Tariff, meter and outage hotline — peak loads without a queue.', orderValue: 700 },
+  { id: 'versicherung', label: 'Versicherung & Finanz', labelEn: 'Insurance & Finance', blurb: 'Schadenmeldung, Vertragsservice, Rückrufe — 24/7 und revisionssicher.', blurbEn: 'Claims, policy service, callbacks — 24/7 and audit-proof.', orderValue: 1200 },
+  { id: 'ecommerce', label: 'E-Commerce & Retail', labelEn: 'E-Commerce & Retail', blurb: 'Bestell-, Retouren- und Service-Anrufe in jeder Saisonspitze.', blurbEn: 'Order, returns and service calls through every seasonal peak.', orderValue: 150 },
+  { id: 'health', label: 'Gesundheit & MVZ', labelEn: 'Health & Clinics', blurb: 'Terminsteuerung über viele Standorte, ohne Dauerbesetzung.', blurbEn: 'Appointment control across many sites, no permanently staffed phone.', orderValue: 120 },
+  { id: 'immobilien', label: 'Immobilien & Verwaltung', labelEn: 'Real Estate & Property', blurb: 'Mieter- und Interessenten-Anliegen zentral aufnehmen und routen.', blurbEn: 'Capture and route tenant and prospect requests centrally.', orderValue: 1500 },
+  { id: 'b2b', label: 'B2B-Vertrieb & SaaS', labelEn: 'B2B Sales & SaaS', blurb: 'Inbound-Leads in Sekunden qualifizieren, Outbound at scale.', blurbEn: 'Qualify inbound leads in seconds, outbound at scale.', orderValue: 2500 },
+  { id: 'logistik', label: 'Logistik & Mobilität', labelEn: 'Logistics & Mobility', blurb: 'Sendungs- und Buchungsanfragen rund um die Uhr beantworten.', blurbEn: 'Answer shipment and booking requests around the clock.', orderValue: 300 },
+  { id: 'public', label: 'Öffentlicher Sektor', labelEn: 'Public Sector', blurb: 'Bürger-Hotline mit klarer KI-Transparenz und EU-Hosting.', blurbEn: 'Citizen hotline with clear AI transparency and EU hosting.', orderValue: 200 },
 ];
 
 // ── Calculator (enterprise defaults) ─────────────────────────
@@ -136,7 +170,7 @@ export const CALC_DEFAULTS = {
 
 export const CALC_CONSTANTS = { workdays: 22, minutesPerFte: 1100 };
 
-// ── Page copy ─────────────────────────────────────────────────
+// ── Page copy (German) ────────────────────────────────────────
 export const callcenter = {
   hero: {
     eyebrow: 'Enterprise KI-Callcenter · Inbound & Outbound at scale',
@@ -145,7 +179,11 @@ export const callcenter = {
       'Für Unternehmen mit hohem Anrufvolumen: hunderte parallele Gespräche, dedizierte Operation mit SLA, volle Integration in Telefonie, CRM und ERP. 24/7, DSGVO-konform, Server in Deutschland.',
     primaryCta: 'Enterprise-Demo buchen',
     secondaryCta: 'Ersparnis berechnen',
+    pricingCta: 'Preise & Ersparnis berechnen',
+    enterpriseTag: 'Enterprise',
     trust: ['Garantiertes SLA', 'Server in Deutschland', 'EU AI Act ready', 'Dedizierte Operation'],
+    liveLabel: 'Live · Gespräche gleichzeitig',
+    queueLabel: '0 in der Warteschleife',
     stats: [
       { value: 500, prefix: '', suffix: '+', decimals: 0, label: 'parallele Gespräche' },
       { value: 99.9, prefix: '', suffix: ' %', decimals: 1, label: 'Uptime-SLA' },
@@ -184,6 +222,7 @@ export const callcenter = {
   legal: {
     eyebrow: 'Sicherheit & Compliance',
     headline: 'Enterprise-Sicherheit, rechtssicher und in Deutschland gehostet.',
+    badges: ['EU AI Act', 'DSGVO · AVV', 'Server in DE', 'SSO · Audit-Logs'],
     points: [
       { title: 'EU AI Act ready', body: 'Transparenzpflicht nach Art. 50: Anrufer werden auf Wunsch klar informiert, dass sie mit einer KI sprechen.' },
       { title: 'DSGVO & AVV', body: 'Auftragsverarbeitungsvertrag inklusive, zweckgebundene Verarbeitung, klare Löschkonzepte.' },
@@ -207,4 +246,87 @@ export const callcenter = {
     subline: 'Wir rechnen deinen Business-Case durch, zeigen die Live-Demo auf deinem Lastprofil und definieren dein SLA.',
     cta: 'Enterprise-Demo buchen',
   },
-} as const;
+};
+
+// ── Page copy (English) ───────────────────────────────────────
+export const callcenterEn: typeof callcenter = {
+  hero: {
+    eyebrow: 'Enterprise AI Call Center · Inbound & outbound at scale',
+    headline: ['Thousands of calls.', 'None lost.', 'One AI call center.'],
+    subline:
+      'For companies with high call volume: hundreds of concurrent conversations, a dedicated operation with SLA, full integration into telephony, CRM and ERP. 24/7, GDPR-compliant, servers in Germany.',
+    primaryCta: 'Book an enterprise demo',
+    secondaryCta: 'Calculate savings',
+    pricingCta: 'Pricing & savings',
+    enterpriseTag: 'Enterprise',
+    trust: ['Guaranteed SLA', 'Servers in Germany', 'EU AI Act ready', 'Dedicated operation'],
+    liveLabel: 'Live · concurrent calls',
+    queueLabel: '0 in the queue',
+    stats: [
+      { value: 500, prefix: '', suffix: '+', decimals: 0, label: 'concurrent calls' },
+      { value: 99.9, prefix: '', suffix: ' %', decimals: 1, label: 'uptime SLA' },
+      { value: 0.4, prefix: '< ', suffix: ' s', decimals: 1, label: 'response time' },
+      { value: 24, prefix: '', suffix: '/7', decimals: 0, label: 'dedicated operation' },
+    ],
+  },
+  capabilities: {
+    eyebrow: 'Enterprise capabilities',
+    headline: 'Built for volume humans can’t handle.',
+    subline: 'Not a voicemail box. A scaling AI operation for inbound and outbound.',
+    points: [
+      { title: 'Elastically scalable', body: 'Hundreds of concurrent calls — peak loads are absorbed automatically, with no queue.' },
+      { title: 'Dedicated with SLA', body: 'Your own AI operation with guaranteed availability, monitoring and fixed response times.' },
+      { title: 'Fully integrated', body: 'Connects to your PBX, CRM, ERP and ticketing — leads and appointments land automatically.' },
+      { title: 'Outbound at scale', body: 'Recall, reactivation and appointment campaigns across large call lists — fully automated.' },
+      { title: 'Multi-site', body: 'Central control across sites, teams and numbers — a single dashboard.' },
+      { title: 'Secure & auditable', body: 'SSO, roles & permissions, complete audit logs — ready for regulated industries.' },
+    ],
+  },
+  steps: {
+    eyebrow: 'Onboarding',
+    headline: 'From audit to dedicated operation.',
+    items: [
+      { n: '01', title: 'Audit & requirements', body: 'We analyse call volume, peak loads, processes and compliance requirements.' },
+      { n: '02', title: 'Integration & scripts', body: 'Connect telephony, CRM/ERP. Voice, scripts and routing in your brand tone.' },
+      { n: '03', title: 'Pilot & load test', body: 'Controlled pilot with a load test on peak volume, fine-tuning, sign-off.' },
+      { n: '04', title: 'Rollout & operation', body: 'Full rollout with dedicated operation, SLA monitoring and quarterly reviews.' },
+    ],
+  },
+  industriesHead: {
+    eyebrow: 'Use cases',
+    headline: 'Where call volume is business-critical.',
+    subline: 'Pre-configured scripts and routing — tailored to your industry and load profiles.',
+  },
+  legal: {
+    eyebrow: 'Security & compliance',
+    headline: 'Enterprise security, legally sound and hosted in Germany.',
+    badges: ['EU AI Act', 'GDPR · DPA', 'Servers in DE', 'SSO · audit logs'],
+    points: [
+      { title: 'EU AI Act ready', body: 'Transparency duty under Art. 50: callers are clearly told, on request, that they are speaking with an AI.' },
+      { title: 'GDPR & DPA', body: 'Data processing agreement included, purpose-bound processing, clear deletion concepts.' },
+      { title: 'Servers in Germany', body: 'Hosting in Nuremberg, encryption in transit and at rest, no third-country transfer.' },
+      { title: 'SSO & audit logs', body: 'Single sign-on, role & permission management and complete audit logs for review and compliance.' },
+    ],
+  },
+  faq: [
+    { q: 'How is the SLA guaranteed?', a: 'The Enterprise tier comes with a contractually assured SLA defining availability and response times, 24/7 monitoring and escalation paths.' },
+    { q: 'How do you handle load peaks?', a: 'The AI operation is elastic: hundreds of calls run in parallel and peaks are absorbed automatically — no queue, no “please try again later”.' },
+    { q: 'Can you connect our existing PBX?', a: 'Yes. We connect existing systems (SIP/trunk) or provision new numbers — including routing across sites and teams.' },
+    { q: 'What about security & access?', a: 'SSO, granular role & permission management, encryption and complete audit logs. Servers in Germany, GDPR-compliant, DPA included.' },
+    { q: 'Is outbound legally compliant?', a: 'Outbound campaigns run with consent and time-window logic plus an AI transparency notice — aligned with your compliance.' },
+    { q: 'How long does onboarding take?', a: 'Audit, integration and a pilot with a load test — depending on integration depth, usually a few weeks to full rollout.' },
+    { q: 'Do we get our own numbers & sites?', a: 'Yes — any number of phone numbers and sites, controlled centrally in one dashboard.' },
+    { q: 'What does Enterprise cost?', a: 'Individual, based on volume, integration depth and SLA. We work through the business case together — the calculator above gives a first estimate.' },
+  ],
+  finalCta: {
+    eyebrow: 'Enterprise',
+    headline: 'Talk to our enterprise team.',
+    subline: 'We work through your business case, show the live demo on your load profile and define your SLA.',
+    cta: 'Book an enterprise demo',
+  },
+};
+
+/** Pick the locale-appropriate copy block. */
+export function pickCallcenter(en: boolean) {
+  return en ? callcenterEn : callcenter;
+}

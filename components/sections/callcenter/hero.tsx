@@ -4,12 +4,12 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Calculator, PhoneCall } from 'lucide-react';
 import { site } from '@/lib/content';
-import { callcenter } from '@/lib/callcenter';
+import { pickCallcenter } from '@/lib/callcenter';
 import { Magnetic } from '@/components/effects/magnetic';
 import { CharSplit } from '@/components/effects/reveal';
+import { useEnglish } from '@/components/system/use-locale';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-const h = callcenter.hero;
 
 /** Count up to a target once the element scrolls into view. */
 function StatNumber({
@@ -45,7 +45,7 @@ function StatNumber({
 }
 
 /** Live "calls in progress" visual — concentric pulse rings + a ticker. */
-function LiveOps() {
+function LiveOps({ liveLabel, queueLabel }: { liveLabel: string; queueLabel: string }) {
   const [count, setCount] = useState(247);
   useEffect(() => {
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -78,13 +78,13 @@ function LiveOps() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--success))] opacity-75" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--success))]" />
           </span>
-          Live · Gespräche gleichzeitig
+          {liveLabel}
         </span>
         <span className="mt-2 font-display text-[clamp(2.75rem,6vw,4rem)] font-medium leading-none tabular-nums tracking-[-0.03em] text-white">
           {count}
         </span>
         <span className="mt-2 flex items-center gap-1.5 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/40">
-          <PhoneCall className="h-3 w-3 text-[hsl(var(--success))]" /> 0 in der Warteschleife
+          <PhoneCall className="h-3 w-3 text-[hsl(var(--success))]" /> {queueLabel}
         </span>
       </div>
     </div>
@@ -92,6 +92,8 @@ function LiveOps() {
 }
 
 export function CallcenterHero() {
+  const en = useEnglish();
+  const h = pickCallcenter(en).hero;
   return (
     <section id="callcenter-hero" className="relative overflow-hidden text-white" style={{ minHeight: '94svh' }}>
       {/* Legibility + aurora veils over the site-wide WebGL backdrop */}
@@ -167,7 +169,7 @@ export function CallcenterHero() {
                 className="group inline-flex h-12 items-center gap-2 rounded-full border border-white/15 px-6 font-display text-[0.9rem] font-medium text-white/85 transition-all hover:border-white/40 hover:text-white"
               >
                 <Calculator className="h-4 w-4" />
-                Preise &amp; {h.secondaryCta}
+                {h.pricingCta}
               </a>
             </motion.div>
 
@@ -192,7 +194,7 @@ export function CallcenterHero() {
             transition={{ duration: 1, ease: EASE, delay: 0.6 }}
             className="hidden lg:block"
           >
-            <LiveOps />
+            <LiveOps liveLabel={h.liveLabel} queueLabel={h.queueLabel} />
           </motion.div>
         </div>
 

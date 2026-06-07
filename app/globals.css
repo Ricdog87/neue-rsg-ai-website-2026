@@ -30,6 +30,7 @@
   --color-accent-deep: hsl(271 91% 75%);   /* hover */
   --color-neon: hsl(174 100% 50%);         /* Cyan turquoise */
   --color-neon-soft: hsl(174 90% 82%);     /* bright pale */
+  --color-success: hsl(152 60% 53%);       /* #3ECF8E — positive numbers / savings */
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -62,6 +63,7 @@
   --accent-deep: 271 91% 75%;
   --neon: 174 100% 50%;
   --neon-soft: 174 90% 82%;
+  --success: 152 60% 53%;
 }
 
 * {

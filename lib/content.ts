@@ -60,6 +60,7 @@ export const site = {
 
 export const nav = [
   { label: 'Telefonassistentin', href: '/ki-telefonassistent' },
+  { label: 'KI-Callcenter', href: '/ki-callcenter' },
   { label: 'Automatisierung', href: '/automatisierung' },
   { label: 'Preise', href: '/preise' },
   { label: 'Cases', href: '/cases' },

@@ -1,7 +1,6 @@
 import { Hero } from '@/components/sections/hero';
 import { VoiceConsole } from '@/components/sections/voice-console';
 import { TechMarquee } from '@/components/sections/tech-marquee';
-import { VoiceAgentsSection } from '@/components/sections/voice-agents-section';
 import { PricingSnapshot } from '@/components/sections/pricing-snapshot';
 import { VoiceRoiCalculator } from '@/components/sections/voice-roi-calculator';
 import { TrustStrip } from '@/components/sections/trust-strip';
@@ -53,6 +52,7 @@ export default function HomePage() {
         </div>
       </section>
       <Hero />
+      <GoogleReviews />
       <ScrollZoom>
         <PricingSnapshot />
       </ScrollZoom>
@@ -60,13 +60,9 @@ export default function HomePage() {
         <VoiceRoiCalculator />
       </ScrollSlide>
       <TechMarquee />
-      <ScrollSlide direction="left">
-        <VoiceAgentsSection />
-      </ScrollSlide>
       <ScrollZoom>
         <TrustStrip />
       </ScrollZoom>
-      <GoogleReviews />
       <ScrollZoom>
         <ContactSection />
       </ScrollZoom>

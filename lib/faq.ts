@@ -33,3 +33,34 @@ export const FAQ: Array<{ q: string; a: string }> = [
     a: 'Browser-ChatGPT ist ein Werkzeug. Ein KI-Agent ist ein System: er hat Zugriff auf dein CRM, kann Multi-Step-Logik ausführen, behält Kontext über Tage, eskaliert wenn er unsicher ist, läuft ohne dass jemand davor sitzt. Das sind Klassen-Unterschiede, keine Ausstattungs-Unterschiede.',
   },
 ];
+
+export const FAQ_EN: Array<{ q: string; a: string }> = [
+  {
+    q: 'How fast is the first agent productive?',
+    a: 'Audit on Monday → first agent productive in week two → fully integrated after 4 weeks. We deliver in sprints, with weekly demos instead of one mega-release at the end.',
+  },
+  {
+    q: 'What happens to our data?',
+    a: 'Conversation and voice data is stored in a German data center (Hetzner, Nuremberg). Parts of the AI speech processing run via certified EU/US services under the EU-US Data Privacy Framework or standard contractual clauses. Data processing agreement included, data location transparent — your data protection officer can breathe easy.',
+  },
+  {
+    q: 'Will we end up dependent on your infrastructure?',
+    a: 'No. You get source code, configuration, data and documentation. If you ever want to continue without us, you can. Vendor lock-in is an anti-pattern, not a business model.',
+  },
+  {
+    q: 'What does monthly operation cost?',
+    a: 'Hosting + token costs are usage-based and passed through transparently — typically under 5% of your staff-cost savings. You see per day what the agent cost and saved.',
+  },
+  {
+    q: 'What if the agent does not do what we imagined?',
+    a: 'We deliver on a fixed-price basis with clear acceptance criteria from the audit. Optimization SLA in the first 14 days after go-live. If the agent does not meet the defined KPIs after 30 days: we adjust at our cost.',
+  },
+  {
+    q: 'Which systems can you connect?',
+    a: 'HubSpot · Salesforce · Pipedrive · Personio · DATEV · Slack · Microsoft Teams · Outlook · Calendly · Google Workspace · Stripe · REST APIs · Webhooks. If your system is documented, we build the integration.',
+  },
+  {
+    q: 'We already have ChatGPT Pro accounts — why is that not enough?',
+    a: 'Browser ChatGPT is a tool. An AI agent is a system: it has access to your CRM, runs multi-step logic, keeps context over days, escalates when unsure, and runs without anyone sitting in front of it. These are class differences, not feature differences.',
+  },
+];

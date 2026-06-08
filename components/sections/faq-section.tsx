@@ -4,16 +4,27 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, Clock, Code2, Lock, Shield } from 'lucide-react';
 import { MaskWipe, SplitLines } from '@/components/effects/reveal';
-import { FAQ } from '@/lib/faq';
+import { FAQ, FAQ_EN } from '@/lib/faq';
+import { useEnglish } from '@/components/system/use-locale';
 
-const GUARANTEES = [
+const GUARANTEES_DE = [
   { Icon: Clock, label: '30-Tage-SLA', detail: 'oder Anpassung auf unsere Kosten' },
   { Icon: Code2, label: 'Du besitzt alles', detail: 'Code · Daten · Konfig' },
   { Icon: Lock, label: 'DSGVO · EU', detail: 'Server in Deutschland (Nürnberg) · AVV inkl.' },
   { Icon: Shield, label: 'Festpreis', detail: 'vor dem ersten Commit' },
 ] as const;
 
+const GUARANTEES_EN = [
+  { Icon: Clock, label: '30-day SLA', detail: 'or we adjust at our cost' },
+  { Icon: Code2, label: 'You own everything', detail: 'Code · data · config' },
+  { Icon: Lock, label: 'GDPR · EU', detail: 'Servers in Germany (Nuremberg) · DPA incl.' },
+  { Icon: Shield, label: 'Fixed price', detail: 'before the first commit' },
+] as const;
+
 export function FaqSection() {
+  const en = useEnglish();
+  const faq = en ? FAQ_EN : FAQ;
+  const GUARANTEES = en ? GUARANTEES_EN : GUARANTEES_DE;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -25,10 +36,10 @@ export function FaqSection() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">Bevor du buchst</span>
+              <span className="eyebrow">{en ? 'Before you book' : 'Bevor du buchst'}</span>
             </MaskWipe>
             <SplitLines
-              lines={['Vier Garantien.', 'Sieben Antworten.']}
+              lines={en ? ['Four guarantees.', 'Seven answers.'] : ['Vier Garantien.', 'Sieben Antworten.']}
               className="mt-6"
               lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]"
             />
@@ -36,8 +47,9 @@ export function FaqSection() {
           <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
             <MaskWipe delay={0.2}>
               <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-                Erst was wir dir vertraglich schwarz auf weiß geben. Dann die
-                sieben Fragen, die Buyer sonst erst in Minute 17 stellen.
+                {en
+                  ? 'First what we put in writing in the contract. Then the seven questions buyers usually only ask at minute 17.'
+                  : 'Erst was wir dir vertraglich schwarz auf weiß geben. Dann die sieben Fragen, die Buyer sonst erst in Minute 17 stellen.'}
               </p>
             </MaskWipe>
           </div>
@@ -70,7 +82,7 @@ export function FaqSection() {
         </div>
 
         <ul className="mt-16 border-t border-[hsl(var(--border))]">
-          {FAQ.map((item, i) => {
+          {faq.map((item, i) => {
             const isOpen = openIndex === i;
             return (
               <li
@@ -142,8 +154,11 @@ export function FaqSection() {
           className="mt-12 flex items-center justify-between gap-6 text-[0.875rem]"
         >
           <p className="font-accent text-[1.05rem] font-light italic leading-[1.5] text-[hsl(var(--muted))] md:text-[1.25rem]">
-            „Frage nicht beantwortet?
-            <span className="text-[hsl(var(--fg))]"> Stell sie im Erstgespräch.</span>"
+            {en ? 'Question not answered?' : '„Frage nicht beantwortet?'}
+            <span className="text-[hsl(var(--fg))]">
+              {en ? ' Ask it in the intro call.' : ' Stell sie im Erstgespräch.'}
+            </span>
+            {en ? '' : '"'}
           </p>
         </motion.div>
       </div>

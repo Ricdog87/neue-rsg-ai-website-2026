@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RSG | AI — Official brand logo, print-ready vector.
+  Source of truth: components/icons/rsg-logo.tsx (RsgLogoFull).
+  Colours: RSG = white (#FFFFFF on dark) | divider + AI = brand purple #A855F7
+  Tagline: AGENT SERVICES · KI-AUTOMATISIERUNG · GERMANY (grey #8A8A8A)
+  Use for print on dark backgrounds. For light backgrounds, swap "RSG" fill to #0A0A12.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 420 100"
+     width="420" height="100"
+     role="img"
+     aria-label="RSG AI — Agent Services, KI-Automatisierung, Germany">
+  <g font-family="Manrope, 'Helvetica Neue', Arial, sans-serif"
+     font-weight="700"
+     letter-spacing="-0.02em">
+    <text x="0" y="58" font-size="64" fill="#FFFFFF">RSG</text>
+    <line x1="160" y1="14" x2="160" y2="64"
+          stroke="#A855F7" stroke-width="3.5" stroke-linecap="square"/>
+    <text x="180" y="58" font-size="64" fill="#A855F7">AI</text>
+  </g>
+
+  <g transform="translate(0, 88)">
+    <circle cx="3" cy="-4" r="2" fill="#A855F7"/>
+    <text x="13" y="0"
+          font-family="'JetBrains Mono', 'Courier New', monospace"
+          font-size="10.5"
+          letter-spacing="1.9"
+          fill="#8A8A8A">AGENT SERVICES · KI-AUTOMATISIERUNG · GERMANY</text>
+  </g>
+</svg>

@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RSG | AI — Roll-Up Banner, druckfertig.
+  Format:   85 × 200 cm (WIRmachenDRUCK Topseller-Rollup 85 x 200 cm)
+  ViewBox:  850 × 2000 (1 Einheit = 1 mm), maßstabsgetreu skalierbar
+  Bleed:    rundum 0 mm Rand vorgesehen — Kassette verdeckt unterste ~5 cm
+  Sicherer Bereich (Augenhöhe 0,9–1,7 m): y = 800 bis y = 1700
+  Farben:   Brand Purple #A855F7 · Neon Cyan #00FFE5 · Night #0A0A12 · White #FFFFFF
+  Schrift:  Manrope (Display) + JetBrains Mono (Mono) — beim Druck als Pfad einbetten
+            oder Schriften durch PDF/X-1a Export mit eingebetteten Fonts liefern.
+  Promo:    KI-Telefon-Assistentin · Automation
+  Stand:    2026-06-08
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 850 2000"
+     width="850mm" height="2000mm"
+     preserveAspectRatio="xMidYMid meet">
+
+  <!-- ──────────────────── DEFS ──────────────────── -->
+  <defs>
+    <!-- Tiefer Nachthintergrund mit subtiler Vignette + Lila-Schimmer oben -->
+    <radialGradient id="bgTop" cx="50%" cy="0%" r="90%">
+      <stop offset="0%"   stop-color="#1A0F2E" stop-opacity="0.95"/>
+      <stop offset="60%"  stop-color="#0A0A12" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="1"/>
+    </radialGradient>
+
+    <radialGradient id="bgMid" cx="50%" cy="55%" r="65%">
+      <stop offset="0%"   stop-color="#A855F7" stop-opacity="0.18"/>
+      <stop offset="55%"  stop-color="#A855F7" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#A855F7" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="bgCyan" cx="50%" cy="60%" r="50%">
+      <stop offset="0%"   stop-color="#00FFE5" stop-opacity="0.12"/>
+      <stop offset="60%"  stop-color="#00FFE5" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#00FFE5" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="vignetteBottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0A0A12" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+    </linearGradient>
+
+    <!-- Lila → Cyan Akzent-Verlauf für „AI" / Highlights -->
+    <linearGradient id="brandGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#00FFE5"/>
+    </linearGradient>
+
+    <!-- Voice-Waveform-Verlauf -->
+    <linearGradient id="waveGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#00FFE5" stop-opacity="0"/>
+      <stop offset="20%"  stop-color="#00FFE5" stop-opacity="0.9"/>
+      <stop offset="50%"  stop-color="#A855F7" stop-opacity="1"/>
+      <stop offset="80%"  stop-color="#00FFE5" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00FFE5" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Glühen unter Nodes -->
+    <radialGradient id="nodeGlowP" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#A855F7" stop-opacity="1"/>
+      <stop offset="60%"  stop-color="#A855F7" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#A855F7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeGlowC" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#00FFE5" stop-opacity="1"/>
+      <stop offset="60%"  stop-color="#00FFE5" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#00FFE5" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Soft glow filter (für Vorschau am Bildschirm; im Druck ohne Wirkung wenn Renderer es ignoriert) -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="bigGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Wiederverwendbarer Check-Icon -->
+    <symbol id="checkIcon" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="#A855F7" stroke-width="1.6"/>
+      <path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#00FFE5"
+            stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+
+  <!-- ──────────────────── BACKGROUND ──────────────────── -->
+  <rect x="0" y="0" width="850" height="2000" fill="#0A0A12"/>
+  <rect x="0" y="0" width="850" height="2000" fill="url(#bgTop)"/>
+  <rect x="0" y="0" width="850" height="2000" fill="url(#bgMid)"/>
+  <rect x="0" y="0" width="850" height="2000" fill="url(#bgCyan)"/>
+
+  <!-- subtiles Editorial-Raster (1cm-Grid, sehr fein) -->
+  <g opacity="0.06" stroke="#FFFFFF" stroke-width="0.15">
+    <g>
+      <line x1="80"  y1="0" x2="80"  y2="2000"/>
+      <line x1="425" y1="0" x2="425" y2="2000"/>
+      <line x1="770" y1="0" x2="770" y2="2000"/>
+    </g>
+  </g>
+
+  <!-- ──────────────────── 1. HEADER / LOGO ──────────────────── -->
+  <g transform="translate(80, 95)">
+    <!-- Marker dot -->
+    <circle cx="0" cy="-30" r="3" fill="#A855F7"/>
+    <text x="14" y="-25"
+          font-family="'JetBrains Mono', 'Courier New', monospace"
+          font-size="11" letter-spacing="3" fill="#8A8A8A">
+      AGENT SERVICES · KI-AUTOMATISIERUNG · GERMANY
+    </text>
+
+    <!-- Großes RSG | AI Logo -->
+    <g font-family="Manrope, 'Helvetica Neue', Arial, sans-serif"
+       font-weight="800" letter-spacing="-3">
+      <text x="0" y="100" font-size="135" fill="#FFFFFF">RSG</text>
+      <line x1="285" y1="10" x2="285" y2="110"
+            stroke="#A855F7" stroke-width="7" stroke-linecap="square"/>
+      <text x="320" y="100" font-size="135" fill="#A855F7">AI</text>
+    </g>
+  </g>
+
+  <!-- Horizontaler Hairline-Separator -->
+  <line x1="80" y1="240" x2="770" y2="240" stroke="#2A2438" stroke-width="0.8"/>
+
+  <!-- ──────────────────── 2. KICKER ──────────────────── -->
+  <g transform="translate(80, 285)">
+    <rect x="0" y="-22" width="9" height="9" fill="#00FFE5"/>
+    <text x="22" y="-13"
+          font-family="'JetBrains Mono', 'Courier New', monospace"
+          font-size="14" letter-spacing="4" fill="#00FFE5">
+      LIVE AUF DER MESSE · B2B AI
+    </text>
+  </g>
+
+  <!-- ──────────────────── 3. HEADLINE ──────────────────── -->
+  <g transform="translate(80, 0)"
+     font-family="Manrope, 'Helvetica Neue', Arial, sans-serif"
+     font-weight="800" letter-spacing="-3" fill="#FFFFFF">
+    <text x="0" y="395" font-size="98">Deine neue</text>
+    <text x="0" y="495" font-size="98">
+      <tspan fill="#A855F7">KI</tspan><tspan fill="#FFFFFF">-Telefon-</tspan>
+    </text>
+    <text x="0" y="595" font-size="98" fill="url(#brandGradient)">Assistentin.</text>
+  </g>
+
+  <!-- Sub-Headline -->
+  <g transform="translate(80, 670)"
+     font-family="Manrope, 'Helvetica Neue', Arial, sans-serif"
+     fill="#C9C8D3" font-weight="500">
+    <text x="0" y="0"  font-size="32" letter-spacing="-0.5">Sie nimmt ab, qualifiziert Leads,</text>
+    <text x="0" y="42" font-size="32" letter-spacing="-0.5">bucht Termine — <tspan fill="#00FFE5" font-weight="700">24/7, DSGVO, in 14 Tagen live.</tspan></text>
+  </g>
+
+  <!-- ──────────────────── 4. AI VISUAL — Neural Network + Waveform ──────────────────── -->
+  <g transform="translate(0, 820)">
+
+    <!-- Orbital Rings -->
+    <g opacity="0.55" fill="none">
+      <ellipse cx="425" cy="240" rx="320" ry="80" stroke="#A855F7" stroke-width="0.6" opacity="0.6"/>
+      <ellipse cx="425" cy="240" rx="260" ry="170" stroke="#00FFE5" stroke-width="0.6" opacity="0.5"/>
+      <ellipse cx="425" cy="240" rx="190" ry="260" stroke="#A855F7" stroke-width="0.5" opacity="0.4"/>
+    </g>
+
+    <!-- Diffuser Lila-Halo hinter dem Zentrum -->
+    <circle cx="425" cy="240" r="180" fill="url(#nodeGlowP)" opacity="0.45"/>
+    <circle cx="425" cy="240" r="90"  fill="url(#nodeGlowC)" opacity="0.55"/>
+
+    <!-- Verbindungslinien (Neural Net) -->
+    <g stroke="#A855F7" stroke-width="0.6" opacity="0.55" fill="none">
+      <!-- Linke Säule zu Zentrum -->
+      <line x1="140" y1="80"  x2="425" y2="240"/>
+      <line x1="140" y1="180" x2="425" y2="240"/>
+      <line x1="160" y1="290" x2="425" y2="240"/>
+      <line x1="135" y1="400" x2="425" y2="240"/>
+      <line x1="180" y1="470" x2="425" y2="240"/>
+      <!-- Rechte Säule zu Zentrum -->
+      <line x1="710" y1="80"  x2="425" y2="240"/>
+      <line x1="700" y1="180" x2="425" y2="240"/>
+      <line x1="690" y1="290" x2="425" y2="240"/>
+      <line x1="715" y1="400" x2="425" y2="240"/>
+      <line x1="670" y1="470" x2="425" y2="240"/>
+      <!-- Diagonale Akzente -->
+      <line x1="240" y1="60"  x2="610" y2="430"/>
+      <line x1="610" y1="60"  x2="240" y2="430"/>
+      <line x1="160" y1="240" x2="690" y2="240"/>
+      <line x1="425" y1="40"  x2="425" y2="450"/>
+    </g>
+
+    <!-- Cyan-Akzent-Verbindungen -->
+    <g stroke="#00FFE5" stroke-width="0.7" opacity="0.65" fill="none">
+      <line x1="140" y1="80"  x2="710" y2="80"/>
+      <line x1="160" y1="290" x2="690" y2="290"/>
+      <line x1="180" y1="470" x2="670" y2="470"/>
+      <line x1="240" y1="60"  x2="425" y2="240"/>
+      <line x1="610" y1="60"  x2="425" y2="240"/>
+    </g>
+
+    <!-- Nodes (Glow + Kern) -->
+    <g>
+      <!-- Linke Säule -->
+      <g><circle cx="140" cy="80"  r="18" fill="url(#nodeGlowP)"/><circle cx="140" cy="80"  r="5" fill="#A855F7"/></g>
+      <g><circle cx="140" cy="180" r="18" fill="url(#nodeGlowC)"/><circle cx="140" cy="180" r="5" fill="#00FFE5"/></g>
+      <g><circle cx="160" cy="290" r="18" fill="url(#nodeGlowP)"/><circle cx="160" cy="290" r="5" fill="#A855F7"/></g>
+      <g><circle cx="135" cy="400" r="18" fill="url(#nodeGlowC)"/><circle cx="135" cy="400" r="5" fill="#00FFE5"/></g>
+      <g><circle cx="180" cy="470" r="18" fill="url(#nodeGlowP)"/><circle cx="180" cy="470" r="5" fill="#A855F7"/></g>
+
+      <!-- Rechte Säule -->
+      <g><circle cx="710" cy="80"  r="18" fill="url(#nodeGlowC)"/><circle cx="710" cy="80"  r="5" fill="#00FFE5"/></g>
+      <g><circle cx="700" cy="180" r="18" fill="url(#nodeGlowP)"/><circle cx="700" cy="180" r="5" fill="#A855F7"/></g>
+      <g><circle cx="690" cy="290" r="18" fill="url(#nodeGlowC)"/><circle cx="690" cy="290" r="5" fill="#00FFE5"/></g>
+      <g><circle cx="715" cy="400" r="18" fill="url(#nodeGlowP)"/><circle cx="715" cy="400" r="5" fill="#A855F7"/></g>
+      <g><circle cx="670" cy="470" r="18" fill="url(#nodeGlowC)"/><circle cx="670" cy="470" r="5" fill="#00FFE5"/></g>
+
+      <!-- Obere/untere Diagonal-Nodes -->
+      <g><circle cx="240" cy="60"  r="14" fill="url(#nodeGlowC)"/><circle cx="240" cy="60"  r="4" fill="#00FFE5"/></g>
+      <g><circle cx="610" cy="60"  r="14" fill="url(#nodeGlowC)"/><circle cx="610" cy="60"  r="4" fill="#00FFE5"/></g>
+      <g><circle cx="240" cy="430" r="14" fill="url(#nodeGlowP)"/><circle cx="240" cy="430" r="4" fill="#A855F7"/></g>
+      <g><circle cx="610" cy="430" r="14" fill="url(#nodeGlowP)"/><circle cx="610" cy="430" r="4" fill="#A855F7"/></g>
+    </g>
+
+    <!-- Zentrum: pulsierende Sphäre mit Telefon-Icon -->
+    <g transform="translate(425, 240)">
+      <!-- innere Sphäre -->
+      <circle cx="0" cy="0" r="78" fill="#0A0A12" stroke="url(#brandGradient)" stroke-width="2.5"/>
+      <circle cx="0" cy="0" r="60" fill="none" stroke="#A855F7" stroke-width="0.8" opacity="0.7"/>
+      <circle cx="0" cy="0" r="44" fill="none" stroke="#00FFE5" stroke-width="0.8" opacity="0.7"/>
+
+      <!-- Telefon-Headset Symbol -->
+      <g transform="translate(-30, -32)" fill="none" stroke="#FFFFFF" stroke-width="3.2"
+         stroke-linecap="round" stroke-linejoin="round">
+        <!-- Headset-Bügel -->
+        <path d="M6 36 C 6 14, 54 14, 54 36"/>
+        <!-- linker Ohrhörer -->
+        <rect x="0"  y="34" width="14" height="22" rx="3" fill="#A855F7" stroke="#A855F7"/>
+        <!-- rechter Ohrhörer -->
+        <rect x="46" y="34" width="14" height="22" rx="3" fill="#00FFE5" stroke="#00FFE5"/>
+        <!-- Mikrofon-Arm -->
+        <path d="M46 56 C 44 62, 38 64, 32 64" stroke="#00FFE5"/>
+        <circle cx="32" cy="64" r="2.5" fill="#00FFE5" stroke="#00FFE5"/>
+      </g>
+
+      <!-- AI Label unter Telefon -->
+      <text x="0" y="50"
+            font-family="'JetBrains Mono', 'Courier New', monospace"
+            font-size="10" letter-spacing="4" text-anchor="middle" fill="#00FFE5">
+        VOICE · AI · 24/7
+      </text>
+    </g>
+
+    <!-- Voice-Waveform unter dem Zentrum -->
+    <g transform="translate(80, 555)">
+      <path d="M 0 30
+               L 30 30  L 30 18  L 50 18  L 50 42  L 70 42  L 70 8   L 90 8
+               L 90 52  L 110 52 L 110 22 L 130 22 L 130 38 L 150 38 L 150 14
+               L 170 14 L 170 46 L 190 46 L 190 6  L 210 6  L 210 54 L 230 54
+               L 230 18 L 250 18 L 250 42 L 270 42 L 270 26 L 290 26 L 290 34
+               L 310 34 L 310 10 L 330 10 L 330 50 L 350 50 L 350 22 L 370 22
+               L 370 38 L 390 38 L 390 14 L 410 14 L 410 46 L 430 46 L 430 24
+               L 450 24 L 450 36 L 470 36 L 470 12 L 490 12 L 490 48 L 510 48
+               L 510 28 L 530 28 L 530 32 L 550 32 L 550 18 L 570 18 L 570 42
+               L 590 42 L 590 22 L 610 22 L 610 38 L 630 38 L 630 30 L 690 30"
+            fill="none" stroke="url(#waveGradient)" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- Trennlinie zur Feature-Sektion -->
+  <line x1="80" y1="1430" x2="770" y2="1430" stroke="#2A2438" stroke-width="0.8"/>
+
+  <!-- ──────────────────── 5. FEATURES ──────────────────── -->
+  <g transform="translate(80, 1480)">
+    <text x="0" y="0"
+          font-family="'JetBrains Mono', 'Courier New', monospace"
+          font-size="13" letter-spacing="4" fill="#8A8A8A">
+      WAS SIE FÜR DICH ÜBERNIMMT
+    </text>
+  </g>
+
+  <g transform="translate(80, 1520)"
+     font-family="Manrope, 'Helvetica Neue', Arial, sans-serif"
+     fill="#FFFFFF">
+
+    <!-- Feature 1 -->
+    <g transform="translate(0, 0)">
+      <use xlink:href="#checkIcon" x="0" y="0" width="34" height="34"/>
+      <text x="52" y="16"  font-size="24" font-weight="700">Anrufe automatisch annehmen</text>
+      <text x="52" y="42"  font-size="17" fill="#C9C8D3" font-weight="400">
+        Inbound &amp; Outbound · natürliche Stimme · &lt; 0,4 s Antwortzeit
+      </text>
+    </g>
+
+    <!-- Feature 2 -->
+    <g transform="translate(0, 80)">
+      <use xlink:href="#checkIcon" x="0" y="0" width="34" height="34"/>
+      <text x="52" y="16"  font-size="24" font-weight="700">Leads qualifizieren &amp; Termine buchen</text>
+      <text x="52" y="42"  font-size="17" fill="#C9C8D3" font-weight="400">
+        Direkt in deinen Kalender — CRM, Google, Outlook, HubSpot
+      </text>
+    </g>
+
+    <!-- Feature 3 -->
+    <g transform="translate(0, 160)">
+      <use xlink:href="#checkIcon" x="0" y="0" width="34" height="34"/>
+      <text x="52" y="16"  font-size="24" font-weight="700">Automation: Prozesse, die laufen.</text>
+      <text x="52" y="42"  font-size="17" fill="#C9C8D3" font-weight="400">
+        E-Mail, WhatsApp, CRM, Bewerber-Workflows — auf Autopilot
+      </text>
+    </g>
+
+    <!-- Feature 4 -->
+    <g transform="translate(0, 240)">
+      <use xlink:href="#checkIcon" x="0" y="0" width="34" height="34"/>
+      <text x="52" y="16"  font-size="24" font-weight="700">DSGVO. Hosting in Deutschland.</text>
+      <text x="52" y="42"  font-size="17" fill="#C9C8D3" font-weight="400">
+        Live in 14 Tagen · ab 199 €/Monat · ohne Risiko testen
+      </text>
+    </g>
+  </g>
+
+  <!-- ──────────────────── 6. CTA + KONTAKT ──────────────────── -->
+  <g transform="translate(80, 1830)">
+    <!-- CTA Pill -->
+    <rect x="0" y="0" width="430" height="78" rx="12" fill="url(#brandGradient)"/>
+    <text x="215" y="50"
+          font-family="Manrope, 'Helvetica Neue', Arial, sans-serif"
+          font-size="28" font-weight="800" text-anchor="middle"
+          fill="#0A0A12" letter-spacing="-0.5">
+      LIVE-DEMO JETZT TESTEN  →
+    </text>
+
+    <!-- URL + Telefon rechts -->
+    <g transform="translate(460, 0)" font-family="Manrope, 'Helvetica Neue', Arial, sans-serif">
+      <text x="0" y="22" font-size="13"
+            font-family="'JetBrains Mono', 'Courier New', monospace"
+            letter-spacing="3" fill="#8A8A8A">SCAN · CALL · BOOK</text>
+      <text x="0" y="52" font-size="26" font-weight="700" fill="#FFFFFF">rsg-ai.de</text>
+      <text x="0" y="78" font-size="18" font-weight="500" fill="#00FFE5">+49 711 99598220</text>
+    </g>
+  </g>
+
+  <!-- ──────────────────── 7. QR-Code Platzhalter (durch echten QR ersetzen) ──────────────────── -->
+  <!--
+    HINWEIS: Vor Druckabgabe diesen Platzhalter durch einen echten QR-Code (SVG)
+    ersetzen, z.B. generiert auf https://qrcode.tec-it.com/de mit Ziel:
+    https://rsg-ai.de/demo?utm_source=messe&utm_medium=rollup
+  -->
+  <g transform="translate(620, 1820)">
+    <rect x="0" y="0" width="150" height="150" rx="8"
+          fill="#FFFFFF" stroke="#A855F7" stroke-width="2"/>
+    <!-- stilisierter QR-Optikplatzhalter (rein dekorativ; bitte ersetzen) -->
+    <g fill="#0A0A12">
+      <!-- Finder-Patterns -->
+      <rect x="12" y="12"  width="32" height="32"/>
+      <rect x="106" y="12" width="32" height="32"/>
+      <rect x="12" y="106" width="32" height="32"/>
+      <rect x="18" y="18"  width="20" height="20" fill="#FFFFFF"/>
+      <rect x="112" y="18" width="20" height="20" fill="#FFFFFF"/>
+      <rect x="18" y="112" width="20" height="20" fill="#FFFFFF"/>
+      <rect x="24" y="24"  width="8" height="8"/>
+      <rect x="118" y="24" width="8" height="8"/>
+      <rect x="24" y="118" width="8" height="8"/>
+      <!-- Daten-Module (Beispielmuster) -->
+      <g>
+        <rect x="56" y="14" width="6" height="6"/><rect x="68" y="14" width="6" height="6"/>
+        <rect x="80" y="14" width="6" height="6"/><rect x="92" y="14" width="6" height="6"/>
+        <rect x="56" y="26" width="6" height="6"/><rect x="80" y="26" width="6" height="6"/>
+        <rect x="14" y="56" width="6" height="6"/><rect x="26" y="56" width="6" height="6"/>
+        <rect x="56" y="56" width="6" height="6"/><rect x="68" y="56" width="6" height="6"/>
+        <rect x="92" y="56" width="6" height="6"/><rect x="104" y="56" width="6" height="6"/>
+        <rect x="116" y="56" width="6" height="6"/><rect x="128" y="56" width="6" height="6"/>
+        <rect x="14" y="68" width="6" height="6"/><rect x="38" y="68" width="6" height="6"/>
+        <rect x="56" y="68" width="6" height="6"/><rect x="80" y="68" width="6" height="6"/>
+        <rect x="92" y="68" width="6" height="6"/><rect x="116" y="68" width="6" height="6"/>
+        <rect x="14" y="80" width="6" height="6"/><rect x="26" y="80" width="6" height="6"/>
+        <rect x="44" y="80" width="6" height="6"/><rect x="68" y="80" width="6" height="6"/>
+        <rect x="80" y="80" width="6" height="6"/><rect x="104" y="80" width="6" height="6"/>
+        <rect x="128" y="80" width="6" height="6"/>
+        <rect x="38" y="92" width="6" height="6"/><rect x="56" y="92" width="6" height="6"/>
+        <rect x="68" y="92" width="6" height="6"/><rect x="92" y="92" width="6" height="6"/>
+        <rect x="104" y="92" width="6" height="6"/><rect x="128" y="92" width="6" height="6"/>
+        <rect x="56" y="104" width="6" height="6"/><rect x="68" y="104" width="6" height="6"/>
+        <rect x="80" y="104" width="6" height="6"/><rect x="116" y="104" width="6" height="6"/>
+        <rect x="128" y="104" width="6" height="6"/>
+        <rect x="56" y="116" width="6" height="6"/><rect x="80" y="116" width="6" height="6"/>
+        <rect x="104" y="116" width="6" height="6"/><rect x="128" y="116" width="6" height="6"/>
+        <rect x="56" y="128" width="6" height="6"/><rect x="68" y="128" width="6" height="6"/>
+        <rect x="92" y="128" width="6" height="6"/><rect x="116" y="128" width="6" height="6"/>
+      </g>
+      <!-- kleines RSG-Logo in der Mitte -->
+      <rect x="60" y="60" width="30" height="30" fill="#FFFFFF"/>
+      <text x="75" y="82" font-family="Manrope, sans-serif" font-weight="800"
+            font-size="13" text-anchor="middle" fill="#A855F7">RSG</text>
+    </g>
+  </g>
+
+  <!-- ──────────────────── 8. FOOTER STRIP (überwiegend in Kassette) ──────────────────── -->
+  <rect x="0" y="1980" width="850" height="20" fill="url(#vignetteBottom)"/>
+
+</svg>

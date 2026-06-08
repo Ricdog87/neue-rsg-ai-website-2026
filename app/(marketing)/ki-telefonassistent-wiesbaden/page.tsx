@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { CitiesSection } from '@/components/sections/cities-section';
 
 export const metadata: Metadata = {
   title: 'KI-Telefonassistent Wiesbaden – Ihr lokaler KI-Anbieter',
@@ -174,6 +175,7 @@ export default function WiesbadenPage() {
 
       </section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-    </main>
+    <CitiesSection />
+      </main>
   )
 }

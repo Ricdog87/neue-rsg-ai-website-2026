@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'KI-Telefonassistent Wiesbaden | RSG AI – Ihr lokaler KI-Anbieter',
+  title: 'KI-Telefonassistent Wiesbaden – Ihr lokaler KI-Anbieter',
   description: 'KI-Telefonassistent direkt aus Wiesbaden: RSG AI automatisiert Ihre Telefonie. Inbound & Outbound, DSGVO-konform, ab 199€/Monat. Lokaler Ansprechpartner.',
   keywords: [
     'KI Telefonassistent Wiesbaden',

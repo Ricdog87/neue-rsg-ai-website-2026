@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "KI-Telefonassistent für Autohäuser & Werkstätten | RSG AI",
+  title: "KI-Telefonassistent für Autohäuser & Werkstätten",
   description: "Service-Termine, Probefahrten und Teile-Anfragen automatisch annehmen und buchen. Angebunden an Ihr DMS. DSGVO, Hosting in Deutschland.",
   alternates: { canonical: "https://www.rsg-ai.de/ki-telefonassistent/autohaus" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "KI-Telefonassistent für Autohäuser & Werkstätten | RSG AI",
+    title: "KI-Telefonassistent für Autohäuser & Werkstätten",
     description: "Service-Termine, Probefahrten und Teile-Anfragen automatisch annehmen und buchen. Angebunden an Ihr DMS. DSGVO, Hosting in Deutschland.",
     url: "https://www.rsg-ai.de/ki-telefonassistent/autohaus",
     siteName: "RSG Agent Services",

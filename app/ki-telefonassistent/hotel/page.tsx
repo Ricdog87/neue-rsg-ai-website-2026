@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "KI-Telefonassistent für Hotels – 24/7 Reservierung | RSG AI",
+  title: "KI-Telefonassistent für Hotels – 24/7 Reservierung",
   description: "Reservierungen und Gästeanfragen rund um die Uhr, mehrsprachig, angebunden an Ihr PMS. Jeder unbeantwortete Anruf ist eine nicht gebuchte Nacht.",
   alternates: { canonical: "https://www.rsg-ai.de/ki-telefonassistent/hotel" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "KI-Telefonassistent für Hotels – 24/7 Reservierung | RSG AI",
+    title: "KI-Telefonassistent für Hotels – 24/7 Reservierung",
     description: "Reservierungen und Gästeanfragen rund um die Uhr, mehrsprachig, angebunden an Ihr PMS. Jeder unbeantwortete Anruf ist eine nicht gebuchte Nacht.",
     url: "https://www.rsg-ai.de/ki-telefonassistent/hotel",
     siteName: "RSG Agent Services",

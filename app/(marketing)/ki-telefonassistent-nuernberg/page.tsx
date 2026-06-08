@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'KI Telefonassistent Nürnberg | RSG AI – Bayern',
+  title: 'KI Telefonassistent Nürnberg – Bayern',
   description: 'KI-Telefon-Agent für Nürnberger Unternehmen: Automatische Anrufannahme, Terminbuchung und Kundenservice rund um die Uhr. Für den Wirtschaftsraum Nürnberg-Bayern.',
   keywords: ['KI Telefonassistent Nürnberg','AI Agent Nürnberg Bayern','Automatisierung Nürnberg','Telefonassistent Bayern'],
   alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-nuernberg' }

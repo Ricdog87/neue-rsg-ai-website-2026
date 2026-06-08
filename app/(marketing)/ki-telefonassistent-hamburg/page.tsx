@@ -5,7 +5,7 @@ import { site } from '@/lib/content';
 import { breadcrumbLd, ldJson } from '@/lib/jsonld';
 
 export const metadata: Metadata = {
-  title: 'KI-Telefonassistent Hamburg | RSG AI – DSGVO-konform & 24/7',
+  title: 'KI-Telefonassistent Hamburg – DSGVO-konform & 24/7',
   description:
     'KI-Telefonassistent für Unternehmen in Hamburg & Norddeutschland. Automatisch Anrufe entgegennehmen, Leads qualifizieren, Termine buchen. DSGVO-konform, Go-Live in 2–4 Wochen.',
   keywords: [

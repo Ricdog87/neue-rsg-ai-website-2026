@@ -11,13 +11,13 @@ import { ScrollSlide } from '@/components/ui/scroll-slide';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
 
 export const metadata: Metadata = {
-  title: 'KI-Automatisierung & KI-Agenten für den Mittelstand | RSG AI',
+  title: 'KI-Automatisierung & KI-Agenten für den Mittelstand',
   description:
     'Prozessautomatisierung und autonome KI-Agenten — gebaut und betrieben aus einer Hand. Workflows ab 2.500 €, KI-Agenten ab 5.000 €. Go-Live in 4 Wochen, Festpreis, DSGVO & EU-Cloud.',
   alternates: { canonical: 'https://www.rsg-ai.de/automatisierung' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'KI-Automatisierung & KI-Agenten für den Mittelstand | RSG AI',
+    title: 'KI-Automatisierung & KI-Agenten für den Mittelstand',
     description:
       'Prozessautomatisierung und autonome KI-Agenten — gebaut und betrieben aus einer Hand. Go-Live in 4 Wochen, Festpreis, DSGVO & EU-Cloud.',
     url: 'https://www.rsg-ai.de/automatisierung',

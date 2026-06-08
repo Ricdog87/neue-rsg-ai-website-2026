@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'KI Telefonassistent Immobilien | RSG AI – für Makler & Büros',
+  title: 'KI Telefonassistent Immobilien – für Makler & Büros',
   description: 'KI-Telefon-Agent für Immobilienmakler: Exposé-Anfragen automatisch beantworten, Besichtigungen buchen und Interessenten qualifizieren — 24/7, DSGVO-konform.',
   keywords: ['KI Telefonassistent Immobilien','Telefonassistent Makler','KI Agent Immobilienbüro','Automatisierung Immobilien'],
   alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-immobilien' }

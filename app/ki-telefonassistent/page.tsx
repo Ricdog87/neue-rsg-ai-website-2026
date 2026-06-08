@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { site } from '@/lib/content';
 import { VoiceConsole } from '@/components/sections/voice-console';
+import { CitiesSection } from '@/components/sections/cities-section';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
 import { ScrollSlide } from '@/components/ui/scroll-slide';
 
@@ -352,6 +353,8 @@ export default function KiTelefonassistentPage() {
         </div>
       </section>
       </ScrollSlide>
+
+      <CitiesSection />
 
       {/* Final CTA */}
       <ScrollZoom>

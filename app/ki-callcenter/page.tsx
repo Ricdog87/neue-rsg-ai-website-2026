@@ -20,13 +20,13 @@ import { callcenter } from '@/lib/callcenter';
 const URL = 'https://www.rsg-ai.de/ki-callcenter';
 
 export const metadata: Metadata = {
-  title: 'Enterprise KI-Callcenter — Inbound & Outbound at scale, SLA, DSGVO | RSG AI',
+  title: 'Enterprise KI-Callcenter — Inbound & Outbound at scale, SLA, DSGVO',
   description:
     'KI-Callcenter für Großkunden: hunderte parallele Gespräche, dedizierte Operation mit garantiertem SLA, volle Integration in Telefonie, CRM und ERP. 24/7, DSGVO-konform, Server in Deutschland, EU AI Act ready. Pakete bis Enterprise.',
   alternates: { canonical: URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'Enterprise KI-Callcenter — at scale, SLA, DSGVO | RSG AI',
+    title: 'Enterprise KI-Callcenter — at scale, SLA, DSGVO',
     description:
       'Tausende Anrufe, null verloren. KI-Callcenter für Großkunden: dedizierte Operation, SLA, volle Integration. 24/7, DSGVO, Server in Deutschland.',
     url: URL,

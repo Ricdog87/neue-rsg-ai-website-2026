@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'KI Telefonassistent Arztpraxis | RSG AI – DSGVO-konform',
+  title: 'KI Telefonassistent Arztpraxis – DSGVO-konform',
   description: 'KI-Telefon-Agent für Arztpraxen: Terminbuchung, Triage-Erfassung und Patientenanfragen rund um die Uhr. DSGVO-konform, keine Wartemusik. Ab 199€/Monat.',
   keywords: ['KI Telefonassistent Arztpraxis','Telefonassistent Praxis','KI Terminbuchung Arzt','Automatischer Telefonassistent Medizin'],
   alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-arztpraxis' }

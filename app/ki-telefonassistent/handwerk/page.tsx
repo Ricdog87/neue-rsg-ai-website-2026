@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "KI-Telefonassistent fürs Handwerk – 24/7 | RSG AI",
+  title: "KI-Telefonassistent fürs Handwerk – 24/7",
   description: "Dein KI-Telefonassistent nimmt Anrufe an, qualifiziert Anfragen und bucht Termine – auch auf der Baustelle. DSGVO, deutsche Server. Jetzt Demo anhören.",
   alternates: { canonical: "https://www.rsg-ai.de/ki-telefonassistent/handwerk" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "KI-Telefonassistent fürs Handwerk – 24/7 | RSG AI",
+    title: "KI-Telefonassistent fürs Handwerk – 24/7",
     description: "Dein KI-Telefonassistent nimmt Anrufe an, qualifiziert Anfragen und bucht Termine – auch auf der Baustelle. DSGVO, deutsche Server. Jetzt Demo anhören.",
     url: "https://www.rsg-ai.de/ki-telefonassistent/handwerk",
     siteName: "RSG Agent Services",

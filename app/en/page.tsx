@@ -11,7 +11,7 @@ import { ScrollZoom } from '@/components/ui/scroll-zoom';
 import { ScrollSlide } from '@/components/ui/scroll-slide';
 
 export const metadata: Metadata = {
-  title: 'AI Phone Assistant for SMBs — answers, qualifies, books | RSG AI',
+  title: 'AI Phone Assistant for SMBs — answers, qualifies, books',
   description:
     'Your AI phone assistant answers every call, qualifies leads and books meetings — 24/7, in natural language, wired into your CRM. Live in four weeks. GDPR & EU hosting.',
   alternates: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'AI Phone Assistant for SMBs | RSG AI',
+    title: 'AI Phone Assistant for SMBs',
     description:
       'Answers every call, qualifies leads, books meetings — 24/7, wired into your CRM. Live in four weeks.',
     url: 'https://www.rsg-ai.de/en',

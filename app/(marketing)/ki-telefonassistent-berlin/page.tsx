@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'KI-Telefonassistent Berlin | RSG AI – DSGVO-konform & 24/7',
+  title: 'KI-Telefonassistent Berlin – DSGVO-konform & 24/7',
   description: 'KI-Telefonassistent für Berliner Unternehmen. Automatisch Anrufe annehmen, Leads qualifizieren, Termine buchen. Ab 199€/Monat. Jetzt Demo anfragen.',
   keywords: ['KI Telefonassistent Berlin', 'AI Voice Agent Berlin', 'Automatischer Telefonassistent Berlin', 'KI Kundenservice Berlin', 'KI Agent Berlin'],
   alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-berlin' }

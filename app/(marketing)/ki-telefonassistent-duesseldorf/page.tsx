@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'KI Telefonassistent Düsseldorf | RSG AI – NRW-Region',
+  title: 'KI Telefonassistent Düsseldorf – NRW-Region',
   description: 'KI-Telefon-Agent für Düsseldorfer Unternehmen: Automatische Anrufannahme, Terminbuchung und Kundenanfragen rund um die Uhr. Für die NRW-Wirtschaftsregion Köln-Düsseldorf.',
   keywords: ['KI Telefonassistent Düsseldorf','AI Agent Düsseldorf','Automatisierung Düsseldorf NRW','Telefonassistent NRW'],
   alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-duesseldorf' }

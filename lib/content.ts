@@ -601,6 +601,20 @@ export const footer = {
       ]
     },
     {
+      title: 'Standorte',
+      links: [
+        { label: 'KI-Telefonassistent Wiesbaden', href: '/ki-telefonassistent-wiesbaden' },
+        { label: 'KI-Telefonassistent Frankfurt', href: '/ki-telefonassistent-frankfurt' },
+        { label: 'KI-Telefonassistent München', href: '/ki-telefonassistent-muenchen' },
+        { label: 'KI-Telefonassistent Hamburg', href: '/ki-telefonassistent-hamburg' },
+        { label: 'KI-Telefonassistent Berlin', href: '/ki-telefonassistent-berlin' },
+        { label: 'KI-Telefonassistent Köln', href: '/ki-telefonassistent-koeln' },
+        { label: 'KI-Telefonassistent Stuttgart', href: '/ki-telefonassistent-stuttgart' },
+        { label: 'KI-Telefonassistent Düsseldorf', href: '/ki-telefonassistent-duesseldorf' },
+        { label: 'KI-Telefonassistent Nürnberg', href: '/ki-telefonassistent-nuernberg' }
+      ]
+    },
+    {
       title: 'Unternehmen',
       links: [
         { label: 'Termin buchen', href: '/termin' },

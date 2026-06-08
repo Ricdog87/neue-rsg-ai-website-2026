@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'KI Telefonassistent Steuerberater & Kanzlei | RSG AI',
+  title: 'KI Telefonassistent Steuerberater & Kanzlei',
   description: 'KI-Telefon-Agent für Steuerberater und Kanzleien: Mandantenanfragen erfassen, Erstgespräche qualifizieren und 24/7 erreichbar sein — DSGVO-konform.',
   keywords: ['KI Telefonassistent Steuerberater','Telefonassistent Kanzlei','KI Agent Steuerbüro','Automatisierung Kanzlei'],
   alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-kanzlei' }

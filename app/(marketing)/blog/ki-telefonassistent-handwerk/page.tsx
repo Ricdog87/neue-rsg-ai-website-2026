@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'KI Telefonassistent für Handwerksbetriebe 2026 | RSG AI',
+  title: 'KI Telefonassistent für Handwerksbetriebe 2026',
   description: 'Wie Handwerksbetriebe mit KI-Telefon-Agenten Anfragen automatisch bearbeiten, Termine buchen und nie wieder Anrufe verpassen. Praxisbeispiele + Kosten.',
   alternates: { canonical: 'https://www.rsg-ai.de/blog/ki-telefonassistent-handwerk' },
   openGraph: { type: 'article', title: 'KI Telefonassistent für Handwerk 2026' }

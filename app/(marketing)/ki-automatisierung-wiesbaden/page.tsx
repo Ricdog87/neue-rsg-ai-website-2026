@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'KI Automatisierung Wiesbaden | RSG AI – n8n, Workflows, Voice Agents',
+  title: 'KI Automatisierung Wiesbaden – n8n, Workflows, Voice Agents',
   description: 'KI-Automatisierung für Unternehmen in Wiesbaden: Vertrieb, Recruiting und Kundenservice automatisieren. n8n Workflows, KI-Agenten, DSGVO-konform. Jetzt Demo anfragen.',
   keywords: ['KI Automatisierung Wiesbaden', 'Automatisierung Wiesbaden', 'n8n Wiesbaden', 'Prozessautomatisierung Wiesbaden', 'KI Beratung Wiesbaden'],
   alternates: { canonical: 'https://www.rsg-ai.de/ki-automatisierung-wiesbaden' }

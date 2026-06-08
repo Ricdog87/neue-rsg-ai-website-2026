@@ -20,7 +20,7 @@ import { callcenterEn } from '@/lib/callcenter';
 const URL = 'https://www.rsg-ai.de/en/ki-callcenter';
 
 export const metadata: Metadata = {
-  title: 'Enterprise AI Call Center — inbound & outbound at scale, SLA, GDPR | RSG AI',
+  title: 'Enterprise AI Call Center — inbound & outbound at scale, SLA, GDPR',
   description:
     'AI call center for large accounts: hundreds of concurrent conversations, a dedicated operation with guaranteed SLA, full integration into telephony, CRM and ERP. 24/7, GDPR-compliant, servers in Germany, EU AI Act ready. Plans up to Enterprise.',
   alternates: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Enterprise AI Call Center — at scale, SLA, GDPR | RSG AI',
+    title: 'Enterprise AI Call Center — at scale, SLA, GDPR',
     description:
       'Thousands of calls, none lost. AI call center for large accounts: dedicated operation, SLA, full integration. 24/7, GDPR, servers in Germany.',
     url: URL,

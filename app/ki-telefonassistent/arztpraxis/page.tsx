@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "KI-Telefonassistent für Arztpraxen – DSGVO-konform | RSG AI",
+  title: "KI-Telefonassistent für Arztpraxen – DSGVO-konform",
   description: "Anrufannahme & Terminvergabe für Ihre Praxis – automatisch, ohne Warteschleife, DSGVO-konform. 6 Sprachen, Hosting in Deutschland. Live-Demo anhören.",
   alternates: { canonical: "https://www.rsg-ai.de/ki-telefonassistent/arztpraxis" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "KI-Telefonassistent für Arztpraxen – DSGVO-konform | RSG AI",
+    title: "KI-Telefonassistent für Arztpraxen – DSGVO-konform",
     description: "Anrufannahme & Terminvergabe für Ihre Praxis – automatisch, ohne Warteschleife, DSGVO-konform. 6 Sprachen, Hosting in Deutschland. Live-Demo anhören.",
     url: "https://www.rsg-ai.de/ki-telefonassistent/arztpraxis",
     siteName: "RSG Agent Services",

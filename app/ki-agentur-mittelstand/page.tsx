@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "KI-Agentur für den Mittelstand – bauen & betreiben | RSG AI",
+  title: "KI-Agentur für den Mittelstand – bauen & betreiben",
   description: "Die KI-Agentur aus dem Vertrieb: wir bauen UND betreiben deine KI-Agenten. Festpreis, Go-Live in 4 Wochen, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden.",
   alternates: { canonical: "https://www.rsg-ai.de/ki-agentur-mittelstand" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "KI-Agentur für den Mittelstand – bauen & betreiben | RSG AI",
+    title: "KI-Agentur für den Mittelstand – bauen & betreiben",
     description: "Die KI-Agentur aus dem Vertrieb: wir bauen UND betreiben deine KI-Agenten. Festpreis, Go-Live in 4 Wochen, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden.",
     url: "https://www.rsg-ai.de/ki-agentur-mittelstand",
     siteName: "RSG Agent Services",

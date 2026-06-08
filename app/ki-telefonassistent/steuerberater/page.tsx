@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "KI-Telefonassistent für Steuerberater & Kanzleien | RSG AI",
+  title: "KI-Telefonassistent für Steuerberater & Kanzleien",
   description: "Mandanten-Anrufe automatisch annehmen, qualifizieren und weiterleiten. DSGVO-konform, DATEV-Welt, EU-Hosting. Entlasten Sie Ihr Sekretariat.",
   alternates: { canonical: "https://www.rsg-ai.de/ki-telefonassistent/steuerberater" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "KI-Telefonassistent für Steuerberater & Kanzleien | RSG AI",
+    title: "KI-Telefonassistent für Steuerberater & Kanzleien",
     description: "Mandanten-Anrufe automatisch annehmen, qualifizieren und weiterleiten. DSGVO-konform, DATEV-Welt, EU-Hosting. Entlasten Sie Ihr Sekretariat.",
     url: "https://www.rsg-ai.de/ki-telefonassistent/steuerberater",
     siteName: "RSG Agent Services",

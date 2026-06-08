@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "KI-Telefonassistent für Hausverwaltungen | RSG AI",
+  title: "KI-Telefonassistent für Hausverwaltungen",
   description: "Mieter-Anrufe von Schadensmeldung bis Notfall – automatisch angenommen, strukturiert erfasst, priorisiert weitergeleitet. DSGVO, EU-Hosting.",
   alternates: { canonical: "https://www.rsg-ai.de/ki-telefonassistent/hausverwaltung" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "KI-Telefonassistent für Hausverwaltungen | RSG AI",
+    title: "KI-Telefonassistent für Hausverwaltungen",
     description: "Mieter-Anrufe von Schadensmeldung bis Notfall – automatisch angenommen, strukturiert erfasst, priorisiert weitergeleitet. DSGVO, EU-Hosting.",
     url: "https://www.rsg-ai.de/ki-telefonassistent/hausverwaltung",
     siteName: "RSG Agent Services",

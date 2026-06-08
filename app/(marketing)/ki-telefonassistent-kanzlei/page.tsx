@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { CitiesSection } from '@/components/sections/cities-section';
 export const metadata: Metadata = {
   title: 'KI Telefonassistent Steuerberater & Kanzlei',
   description: 'KI-Telefon-Agent für Steuerberater und Kanzleien: Mandantenanfragen erfassen, Erstgespräche qualifizieren und 24/7 erreichbar sein — DSGVO-konform.',
@@ -29,6 +30,7 @@ export default function KanzleiPage() {
         </div>
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Steuerberater Kanzlei","provider":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"},"serviceType":"KI-Telefon-Agent","audience":{"@type":"Audience","audienceType":"Steuerberater und Kanzleien"}})}} />
       </section>
-    </main>
+    <CitiesSection />
+      </main>
   )
 }

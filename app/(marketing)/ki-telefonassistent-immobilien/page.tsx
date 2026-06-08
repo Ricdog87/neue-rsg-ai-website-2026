@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { CitiesSection } from '@/components/sections/cities-section';
 export const metadata: Metadata = {
   title: 'KI Telefonassistent Immobilien – für Makler & Büros',
   description: 'KI-Telefon-Agent für Immobilienmakler: Exposé-Anfragen automatisch beantworten, Besichtigungen buchen und Interessenten qualifizieren — 24/7, DSGVO-konform.',
@@ -29,6 +30,7 @@ export default function ImmobilienPage() {
         </div>
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Immobilien","provider":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"},"serviceType":"KI-Telefon-Agent","audience":{"@type":"Audience","audienceType":"Immobilienmakler"}})}} />
       </section>
-    </main>
+    <CitiesSection />
+      </main>
   )
 }

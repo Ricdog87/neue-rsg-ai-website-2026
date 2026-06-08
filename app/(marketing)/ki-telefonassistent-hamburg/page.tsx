@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CitiesSection } from '@/components/sections/cities-section';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, MapPin, Phone, Mail, Check } from 'lucide-react';
 import { site } from '@/lib/content';
@@ -119,6 +120,7 @@ export default function HamburgPage() {
           <p className="mt-6 text-xs text-[hsl(var(--muted))]"><MapPin className="mr-1 inline h-3 w-3" />Klingholzstraße 7, 65189 Wiesbaden · Remote-Beratung & Video-Demo für Hamburg</p>
         </section>
       </div>
-    </main>
+    <CitiesSection />
+      </main>
   );
 }

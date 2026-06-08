@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { CitiesSection } from '@/components/sections/cities-section';
 export const metadata: Metadata = {
   title: 'KI Automatisierung Wiesbaden – n8n, Workflows, Voice Agents',
   description: 'KI-Automatisierung für Unternehmen in Wiesbaden: Vertrieb, Recruiting und Kundenservice automatisieren. n8n Workflows, KI-Agenten, DSGVO-konform. Jetzt Demo anfragen.',
@@ -39,6 +40,7 @@ export default function AutomatisierungWiesbadenPage() {
         </div>
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Automatisierung Wiesbaden","provider":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de","address":{"@type":"PostalAddress","addressLocality":"Wiesbaden","addressCountry":"DE"}},"areaServed":{"@type":"City","name":"Wiesbaden"},"description":"KI-Automatisierungslösungen für Unternehmen in Wiesbaden: n8n Workflows, KI-Telefonagenten, Prozessautomatisierung"})}} />
       </section>
-    </main>
+    <CitiesSection />
+      </main>
   )
 }

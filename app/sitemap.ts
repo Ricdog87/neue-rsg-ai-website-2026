@@ -8,15 +8,15 @@ const U = site.url;
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  // DE/EN-Paare mit hreflang-Alternates
+  // DE/EN-Paare mit hreflang-Alternates (Array direkt typisiert -> Literale bleiben schmal)
   const enPairs: MetadataRoute.Sitemap = [
-    { url: U, priority: 1.0, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': U, en: `${U}/en` } } },
-    { url: `${U}/en`, priority: 0.9, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': U, en: `${U}/en` } } },
-    { url: `${U}/preise`, priority: 0.9, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/preise`, en: `${U}/en/preise` } } },
-    { url: `${U}/en/preise`, priority: 0.8, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/preise`, en: `${U}/en/preise` } } },
-    { url: `${U}/ki-callcenter`, priority: 0.9, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/ki-callcenter`, en: `${U}/en/ki-callcenter` } } },
-    { url: `${U}/en/ki-callcenter`, priority: 0.8, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/ki-callcenter`, en: `${U}/en/ki-callcenter` } } },
-  ].map((e) => ({ ...e, lastModified: now }));
+    { url: U, lastModified: now, priority: 1.0, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': U, en: `${U}/en` } } },
+    { url: `${U}/en`, lastModified: now, priority: 0.9, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': U, en: `${U}/en` } } },
+    { url: `${U}/preise`, lastModified: now, priority: 0.9, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/preise`, en: `${U}/en/preise` } } },
+    { url: `${U}/en/preise`, lastModified: now, priority: 0.8, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/preise`, en: `${U}/en/preise` } } },
+    { url: `${U}/ki-callcenter`, lastModified: now, priority: 0.9, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/ki-callcenter`, en: `${U}/en/ki-callcenter` } } },
+    { url: `${U}/en/ki-callcenter`, lastModified: now, priority: 0.8, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/ki-callcenter`, en: `${U}/en/ki-callcenter` } } },
+  ];
 
   const staticPaths: Array<[string, number, 'weekly' | 'monthly' | 'yearly']> = [
     ['/automatisierung', 0.9, 'weekly'],
@@ -54,25 +54,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/agb', 0.3, 'yearly'],
   ];
 
-  return [
-    ...enPairs,
-    ...staticPaths.map(([p, priority, changeFrequency]) => ({
-      url: `${U}${p}`,
-      lastModified: now,
-      changeFrequency,
-      priority,
-    })),
-    ...CASE_STUDIES.map((cs) => ({
-      url: `${U}/cases/${cs.slug}`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    })),
-    ...INSIGHTS.map((post) => ({
-      url: `${U}/insights/${post.slug}`,
-      lastModified: new Date(post.date),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    })),
-  ];
+  const staticEntries: MetadataRoute.Sitemap = staticPaths.map(([p, priority, changeFrequency]) => ({
+    url: `${U}${p}`,
+    lastModified: now,
+    changeFrequency,
+    priority,
+  }));
+
+  const caseEntries: MetadataRoute.Sitemap = CASE_STUDIES.map((cs) => ({
+    url: `${U}/cases/${cs.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  const insightEntries: MetadataRoute.Sitemap = INSIGHTS.map((post) => ({
+    url: `${U}/insights/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  return [...enPairs, ...staticEntries, ...caseEntries, ...insightEntries];
 }

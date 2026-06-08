@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Check, ArrowRight, ArrowLeft } from 'lucide-react';
 import { site } from '@/lib/content';
+import { PurchaseBeacon } from '@/components/system/purchase-beacon';
 
 export const metadata: Metadata = {
   title: 'Checkout · erfolgreich',
@@ -31,6 +32,7 @@ const STEPS = [
 export default function CheckoutSuccessPage() {
   return (
     <main className="relative min-h-screen px-6 pt-[140px] pb-24 lg:px-10 lg:pt-[160px]">
+      <PurchaseBeacon />
       <div className="mx-auto max-w-[820px]">
         <Link
           href="/"

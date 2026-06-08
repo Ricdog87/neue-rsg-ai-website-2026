@@ -4,6 +4,7 @@ import { PricingSnapshot } from '@/components/sections/pricing-snapshot';
 import { VoiceRoiCalculator } from '@/components/sections/voice-roi-calculator';
 import { TechMarquee } from '@/components/sections/tech-marquee';
 import { TrustStrip } from '@/components/sections/trust-strip';
+import { GoogleReviews } from '@/components/sections/google-reviews';
 import { ContactSection } from '@/components/sections/contact-section';
 import { VoiceConsole } from '@/components/sections/voice-console';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
@@ -69,6 +70,7 @@ export default function EnglishHomePage() {
       <ScrollZoom>
         <TrustStrip />
       </ScrollZoom>
+      <GoogleReviews en />
       <ScrollZoom>
         <ContactSection />
       </ScrollZoom>

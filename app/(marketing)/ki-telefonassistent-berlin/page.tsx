@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'KI-Telefonassistent Berlin | RSG AI – DSGVO-konform & 24/7',
   description: 'KI-Telefonassistent für Berliner Unternehmen. Automatisch Anrufe annehmen, Leads qualifizieren, Termine buchen. Ab 199€/Monat. Jetzt Demo anfragen.',
   keywords: ['KI Telefonassistent Berlin', 'AI Voice Agent Berlin', 'Automatischer Telefonassistent Berlin', 'KI Kundenservice Berlin', 'KI Agent Berlin'],
-  alternates: { canonical: 'https://rsg-ai.de/ki-telefonassistent-berlin' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-berlin' }
 }
 export default function BerlinPage() {
   return (
@@ -27,7 +27,7 @@ export default function BerlinPage() {
           <li>✓ Integriert in CRM (HubSpot, Salesforce, Pipedrive)</li>
           <li>✓ Berliner Startup-Mindset: schnell, direkt, messbar</li>
         </ul></div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"RSG AI Berlin","url":"https://rsg-ai.de/ki-telefonassistent-berlin","areaServed":{"@type":"City","name":"Berlin"},"description":"KI-Telefonassistent für Berliner Unternehmen"})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"RSG AI Berlin","url":"https://www.rsg-ai.de/ki-telefonassistent-berlin","areaServed":{"@type":"City","name":"Berlin"},"description":"KI-Telefonassistent für Berliner Unternehmen"})}} />
       </section>
     </main>
   )

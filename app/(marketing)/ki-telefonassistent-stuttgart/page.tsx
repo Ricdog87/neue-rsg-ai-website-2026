@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'KI-Telefonassistent Stuttgart | RSG AI – DSGVO-konform & 24/7',
   description: 'KI-Telefonassistent für Stuttgarter Unternehmen. Automatisch Anrufe annehmen, Leads qualifizieren, Termine buchen. Ab 199€/Monat. Jetzt Demo anfragen.',
   keywords: ['KI Telefonassistent Stuttgart', 'AI Voice Agent Stuttgart', 'Automatischer Telefonassistent Stuttgart', 'KI Kundenservice Stuttgart', 'KI Agent Stuttgart'],
-  alternates: { canonical: 'https://rsg-ai.de/ki-telefonassistent-stuttgart' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-stuttgart' }
 }
 export default function StuttgartPage() {
   return (
@@ -27,7 +27,7 @@ export default function StuttgartPage() {
           <li>✓ Integriert in CRM (HubSpot, Salesforce, Pipedrive)</li>
           <li>✓ Schwäbischer Mittelstand trifft KI-Innovation</li>
         </ul></div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"RSG AI Stuttgart","url":"https://rsg-ai.de/ki-telefonassistent-stuttgart","areaServed":{"@type":"City","name":"Stuttgart"},"description":"KI-Telefonassistent für Stuttgarter Unternehmen"})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"RSG AI Stuttgart","url":"https://www.rsg-ai.de/ki-telefonassistent-stuttgart","areaServed":{"@type":"City","name":"Stuttgart"},"description":"KI-Telefonassistent für Stuttgarter Unternehmen"})}} />
       </section>
     </main>
   )

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'KI Telefonassistent Vergleich 2026: Synthflow vs. VAPI vs. RSG AI',
   description: 'Welcher KI-Telefonassistent passt zu Ihrem Unternehmen? Detaillierter Vergleich von Synthflow, VAPI und RSG AI – Preise, DSGVO, Sprachqualität, Support.',
-  alternates: { canonical: 'https://rsg-ai.de/blog/ki-telefonassistent-vergleich-2026' },
+  alternates: { canonical: 'https://www.rsg-ai.de/blog/ki-telefonassistent-vergleich-2026' },
   openGraph: { title: 'KI Telefonassistent Vergleich 2026', description: 'Synthflow vs. VAPI vs. RSG AI – welcher gewinnt für DACH-Unternehmen?', type: 'article' }
 }
 export default function VergleichPage() {
@@ -57,7 +57,7 @@ export default function VergleichPage() {
           <Link href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Demo-Termin anfragen</Link>
         </div>
 
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":"KI Telefonassistent Vergleich 2026: Synthflow vs. VAPI vs. RSG AI","author":{"@type":"Person","name":"Ricardo Serrano"},"datePublished":"2026-06-06","publisher":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de"}})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":"KI Telefonassistent Vergleich 2026: Synthflow vs. VAPI vs. RSG AI","author":{"@type":"Person","name":"Ricardo Serrano"},"datePublished":"2026-06-06","publisher":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"}})}} />
       </article>
     </main>
   )

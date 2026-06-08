@@ -3,7 +3,7 @@ export const metadata: Metadata = {
   title: 'KI Telefonassistent Steuerberater & Kanzlei | RSG AI',
   description: 'KI-Telefon-Agent für Steuerberater und Kanzleien: Mandantenanfragen erfassen, Erstgespräche qualifizieren und 24/7 erreichbar sein — DSGVO-konform.',
   keywords: ['KI Telefonassistent Steuerberater','Telefonassistent Kanzlei','KI Agent Steuerbüro','Automatisierung Kanzlei'],
-  alternates: { canonical: 'https://rsg-ai.de/ki-telefonassistent-kanzlei' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-kanzlei' }
 }
 export default function KanzleiPage() {
   return (
@@ -27,7 +27,7 @@ export default function KanzleiPage() {
           <h3 className="text-xl font-bold mb-3">Kostenlose Demo für Ihre Kanzlei</h3>
           <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Termin buchen</a>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Steuerberater Kanzlei","provider":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de"},"serviceType":"KI-Telefon-Agent","audience":{"@type":"Audience","audienceType":"Steuerberater und Kanzleien"}})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Steuerberater Kanzlei","provider":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"},"serviceType":"KI-Telefon-Agent","audience":{"@type":"Audience","audienceType":"Steuerberater und Kanzleien"}})}} />
       </section>
     </main>
   )

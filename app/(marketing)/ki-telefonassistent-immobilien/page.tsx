@@ -3,7 +3,7 @@ export const metadata: Metadata = {
   title: 'KI Telefonassistent Immobilien | RSG AI – für Makler & Büros',
   description: 'KI-Telefon-Agent für Immobilienmakler: Exposé-Anfragen automatisch beantworten, Besichtigungen buchen und Interessenten qualifizieren — 24/7, DSGVO-konform.',
   keywords: ['KI Telefonassistent Immobilien','Telefonassistent Makler','KI Agent Immobilienbüro','Automatisierung Immobilien'],
-  alternates: { canonical: 'https://rsg-ai.de/ki-telefonassistent-immobilien' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-immobilien' }
 }
 export default function ImmobilienPage() {
   return (
@@ -27,7 +27,7 @@ export default function ImmobilienPage() {
           <h3 className="text-xl font-bold mb-3">Kostenlose Demo für Ihr Maklerbüro</h3>
           <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Termin buchen</a>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Immobilien","provider":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de"},"serviceType":"KI-Telefon-Agent","audience":{"@type":"Audience","audienceType":"Immobilienmakler"}})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Immobilien","provider":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"},"serviceType":"KI-Telefon-Agent","audience":{"@type":"Audience","audienceType":"Immobilienmakler"}})}} />
       </section>
     </main>
   )

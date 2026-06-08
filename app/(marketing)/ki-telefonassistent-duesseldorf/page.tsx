@@ -3,7 +3,7 @@ export const metadata: Metadata = {
   title: 'KI Telefonassistent Düsseldorf | RSG AI – NRW-Region',
   description: 'KI-Telefon-Agent für Düsseldorfer Unternehmen: Automatische Anrufannahme, Terminbuchung und Kundenanfragen rund um die Uhr. Für die NRW-Wirtschaftsregion Köln-Düsseldorf.',
   keywords: ['KI Telefonassistent Düsseldorf','AI Agent Düsseldorf','Automatisierung Düsseldorf NRW','Telefonassistent NRW'],
-  alternates: { canonical: 'https://rsg-ai.de/ki-telefonassistent-duesseldorf' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-duesseldorf' }
 }
 export default function DuesseldorfPage() {
   return (
@@ -27,7 +27,7 @@ export default function DuesseldorfPage() {
           <h3 className="text-xl font-bold mb-3">Kostenlose Demo für Ihr Düsseldorfer Unternehmen</h3>
           <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Termin buchen</a>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Düsseldorf","provider":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de"},"serviceType":"KI-Telefon-Agent","areaServed":{"@type":"City","name":"Düsseldorf"}})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Düsseldorf","provider":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"},"serviceType":"KI-Telefon-Agent","areaServed":{"@type":"City","name":"Düsseldorf"}})}} />
       </section>
     </main>
   )

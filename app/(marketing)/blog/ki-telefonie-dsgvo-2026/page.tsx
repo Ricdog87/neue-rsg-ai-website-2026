@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'KI-Telefonie und DSGVO 2026: Was Unternehmen beachten müssen',
   description: 'Ist KI-Telefonie DSGVO-konform? Alles zu Transparenzpflichten, Kaltakquise-Recht, Widerspruchsrecht und DSGVO-konformem Einsatz von KI-Telefon-Agenten.',
-  alternates: { canonical: 'https://rsg-ai.de/blog/ki-telefonie-dsgvo-2026' },
+  alternates: { canonical: 'https://www.rsg-ai.de/blog/ki-telefonie-dsgvo-2026' },
   openGraph: { type: 'article', title: 'KI-Telefonie und DSGVO 2026' }
 }
 export default function DsgvoPage() {
@@ -42,7 +42,7 @@ export default function DsgvoPage() {
           <p className="text-white/60 mb-6">Alle RSG AI Agenten sind mit DSGVO-konformer Konfiguration ausgeliefert. AVV-Vertrag inklusive.</p>
           <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Demo anfragen</a>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":"KI-Telefonie und DSGVO 2026","author":{"@type":"Person","name":"Ricardo Serrano"},"datePublished":"2026-06-06","publisher":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de"}})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":"KI-Telefonie und DSGVO 2026","author":{"@type":"Person","name":"Ricardo Serrano"},"datePublished":"2026-06-06","publisher":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"}})}} />
       </article>
     </main>
   )

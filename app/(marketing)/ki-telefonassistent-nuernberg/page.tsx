@@ -3,7 +3,7 @@ export const metadata: Metadata = {
   title: 'KI Telefonassistent Nürnberg | RSG AI – Bayern',
   description: 'KI-Telefon-Agent für Nürnberger Unternehmen: Automatische Anrufannahme, Terminbuchung und Kundenservice rund um die Uhr. Für den Wirtschaftsraum Nürnberg-Bayern.',
   keywords: ['KI Telefonassistent Nürnberg','AI Agent Nürnberg Bayern','Automatisierung Nürnberg','Telefonassistent Bayern'],
-  alternates: { canonical: 'https://rsg-ai.de/ki-telefonassistent-nuernberg' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-nuernberg' }
 }
 export default function NuernbergPage() {
   return (
@@ -27,7 +27,7 @@ export default function NuernbergPage() {
           <h3 className="text-xl font-bold mb-3">Kostenlose Demo für Ihr Nürnberger Unternehmen</h3>
           <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Termin buchen</a>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Nürnberg","provider":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de"},"serviceType":"KI-Telefon-Agent","areaServed":{"@type":"City","name":"Nürnberg"}})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Nürnberg","provider":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"},"serviceType":"KI-Telefon-Agent","areaServed":{"@type":"City","name":"Nürnberg"}})}} />
       </section>
     </main>
   )

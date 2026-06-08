@@ -2,13 +2,13 @@ export function StructuredData() {
   const org = {
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness"],
-    "@id": "https://rsg-ai.de/#organization",
+    "@id": "https://www.rsg-ai.de/#organization",
     "name": "RSG AI",
     "legalName": "RSG Recruiting Solutions Group GmbH",
-    "url": "https://rsg-ai.de",
+    "url": "https://www.rsg-ai.de",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://rsg-ai.de/og-image.png",
+      "url": "https://www.rsg-ai.de/og-image.png",
       "width": 1200,
       "height": 630
     },
@@ -47,7 +47,7 @@ export function StructuredData() {
     "name": "RSG AI Telefonassistent",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
-    "url": "https://rsg-ai.de",
+    "url": "https://www.rsg-ai.de",
     "description": "KI-Telefon-Agent für B2B: Inbound-Anrufe entgegennehmen, Leads qualifizieren, Termine buchen – vollautomatisch.",
     "offers": [
       {

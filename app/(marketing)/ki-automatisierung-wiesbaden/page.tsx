@@ -3,7 +3,7 @@ export const metadata: Metadata = {
   title: 'KI Automatisierung Wiesbaden | RSG AI – n8n, Workflows, Voice Agents',
   description: 'KI-Automatisierung für Unternehmen in Wiesbaden: Vertrieb, Recruiting und Kundenservice automatisieren. n8n Workflows, KI-Agenten, DSGVO-konform. Jetzt Demo anfragen.',
   keywords: ['KI Automatisierung Wiesbaden', 'Automatisierung Wiesbaden', 'n8n Wiesbaden', 'Prozessautomatisierung Wiesbaden', 'KI Beratung Wiesbaden'],
-  alternates: { canonical: 'https://rsg-ai.de/ki-automatisierung-wiesbaden' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-automatisierung-wiesbaden' }
 }
 export default function AutomatisierungWiesbadenPage() {
   return (
@@ -37,7 +37,7 @@ export default function AutomatisierungWiesbadenPage() {
           <p className="text-white/60 mb-6">30 Minuten, kostenlos – wir analysieren wo KI in Ihrem Unternehmen den größten Impact hat.</p>
           <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Beratung buchen</a>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Automatisierung Wiesbaden","provider":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de","address":{"@type":"PostalAddress","addressLocality":"Wiesbaden","addressCountry":"DE"}},"areaServed":{"@type":"City","name":"Wiesbaden"},"description":"KI-Automatisierungslösungen für Unternehmen in Wiesbaden: n8n Workflows, KI-Telefonagenten, Prozessautomatisierung"})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Automatisierung Wiesbaden","provider":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de","address":{"@type":"PostalAddress","addressLocality":"Wiesbaden","addressCountry":"DE"}},"areaServed":{"@type":"City","name":"Wiesbaden"},"description":"KI-Automatisierungslösungen für Unternehmen in Wiesbaden: n8n Workflows, KI-Telefonagenten, Prozessautomatisierung"})}} />
       </section>
     </main>
   )

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Linkedin, Instagram, Youtube, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import { footer, site } from '@/lib/content';
 import { RsgLogoFull } from '@/components/icons/rsg-logo';
+import { CookieSettings } from '@/components/system/cookie-settings';
 import { useEnglish } from '@/components/system/use-locale';
 
 // Footer string translations. Group titles + the common link labels;
@@ -174,7 +175,10 @@ export function Footer() {
             {en ? 'AI agents · GDPR-compliant · Made in Germany' : footer.tagline}
           </p>
         </div>
-        <p className="mt-3 text-[0.7rem] italic text-white/40">{site.legal.brandNote}</p>
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
+          <p className="text-[0.7rem] italic text-white/40">{site.legal.brandNote}</p>
+          <CookieSettings />
+        </div>
       </div>
     </footer>
   );

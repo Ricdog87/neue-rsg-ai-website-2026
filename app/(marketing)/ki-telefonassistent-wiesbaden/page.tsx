@@ -13,17 +13,17 @@ export const metadata: Metadata = {
     'Telefonassistent Wiesbaden',
     'RSG AI Wiesbaden'
   ],
-  alternates: { canonical: 'https://rsg-ai.de/ki-telefonassistent-wiesbaden' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-wiesbaden' }
 }
 
 export default function WiesbadenPage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://rsg-ai.de/ki-telefonassistent-wiesbaden#localbusiness",
+    "@id": "https://www.rsg-ai.de/ki-telefonassistent-wiesbaden#localbusiness",
     "name": "RSG AI – KI-Telefonassistent Wiesbaden",
-    "image": "https://rsg-ai.de/og-image.png",
-    "url": "https://rsg-ai.de",
+    "image": "https://www.rsg-ai.de/og-image.png",
+    "url": "https://www.rsg-ai.de",
     "telephone": "+49-30-826-83906",
     "address": {
       "@type": "PostalAddress",

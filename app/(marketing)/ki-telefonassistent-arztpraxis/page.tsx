@@ -3,7 +3,7 @@ export const metadata: Metadata = {
   title: 'KI Telefonassistent Arztpraxis | RSG AI – DSGVO-konform',
   description: 'KI-Telefon-Agent für Arztpraxen: Terminbuchung, Triage-Erfassung und Patientenanfragen rund um die Uhr. DSGVO-konform, keine Wartemusik. Ab 199€/Monat.',
   keywords: ['KI Telefonassistent Arztpraxis','Telefonassistent Praxis','KI Terminbuchung Arzt','Automatischer Telefonassistent Medizin'],
-  alternates: { canonical: 'https://rsg-ai.de/ki-telefonassistent-arztpraxis' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-arztpraxis' }
 }
 export default function ArztpraxisPage() {
   return (
@@ -27,7 +27,7 @@ export default function ArztpraxisPage() {
           <h3 className="text-xl font-bold mb-3">Kostenlose Demo für Ihre Praxis</h3>
           <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Termin buchen</a>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Arztpraxis","provider":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de"},"serviceType":"KI-Telefon-Agent","audience":{"@type":"Audience","audienceType":"Arztpraxen"}})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"KI Telefonassistent Arztpraxis","provider":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"},"serviceType":"KI-Telefon-Agent","audience":{"@type":"Audience","audienceType":"Arztpraxen"}})}} />
       </section>
     </main>
   )

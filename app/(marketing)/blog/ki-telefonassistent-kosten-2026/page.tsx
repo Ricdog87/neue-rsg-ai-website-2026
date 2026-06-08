@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'KI Telefonassistent Kosten 2026: Was kostet ein KI Voice Agent?',
   description: 'Was kostet ein KI Telefonassistent? Alle Preismodelle, versteckte Kosten und ROI-Berechnung für 2026 im Überblick. Ab 199€/Monat bis Enterprise.',
-  alternates: { canonical: 'https://rsg-ai.de/blog/ki-telefonassistent-kosten-2026' },
+  alternates: { canonical: 'https://www.rsg-ai.de/blog/ki-telefonassistent-kosten-2026' },
   openGraph: { type: 'article', title: 'KI Telefonassistent Kosten 2026' }
 }
 export default function KostenPage() {
@@ -70,7 +70,7 @@ export default function KostenPage() {
           <p className="text-white/60 mb-6">Wir berechnen Ihren konkreten ROI in 30 Minuten – kostenlos und unverbindlich.</p>
           <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Beratung anfragen</a>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":"KI Telefonassistent Kosten 2026","author":{"@type":"Person","name":"Ricardo Serrano"},"datePublished":"2026-06-06","publisher":{"@type":"Organization","name":"RSG AI","url":"https://rsg-ai.de"}})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":"KI Telefonassistent Kosten 2026","author":{"@type":"Person","name":"Ricardo Serrano"},"datePublished":"2026-06-06","publisher":{"@type":"Organization","name":"RSG AI","url":"https://www.rsg-ai.de"}})}} />
       </article>
     </main>
   )

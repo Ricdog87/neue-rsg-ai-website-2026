@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'KI-Telefonassistent Köln | RSG AI – DSGVO-konform & 24/7',
   description: 'KI-Telefonassistent für Kölner Unternehmen. Automatisch Anrufe annehmen, Leads qualifizieren, Termine buchen. Ab 199€/Monat. Jetzt Demo anfragen.',
   keywords: ['KI Telefonassistent Köln', 'AI Voice Agent Köln', 'Automatischer Telefonassistent Köln', 'KI Kundenservice Köln', 'KI Agent Köln'],
-  alternates: { canonical: 'https://rsg-ai.de/ki-telefonassistent-koeln' }
+  alternates: { canonical: 'https://www.rsg-ai.de/ki-telefonassistent-koeln' }
 }
 export default function KoelnPage() {
   return (
@@ -27,7 +27,7 @@ export default function KoelnPage() {
           <li>✓ Integriert in CRM (HubSpot, Salesforce, Pipedrive)</li>
           <li>✓ NRW-Netzwerk: Köln, Düsseldorf, Bonn in einer Region</li>
         </ul></div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"RSG AI Köln","url":"https://rsg-ai.de/ki-telefonassistent-koeln","areaServed":{"@type":"City","name":"Köln"},"description":"KI-Telefonassistent für Kölner Unternehmen"})}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"RSG AI Köln","url":"https://www.rsg-ai.de/ki-telefonassistent-koeln","areaServed":{"@type":"City","name":"Köln"},"description":"KI-Telefonassistent für Kölner Unternehmen"})}} />
       </section>
     </main>
   )

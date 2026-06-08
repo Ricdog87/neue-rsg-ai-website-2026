@@ -83,6 +83,26 @@ export default function DatenschutzPage() {
         HubSpot) werden ausschließlich nach Ihrer Einwilligung geladen.
       </p>
 
+      <p>
+        <strong>Zahlungsabwicklung (Stripe).</strong> Für die Abwicklung von Zahlungen
+        (z.&nbsp;B. beim Buchen von Paketen) nutzen wir den Zahlungsdienstleister Stripe
+        (Stripe Payments Europe Ltd., Irland; Stripe, Inc., USA). Bei einem Bezahlvorgang
+        werden die von Ihnen eingegebenen Zahlungs- und Rechnungsdaten direkt an Stripe
+        übermittelt und dort verarbeitet; vollständige Zahlungsdaten speichern wir selbst
+        nicht. Rechtsgrundlage ist die Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO). Eine
+        Übermittlung in die USA erfolgt auf Grundlage des EU-US Data Privacy Framework bzw.
+        der Standardvertragsklauseln.
+      </p>
+      <p>
+        <strong>E-Mail-Versand (Resend).</strong> Für den Versand transaktionaler E-Mails
+        (z.&nbsp;B. Bestätigungen Ihrer Kontakt-, Rückruf- oder Checklisten-Anfragen) nutzen
+        wir den Dienst Resend (Resend, Inc., USA) als Auftragsverarbeiter. Verarbeitet werden
+        Ihre E-Mail-Adresse und der jeweilige Nachrichteninhalt. Rechtsgrundlage ist die
+        Durchführung vorvertraglicher Maßnahmen bzw. unser berechtigtes Interesse an einer
+        zuverlässigen Kommunikation (Art. 6 Abs. 1 lit. b und f DSGVO). Eine Übermittlung in
+        die USA erfolgt auf Grundlage der Standardvertragsklauseln.
+      </p>
+
       <h2>6. Cookies &amp; Tracking</h2>
       <p>
         Wir verwenden technisch notwendige Cookies, um grundlegende Funktionen der
@@ -101,6 +121,18 @@ export default function DatenschutzPage() {
         eine Übermittlung in die USA erfolgen; Google LLC ist unter dem EU-US Data
         Privacy Framework zertifiziert. Ihre Einwilligung können Sie jederzeit mit
         Wirkung für die Zukunft über den Cookie-Banner widerrufen.
+      </p>
+
+      <p>
+        <strong>Plausible Analytics.</strong> Zusätzlich nutzen wir Plausible Analytics,
+        einen cookielosen, datenschutzfreundlichen Webanalyse-Dienst (Plausible Insights OÜ,
+        Estland; Hosting in der EU). Plausible setzt keine Cookies, erstellt keine
+        geräteübergreifenden Profile und speichert keine personenbezogenen Daten oder
+        IP-Adressen — die Erfassung erfolgt vollständig anonymisiert und aggregiert. Da kein
+        Zugriff auf Ihr Endgerät i.&nbsp;S.&nbsp;d. § 25 TTDSG erfolgt und keine
+        personenbezogenen Daten verarbeitet werden, ist hierfür keine Einwilligung
+        erforderlich; Rechtsgrundlage ist unser berechtigtes Interesse an einer datensparsamen
+        Reichweitenmessung (Art. 6 Abs. 1 lit. f DSGVO).
       </p>
 
       <h2>7. KI-Telefonassistent &amp; Sprachverarbeitung (Voice-Agenten)</h2>

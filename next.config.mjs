@@ -12,6 +12,12 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion']
   },
+  async redirects() {
+    return [
+      // Duplicate-Content konsolidieren: flache Branchenseite -> kanonische verschachtelte
+      { source: '/ki-telefonassistent-arztpraxis', destination: '/ki-telefonassistent/arztpraxis', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

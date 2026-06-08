@@ -60,6 +60,7 @@ export default function EnglishHomePage() {
         </div>
       </section>
       <Hero />
+      <GoogleReviews en />
       <ScrollZoom>
         <PricingSnapshot />
       </ScrollZoom>
@@ -70,7 +71,6 @@ export default function EnglishHomePage() {
       <ScrollZoom>
         <TrustStrip />
       </ScrollZoom>
-      <GoogleReviews en />
       <ScrollZoom>
         <ContactSection />
       </ScrollZoom>

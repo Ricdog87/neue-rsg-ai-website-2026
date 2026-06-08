@@ -1,7 +1,6 @@
 import { Hero } from '@/components/sections/hero';
 import { VoiceConsole } from '@/components/sections/voice-console';
 import { TechMarquee } from '@/components/sections/tech-marquee';
-import { VoiceAgentsSection } from '@/components/sections/voice-agents-section';
 import { PricingSnapshot } from '@/components/sections/pricing-snapshot';
 import { VoiceRoiCalculator } from '@/components/sections/voice-roi-calculator';
 import { TrustStrip } from '@/components/sections/trust-strip';
@@ -35,7 +34,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: ldJson(faqPageLd(FAQ)) }}
       />
-      <section className="relative overflow-hidden">
+      <section id="voice" className="relative overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[440px] w-[720px] max-w-[92vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,hsl(174_100%_50%/0.16),transparent_70%)] blur-3xl"
@@ -53,6 +52,7 @@ export default function HomePage() {
         </div>
       </section>
       <Hero />
+      <GoogleReviews />
       <ScrollZoom>
         <PricingSnapshot />
       </ScrollZoom>
@@ -60,13 +60,9 @@ export default function HomePage() {
         <VoiceRoiCalculator />
       </ScrollSlide>
       <TechMarquee />
-      <ScrollSlide direction="left">
-        <VoiceAgentsSection />
-      </ScrollSlide>
       <ScrollZoom>
         <TrustStrip />
       </ScrollZoom>
-      <GoogleReviews />
       <ScrollZoom>
         <ContactSection />
       </ScrollZoom>

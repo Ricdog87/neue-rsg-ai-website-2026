@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Mail, Linkedin, Check, AlertCircle } from 'lucide-react';
 import { MaskWipe, SplitLines } from '@/components/effects/reveal';
 import { site } from '@/lib/content';
+import { trackConversion } from '@/components/system/track';
 
 type SubmitState = 'idle' | 'loading' | 'success' | 'error';
 
@@ -29,6 +30,7 @@ export function NewsletterSection() {
       setState('success');
       setMessage(data.message || 'Check dein Postfach — bestätige den Link.');
       setEmail('');
+      trackConversion('qualify_lead', { method: 'newsletter', form: 'roi_checkliste' });
     } catch (err) {
       setState('error');
       setMessage(err instanceof Error ? err.message : 'Unerwarteter Fehler.');

@@ -3,8 +3,9 @@
 import Script from 'next/script';
 import { motion } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { ArrowUpRight, Clock, ShieldCheck, Sparkles } from 'lucide-react';
+import { trackConversion } from '@/components/system/track';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -21,6 +22,18 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 function TerminContent() {
   const params = useSearchParams();
   const selectedAgent = params?.get('agent') || null;
+
+  // HubSpot-Meetings-Embed postet bei erfolgreicher Buchung eine Message.
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      const data = e.data as { meetingBookSucceeded?: boolean } | null;
+      if (data && typeof data === 'object' && data.meetingBookSucceeded) {
+        trackConversion('close_convert_lead', { source: 'hubspot_meeting' });
+      }
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[hsl(var(--bg))] text-[hsl(var(--fg))]">

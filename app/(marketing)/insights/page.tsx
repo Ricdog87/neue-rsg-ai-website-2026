@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { INSIGHTS } from '@/lib/insights';
+import { StaggerReveal } from '@/components/ui/stagger-reveal';
 import { site } from '@/lib/content';
 import { breadcrumbLd, ldJson } from '@/lib/jsonld';
 
@@ -63,8 +64,9 @@ export default function InsightsIndexPage() {
         </header>
 
         <ul className="mt-16 divide-y divide-[hsl(var(--border))]">
-          {sorted.map((post) => (
+          {sorted.map((post, i) => (
             <li key={post.slug}>
+              <StaggerReveal index={i}>
               <Link
                 href={`/insights/${post.slug}`}
                 data-cursor-label="Lesen"
@@ -94,6 +96,7 @@ export default function InsightsIndexPage() {
                   </div>
                 </div>
               </Link>
+              </StaggerReveal>
             </li>
           ))}
         </ul>

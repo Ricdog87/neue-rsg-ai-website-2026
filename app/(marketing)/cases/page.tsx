@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { CASE_STUDIES } from '@/lib/case-studies';
+import { StaggerReveal } from '@/components/ui/stagger-reveal';
 import { site } from '@/lib/content';
 import { breadcrumbLd, ldJson } from '@/lib/jsonld';
 
@@ -65,12 +66,12 @@ export default function CasesIndexPage() {
         {/* Grid */}
         <div className="mt-20 grid gap-6 md:grid-cols-2">
           {CASE_STUDIES.map((cs, i) => (
+            <StaggerReveal key={cs.slug} index={i} className="h-full">
             <Link
-              key={cs.slug}
               href={`/cases/${cs.slug}`}
               data-cursor-label="Lesen"
               data-event={`case-index-${cs.slug}`}
-              className="group relative flex flex-col gap-6 overflow-hidden rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-8 transition-colors hover:border-[hsl(var(--accent))/50] md:p-10"
+              className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-8 transition-colors hover:border-[hsl(var(--accent))/50] md:p-10"
               style={{ boxShadow: 'inset 0 1px 0 hsl(0 0% 100% / 0.04)' }}
             >
               <div
@@ -110,6 +111,7 @@ export default function CasesIndexPage() {
                 ))}
               </dl>
             </Link>
+            </StaggerReveal>
           ))}
         </div>
         <div className="mt-16 text-center">

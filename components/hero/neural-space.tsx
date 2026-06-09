@@ -658,7 +658,7 @@ function GlassCenterpiece() {
         <mesh>
           {/* Faceted brand crystal — a designed gem, not a chrome ball.
               Refracts the cyan/violet environment in brand colours. */}
-          <icosahedronGeometry args={[0.98, 1]} />
+          <icosahedronGeometry args={[1.0, 8]} />
           <MeshTransmissionMaterial
             backside
             backsideThickness={0.4}
@@ -669,7 +669,7 @@ function GlassCenterpiece() {
             roughness={0.06}
             thickness={1.5}
             ior={1.5}
-            chromaticAberration={0.09}
+            chromaticAberration={0.04}
             anisotropy={0.18}
             anisotropicBlur={0.5}
             distortion={0}
@@ -720,8 +720,8 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
         />
         {/* Violet rim — left (brand purple wash through the glass) */}
         <Lightformer
-          intensity={3.4}
-          color="#a855f7"
+          intensity={3.0}
+          color="#8b5cf6"
           position={[-6, 1, -1]}
           rotation={[0, Math.PI / 2, 0]}
           scale={[10, 8, 1]}
@@ -839,11 +839,11 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
             more cinematic glow without the harsh "halo" look. */}
         <EffectComposer enableNormalPass={false} multisampling={4}>
           <Bloom
-            intensity={0.6}
-            luminanceThreshold={0.4}
+            intensity={0.5}
+            luminanceThreshold={0.42}
             luminanceSmoothing={0.9}
             mipmapBlur
-            radius={0.75}
+            radius={0.7}
           />
         </EffectComposer>
       </Canvas>

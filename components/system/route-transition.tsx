@@ -30,8 +30,8 @@ export function RouteTransition() {
     const t1 = setTimeout(() => {
       setRenderedKey(pathname);
       setPhase('revealing');
-    }, 450);
-    const t2 = setTimeout(() => setPhase('idle'), 1100);
+    }, 360);
+    const t2 = setTimeout(() => setPhase('idle'), 920);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -70,7 +70,7 @@ export function RouteTransition() {
               d: phase === 'covering' ? curveCover : curveAway,
             }}
             transition={{
-              duration: 0.7,
+              duration: 0.6,
               ease: phase === 'covering' ? [0.83, 0, 0.17, 1] : [0.65, 0, 0.35, 1],
             }}
             fill="url(#wipe-grad)"

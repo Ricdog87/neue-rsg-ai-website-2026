@@ -30,8 +30,9 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.4,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // lerp = continuous, frame-rate-independent smoothing (buttery Lusion
+      // feel). ~0.085 stays fluid but responsive. Touch stays native momentum.
+      lerp: 0.085,
       smoothWheel: true,
       wheelMultiplier: 1.0,
       touchMultiplier: 1.8,

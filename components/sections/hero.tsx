@@ -129,7 +129,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            'linear-gradient(180deg, rgba(3,2,12,0.55) 0%, rgba(3,2,12,0) 12%, rgba(3,2,12,0) 70%, rgba(3,2,12,0.95) 100%)',
+            'linear-gradient(180deg, rgba(3,2,12,0) 0%, rgba(3,2,12,0) 72%, rgba(3,2,12,0.85) 100%)',
         }}
       />
       <div

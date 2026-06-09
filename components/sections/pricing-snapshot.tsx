@@ -42,7 +42,7 @@ export function PricingSnapshot() {
   return (
     <section
       id="pricing-snapshot"
-      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 px-6 py-16 backdrop-blur-[2px] md:py-20 lg:px-10"
+      className="relative px-6 py-16 md:py-20 lg:px-10"
     >
       <div className="relative mx-auto max-w-[1280px]">
         {/* Header */}

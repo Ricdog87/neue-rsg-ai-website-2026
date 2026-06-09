@@ -16,6 +16,7 @@ export type GoogleReview = {
   rating: number;
   text: string;
   relativeTime: string;
+  original?: string;
   photo?: string;
   profileUrl?: string;
   publishedAt: number;
@@ -51,7 +52,7 @@ export async function getGoogleReviews(): Promise<GoogleReviewsData | null> {
 
   try {
     const res = await fetch(
-      `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`,
+      `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}?languageCode=de`,
       {
         headers: {
           'X-Goog-Api-Key': key,
@@ -68,6 +69,9 @@ export async function getGoogleReviews(): Promise<GoogleReviewsData | null> {
         author: r.authorAttribution?.displayName ?? 'Google-Nutzer',
         rating: r.rating ?? 0,
         text: (r.text?.text ?? r.originalText?.text ?? '').trim(),
+        // text is now German (languageCode=de -> Google auto-translates);
+        // original kept so the UI can offer "Original anzeigen" on click.
+        original: ((o) => (o && o !== (r.text?.text ?? '').trim() ? o : undefined))((r.originalText?.text ?? '').trim()),
         relativeTime: r.relativePublishTimeDescription ?? '',
         photo: r.authorAttribution?.photoUri,
         profileUrl: r.authorAttribution?.uri,

@@ -34,7 +34,7 @@ export function TechMarquee() {
   return (
     <section
       aria-label="Tech-Stack"
-      className="relative overflow-hidden border-y border-[hsl(var(--border))] bg-[hsl(var(--bg))] py-6"
+      className="relative overflow-hidden py-6"
     >
       {/* Edge fade masks so the words dissolve at the viewport edges */}
       <div

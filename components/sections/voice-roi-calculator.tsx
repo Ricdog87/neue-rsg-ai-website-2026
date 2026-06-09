@@ -59,7 +59,7 @@ export function VoiceRoiCalculator() {
   return (
     <section
       id="rechner"
-      className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/85 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10"
+      className="relative px-6 py-20 md:py-28 lg:px-10"
     >
       <div className="relative mx-auto max-w-[1080px]">
         {/* Header */}

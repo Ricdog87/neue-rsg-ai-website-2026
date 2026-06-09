@@ -39,7 +39,7 @@ const LABEL = 'mb-4 text-center text-[0.7rem] font-medium uppercase tracking-wid
  */
 export function CitiesSection() {
   return (
-    <section className="border-t border-white/10 py-16" aria-label="KI-Telefonassistent regional, nach Branche & mehr lesen">
+    <section className="py-16" aria-label="KI-Telefonassistent regional, nach Branche & mehr lesen">
       <div className="mx-auto max-w-5xl space-y-10 px-6">
         <h2 className="text-center font-display text-[clamp(1.5rem,3vw,2.25rem)] font-medium tracking-tight text-white">
           KI-Telefonassistent — regional &amp; für deine Branche

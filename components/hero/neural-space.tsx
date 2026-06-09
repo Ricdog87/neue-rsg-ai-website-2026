@@ -243,15 +243,16 @@ function NebulaPulse() {
 
   return (
     <mesh ref={ref} position={[0, 0, -6]}>
-      <planeGeometry args={[28, 18]} />
+      <planeGeometry args={[44, 28]} />
       <shaderMaterial
         depthWrite={false}
         transparent
         uniforms={{
           uTime: { value: 0 },
-          uColorA: { value: new THREE.Color('#03020c') }, // near-black space
-          uColorB: { value: new THREE.Color('#0a0a18') }, // deep blue-black
-          uColorC: { value: new THREE.Color('#161528') }, // subtle highlight
+          uDeep: { value: new THREE.Color('#03020c') }, // near-black space
+          uIndigo: { value: new THREE.Color('#0b0a20') }, // deep indigo bed
+          uViolet: { value: new THREE.Color('#3a1ba0') }, // brand violet ribbons
+          uCyan: { value: new THREE.Color('#15d6c2') }, // brand cyan crests
         }}
         vertexShader={/* glsl */ `
           varying vec2 vUv;
@@ -264,9 +265,10 @@ function NebulaPulse() {
           precision highp float;
           varying vec2 vUv;
           uniform float uTime;
-          uniform vec3 uColorA;
-          uniform vec3 uColorB;
-          uniform vec3 uColorC;
+          uniform vec3 uDeep;
+          uniform vec3 uIndigo;
+          uniform vec3 uViolet;
+          uniform vec3 uCyan;
 
           vec2 hash(vec2 p){
             p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
@@ -286,19 +288,26 @@ function NebulaPulse() {
           }
           float fbm(vec2 p){
             float v = 0.0; float a = 0.5;
-            for (int i = 0; i < 4; i++) { v += a * noise(p); p *= 2.0; a *= 0.5; }
+            for (int i = 0; i < 5; i++) { v += a * noise(p); p = p * 2.02 + vec2(1.7, 9.2); a *= 0.5; }
             return v;
           }
 
           void main(){
-            vec2 uv = vUv * 1.6 - 0.3;
+            vec2 uv = vUv;
+            vec2 p = uv * 2.0 - 0.5;
             float t = uTime * 0.05;
-            float n = fbm(uv * 1.2 + vec2(t, -t * 0.6));
-            float n2 = fbm(uv * 2.0 - vec2(t * 0.8, t * 0.4) + 4.0);
-            vec3 col = mix(uColorA, uColorB, smoothstep(-0.2, 0.6, n));
-            col = mix(col, uColorC, smoothstep(0.5, 0.95, n2));
-            float v = smoothstep(1.3, 0.2, length(vUv - 0.5));
-            col *= 0.25 + 0.95 * v;
+            // domain-warp -> flowing aurora ribbons (cinematic bed)
+            vec2 q = vec2(fbm(p + vec2(0.0, t)), fbm(p + vec2(5.2, -t * 0.7)));
+            float f = fbm(p + 2.2 * q);
+            float g = fbm(p * 1.6 + 3.0 * q - t * 0.4);
+            vec3 col = mix(uDeep, uIndigo, smoothstep(-0.1, 0.5, f));
+            col = mix(col, uViolet, smoothstep(0.3, 0.9, f + 0.25 * q.x));
+            col = mix(col, uCyan, smoothstep(0.72, 1.08, g + 0.35 * q.y));
+            float glow = smoothstep(1.15, 0.0, distance(uv, vec2(0.80, 0.74)));
+            col += uCyan * 0.12 * glow;
+            col += uViolet * 0.10 * smoothstep(1.1, 0.0, distance(uv, vec2(0.20, 0.16)));
+            float vig = smoothstep(1.3, 0.2, length(vUv - 0.5));
+            col *= 0.30 + 0.92 * vig;
             gl_FragColor = vec4(col, 1.0);
           }
         `}

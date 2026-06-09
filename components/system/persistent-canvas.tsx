@@ -15,8 +15,7 @@ const NeuralSpace = dynamic(
  * never white-screen because a backdrop couldn't initialise.
  */
 const STATIC_BACKDROP =
-  'radial-gradient(115% 85% at 80% 14%, hsl(174 80% 42% / 0.10) 0%, transparent 46%),' +
-  'radial-gradient(ellipse 100% 80% at 50% 30%, hsl(180 10% 6%) 0%, hsl(190 8% 4%) 45%, hsl(210 8% 2%) 100%)';
+  'radial-gradient(ellipse 100% 80% at 50% 30%, hsl(220 8% 5%) 0%, #000000 70%)';
 
 /**
  * Catches any error thrown while rendering the WebGL backdrop and

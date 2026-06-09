@@ -39,7 +39,7 @@ export function ScrollZoom({ children, delay = 0, className = '' }: ScrollZoomPr
       className={className}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'none' : 'translate3d(0, 48px, 0) scale(0.94)',
+        transform: visible ? 'none' : 'translate3d(0, 66px, 0) scale(0.92)',
         transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.85s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
         willChange: visible ? 'auto' : 'opacity, transform',
       }}

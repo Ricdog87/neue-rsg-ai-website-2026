@@ -53,9 +53,11 @@ export default function HomePage() {
         </div>
       </section>
       <Hero />
-      <ScrollSlide direction="left">
-        <GoogleReviews />
-      </ScrollSlide>
+      <ScrollParallax x={10}>
+        <ScrollSlide direction="left">
+          <GoogleReviews />
+        </ScrollSlide>
+      </ScrollParallax>
       <ScrollParallax x={-14}>
         <ScrollZoom>
           <PricingSnapshot />
@@ -66,20 +68,26 @@ export default function HomePage() {
           <VoiceRoiCalculator />
         </ScrollSlide>
       </ScrollParallax>
-      <ScrollSlide direction="up">
-        <TechMarquee />
-      </ScrollSlide>
+      <ScrollParallax x={-10}>
+        <ScrollSlide direction="up">
+          <TechMarquee />
+        </ScrollSlide>
+      </ScrollParallax>
       <ScrollParallax x={-14}>
         <ScrollZoom>
           <TrustStrip />
         </ScrollZoom>
       </ScrollParallax>
-      <ScrollZoom>
-        <ContactSection />
-      </ScrollZoom>
-      <ScrollSlide direction="up">
-        <CitiesSection />
-      </ScrollSlide>
+      <ScrollParallax x={12}>
+        <ScrollZoom>
+          <ContactSection />
+        </ScrollZoom>
+      </ScrollParallax>
+      <ScrollParallax x={-10}>
+        <ScrollSlide direction="up">
+          <CitiesSection />
+        </ScrollSlide>
+      </ScrollParallax>
     </>
   );
 }

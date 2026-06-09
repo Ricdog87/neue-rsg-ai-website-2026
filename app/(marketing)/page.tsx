@@ -53,19 +53,23 @@ export default function HomePage() {
         </div>
       </section>
       <Hero />
-      <GoogleReviews />
-      <ScrollParallax x={-10}>
+      <ScrollSlide direction="left">
+        <GoogleReviews />
+      </ScrollSlide>
+      <ScrollParallax x={-14}>
         <ScrollZoom>
           <PricingSnapshot />
         </ScrollZoom>
       </ScrollParallax>
-      <ScrollParallax x={12}>
+      <ScrollParallax x={14}>
         <ScrollSlide direction="right">
           <VoiceRoiCalculator />
         </ScrollSlide>
       </ScrollParallax>
-      <TechMarquee />
-      <ScrollParallax x={-10}>
+      <ScrollSlide direction="up">
+        <TechMarquee />
+      </ScrollSlide>
+      <ScrollParallax x={-14}>
         <ScrollZoom>
           <TrustStrip />
         </ScrollZoom>
@@ -73,7 +77,9 @@ export default function HomePage() {
       <ScrollZoom>
         <ContactSection />
       </ScrollZoom>
-      <CitiesSection />
+      <ScrollSlide direction="up">
+        <CitiesSection />
+      </ScrollSlide>
     </>
   );
 }

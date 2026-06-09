@@ -124,7 +124,7 @@ export function Footer() {
             </div>
           </div>
 
-          {footer.groups.map((group) => (
+          {footer.groups.filter((group) => group.title !== 'Standorte').map((group) => (
             <div key={group.title} className="lg:col-span-2">
               <h3 className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-white/50">
                 {tl(group.title)}
@@ -144,6 +144,32 @@ export function Footer() {
             </div>
           ))}
         </div>
+
+        {/* Standorte — kompakt ganz unten (smart gepackt) */}
+        {(() => {
+          const standorte = footer.groups.find((g) => g.title === 'Standorte');
+          if (!standorte) return null;
+          return (
+            <div className="mt-12 border-t border-white/10 pt-6">
+              <h3 className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white/40">
+                {tl(standorte.title)}
+              </h3>
+              <ul className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[0.75rem] text-white/55">
+                {standorte.links.map((link, i) => (
+                  <li key={link.href} className="flex items-center gap-3">
+                    {i > 0 && <span aria-hidden className="text-white/20">·</span>}
+                    <Link
+                      href={link.href}
+                      className="transition-colors hover:text-[hsl(var(--accent))]"
+                    >
+                      {tl(link.label)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })()}
 
         {/* Editorial chrome strip — version, server, build year */}
         <div className="mt-16 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white/40">

@@ -22,7 +22,7 @@ export function TrustStrip() {
   return (
     <section
       id="trust"
-      className="relative border-y border-[hsl(var(--border))] bg-[hsl(var(--surface))]/40 px-6 py-12 backdrop-blur-[2px] lg:px-10"
+      className="relative px-6 py-12 lg:px-10"
     >
       <div className="mx-auto max-w-[1280px]">
         <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">

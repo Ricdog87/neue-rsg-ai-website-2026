@@ -304,10 +304,10 @@ function NebulaPulse() {
             col = mix(col, uViolet, smoothstep(0.2, 0.8, f + 0.25 * q.x));
             col = mix(col, uCyan, smoothstep(0.6, 1.0, g + 0.35 * q.y));
             float glow = smoothstep(1.15, 0.0, distance(uv, vec2(0.80, 0.74)));
-            col += uCyan * 0.18 * glow;
-            col += uViolet * 0.15 * smoothstep(1.1, 0.0, distance(uv, vec2(0.20, 0.16)));
+            col += uCyan * 0.07 * glow;
+            col += uViolet * 0.05 * smoothstep(1.1, 0.0, distance(uv, vec2(0.20, 0.16)));
             float vig = smoothstep(1.3, 0.2, length(vUv - 0.5));
-            col *= 0.46 + 0.95 * vig;
+            col *= 0.40 + 0.78 * vig;
             gl_FragColor = vec4(col, 1.0);
           }
         `}

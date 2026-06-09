@@ -12,6 +12,7 @@ import { ChapterHud } from '@/components/effects/chapter-hud';
 import { KeyboardShortcuts } from '@/components/effects/keyboard-shortcuts';
 import { EntryLoader } from '@/components/system/entry-loader';
 import { PersistentCanvas } from '@/components/system/persistent-canvas';
+import { CursorTrail } from '@/components/effects/cursor-trail';
 import { RouteTransition } from '@/components/system/route-transition';
 import { SoundProvider } from '@/components/system/sound-engine';
 import { Analytics } from '@/components/system/analytics';
@@ -121,6 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SoundProvider>
           <ScrollProgress />
           <MagneticCursor />
+          <CursorTrail />
           <HtmlLang />
           <LenisProvider>
             <Navbar />

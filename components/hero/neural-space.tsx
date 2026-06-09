@@ -656,7 +656,9 @@ function GlassCenterpiece() {
             Higher poly + transmission resolution + samples = a smooth,
             premium refraction with no faceting or shimmer. */}
         <mesh>
-          <icosahedronGeometry args={[0.95, 12]} />
+          {/* Faceted brand crystal — a designed gem, not a chrome ball.
+              Refracts the cyan/violet environment in brand colours. */}
+          <icosahedronGeometry args={[0.98, 1]} />
           <MeshTransmissionMaterial
             backside
             backsideThickness={0.4}
@@ -664,20 +666,20 @@ function GlassCenterpiece() {
             resolution={1024}
             backsideResolution={512}
             transmission={1}
-            roughness={0.02}
-            thickness={1.3}
-            ior={1.45}
-            chromaticAberration={0.025}
-            anisotropy={0.1}
-            anisotropicBlur={0.4}
+            roughness={0.06}
+            thickness={1.5}
+            ior={1.5}
+            chromaticAberration={0.09}
+            anisotropy={0.18}
+            anisotropicBlur={0.5}
             distortion={0}
             distortionScale={0}
             temporalDistortion={0}
-            attenuationDistance={2.8}
-            attenuationColor="#e8ebf2"
-            color="#ffffff"
+            attenuationDistance={1.4}
+            attenuationColor="#27e6d6"
+            color="#bfe9f5"
             clearcoat={1}
-            clearcoatRoughness={0.04}
+            clearcoatRoughness={0.08}
           />
         </mesh>
       </group>
@@ -708,45 +710,44 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
           palette in its refractions. */}
       <Environment resolution={256} frames={1} environmentIntensity={1.1}>
         <color attach="background" args={['#060512']} />
-        {/* Bright white key from above — strong, so the chrome catches a
-            crisp silver highlight and the ball reads clearly on dark space. */}
+        {/* Cyan key from above — the crystal catches a bright brand-cyan crest */}
         <Lightformer
-          intensity={3.2}
-          color="#ffffff"
+          intensity={2.8}
+          color="#2af0dc"
           position={[0, 5, -3]}
           rotation={[Math.PI / 2, 0, 0]}
           scale={[12, 12, 1]}
         />
-        {/* Silver rim — left (neutral, keeps the ball reading as chrome/silver) */}
+        {/* Violet rim — left (brand purple wash through the glass) */}
         <Lightformer
-          intensity={4.0}
-          color="#eef1f7"
+          intensity={3.4}
+          color="#a855f7"
           position={[-6, 1, -1]}
           rotation={[0, Math.PI / 2, 0]}
           scale={[10, 8, 1]}
         />
-        {/* Bright silver fill — right */}
+        {/* Deep indigo fill — right */}
         <Lightformer
-          intensity={3.0}
-          color="#f6f8fc"
+          intensity={2.4}
+          color="#6d28d9"
           position={[6, -1, -1]}
           rotation={[0, -Math.PI / 2, 0]}
           scale={[10, 8, 1]}
         />
-        {/* Sharp top streak — gives a defined moving highlight band */}
+        {/* Small bright accent streak — one crisp specular catch, kept subtle */}
         <Lightformer
           form="ring"
-          intensity={2.0}
-          color="#ffffff"
+          intensity={1.6}
+          color="#d6f7ff"
           position={[1, 4, 2]}
-          scale={[4, 4, 1]}
+          scale={[3, 3, 1]}
         />
       </Environment>
-      {/* Two-point key/fill lighting — bright + neutral so the glass reads
-          as a clearly visible silver/chrome ball, never washed-out. */}
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[4, 6, 4]} intensity={2.4} color="#ffffff" />
-      <directionalLight position={[-3, -2, 2]} intensity={0.8} color="#dfe6f5" />
+      {/* Two-point key/fill lighting — brand-tinted (violet key + cyan fill)
+          so the crystal reads as a glowing cyan/violet gem, never white. */}
+      <ambientLight intensity={0.3} color="#7fe9ff" />
+      <directionalLight position={[4, 6, 4]} intensity={1.7} color="#b58cff" />
+      <directionalLight position={[-3, -2, 2]} intensity={1.0} color="#2af0dc" />
 
       <GlassCenterpiece />
 
@@ -808,7 +809,7 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse at 50% 40%, #2a1466 0%, #0a0820 45%, #03020c 100%)',
+            'radial-gradient(ellipse 90% 70% at 72% 20%, rgba(20,240,208,0.10) 0%, transparent 46%), radial-gradient(ellipse at 42% 42%, #2a1466 0%, #0a0820 48%, #03020c 100%)',
         }}
       />
     );

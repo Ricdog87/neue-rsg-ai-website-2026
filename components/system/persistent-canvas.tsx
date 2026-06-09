@@ -15,6 +15,8 @@ const NeuralSpace = dynamic(
  * never white-screen because a backdrop couldn't initialise.
  */
 const STATIC_BACKDROP =
+  'radial-gradient(115% 85% at 80% 14%, hsl(174 88% 45% / 0.12) 0%, transparent 44%),' +
+  'radial-gradient(120% 100% at 16% 26%, hsl(271 91% 62% / 0.18) 0%, transparent 52%),' +
   'radial-gradient(ellipse 100% 80% at 50% 30%, hsl(240 14% 8%) 0%, hsl(240 14% 4%) 45%, hsl(240 14% 2%) 100%)';
 
 /**

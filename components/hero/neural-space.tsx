@@ -47,7 +47,7 @@ function DustField() {
     <Points ref={ref} positions={positions} stride={3} frustumCulled>
       <PointMaterial
         transparent
-        color="#bfeae6"
+        color="#ccd4d8"
         size={0.015}
         sizeAttenuation
         depthWrite={false}
@@ -175,7 +175,7 @@ function NeuralNetwork() {
       <lineSegments ref={linesRef} geometry={lineGeometry}>
         <lineBasicMaterial
           attach="material"
-          color="#22e0d0"
+          color="#c2ccd2"
           transparent
           opacity={0.28}
           depthWrite={false}
@@ -197,8 +197,8 @@ function NeuralNetwork() {
           depthWrite={false}
           blending={THREE.AdditiveBlending}
           uniforms={{
-            uColor: { value: new THREE.Color('#bff3ec') },
-            uAccent: { value: new THREE.Color('#0b5f57') },
+            uColor: { value: new THREE.Color('#dde4e8') },
+            uAccent: { value: new THREE.Color('#2c3338') },
           }}
           vertexShader={/* glsl */ `
             attribute float size;
@@ -249,10 +249,10 @@ function NebulaPulse() {
         transparent
         uniforms={{
           uTime: { value: 0 },
-          uDeep: { value: new THREE.Color('#040405') }, // near-black space
-          uIndigo: { value: new THREE.Color('#0a0c0c') }, // deep indigo bed
-          uViolet: { value: new THREE.Color('#0f3a37') }, // brand violet ribbons
-          uCyan: { value: new THREE.Color('#17c4b3') }, // brand cyan crests
+          uDeep: { value: new THREE.Color('#000000') }, // near-black space
+          uIndigo: { value: new THREE.Color('#000000') }, // deep indigo bed
+          uViolet: { value: new THREE.Color('#000000') }, // brand violet ribbons
+          uCyan: { value: new THREE.Color('#000000') }, // brand cyan crests
         }}
         vertexShader={/* glsl */ `
           varying vec2 vUv;
@@ -439,7 +439,7 @@ function FarDust() {
     <Points ref={ref} positions={positions} stride={3} frustumCulled>
       <PointMaterial
         transparent
-        color="#9fb4b0"
+        color="#98a2a7"
         size={0.012}
         sizeAttenuation
         depthWrite={false}
@@ -485,7 +485,7 @@ function GalaxySpiral() {
       <Points ref={ref} positions={positions} stride={3} frustumCulled>
         <PointMaterial
           transparent
-          color="#bfeae6"
+          color="#ccd4d8"
           size={0.025}
           sizeAttenuation
           depthWrite={false}
@@ -497,7 +497,7 @@ function GalaxySpiral() {
       <mesh>
         <sphereGeometry args={[0.35, 24, 24]} />
         <meshBasicMaterial
-          color="#e9f3f1"
+          color="#eef3f5"
           transparent
           opacity={0.55}
           blending={THREE.AdditiveBlending}
@@ -581,7 +581,7 @@ function ShootingStars() {
         >
           <planeGeometry args={[1.2, 0.025]} />
           <meshBasicMaterial
-            color="#eafffb"
+            color="#eef3f5"
             transparent
             opacity={0}
             blending={THREE.AdditiveBlending}
@@ -651,7 +651,7 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
           depth={90}
           count={3200}
           factor={2.4}
-          saturation={0.25}
+          saturation={0}
           fade
           speed={0.45}
         />
@@ -660,7 +660,7 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
           depth={45}
           count={1400}
           factor={3.2}
-          saturation={0.4}
+          saturation={0}
           fade
           speed={0.85}
         />
@@ -693,7 +693,7 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 90% 70% at 72% 20%, rgba(20,240,208,0.08) 0%, transparent 46%), radial-gradient(ellipse at 42% 42%, #0c1413 0%, #070908 48%, #040405 100%)',
+            'radial-gradient(ellipse at 50% 40%, #050506 0%, #000000 72%)',
         }}
       />
     );
@@ -704,7 +704,7 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
       aria-hidden
       className="absolute inset-0"
       onPointerMove={onMove}
-      style={{ background: '#040405' }}
+      style={{ background: '#000000' }}
     >
       <Canvas
         dpr={[1.5, 2]}
@@ -717,7 +717,7 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
           depth: true,
         }}
       >
-        <color attach="background" args={['#040405']} />
+        <color attach="background" args={['#000000']} />
         <Scene pointer={pointer} />
         {/* Multisampled AA + a softer, wider bloom = cleaner edges and a
             more cinematic glow without the harsh "halo" look. */}

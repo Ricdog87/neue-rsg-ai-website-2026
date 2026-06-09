@@ -14,8 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${U}/en`, lastModified: now, priority: 0.9, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': U, en: `${U}/en` } } },
     { url: `${U}/preise`, lastModified: now, priority: 0.9, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/preise`, en: `${U}/en/preise` } } },
     { url: `${U}/en/preise`, lastModified: now, priority: 0.8, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/preise`, en: `${U}/en/preise` } } },
-    { url: `${U}/ki-callcenter`, lastModified: now, priority: 0.9, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/ki-callcenter`, en: `${U}/en/ki-callcenter` } } },
-    { url: `${U}/en/ki-callcenter`, lastModified: now, priority: 0.8, changeFrequency: 'weekly', alternates: { languages: { 'de-DE': `${U}/ki-callcenter`, en: `${U}/en/ki-callcenter` } } },
   ];
 
   const staticPaths: Array<[string, number, 'weekly' | 'monthly' | 'yearly']> = [

@@ -14,7 +14,6 @@ import { useScrollNav } from '@/hooks/use-scroll-nav';
 
 const NAV_EN: Record<string, string> = {
   '/ki-telefonassistent': 'Phone Assistant',
-  '/ki-callcenter': 'AI Call Center',
   '/automatisierung': 'Automation',
   '/preise': 'Pricing',
   '/cases': 'Cases',

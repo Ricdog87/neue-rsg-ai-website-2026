@@ -37,7 +37,9 @@ export function ScrollParallax({
     () => {
       const el = ref.current;
       if (!el) return;
-      if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // Bail on reduced-motion AND on mobile/touch — horizontal scroll-drift
+      // on narrow viewports is risky (edge gaps) and low-value. Desktop only.
+      if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 768px), (pointer: coarse)').matches) return;
 
       gsap.fromTo(
         el,

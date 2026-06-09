@@ -649,8 +649,8 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
         <Stars
           radius={120}
           depth={90}
-          count={3200}
-          factor={2.4}
+          count={7000}
+          factor={3}
           saturation={0}
           fade
           speed={0.45}
@@ -658,11 +658,21 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
         <Stars
           radius={60}
           depth={45}
-          count={1400}
-          factor={3.2}
+          count={3500}
+          factor={4}
           saturation={0}
           fade
           speed={0.85}
+        />
+        {/* Fine, dense far stars — gives the deep "HD cosmos" depth */}
+        <Stars
+          radius={240}
+          depth={140}
+          count={9000}
+          factor={1.4}
+          saturation={0}
+          fade
+          speed={0.18}
         />
 
         {/* Mid dust + neural mesh — the existing layers */}
@@ -723,8 +733,8 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
             more cinematic glow without the harsh "halo" look. */}
         <EffectComposer enableNormalPass={false} multisampling={4}>
           <Bloom
-            intensity={0.5}
-            luminanceThreshold={0.42}
+            intensity={0.62}
+            luminanceThreshold={0.32}
             luminanceSmoothing={0.9}
             mipmapBlur
             radius={0.7}

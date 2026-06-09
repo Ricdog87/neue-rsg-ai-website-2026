@@ -9,9 +9,9 @@ interface ScrollSlideProps {
 }
 
 const HIDDEN: Record<string, string> = {
-  up: 'translate3d(0, 76px, 0) scale(0.985)',
-  left: 'translate3d(-92px, 0, 0) scale(0.985)',
-  right: 'translate3d(92px, 0, 0) scale(0.985)',
+  up: 'translate3d(0, 100px, 0) scale(0.975)',
+  left: 'translate3d(-120px, 0, 0) scale(0.975)',
+  right: 'translate3d(120px, 0, 0) scale(0.975)',
 }
 
 /**

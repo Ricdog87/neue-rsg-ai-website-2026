@@ -38,7 +38,9 @@ function initials(name: string) {
   return name.split(/\s+/).map((p) => p[0]).slice(0, 2).join('').toUpperCase();
 }
 
-function ReviewCard({ r }: { r: GoogleReview }) {
+function ReviewCard({ r, en }: { r: GoogleReview; en?: boolean }) {
+  const [showOriginal, setShowOriginal] = useState(false);
+  const body = showOriginal && r.original ? r.original : r.text;
   return (
     <article className="group relative flex w-[340px] shrink-0 flex-col rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))]/90 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--accent))/45] hover:shadow-[0_24px_60px_-24px_hsl(var(--accent)/0.5)]">
       {/* gradient glow on hover */}
@@ -74,7 +76,16 @@ function ReviewCard({ r }: { r: GoogleReview }) {
         <GoogleG className="h-4 w-4 shrink-0 opacity-80" />
       </div>
 
-      <p className="relative mt-4 line-clamp-5 text-[0.9rem] leading-[1.6] text-[hsl(var(--muted))]">{r.text}</p>
+      <p className="relative mt-4 line-clamp-5 text-[0.9rem] leading-[1.6] text-[hsl(var(--muted))]">{body}</p>
+      {r.original && (
+        <button
+          type="button"
+          onClick={() => setShowOriginal((v) => !v)}
+          className="relative mt-3 self-start font-mono text-[0.6rem] uppercase tracking-[0.16em] text-[hsl(var(--subtle))] transition-colors hover:text-[hsl(var(--accent))]"
+        >
+          {showOriginal ? (en ? 'Show translation' : 'Übersetzung') : (en ? 'Show original' : 'Original anzeigen')}
+        </button>
+      )}
 
       <Quote aria-hidden className="absolute bottom-4 right-5 h-5 w-5 text-[hsl(var(--accent))/20]" />
     </article>
@@ -82,21 +93,21 @@ function ReviewCard({ r }: { r: GoogleReview }) {
 }
 
 /** One infinite-scrolling row. Duplicated content loops seamlessly. */
-function MarqueeRow({ items, duration, reverse }: { items: GoogleReview[]; duration: number; reverse?: boolean }) {
+function MarqueeRow({ items, duration, reverse, en }: { items: GoogleReview[]; duration: number; reverse?: boolean; en?: boolean }) {
   return (
     <div className="group/row relative flex overflow-hidden">
       <div
         className="flex shrink-0 gap-4 pr-4 [animation-play-state:running] group-hover/row:[animation-play-state:paused] motion-reduce:[animation:none]"
         style={{ animation: `marquee ${duration}s linear infinite`, animationDirection: reverse ? 'reverse' : 'normal' }}
       >
-        {items.map((r, i) => (<ReviewCard key={'a' + i} r={r} />))}
+        {items.map((r, i) => (<ReviewCard key={'a' + i} r={r} en={en} />))}
       </div>
       <div
         aria-hidden
         className="flex shrink-0 gap-4 pr-4 [animation-play-state:running] group-hover/row:[animation-play-state:paused] motion-reduce:[animation:none]"
         style={{ animation: `marquee ${duration}s linear infinite`, animationDirection: reverse ? 'reverse' : 'normal' }}
       >
-        {items.map((r, i) => (<ReviewCard key={'b' + i} r={r} />))}
+        {items.map((r, i) => (<ReviewCard key={'b' + i} r={r} en={en} />))}
       </div>
     </div>
   );
@@ -147,7 +158,7 @@ export function ReviewsMarquee({ data, en = false }: { data: GoogleReviewsData; 
   return (
     <section
       id="reviews"
-      className="relative overflow-hidden border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/85 py-20 backdrop-blur-[2px] md:py-28"
+      className="relative overflow-hidden py-20 md:py-28"
     >
       {/* ambient glow */}
       <div
@@ -206,8 +217,8 @@ export function ReviewsMarquee({ data, en = false }: { data: GoogleReviewsData; 
           className="relative mt-12 space-y-4"
           style={{ maskImage: 'linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)', WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)' }}
         >
-          <MarqueeRow items={rowA} duration={Math.max(28, rowA.length * 9)} />
-          {rows && <MarqueeRow items={rowB} duration={Math.max(32, rowB.length * 10)} reverse />}
+          <MarqueeRow items={rowA} duration={Math.max(28, rowA.length * 9)} en={en} />
+          {rows && <MarqueeRow items={rowB} duration={Math.max(32, rowB.length * 10)} reverse en={en} />}
         </div>
 
         <div className="mt-10 text-center">

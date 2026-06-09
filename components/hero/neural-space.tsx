@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, MeshTransmissionMaterial, Points, PointMaterial, Stars, Environment, Lightformer } from '@react-three/drei';
+import { Points, PointMaterial, Stars } from '@react-three/drei';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
@@ -47,7 +47,7 @@ function DustField() {
     <Points ref={ref} positions={positions} stride={3} frustumCulled>
       <PointMaterial
         transparent
-        color="#cdb8ff"
+        color="#bfeae6"
         size={0.015}
         sizeAttenuation
         depthWrite={false}
@@ -70,7 +70,7 @@ function NeuralNetwork() {
 
   // Build a constellation of AI "agent" nodes
   const { nodes, nodePositions, sizes, baseSizes } = useMemo(() => {
-    const N = 28;
+    const N = 40;
     const out: Node[] = [];
     const positions = new Float32Array(N * 3);
     const sz = new Float32Array(N);
@@ -175,7 +175,7 @@ function NeuralNetwork() {
       <lineSegments ref={linesRef} geometry={lineGeometry}>
         <lineBasicMaterial
           attach="material"
-          color="#a855f7"
+          color="#22e0d0"
           transparent
           opacity={0.28}
           depthWrite={false}
@@ -197,8 +197,8 @@ function NeuralNetwork() {
           depthWrite={false}
           blending={THREE.AdditiveBlending}
           uniforms={{
-            uColor: { value: new THREE.Color('#b4a0ff') },
-            uAccent: { value: new THREE.Color('#3a1ba0') },
+            uColor: { value: new THREE.Color('#bff3ec') },
+            uAccent: { value: new THREE.Color('#0b5f57') },
           }}
           vertexShader={/* glsl */ `
             attribute float size;
@@ -249,10 +249,10 @@ function NebulaPulse() {
         transparent
         uniforms={{
           uTime: { value: 0 },
-          uDeep: { value: new THREE.Color('#03020c') }, // near-black space
-          uIndigo: { value: new THREE.Color('#0b0a20') }, // deep indigo bed
-          uViolet: { value: new THREE.Color('#4d28d4') }, // brand violet ribbons
-          uCyan: { value: new THREE.Color('#1ce0cb') }, // brand cyan crests
+          uDeep: { value: new THREE.Color('#040405') }, // near-black space
+          uIndigo: { value: new THREE.Color('#0a0c0c') }, // deep indigo bed
+          uViolet: { value: new THREE.Color('#0f3a37') }, // brand violet ribbons
+          uCyan: { value: new THREE.Color('#17c4b3') }, // brand cyan crests
         }}
         vertexShader={/* glsl */ `
           varying vec2 vUv;
@@ -439,7 +439,7 @@ function FarDust() {
     <Points ref={ref} positions={positions} stride={3} frustumCulled>
       <PointMaterial
         transparent
-        color="#9d8de8"
+        color="#9fb4b0"
         size={0.012}
         sizeAttenuation
         depthWrite={false}
@@ -485,7 +485,7 @@ function GalaxySpiral() {
       <Points ref={ref} positions={positions} stride={3} frustumCulled>
         <PointMaterial
           transparent
-          color="#c4b5fd"
+          color="#bfeae6"
           size={0.025}
           sizeAttenuation
           depthWrite={false}
@@ -497,7 +497,7 @@ function GalaxySpiral() {
       <mesh>
         <sphereGeometry args={[0.35, 24, 24]} />
         <meshBasicMaterial
-          color="#ffe9c2"
+          color="#e9f3f1"
           transparent
           opacity={0.55}
           blending={THREE.AdditiveBlending}
@@ -581,7 +581,7 @@ function ShootingStars() {
         >
           <planeGeometry args={[1.2, 0.025]} />
           <meshBasicMaterial
-            color="#e2d6ff"
+            color="#eafffb"
             transparent
             opacity={0}
             blending={THREE.AdditiveBlending}
@@ -618,84 +618,6 @@ if (typeof window !== 'undefined') {
   window.addEventListener('scroll', update, { passive: true });
 }
 
-function GlassCenterpiece() {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    const s = scrollSignal.value;
-    // Smoothstep for a hand-keyframed feel
-    const e = s * s * (3 - 2 * s);
-    const t = state.clock.elapsedTime;
-
-    // Position: drift from right side, deeper into space as you scroll
-    meshRef.current.position.x = 3.4 - e * 2.2; // → 1.2
-    meshRef.current.position.y = 0.3 + e * 0.8; // → 1.1
-    meshRef.current.position.z = -e * 5.0; // → -5.0
-
-    // Scale: shrink as it recedes
-    const sc = 1.05 - e * 0.5; // 1.05 → 0.55
-    meshRef.current.scale.setScalar(sc);
-
-    // Rotation: slow + steady (no spin acceleration — premium = calm)
-    meshRef.current.rotation.y = t * 0.12 + e * 0.4;
-    meshRef.current.rotation.x = Math.sin(t * 0.08) * 0.15;
-
-    // Material params on scroll — kept SUBTLE (no distortion ramp,
-    // no chromatic-aberration ramp — those made the shape read as
-    // 'broken glass'. Just thickness/iridescence shift.)
-    const mat = meshRef.current.material as unknown as {
-      thickness?: number;
-      iridescence?: number;
-    };
-    if (mat) {
-      mat.thickness = 1.4 - e * 0.5;
-    }
-  });
-
-  return (
-    <Float
-      speed={0.9}
-      rotationIntensity={0.18}
-      floatIntensity={0.45}
-      floatingRange={[-0.12, 0.12]}
-    >
-      <group ref={meshRef} position={[3.4, 0.3, 0]} scale={1.05}>
-        {/* Outer glass sphere — clean, photorealistic, no distortion.
-            Higher poly + transmission resolution + samples = a smooth,
-            premium refraction with no faceting or shimmer. */}
-        <mesh>
-          {/* Faceted brand crystal — a designed gem, not a chrome ball.
-              Refracts the cyan/violet environment in brand colours. */}
-          <icosahedronGeometry args={[1.0, 8]} />
-          <MeshTransmissionMaterial
-            backside
-            backsideThickness={0.4}
-            samples={16}
-            resolution={1024}
-            backsideResolution={512}
-            transmission={1}
-            roughness={0.06}
-            thickness={1.5}
-            ior={1.5}
-            chromaticAberration={0.04}
-            anisotropy={0.18}
-            anisotropicBlur={0.5}
-            distortion={0}
-            distortionScale={0}
-            temporalDistortion={0}
-            attenuationDistance={1.4}
-            attenuationColor="#27e6d6"
-            color="#bfe9f5"
-            clearcoat={1}
-            clearcoatRoughness={0.08}
-          />
-        </mesh>
-      </group>
-    </Float>
-  );
-}
-
 function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: number }> }) {
   const groupRef = useRef<THREE.Group>(null);
 
@@ -711,54 +633,7 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
   return (
     <>
       <CameraDirector pointer={pointer} />
-      {/* Procedural studio environment — gives the glass realistic
-          reflections WITHOUT fetching an external .hdr (which used to
-          crash the whole page when the CDN was unreachable). Baked once
-          (frames={1}) into a small cubemap for performance. Lightformers
-          are tinted in brand purple/cyan so the glass picks up the RSG
-          palette in its refractions. */}
-      <Environment resolution={256} frames={1} environmentIntensity={1.1}>
-        <color attach="background" args={['#060512']} />
-        {/* Cyan key from above — the crystal catches a bright brand-cyan crest */}
-        <Lightformer
-          intensity={2.8}
-          color="#2af0dc"
-          position={[0, 5, -3]}
-          rotation={[Math.PI / 2, 0, 0]}
-          scale={[12, 12, 1]}
-        />
-        {/* Violet rim — left (brand purple wash through the glass) */}
-        <Lightformer
-          intensity={3.0}
-          color="#8b5cf6"
-          position={[-6, 1, -1]}
-          rotation={[0, Math.PI / 2, 0]}
-          scale={[10, 8, 1]}
-        />
-        {/* Deep indigo fill — right */}
-        <Lightformer
-          intensity={2.4}
-          color="#6d28d9"
-          position={[6, -1, -1]}
-          rotation={[0, -Math.PI / 2, 0]}
-          scale={[10, 8, 1]}
-        />
-        {/* Small bright accent streak — one crisp specular catch, kept subtle */}
-        <Lightformer
-          form="ring"
-          intensity={1.6}
-          color="#d6f7ff"
-          position={[1, 4, 2]}
-          scale={[3, 3, 1]}
-        />
-      </Environment>
-      {/* Two-point key/fill lighting — brand-tinted (violet key + cyan fill)
-          so the crystal reads as a glowing cyan/violet gem, never white. */}
-      <ambientLight intensity={0.3} color="#7fe9ff" />
-      <directionalLight position={[4, 6, 4]} intensity={1.7} color="#b58cff" />
-      <directionalLight position={[-3, -2, 2]} intensity={1.0} color="#2af0dc" />
 
-      <GlassCenterpiece />
 
       <group ref={groupRef}>
         {/* Deep background — nebula plane (the colour bed) */}
@@ -818,7 +693,7 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 90% 70% at 72% 20%, rgba(20,240,208,0.10) 0%, transparent 46%), radial-gradient(ellipse at 42% 42%, #2a1466 0%, #0a0820 48%, #03020c 100%)',
+            'radial-gradient(ellipse 90% 70% at 72% 20%, rgba(20,240,208,0.08) 0%, transparent 46%), radial-gradient(ellipse at 42% 42%, #0c1413 0%, #070908 48%, #040405 100%)',
         }}
       />
     );
@@ -829,7 +704,7 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
       aria-hidden
       className="absolute inset-0"
       onPointerMove={onMove}
-      style={{ background: '#03020c' }}
+      style={{ background: '#040405' }}
     >
       <Canvas
         dpr={[1.5, 2]}
@@ -842,7 +717,7 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
           depth: true,
         }}
       >
-        <color attach="background" args={['#03020c']} />
+        <color attach="background" args={['#040405']} />
         <Scene pointer={pointer} />
         {/* Multisampled AA + a softer, wider bloom = cleaner edges and a
             more cinematic glow without the harsh "halo" look. */}

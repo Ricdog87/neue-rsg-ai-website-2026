@@ -251,8 +251,8 @@ function NebulaPulse() {
           uTime: { value: 0 },
           uDeep: { value: new THREE.Color('#03020c') }, // near-black space
           uIndigo: { value: new THREE.Color('#0b0a20') }, // deep indigo bed
-          uViolet: { value: new THREE.Color('#3a1ba0') }, // brand violet ribbons
-          uCyan: { value: new THREE.Color('#15d6c2') }, // brand cyan crests
+          uViolet: { value: new THREE.Color('#4d28d4') }, // brand violet ribbons
+          uCyan: { value: new THREE.Color('#1ce0cb') }, // brand cyan crests
         }}
         vertexShader={/* glsl */ `
           varying vec2 vUv;
@@ -301,13 +301,13 @@ function NebulaPulse() {
             float f = fbm(p + 2.2 * q);
             float g = fbm(p * 1.6 + 3.0 * q - t * 0.4);
             vec3 col = mix(uDeep, uIndigo, smoothstep(-0.1, 0.5, f));
-            col = mix(col, uViolet, smoothstep(0.3, 0.9, f + 0.25 * q.x));
-            col = mix(col, uCyan, smoothstep(0.72, 1.08, g + 0.35 * q.y));
+            col = mix(col, uViolet, smoothstep(0.2, 0.8, f + 0.25 * q.x));
+            col = mix(col, uCyan, smoothstep(0.6, 1.0, g + 0.35 * q.y));
             float glow = smoothstep(1.15, 0.0, distance(uv, vec2(0.80, 0.74)));
-            col += uCyan * 0.12 * glow;
-            col += uViolet * 0.10 * smoothstep(1.1, 0.0, distance(uv, vec2(0.20, 0.16)));
+            col += uCyan * 0.18 * glow;
+            col += uViolet * 0.15 * smoothstep(1.1, 0.0, distance(uv, vec2(0.20, 0.16)));
             float vig = smoothstep(1.3, 0.2, length(vUv - 0.5));
-            col *= 0.30 + 0.92 * vig;
+            col *= 0.46 + 0.95 * vig;
             gl_FragColor = vec4(col, 1.0);
           }
         `}

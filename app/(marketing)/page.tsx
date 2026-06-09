@@ -8,6 +8,7 @@ import { GoogleReviews } from '@/components/sections/google-reviews';
 import { ContactSection } from '@/components/sections/contact-section';
 import { ScrollSlide } from '@/components/ui/scroll-slide';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
 import { faqPageLd, ldJson } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
 import { CitiesSection } from '@/components/sections/cities-section'
@@ -53,16 +54,22 @@ export default function HomePage() {
       </section>
       <Hero />
       <GoogleReviews />
-      <ScrollZoom>
-        <PricingSnapshot />
-      </ScrollZoom>
-      <ScrollSlide direction="right">
-        <VoiceRoiCalculator />
-      </ScrollSlide>
+      <ScrollParallax x={-10}>
+        <ScrollZoom>
+          <PricingSnapshot />
+        </ScrollZoom>
+      </ScrollParallax>
+      <ScrollParallax x={12}>
+        <ScrollSlide direction="right">
+          <VoiceRoiCalculator />
+        </ScrollSlide>
+      </ScrollParallax>
       <TechMarquee />
-      <ScrollZoom>
-        <TrustStrip />
-      </ScrollZoom>
+      <ScrollParallax x={-10}>
+        <ScrollZoom>
+          <TrustStrip />
+        </ScrollZoom>
+      </ScrollParallax>
       <ScrollZoom>
         <ContactSection />
       </ScrollZoom>

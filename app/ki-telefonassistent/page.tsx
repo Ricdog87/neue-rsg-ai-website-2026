@@ -144,7 +144,10 @@ export default function KiTelefonassistentPage() {
 
       {/* Hero */}
       <section className="relative px-6 pb-12 pt-[150px] lg:px-10 lg:pt-[180px]">
-        <div className="relative mx-auto max-w-[1280px]">
+        {/* Bottom fade — blends the transparent (aurora) hero smoothly into
+            the next section instead of a hard teal->dark edge. */}
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-44 bg-gradient-to-b from-transparent to-[hsl(var(--bg))]" />
+        <div className="relative z-[2] mx-auto max-w-[1280px]">
           <div className="grid grid-cols-12 gap-x-6 gap-y-8">
             <div className="col-span-12 md:col-span-7">
               <div className="inline-flex items-center gap-2 rounded-full border border-[hsl(174_100%_50%/0.4)] bg-[hsl(174_100%_50%/0.08)] px-3 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(174_100%_70%)]">
@@ -189,7 +192,7 @@ export default function KiTelefonassistentPage() {
 
       {/* Three services */}
       <ScrollZoom>
-      <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 px-6 py-20 backdrop-blur-[2px] md:py-24 lg:px-10">
+      <section className="relative bg-[hsl(var(--bg))]/82 px-6 py-20 backdrop-blur-[2px] md:py-24 lg:px-10">
         <div className="mx-auto max-w-[1280px]">
           <div className="grid grid-cols-12 gap-x-6 gap-y-6">
             <div className="col-span-12 md:col-span-5">

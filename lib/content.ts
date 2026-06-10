@@ -81,7 +81,7 @@ export const hero = {
   subStatement: 'Live in vier Wochen — nicht in vier Quartalen.',
   subline:
     'Deine KI-Telefonassistentin nimmt jeden Anruf an, qualifiziert Leads und bucht Termine — 24/7, in natürlichem Deutsch, eingebunden in dein CRM. Aufnahme aktuell für Kohorte 06 (Q3 2026).',
-  ctaPrimary: 'Erstgespräch',
+  ctaPrimary: 'Kostenloses Erstgespräch',
   ctaSecondary: 'Telefonassistentin ansehen',
   trustChips: [
     '4 Wochen bis Live',

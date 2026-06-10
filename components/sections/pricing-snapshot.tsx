@@ -54,6 +54,13 @@ export function PricingSnapshot() {
             <h2 className="mt-3 font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {en ? 'Three plans. One call to get started.' : 'Drei Pakete. Ein Anruf reicht zum Start.'}
             </h2>
+            <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-[hsl(var(--accent))/30] bg-[hsl(var(--accent-soft))]/10 px-3 py-1.5 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[hsl(var(--accent))]">
+              <span className="relative flex h-1.5 w-1.5">
+                <span aria-hidden className="absolute inline-flex h-1.5 w-1.5 animate-ping rounded-full bg-[hsl(var(--accent))] opacity-70" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))]" />
+              </span>
+              {en ? 'Cohort 06 · Q3 2026 · only 3 of 5 slots left' : 'Kohorte 06 · Q3 2026 · nur noch 3 von 5 Plätzen'}
+            </p>
           </div>
           <div className="col-span-12 flex md:col-span-5 md:items-end md:justify-end">
             <Link

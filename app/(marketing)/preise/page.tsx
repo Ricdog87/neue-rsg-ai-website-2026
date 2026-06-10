@@ -13,12 +13,12 @@ import { FAQ } from '@/lib/faq';
 export const metadata: Metadata = {
   title: 'Preise — KI-Telefonassistentin & Automatisierung',
   description:
-    'Solo ab 199 € · Team 499 € · Scale auf Anfrage. Plus Automatisierungs-Pakete ab 2.500 €. Alle Preise netto, transparent, monatlich kündbar.',
+    'Solo ab 199 € · AI Account Manager 499 € · Scale auf Anfrage. Plus Automatisierungs-Pakete ab 2.500 €. Alle Preise netto, transparent, monatlich kündbar.',
   alternates: { canonical: '/preise' },
   openGraph: {
     title: 'Preise · RSG AI — KI-Telefonassistentin',
     description:
-      'Transparente Preise für deine KI-Telefonassistentin. Solo / Team / Scale + Automatisierungs-Pakete.',
+      'Transparente Preise für deine KI-Telefonassistentin. Solo / AI Account Manager / Scale + Automatisierungs-Pakete.',
     type: 'website',
   },
 };

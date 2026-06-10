@@ -88,7 +88,7 @@ const FAQ = [
   },
   {
     q: 'Was kostet ein KI-Telefonassistent?',
-    a: 'Solo ab 199 €/Monat netto, Team 499 €/Monat, Scale auf Anfrage. Plus einmalige Setup-Gebühr (entfällt bei Jahresvorkasse für Solo & Team). Volle Tabelle inkl. Toggle auf /preise.',
+    a: 'Solo ab 199 €/Monat netto, AI Account Manager 499 €/Monat, Scale auf Anfrage. Plus einmalige Setup-Gebühr (entfällt bei Jahresvorkasse für Solo & AI Account Manager). Volle Tabelle inkl. Toggle auf /preise.',
   },
   {
     q: 'Ist ein KI-Telefonassistent DSGVO-konform?',

@@ -47,12 +47,12 @@ export default function KostenPage() {
         </ul>
 
         <h2 className="text-2xl font-semibold mt-10 mb-4">ROI-Rechnung: Wann lohnt sich ein KI Telefonassistent?</h2>
-        <p className="text-white/70 mb-4">Ein Vollzeit-Telefonist kostet in Deutschland ca. €35.000–45.000 brutto/Jahr. Ein KI-Telefonassistent im Team-Paket kostet €5.988/Jahr. Der Break-even liegt bei ca. 200 qualifizierten Anrufen/Monat.</p>
+        <p className="text-white/70 mb-4">Ein Vollzeit-Telefonist kostet in Deutschland ca. €35.000–45.000 brutto/Jahr. Ein KI-Telefonassistent im AI-Account-Manager-Paket kostet €5.988/Jahr. Der Break-even liegt bei ca. 200 qualifizierten Anrufen/Monat.</p>
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
           <h3 className="font-semibold mb-3">Beispielrechnung: 500 Anrufe/Monat</h3>
           <div className="space-y-2 text-sm text-white/70">
             <div className="flex justify-between"><span>Mitarbeiter (0,5 FTE)</span><span>€22.500/Jahr</span></div>
-            <div className="flex justify-between"><span>RSG AI Team-Paket</span><span>€5.988/Jahr</span></div>
+            <div className="flex justify-between"><span>RSG AI · AI Account Manager</span><span>€5.988/Jahr</span></div>
             <div className="flex justify-between border-t border-white/10 pt-2 text-white font-semibold"><span>Ersparnis</span><span>€16.512/Jahr</span></div>
           </div>
         </div>

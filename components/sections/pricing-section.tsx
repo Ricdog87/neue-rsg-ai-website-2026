@@ -15,7 +15,7 @@ type Billing = 'monthly' | 'annual';
  *   ┌─ KI-Telefonassistentin (Voice, default) ─┬─ KI-Agenten & Workflows ─┐
  *   │                                          │                          │
  *   │  Monatlich / Jährlich (−15 %)            │                          │
- *   │  [Solo 199] [Team 499 ★] [Scale →call]   │  [Workflows] [Agent]     │
+ *   │  [Solo 199] [AI Acct Mgr 499 ★] [Scale →call]   │  [Workflows] [Agent]     │
  *   └──────────────────────────────────────────┴──────────────────────────┘
  *
  * Solo/Team CTAs → /api/checkout (Stripe — skeleton, ENV-driven).
@@ -47,7 +47,7 @@ export function PricingSection() {
           <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
             <MaskWipe delay={0.2}>
               <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-                Solo/Team starten direkt — Setup-Gebühr ist einmalig auf der
+                Solo/AI Account Manager starten direkt — Setup-Gebühr ist einmalig auf der
                 ersten Rechnung. Scale + Custom-Workflows sind Sales-Led und
                 immer mit klarem Festpreis vor dem ersten Commit.
               </p>
@@ -262,7 +262,7 @@ function VoiceCard({
         </span>
         {isReco && (
           <span className="inline-flex items-center gap-1.5 rounded-full border border-[hsl(var(--accent))/40] bg-[hsl(var(--accent))/10] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
-            ★ Beliebt
+            ★ Bestseller
           </span>
         )}
       </header>

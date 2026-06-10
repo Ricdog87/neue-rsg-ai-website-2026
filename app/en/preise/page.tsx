@@ -10,7 +10,7 @@ import { site } from '@/lib/content';
 export const metadata: Metadata = {
   title: 'Pricing — AI phone assistant & automation',
   description:
-    'Solo from €199 · Team €499 · Scale on request. All prices net, transparent, cancel monthly.',
+    'Solo from €199 · AI Account Manager €499 · Scale on request. All prices net, transparent, cancel monthly.',
   alternates: {
     canonical: 'https://www.rsg-ai.de/en/preise',
     languages: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Pricing · RSG AI — AI phone assistant',
-    description: 'Transparent pricing for your AI phone assistant. Solo / Team / Scale.',
+    description: 'Transparent pricing for your AI phone assistant. Solo / AI Account Manager / Scale.',
     type: 'website',
   },
 };

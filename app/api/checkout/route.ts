@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 /**
- * Stripe Checkout Session — Voice-Tiers (Solo / Team).
+ * Stripe Checkout Session — Voice-Tiers (Solo / AI Account Manager). Interner Key bleibt 'team'.
  *
  * Hardware to wire when going live (set in Vercel ENV):
  *   STRIPE_SECRET_KEY

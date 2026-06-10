@@ -37,6 +37,7 @@ export const EN_AVAILABLE_PATHS = new Set<string>([
   '/impressum',
   '/datenschutz',
   '/agb',
+  '/roi-checkliste-ki-agent',
 ]);
 
 /** Map a path to its counterpart in the other locale (for the switcher). */

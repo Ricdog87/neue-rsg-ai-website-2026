@@ -13,6 +13,10 @@ import { faqPageLd, ldJson } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
 import { CitiesSection } from '@/components/sections/cities-section'
 import { GuaranteeStrip } from '@/components/sections/guarantee-strip';
+import { SocialProofBar } from '@/components/sections/social-proof-bar';
+import { ComparisonSection } from '@/components/sections/comparison-section';
+import { ObjectionFaq } from '@/components/sections/objection-faq';
+import { ExitIntent } from '@/components/effects/exit-intent';
 
 /**
  * Homepage — Focused funnel, not encyclopedia.
@@ -54,6 +58,11 @@ export default function HomePage() {
         </div>
       </section>
       <Hero />
+      <ScrollParallax x={-12}>
+        <ScrollSlide direction="up">
+          <SocialProofBar />
+        </ScrollSlide>
+      </ScrollParallax>
       <ScrollParallax x={10}>
         <ScrollSlide direction="left">
           <GoogleReviews />
@@ -69,6 +78,11 @@ export default function HomePage() {
           <VoiceRoiCalculator />
         </ScrollSlide>
       </ScrollParallax>
+      <ScrollParallax x={-12}>
+        <ScrollSlide direction="up">
+          <ComparisonSection />
+        </ScrollSlide>
+      </ScrollParallax>
       <ScrollParallax x={-10}>
         <ScrollSlide direction="up">
           <TechMarquee />
@@ -78,6 +92,11 @@ export default function HomePage() {
         <ScrollZoom>
           <TrustStrip />
         </ScrollZoom>
+      </ScrollParallax>
+      <ScrollParallax x={14}>
+        <ScrollSlide direction="up">
+          <ObjectionFaq />
+        </ScrollSlide>
       </ScrollParallax>
       <ScrollParallax x={10}>
         <ScrollSlide direction="up">
@@ -94,6 +113,7 @@ export default function HomePage() {
           <CitiesSection />
         </ScrollSlide>
       </ScrollParallax>
+      <ExitIntent />
     </>
   );
 }

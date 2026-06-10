@@ -363,16 +363,20 @@ export function VoiceConsole({ title }: { title?: string | null }) {
           <span aria-hidden className="absolute left-1 bottom-1 h-1.5 w-1.5 border-l border-b border-[hsl(174_100%_50%/0.45)]" />
           <span aria-hidden className="absolute right-1 bottom-1 h-1.5 w-1.5 border-r border-b border-[hsl(174_100%_50%/0.45)]" />
 
-          {/* Measurement ticks above visualizer */}
-          <div aria-hidden className="mb-2 flex items-center justify-between font-mono text-[0.55rem] uppercase tracking-[0.18em] text-white/30">
-            <span>CH-01</span>
-            <span className="flex items-center gap-2">
-              <span className="h-px w-3 bg-white/15" />
-              SCAN
-              <span className="h-px w-3 bg-white/15" />
-            </span>
-            <span>22.05K</span>
-          </div>
+          {/* Measurement ticks — nur im KITT-Modus (Desktop). Im Widget-Modus
+              würde der leere Frame mit dem floatenden ElevenLabs-Launcher
+              kollidieren. */}
+          {!useWidget && (
+            <div aria-hidden className="mb-2 flex items-center justify-between font-mono text-[0.55rem] uppercase tracking-[0.18em] text-white/30">
+              <span>CH-01</span>
+              <span className="flex items-center gap-2">
+                <span className="h-px w-3 bg-white/15" />
+                SCAN
+                <span className="h-px w-3 bg-white/15" />
+              </span>
+              <span>22.05K</span>
+            </div>
+          )}
 
           {AGENT_ID && mounted ? (
             useWidget ? (

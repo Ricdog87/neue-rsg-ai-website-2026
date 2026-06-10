@@ -70,12 +70,15 @@ export function ComparisonSection() {
           </p>
         </div>
 
+        <p className="mt-10 font-mono text-[0.625rem] uppercase tracking-[0.2em] text-[hsl(var(--subtle))] md:hidden">
+          {en ? '← swipe to compare →' : '← seitlich wischen zum Vergleichen →'}
+        </p>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-8% 0px' }}
           transition={{ duration: 0.6 }}
-          className="mt-12 overflow-x-auto"
+          className="mt-3 overflow-x-auto md:mt-12"
         >
           <div className="min-w-[760px]">
             {/* Header */}

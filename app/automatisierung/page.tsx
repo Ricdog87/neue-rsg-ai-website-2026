@@ -9,6 +9,8 @@ import { UspSection } from '@/components/sections/usp-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import { ScrollSlide } from '@/components/ui/scroll-slide';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
+import { GuaranteeStrip } from '@/components/sections/guarantee-strip';
+import { GoogleReviews } from '@/components/sections/google-reviews';
 
 export const metadata: Metadata = {
   title: 'KI-Automatisierung & KI-Agenten für den Mittelstand',
@@ -101,6 +103,10 @@ export default function AutomatisierungPage() {
       <ScrollSlide direction="right">
         <UspSection />
       </ScrollSlide>
+      <GoogleReviews />
+      <ScrollZoom>
+        <GuaranteeStrip />
+      </ScrollZoom>
       <ScrollZoom>
         <ContactSection />
       </ScrollZoom>

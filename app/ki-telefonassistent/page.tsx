@@ -20,6 +20,9 @@ import { VoiceConsole } from '@/components/sections/voice-console';
 import { CitiesSection } from '@/components/sections/cities-section';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
 import { ScrollSlide } from '@/components/ui/scroll-slide';
+import { ComparisonSection } from '@/components/sections/comparison-section';
+import { GuaranteeStrip } from '@/components/sections/guarantee-strip';
+import { GoogleReviews } from '@/components/sections/google-reviews';
 
 export const metadata: Metadata = {
   title: 'KI-Telefonassistent — Inbound · Outbound · Termine in unter 0,4 s',
@@ -357,7 +360,17 @@ export default function KiTelefonassistentPage() {
       </section>
       </ScrollSlide>
 
+      <ScrollSlide direction="up">
+        <ComparisonSection />
+      </ScrollSlide>
+
+      <GoogleReviews />
+
       <CitiesSection />
+
+      <ScrollZoom>
+        <GuaranteeStrip />
+      </ScrollZoom>
 
       {/* Final CTA */}
       <ScrollZoom>

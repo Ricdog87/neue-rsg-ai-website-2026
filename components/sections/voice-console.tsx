@@ -177,7 +177,7 @@ function ConsoleControls() {
       return;
     }
     try {
-      await startSession({ agentId: AGENT_ID as string });
+      await startSession({ agentId: AGENT_ID as string, connectionType: 'webrtc' });
     } catch {
       setErr(true);
     }

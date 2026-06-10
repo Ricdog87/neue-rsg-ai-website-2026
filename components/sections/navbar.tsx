@@ -83,7 +83,7 @@ export function Navbar() {
         <div
           aria-hidden
           className="absolute inset-x-0 bottom-0 h-px"
-          style={{ background: 'linear-gradient(90deg, transparent 0%, hsl(174 100% 50% / 0.4) 20%, hsl(271 91% 65% / 0.4) 50%, hsl(174 100% 50% / 0.4) 80%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(90deg, transparent 0%, hsl(174 100% 50% / 0.4) 20%, hsl(174 90% 42% / 0.4) 50%, hsl(174 100% 50% / 0.4) 80%, transparent 100%)' }}
         />
       </div>
 
@@ -140,7 +140,7 @@ export function Navbar() {
               className="group relative inline-flex h-10 items-center gap-2 overflow-hidden rounded-full bg-white/[0.04] px-5 font-display text-[0.85rem] font-medium text-white backdrop-blur-sm transition-all hover:bg-white/[0.08]"
               style={{ border: '1px solid rgba(255,255,255,0.12)' }}
             >
-              <span aria-hidden className="absolute inset-0 -translate-x-full opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" style={{ background: 'linear-gradient(90deg, hsl(271 91% 65%) 0%, hsl(220 90% 55%) 50%, hsl(174 100% 50%) 100%)' }} />
+              <span aria-hidden className="absolute inset-0 -translate-x-full opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" style={{ background: 'linear-gradient(90deg, hsl(174 90% 42%) 0%, hsl(220 90% 55%) 50%, hsl(174 100% 50%) 100%)' }} />
               <span className="relative z-10">{ctaLabel}</span>
               <ArrowUpRight className="relative z-10 h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>

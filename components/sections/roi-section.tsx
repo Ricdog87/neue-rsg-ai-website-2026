@@ -552,7 +552,7 @@ export function RoiSection() {
                           <div className="flex items-baseline gap-2">
                             <span
                               className="font-display text-[2.5rem] font-medium leading-none tracking-tight text-[hsl(var(--accent))]"
-                              style={{ textShadow: '0 0 25px hsl(271 91% 65% / 0.4)' }}
+                              style={{ textShadow: '0 0 25px hsl(174 90% 42% / 0.4)' }}
                             >
                               {eq.count}
                             </span>

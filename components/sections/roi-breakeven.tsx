@@ -99,7 +99,7 @@ export function BreakevenChart({ scaledSavings }: Props) {
               onClick={() => setTierId(t.id)}
               className={`rounded-full px-4 py-2 font-mono text-[0.75rem] font-medium transition ${
                 t.id === tierId
-                  ? 'bg-[hsl(var(--accent))] text-white shadow-[0_4px_16px_-4px_hsl(271_91%_65%/0.5)]'
+                  ? 'bg-[hsl(var(--accent))] text-white shadow-[0_4px_16px_-4px_hsl(174_90%_42%/0.5)]'
                   : 'text-[hsl(var(--muted))] hover:text-[hsl(var(--fg))]'
               }`}
             >

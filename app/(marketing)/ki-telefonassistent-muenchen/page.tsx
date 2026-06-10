@@ -42,7 +42,7 @@ export default function MuenchenPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[hsl(var(--bg))] px-6 pb-24 pt-32 md:pt-40">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(breadcrumbLd([{ name: 'RSG AI', url: site.url }, { name: 'KI-Telefonassistent München', url: `${site.url}/ki-telefonassistent-muenchen` }])) }} />
-      <div aria-hidden className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full opacity-25 blur-[140px]" style={{ background: 'radial-gradient(circle, hsl(271 91% 65% / 0.5), transparent 65%)' }} />
+      <div aria-hidden className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full opacity-25 blur-[140px]" style={{ background: 'radial-gradient(circle, hsl(174 90% 42% / 0.5), transparent 65%)' }} />
       <div aria-hidden className="pointer-events-none absolute left-0 bottom-0 h-[400px] w-[400px] rounded-full opacity-20 blur-[140px]" style={{ background: 'radial-gradient(circle, hsl(174 100% 50% / 0.5), transparent 65%)' }} />
       <div className="relative mx-auto max-w-5xl">
         <Link href="/" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-[hsl(var(--neon))] transition hover:text-[hsl(var(--fg))]">
@@ -102,12 +102,12 @@ export default function MuenchenPage() {
             ))}
           </div>
         </section>
-        <section className="mt-20 overflow-hidden rounded-3xl border border-[hsl(var(--accent))/30] p-8 md:p-12" style={{ background: 'linear-gradient(155deg, hsl(271 91% 65% / 0.10) 0%, hsl(174 100% 50% / 0.05) 60%, hsl(240 14% 5%) 100%)', boxShadow: '0 40px 100px -30px hsl(271 91% 65% / 0.45)' }}>
+        <section className="mt-20 overflow-hidden rounded-3xl border border-[hsl(var(--accent))/30] p-8 md:p-12" style={{ background: 'linear-gradient(155deg, hsl(174 90% 42% / 0.10) 0%, hsl(174 100% 50% / 0.05) 60%, hsl(240 14% 5%) 100%)', boxShadow: '0 40px 100px -30px hsl(174 90% 42% / 0.45)' }}>
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-[hsl(var(--neon))]">Jetzt Demo anfragen</p>
           <h2 className="mt-3 font-display text-3xl tracking-tight md:text-5xl">30 Minuten Live-Demo. Ihr KI-Agent antwortet ab Woche 2.</h2>
           <p className="mt-5 max-w-2xl text-sm text-[hsl(var(--muted))] md:text-base">Wir zeigen Ihnen live, wie Ihr KI-Telefonassistent Anrufe annimmt, qualifiziert und Termine bucht — speziell für Ihr Münchner Unternehmen.</p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a href={site.cta.meetingUrl} className="inline-flex items-center gap-2 rounded-full bg-[hsl(var(--accent))] px-6 py-3.5 text-sm font-bold text-white transition hover:opacity-90" style={{ boxShadow: '0 25px 60px -15px hsl(271 91% 65% / 0.7)' }}>
+            <a href={site.cta.meetingUrl} className="inline-flex items-center gap-2 rounded-full bg-[hsl(var(--accent))] px-6 py-3.5 text-sm font-bold text-white transition hover:opacity-90" style={{ boxShadow: '0 25px 60px -15px hsl(174 90% 42% / 0.7)' }}>
               Demo anfragen<ArrowRight className="h-4 w-4" />
             </a>
             <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-semibold text-[hsl(var(--fg))] transition hover:border-[hsl(var(--neon))/40] hover:bg-[hsl(var(--neon))/8]">

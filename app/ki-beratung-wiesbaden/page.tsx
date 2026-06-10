@@ -72,7 +72,7 @@ export default function KIBeratungWiesbadenPage() {
       <div
         aria-hidden
         className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full opacity-25 blur-[140px]"
-        style={{ background: 'radial-gradient(circle, hsl(271 91% 65% / 0.5), transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, hsl(174 90% 42% / 0.5), transparent 65%)' }}
       />
       <div
         aria-hidden
@@ -221,8 +221,8 @@ export default function KIBeratungWiesbadenPage() {
           className="mt-20 overflow-hidden rounded-3xl border border-[hsl(var(--accent))/30] p-8 md:p-12"
           style={{
             background:
-              'linear-gradient(155deg, hsl(271 91% 65% / 0.10) 0%, hsl(174 100% 50% / 0.05) 60%, hsl(240 14% 5%) 100%)',
-            boxShadow: '0 40px 100px -30px hsl(271 91% 65% / 0.45)'
+              'linear-gradient(155deg, hsl(174 90% 42% / 0.10) 0%, hsl(174 100% 50% / 0.05) 60%, hsl(240 14% 5%) 100%)',
+            boxShadow: '0 40px 100px -30px hsl(174 90% 42% / 0.45)'
           }}
         >
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-[hsl(var(--neon))]">
@@ -240,7 +240,7 @@ export default function KIBeratungWiesbadenPage() {
             <a
               href={site.cta.meetingUrl}
               className="inline-flex items-center gap-2 rounded-full bg-[hsl(var(--accent))] px-6 py-3.5 text-sm font-bold text-white transition hover:opacity-90"
-              style={{ boxShadow: '0 25px 60px -15px hsl(271 91% 65% / 0.7)' }}
+              style={{ boxShadow: '0 25px 60px -15px hsl(174 90% 42% / 0.7)' }}
             >
               Termin buchen
               <ArrowRight className="h-4 w-4" />

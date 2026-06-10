@@ -184,7 +184,7 @@ export default function RoiChecklistePage({
 
         {/* Header */}
         <header className="mt-12 print:mt-0">
-          <div className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))] print:text-[#a855f7]">
+          <div className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))] print:text-[#14b8a6]">
             RSG AI · Lead-Magnet · v1.0
           </div>
           <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.025em] text-[hsl(var(--fg))] print:text-black">
@@ -208,7 +208,7 @@ export default function RoiChecklistePage({
                 {block.items.map((it) => (
                   <div key={it.num} className="print:break-inside-avoid">
                     <div className="flex items-baseline gap-4">
-                      <span className="font-mono text-[0.8rem] tracking-[0.18em] text-[hsl(var(--accent))] print:text-[#a855f7]">
+                      <span className="font-mono text-[0.8rem] tracking-[0.18em] text-[hsl(var(--accent))] print:text-[#14b8a6]">
                         {it.num}
                       </span>
                       <h3 className="font-display text-[1.15rem] font-medium leading-[1.35] tracking-tight text-[hsl(var(--fg))] print:text-black">

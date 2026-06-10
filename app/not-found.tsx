@@ -71,7 +71,7 @@ export default function NotFound() {
               href="/"
               data-cursor-label="Home"
               data-sound="tick"
-              className="group inline-flex h-14 items-center gap-2 rounded-full bg-white px-7 font-display text-[0.95rem] font-medium text-[#0a0a0a] transition-shadow hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.55)]"
+              className="group inline-flex h-14 items-center gap-2 rounded-full bg-white px-7 font-display text-[0.95rem] font-medium text-[#0a0a0a] transition-shadow hover:shadow-[0_20px_50px_-10px_rgba(20,184,166,0.55)]"
             >
               <RotateCcw className="h-4 w-4 transition-transform group-hover:-rotate-90" />
               Zurück zur Werkstatt

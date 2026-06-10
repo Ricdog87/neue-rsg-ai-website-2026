@@ -22,7 +22,7 @@ export function LegalLayout({
       <div
         aria-hidden
         className="pointer-events-none absolute right-0 top-32 h-[400px] w-[400px] rounded-full opacity-20 blur-[140px]"
-        style={{ background: 'radial-gradient(circle, hsl(271 91% 65% / 0.5), transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, hsl(174 90% 42% / 0.5), transparent 65%)' }}
       />
       <div
         aria-hidden

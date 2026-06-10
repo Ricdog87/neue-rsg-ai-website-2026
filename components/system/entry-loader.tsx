@@ -85,7 +85,7 @@ export function EntryLoader() {
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse at center, rgba(168,85,247,0.18) 0%, rgba(168,85,247,0.04) 35%, transparent 70%)',
+                'radial-gradient(ellipse at center, rgba(20,184,166,0.18) 0%, rgba(20,184,166,0.04) 35%, transparent 70%)',
               filter: 'blur(40px)',
             }}
           />
@@ -122,7 +122,7 @@ export function EntryLoader() {
             className="absolute inset-x-0 bottom-0 h-px"
             style={{
               background:
-                'linear-gradient(90deg, transparent 0%, hsl(174 100% 50% / 0.5) 30%, hsl(271 91% 65% / 0.5) 70%, transparent 100%)',
+                'linear-gradient(90deg, transparent 0%, hsl(174 100% 50% / 0.5) 30%, hsl(174 90% 42% / 0.5) 70%, transparent 100%)',
             }}
           />
         </motion.div>

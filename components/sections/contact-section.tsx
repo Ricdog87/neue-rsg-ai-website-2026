@@ -19,7 +19,7 @@ const FC_EN = {
   founderTagline:
     '15 years in B2B sales. Speaks sales, builds AI. You talk straight to the founder — no SDR, no account manager.',
   liveStatus: { label: 'Online today', sub: 'Usually replies in < 2 hours' },
-  slotsTitle: 'Next available slots',
+  slotsTitle: 'Open times · live in the calendar',
   slotMeta: '30 min · video',
   agentQuestion: 'Which agent are you interested in? (optional)',
   microProof:
@@ -131,7 +131,7 @@ export function ContactSection() {
             {/* Slots */}
             <div className="mt-8 border-t border-[hsl(var(--border))] pt-7">
               <p className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--subtle))]">
-                {en ? FC_EN.slotsTitle : 'Nächste freie Slots'}
+                {en ? FC_EN.slotsTitle : 'Freie Termine · live im Kalender'}
               </p>
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
                 {finalCta.nextSlots.map((slot) => {
@@ -168,8 +168,8 @@ export function ContactSection() {
                           }
                         />
                       </div>
-                      <span className="mt-1 font-display text-[1.5rem] font-medium tracking-tight text-[hsl(var(--fg))]">
-                        {slot.time}
+                      <span className="mt-1 font-display text-[1.35rem] font-medium tracking-tight text-[hsl(var(--fg))]">
+                        {en ? 'Open times' : 'Freie Zeiten'}
                       </span>
                       <span className="text-[0.7rem] text-[hsl(var(--muted))]">
                         {en ? FC_EN.slotMeta : '30 Min · Video'}

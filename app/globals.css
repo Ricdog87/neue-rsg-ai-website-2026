@@ -25,9 +25,9 @@
   --color-border-strong: hsl(240 6% 22%);
 
   /* Brand accents */
-  --color-accent: hsl(271 91% 65%);        /* #a855f7 — RSG-Purple */
-  --color-accent-soft: hsl(271 95% 88%);   /* bright pale — for accent text on dark */
-  --color-accent-deep: hsl(271 91% 75%);   /* hover */
+  --color-accent: hsl(174 95% 33%);        /* RSG-Turquoise */
+  --color-accent-soft: hsl(174 70% 86%);   /* bright pale — for accent text on dark */
+  --color-accent-deep: hsl(174 95% 27%);   /* hover */
   --color-neon: hsl(174 100% 50%);         /* Cyan turquoise */
   --color-neon-soft: hsl(174 90% 82%);     /* bright pale */
   --color-success: hsl(152 60% 53%);       /* #3ECF8E — positive numbers / savings */
@@ -42,7 +42,7 @@
 
   --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
   --shadow-lift: 0 8px 24px -8px rgb(0 0 0 / 0.5), 0 24px 60px -20px rgb(0 0 0 / 0.6);
-  --shadow-glow: 0 24px 60px -20px hsl(271 91% 65% / 0.45);
+  --shadow-glow: 0 24px 60px -20px hsl(174 95% 45% / 0.45);
   --shadow-neon: 0 24px 60px -20px hsl(174 100% 50% / 0.45);
 }
 
@@ -58,9 +58,9 @@
   --subtle: 240 5% 45%;
   --border: 240 6% 14%;
   --border-strong: 240 6% 22%;
-  --accent: 271 91% 65%;
-  --accent-soft: 271 95% 88%;
-  --accent-deep: 271 91% 75%;
+  --accent: 174 95% 33%;
+  --accent-soft: 174 70% 86%;
+  --accent-deep: 174 95% 27%;
   --neon: 174 100% 50%;
   --neon-soft: 174 90% 82%;
   --success: 152 60% 53%;

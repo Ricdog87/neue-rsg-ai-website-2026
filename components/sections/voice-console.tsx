@@ -165,6 +165,8 @@ function ConsoleControls() {
   }, [status, conversation]);
 
   const start = async () => {
+    // iOS Safari: unlock AudioContext synchronously within user gesture
+    try { new (window.AudioContext || window.webkitAudioContext)().resume(); } catch {}
     setErr(false);
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });

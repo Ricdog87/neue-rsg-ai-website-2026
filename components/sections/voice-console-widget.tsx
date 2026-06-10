@@ -82,7 +82,30 @@ export function VoiceConsoleWidget() {
   }
 
   return (
-    <div className="relative flex min-h-[150px] flex-col items-center justify-center gap-2 py-2">
+    <div
+      className="relative flex min-h-[150px] flex-col items-center justify-center gap-2 py-2"
+      style={{
+        // ElevenLabs Widget on-brand stylen via dokumentierte
+        // CSS-Custom-Properties — überschreibt Default-Hellgrau-Theme.
+        // Quelle: --el-*-Variablen aus node_modules/@elevenlabs/convai-widget-embed.
+        ['--el-base' as never]: 'hsl(240 10% 4%)',
+        ['--el-base-hover' as never]: 'hsl(240 10% 8%)',
+        ['--el-base-active' as never]: 'hsl(240 10% 12%)',
+        ['--el-base-border' as never]: 'hsl(174 100% 50% / 0.25)',
+        ['--el-base-subtle' as never]: 'hsl(240 5% 65%)',
+        ['--el-base-primary' as never]: 'hsl(0 0% 98%)',
+        ['--el-base-error' as never]: 'hsl(0 84% 60%)',
+        ['--el-accent' as never]: 'hsl(174 100% 45%)',
+        ['--el-accent-hover' as never]: 'hsl(174 100% 55%)',
+        ['--el-accent-active' as never]: 'hsl(174 100% 40%)',
+        ['--el-accent-primary' as never]: '#04130f',
+        ['--el-bubble-radius' as never]: '9999px',
+        ['--el-button-radius' as never]: '9999px',
+        ['--el-input-radius' as never]: '0.75rem',
+        ['--el-sheet-radius' as never]: '1rem',
+        ['--el-compact-sheet-radius' as never]: '1rem',
+      }}
+    >
       {/* Technischer Rahmen-Tag oben, damit der Slot bewusst wirkt */}
       <div
         aria-hidden
@@ -100,7 +123,10 @@ export function VoiceConsoleWidget() {
         </div>
       ) : (
         // @ts-expect-error custom element
-        <elevenlabs-convai agent-id={AGENT_ID} />
+        <elevenlabs-convai
+          agent-id={AGENT_ID}
+          data-language={en ? 'en' : 'de'}
+        />
       )}
     </div>
   );

@@ -8,6 +8,7 @@ import {
 } from '@elevenlabs/react';
 import { Mic, PhoneOff, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { isIOS } from '@/lib/device';
 
 /**
  * In-Browser-Sprachagent (ElevenLabs React-SDK).
@@ -43,7 +44,12 @@ function ButtonInner({ className, label }: { className?: string; label: string }
       return;
     }
     try {
-      await startSession({ agentId: AGENT_ID as string, connectionType: 'webrtc' });
+      // iOS/iPadOS: WebSocket-Pfad (Audio-Priming seit SDK v1.8.1).
+      // Desktop/Android: WebRTC für minimale Latenz.
+      await startSession({
+        agentId: AGENT_ID as string,
+        connectionType: isIOS() ? 'websocket' : 'webrtc',
+      });
     } catch {
       setErr(true);
     }

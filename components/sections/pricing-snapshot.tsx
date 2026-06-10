@@ -90,7 +90,7 @@ export function PricingSnapshot() {
                   transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
                   className="absolute -top-2.5 left-6 inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-0.5 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white shadow-[0_0_22px_hsl(var(--accent)/0.55)]"
                 >
-                  {en ? '★ Popular' : '★ Beliebt'}
+                  {en ? '★ Bestseller' : '★ Bestseller'}
                 </motion.span>
               )}
 

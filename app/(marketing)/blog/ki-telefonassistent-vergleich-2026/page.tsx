@@ -42,7 +42,7 @@ export default function VergleichPage() {
 
         <h2 className="text-2xl font-semibold mt-12 mb-4">RSG AI – Der DACH-Spezialist</h2>
         <p className="text-white/70 mb-4">RSG AI (Wiesbaden, DE) ist das einzige der drei Systeme das komplett auf den DACH-Markt ausgerichtet ist: deutsche Telefonnummern, DSGVO-konformer Datenspeicherung in Deutschland, AVV-Vertrag inklusive und persönlichem Onboarding. Kein IT-Aufwand für den Kunden.</p>
-        <p className="text-white/70 mb-8"><strong className="text-white">Preis:</strong> Solo ab €199/Monat, Team ab €499/Monat. Einmalige Setup-Fee ab €490. Deployment in {'<'} 2 Wochen.</p>
+        <p className="text-white/70 mb-8"><strong className="text-white">Preis:</strong> Solo ab €199/Monat, AI Account Manager ab €499/Monat. Einmalige Setup-Fee ab €490. Deployment in {'<'} 2 Wochen.</p>
 
         <h2 className="text-2xl font-semibold mt-12 mb-4">Fazit: Welcher passt zu welchem Unternehmen?</h2>
         <ul className="space-y-3 text-white/70 mb-12">

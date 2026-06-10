@@ -60,7 +60,7 @@ export function StructuredData() {
       },
       {
         "@type": "Offer",
-        "name": "Team",
+        "name": "AI Account Manager",
         "price": "499",
         "priceCurrency": "EUR",
         "billingDuration": "P1M",
@@ -100,7 +100,7 @@ export function StructuredData() {
         "name": "Was kostet ein KI-Telefonassistent?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "RSG AI Telefonassistenten starten ab 199€/Monat für das Solo-Paket. Das Team-Paket kostet 499€/Monat. Einmalige Einrichtung ab 490€."
+          "text": "RSG AI Telefonassistenten starten ab 199€/Monat für das Solo-Paket. Das AI-Account-Manager-Paket kostet 499€/Monat. Einmalige Einrichtung ab 490€."
         }
       },
       {

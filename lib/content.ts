@@ -388,8 +388,8 @@ export const roi = {
 } as const;
 
 /* ─────────────────────────────────────────────────────────
-   VOICE-PRICING — Solo / Team / Scale (Subscription-Model).
-   Setup-Gebühr per Tier · bei Jahresvorkasse entfällt Solo/Team.
+   VOICE-PRICING — Solo / AI Account Manager / Scale (Subscription-Model).
+   Setup-Gebühr per Tier · bei Jahresvorkasse entfällt Solo/AI Account Manager.
    ───────────────────────────────────────────────────────── */
 export const voicePricing = {
   annualDiscount: 0.15, // 15 % off bei jährlicher Vorkasse
@@ -421,19 +421,19 @@ export const voicePricing = {
     },
     {
       id: 'team',
-      name: 'Team',
-      tagline: 'Alles aus Solo + Volumen + Outbound.',
+      name: 'AI Account Manager',
+      tagline: 'Dein digitaler Account Manager — Inbound, Outbound, CRM & Prozesse.',
       monthly: 499,
       annual: 424, // 499 × 0.85 ≈ 424
-      bestFor: 'Teams · KMU mit Vertriebs- oder Support-Calls',
+      bestFor: 'KMU mit aktivem Lead-, Kampagnen- & CRM-Betrieb',
       features: [
         '2 Rufnummern inklusive',
         '3.000 Min/Monat inkl. (Inbound + Outbound) · jede weitere 0,25 €',
-        'Outbound-Kampagnen (Reaktivierung, Follow-ups)',
-        'Wöchentliches Reporting',
-        'Prioritäts-Support',
+        'Inbound- & Outbound-Kampagnen über automatisierte Anruflisten',
+        'Automatisierte Lead-Bearbeitung + CRM-Workflows & Follow-ups',
+        'Terminbuchung · Reporting · laufende Optimierung & Betreuung',
       ],
-      ctaLabel: 'Team buchen',
+      ctaLabel: 'AI Account Manager buchen',
       ctaEvent: 'checkout_started',
       recommended: true,
     },
@@ -458,7 +458,7 @@ export const voicePricing = {
     },
   ],
   footnote:
-    'Alle Preise zzgl. MwSt. · Setup-Gebühr Solo 490 € / Team 990 € netto einmalig, separat auf der ersten Rechnung berechnet. Bei Jahresvorkasse entfällt das Setup für Solo & Team. · Scale-Setup individuell ab 1.990 € netto.',
+    'Alle Preise zzgl. MwSt. · Setup-Gebühr Solo 490 € / AI Account Manager 990 € netto einmalig, separat auf der ersten Rechnung berechnet. Bei Jahresvorkasse entfällt das Setup für Solo & AI Account Manager. · Scale-Setup individuell ab 1.990 € netto.',
 } as const;
 
 /* ─────────────────────────────────────────────────────────

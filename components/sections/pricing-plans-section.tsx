@@ -90,7 +90,7 @@ function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
     >
       {rec ? (
         <span className="absolute -top-3 left-7 inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white">
-          {en ? '★ Popular' : '★ Beliebt'}
+          {en ? '★ Bestseller' : '★ Bestseller'}
         </span>
       ) : null}
 
@@ -173,7 +173,7 @@ function AgentPlanCard({ card }: { card: AgentCard }) {
     >
       {rec ? (
         <span className="absolute -top-3 left-7 inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white">
-          ★ Beliebt
+          ★ Bestseller
         </span>
       ) : null}
       <h4 className="font-display text-[1.5rem] font-medium text-[hsl(var(--fg))]">{card.name}</h4>
@@ -453,7 +453,7 @@ export function PricingPlansSection() {
         ) : null}
 
         <p className="mt-8 max-w-3xl mx-auto text-center text-[0.85rem] leading-relaxed text-[hsl(var(--muted))]">
-          {en ? 'All prices net, plus VAT · Setup fee Solo €490 / Team €990 net, one-time on the first invoice. With annual prepayment the setup is waived for Solo & Team. Scale setup from €1,990, individual.' : 'Alle Preise netto, zzgl. MwSt. · Setup-Gebühr Solo 490 € / Team 990 € netto einmalig auf 1. Rechnung. Bei Jahresvorkasse entfällt das Setup für Solo & Team. Scale-Setup ab 1.990 € individuell.'}
+          {en ? 'All prices net, plus VAT · Setup fee Solo €490 / AI Account Manager €990 net, one-time on the first invoice. With annual prepayment the setup is waived for Solo & AI Account Manager. Scale setup from €1,990, individual.' : 'Alle Preise netto, zzgl. MwSt. · Setup-Gebühr Solo 490 € / AI Account Manager 990 € netto einmalig auf 1. Rechnung. Bei Jahresvorkasse entfällt das Setup für Solo & AI Account Manager. Scale-Setup ab 1.990 € individuell.'}
         </p>
       </div>
     </section>

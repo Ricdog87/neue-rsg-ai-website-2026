@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Headphones, ArrowUpRight } from 'lucide-react';
 import { site } from '@/lib/content';
 
@@ -42,14 +43,14 @@ export function MobileVoiceCta() {
       }}
     >
       <div className="mx-3 mb-3 flex items-center gap-2 rounded-full border border-white/15 bg-[hsl(var(--bg))]/95 p-1.5 backdrop-blur-md">
-        <a
+        <Link
           href="/#voice"
           data-event="voice_section_open"
           className="inline-flex h-11 items-center gap-2 rounded-full px-4 font-display text-[0.8rem] font-medium text-white/85"
         >
           <Headphones className="h-3.5 w-3.5" />
           Agent testen
-        </a>
+        </Link>
         <a
           href={site.cta.meetingUrl}
           data-event="meeting-cta-mobile"

@@ -37,7 +37,7 @@ const TONE_COLOR: Record<string, string> = {
   output: 'hsl(174 100% 70%)',
 };
 
-export function CaseStudyPipeline({ cs }: { cs: CaseStudy }) {
+export function CaseStudyPipeline({ cs, en = false }: { cs: CaseStudy; en?: boolean }) {
   return (
     <section
       id="case-pipeline"
@@ -51,7 +51,7 @@ export function CaseStudyPipeline({ cs }: { cs: CaseStudy }) {
               <span className="eyebrow">§ 02 · {cs.problem.headline}</span>
             </MaskWipe>
             <SplitLines
-              lines={['Was nicht', 'funktioniert hat.']}
+              lines={en ? ['What didn’t', 'work.'] : ['Was nicht', 'funktioniert hat.']}
               className="mt-6"
               lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]"
             />

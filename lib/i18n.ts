@@ -38,6 +38,8 @@ export const EN_AVAILABLE_PATHS = new Set<string>([
   '/datenschutz',
   '/agb',
   '/roi-checkliste-ki-agent',
+  '/cases',
+  '/insights',
 ]);
 
 /** Map a path to its counterpart in the other locale (for the switcher). */
@@ -46,6 +48,7 @@ export function alternatePath(pathname: string, to: Locale): string {
   if (to === 'en') {
     if (isEn) return pathname;
     if (pathname === '/') return '/en';
+    if (pathname.startsWith('/cases/') || pathname.startsWith('/insights/')) return `/en${pathname}`;
     return EN_AVAILABLE_PATHS.has(pathname) ? `/en${pathname}` : '/en';
   }
   // to === 'de'

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { MaskWipe } from '@/components/effects/reveal';
 import type { CaseStudy } from '@/lib/case-studies';
 
-export function CaseStudyQuote({ cs }: { cs: CaseStudy }) {
+export function CaseStudyQuote({ cs, en = false }: { cs: CaseStudy; en?: boolean }) {
   return (
     <section
       id="case-quote"
@@ -21,7 +21,7 @@ export function CaseStudyQuote({ cs }: { cs: CaseStudy }) {
 
       <div className="relative mx-auto max-w-[1080px]">
         <MaskWipe>
-          <span className="eyebrow">§ 04 · Stimme aus der Werkstatt</span>
+          <span className="eyebrow">§ 04 · {en ? 'Voice from the workshop' : 'Stimme aus der Werkstatt'}</span>
         </MaskWipe>
 
         <motion.figure

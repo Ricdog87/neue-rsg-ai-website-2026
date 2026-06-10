@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { MaskWipe, SplitLines } from '@/components/effects/reveal';
 import type { CaseStudy } from '@/lib/case-studies';
 
-export function CaseStudyResults({ cs }: { cs: CaseStudy }) {
+export function CaseStudyResults({ cs, en = false }: { cs: CaseStudy; en?: boolean }) {
   return (
     <section
       id="case-results"
@@ -14,7 +14,7 @@ export function CaseStudyResults({ cs }: { cs: CaseStudy }) {
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <div className="col-span-12 md:col-span-5">
             <MaskWipe>
-              <span className="eyebrow">§ 03 · Ergebnis</span>
+              <span className="eyebrow">§ 03 · {en ? 'Result' : 'Ergebnis'}</span>
             </MaskWipe>
             <SplitLines
               lines={[cs.results.headline]}

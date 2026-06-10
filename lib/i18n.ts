@@ -26,6 +26,14 @@ export const EN_AVAILABLE_PATHS = new Set<string>([
   '/automatisierung',
   '/ki-agentur-mittelstand',
   '/termin',
+  '/ki-telefonassistent/arztpraxis',
+  '/ki-telefonassistent/handwerk',
+  '/ki-telefonassistent/steuerberater',
+  '/ki-telefonassistent/hausverwaltung',
+  '/ki-telefonassistent/hotel',
+  '/ki-telefonassistent/autohaus',
+  '/ki-telefonassistent-immobilien',
+  '/ki-telefonassistent-kanzlei',
 ]);
 
 /** Map a path to its counterpart in the other locale (for the switcher). */

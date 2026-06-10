@@ -17,8 +17,9 @@ export default async function OpenGraphImage() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '76px',
-          background:
-            'radial-gradient(ellipse 70% 60% at 28% 28%, rgba(20,184,166,0.30) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 82% 82%, rgba(45,212,191,0.16) 0%, transparent 55%), #03020c',
+          backgroundColor: '#03020c',
+          backgroundImage:
+            'linear-gradient(135deg, rgba(20,184,166,0.22) 0%, transparent 44%), linear-gradient(315deg, rgba(45,212,191,0.12) 0%, transparent 40%)',
           color: 'white',
           fontFamily: 'sans-serif',
         }}

@@ -14,6 +14,7 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
+    "@elevenlabs/convai-widget-embed": "^0.14.0",
     "@elevenlabs/react": "^1.6.4",
     "@gsap/react": "^2.1.2",
     "@react-three/drei": "^10.7.7",

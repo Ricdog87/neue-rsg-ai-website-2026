@@ -9,6 +9,7 @@ import { site } from '@/lib/content';
 import { useEnglish } from '@/components/system/use-locale';
 import { isIOS } from '@/lib/device';
 import { unlockAudio } from '@/lib/audio-unlock';
+import { VoiceConsoleWidget } from './voice-console-widget';
 
 const AGENT_ID = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID;
 const MAX_MS = 3 * 60 * 1000;
@@ -286,7 +287,13 @@ function ConsoleFallback({ pending }: { pending: boolean }) {
  */
 export function VoiceConsole({ title }: { title?: string | null }) {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const [useWidget, setUseWidget] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+    // Auf iOS/iPadOS: offizielles ElevenLabs-Widget statt React-SDK
+    // verwenden — der React-SDK rejected stumm im internen iOS-Priming.
+    setUseWidget(isIOS());
+  }, []);
   const en = useEnglish();
   const heading =
     title === undefined
@@ -368,9 +375,13 @@ export function VoiceConsole({ title }: { title?: string | null }) {
           </div>
 
           {AGENT_ID && mounted ? (
-            <ConversationProvider>
-              <ConsoleControls />
-            </ConversationProvider>
+            useWidget ? (
+              <VoiceConsoleWidget />
+            ) : (
+              <ConversationProvider>
+                <ConsoleControls />
+              </ConversationProvider>
+            )
           ) : (
             <ConsoleFallback pending={!!AGENT_ID} />
           )}

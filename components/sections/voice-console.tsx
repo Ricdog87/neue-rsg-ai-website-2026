@@ -7,6 +7,7 @@ import { Mic, PhoneOff, Loader2, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { site } from '@/lib/content';
 import { useEnglish } from '@/components/system/use-locale';
+import { isIOS } from '@/lib/device';
 
 const AGENT_ID = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID;
 const MAX_MS = 3 * 60 * 1000;
@@ -165,8 +166,6 @@ function ConsoleControls() {
   }, [status, conversation]);
 
   const start = async () => {
-    // iOS Safari: unlock AudioContext synchronously within user gesture
-    try { new (window.AudioContext || window.webkitAudioContext)().resume(); } catch {}
     setErr(false);
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -175,7 +174,13 @@ function ConsoleControls() {
       return;
     }
     try {
-      await conversation.startSession({ agentId: AGENT_ID as string, connectionType: 'webrtc' });
+      // iOS/iPadOS: WebSocket-Pfad hat das ElevenLabs-Audio-Priming
+      // (Client v1.8.1+). WebRTC delegiert an LiveKit, das auf iOS Safari
+      // ohne playsInline-Workaround stumm bleibt — siehe lib/device.ts.
+      await conversation.startSession({
+        agentId: AGENT_ID as string,
+        connectionType: isIOS() ? 'websocket' : 'webrtc',
+      });
     } catch {
       setErr(true);
     }

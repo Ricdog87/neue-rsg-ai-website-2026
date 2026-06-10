@@ -17,6 +17,7 @@ import { SocialProofBar } from '@/components/sections/social-proof-bar';
 import { ComparisonSection } from '@/components/sections/comparison-section';
 import { ObjectionFaq } from '@/components/sections/objection-faq';
 import { ExitIntent } from '@/components/effects/exit-intent';
+import { NewsletterSection } from '@/components/sections/newsletter-section';
 
 /**
  * Homepage — Focused funnel, not encyclopedia.
@@ -107,6 +108,11 @@ export default function HomePage() {
         <ScrollZoom>
           <ContactSection />
         </ScrollZoom>
+      </ScrollParallax>
+      <ScrollParallax x={-12}>
+        <ScrollSlide direction="up">
+          <NewsletterSection />
+        </ScrollSlide>
       </ScrollParallax>
       <ScrollParallax x={-10}>
         <ScrollSlide direction="up">

@@ -94,8 +94,8 @@ function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
         </span>
       ) : null}
 
-      <h4 className="font-display text-[1.5rem] font-medium text-[hsl(var(--fg))]">{plan.name}</h4>
-      <p className="mt-1 min-h-[2.5rem] text-[0.9rem] leading-relaxed text-[hsl(var(--muted))]">{en ? plan.taglineEn ?? plan.tagline : plan.tagline}</p>
+      <h4 className="text-balance font-display text-[clamp(1.125rem,1.8vw,1.4rem)] font-medium leading-[1.15] tracking-[-0.015em] text-[hsl(var(--fg))]">{plan.name}</h4>
+      <p className="mt-1.5 min-h-[2.5rem] text-[0.9rem] leading-relaxed text-[hsl(var(--muted))]">{en ? plan.taglineEn ?? plan.tagline : plan.tagline}</p>
 
       <div className="my-6 h-px w-full bg-[hsl(var(--border))]" />
 

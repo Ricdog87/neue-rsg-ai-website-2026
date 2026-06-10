@@ -292,7 +292,7 @@ export function VoiceConsole({ title }: { title?: string | null }) {
     setMounted(true);
     // Auf iOS/iPadOS: offizielles ElevenLabs-Widget statt React-SDK
     // verwenden — der React-SDK rejected stumm im internen iOS-Priming.
-    setUseWidget(isIOS());
+    setUseWidget(false);
   }, []);
   const en = useEnglish();
   const heading =

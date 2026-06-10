@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, Check, Loader2, Phone } from 'lucide-react';
 import { voicePlans } from '@/lib/pricing-voice';
 import { useEnglish } from '@/components/system/use-locale';
@@ -77,13 +77,70 @@ export function PricingSnapshot() {
         {/* Cards — compact, max 4 features each */}
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {voicePlans.map((p, i) => (
+            <SnapshotCard key={p.id} p={p} i={i} en={en} loadingTier={loadingTier} onCheckout={handleCheckout} />
+          ))}
+        </div>
+
+        {/* Sub-line — additional context */}
+        <p className="mt-6 text-center text-[0.875rem] text-[hsl(var(--muted))]">
+          {en ? 'Need process automation rather than telephony?' : 'Du brauchst eher Prozess-Automatisierung statt Telefonie?'}{' '}
+          <Link
+            href={en ? '/en/automatisierung' : '/automatisierung'}
+            className="font-medium text-[hsl(var(--accent))] underline-offset-2 hover:underline"
+          >
+            {en ? 'AI agents & workflows from €2,500' : 'KI-Agenten & Workflows ab 2.500 €'}
+          </Link>
+          <span className="mx-2 text-[hsl(var(--subtle))]">·</span>
+          <Phone className="-mt-0.5 inline h-3.5 w-3.5 text-[hsl(var(--accent))]" />{' '}
+          <a
+            href="tel:+4917660772556"
+            className="hover:text-[hsl(var(--fg))] hover:underline"
+          >
+            {en ? 'Rather call us directly?' : 'Lieber direkt anrufen?'}
+          </a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+
+function SnapshotCard({ p, i, en, loadingTier, onCheckout }: {
+  p: (typeof voicePlans)[number];
+  i: number;
+  en: boolean;
+  loadingTier: string | null;
+  onCheckout: (tier: 'solo' | 'team') => void;
+}) {
+  const reduce = useReducedMotion();
+  const rxMV = useMotionValue(0);
+  const ryMV = useMotionValue(0);
+  const rotateX = useSpring(rxMV, { stiffness: 160, damping: 18 });
+  const rotateY = useSpring(ryMV, { stiffness: 160, damping: 18 });
+
+  function onMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (reduce) return;
+    if (typeof window !== 'undefined' && !window.matchMedia('(pointer: fine)').matches) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+    const py = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+    ryMV.set(Math.max(-1, Math.min(1, px)) * 6);
+    rxMV.set(Math.max(-1, Math.min(1, -py)) * 6);
+  }
+  function onLeave() {
+    rxMV.set(0);
+    ryMV.set(0);
+  }
+
+  return (
             <motion.div
-              key={p.id}
               initial={{ opacity: 0, y: 36, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: '-12% 0px' }}
               transition={{ delay: i * 0.13, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -8 }}
+              onMouseMove={onMove}
+              onMouseLeave={onLeave}
+              style={{ rotateX, rotateY, transformPerspective: 1000, transformStyle: 'preserve-3d' }}
               className={
                 'group relative flex flex-col rounded-xl border p-6 transition-colors duration-300 ' +
                 (p.recommended
@@ -148,7 +205,7 @@ export function PricingSnapshot() {
                   data-event={`snapshot_card_${p.id}`}
                   data-tier={p.id}
                   disabled={loadingTier === p.id}
-                  onClick={() => handleCheckout(p.checkoutTier as 'solo' | 'team')}
+                  onClick={() => onCheckout(p.checkoutTier as 'solo' | 'team')}
                   className={
                     'mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full text-[0.875rem] font-medium transition-all disabled:opacity-70 ' +
                     (p.recommended
@@ -182,28 +239,5 @@ export function PricingSnapshot() {
                 </Link>
               )}
             </motion.div>
-          ))}
-        </div>
-
-        {/* Sub-line — additional context */}
-        <p className="mt-6 text-center text-[0.875rem] text-[hsl(var(--muted))]">
-          {en ? 'Need process automation rather than telephony?' : 'Du brauchst eher Prozess-Automatisierung statt Telefonie?'}{' '}
-          <Link
-            href={en ? '/en/automatisierung' : '/automatisierung'}
-            className="font-medium text-[hsl(var(--accent))] underline-offset-2 hover:underline"
-          >
-            {en ? 'AI agents & workflows from €2,500' : 'KI-Agenten & Workflows ab 2.500 €'}
-          </Link>
-          <span className="mx-2 text-[hsl(var(--subtle))]">·</span>
-          <Phone className="-mt-0.5 inline h-3.5 w-3.5 text-[hsl(var(--accent))]" />{' '}
-          <a
-            href="tel:+4917660772556"
-            className="hover:text-[hsl(var(--fg))] hover:underline"
-          >
-            {en ? 'Rather call us directly?' : 'Lieber direkt anrufen?'}
-          </a>
-        </p>
-      </div>
-    </section>
   );
 }

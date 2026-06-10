@@ -31,6 +31,12 @@ export function FloatingCta() {
       const vh = window.innerHeight;
       const y = window.scrollY;
 
+      // Don't double up on the booking page itself
+      if (window.location.pathname.replace(/^\/en/, '').startsWith('/termin')) {
+        setShow(false);
+        return;
+      }
+
       // Show after scrolling past 85 % of the hero
       let shouldShow = y > vh * 0.85;
 
@@ -72,7 +78,7 @@ export function FloatingCta() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.94 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-5 right-5 z-40 md:bottom-8 md:right-8"
+          className="fixed bottom-8 right-8 z-40 hidden md:block"
         >
           <Link
             href={site.cta.meetingUrl}

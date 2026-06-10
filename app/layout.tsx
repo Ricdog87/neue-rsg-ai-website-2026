@@ -13,6 +13,8 @@ import { KeyboardShortcuts } from '@/components/effects/keyboard-shortcuts';
 import { EntryLoader } from '@/components/system/entry-loader';
 import { PersistentCanvas } from '@/components/system/persistent-canvas';
 import { CursorTrail } from '@/components/effects/cursor-trail';
+import { FloatingCta } from '@/components/effects/floating-cta';
+import { MobileVoiceCta } from '@/components/effects/mobile-voice-cta';
 import { RouteTransition } from '@/components/system/route-transition';
 import { SoundProvider } from '@/components/system/sound-engine';
 import { Analytics } from '@/components/system/analytics';
@@ -132,6 +134,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main id="main-content" className="relative z-[1]"><StructuredData />{children}</main>
             <Footer />
           </LenisProvider>
+          <FloatingCta />
+          <MobileVoiceCta />
           <CookieBanner />
         </SoundProvider>
         <Analytics />

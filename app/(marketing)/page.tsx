@@ -12,6 +12,7 @@ import { ScrollParallax } from '@/components/effects/scroll-parallax';
 import { faqPageLd, ldJson } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
 import { CitiesSection } from '@/components/sections/cities-section'
+import { GuaranteeStrip } from '@/components/sections/guarantee-strip';
 
 /**
  * Homepage — Focused funnel, not encyclopedia.
@@ -77,6 +78,11 @@ export default function HomePage() {
         <ScrollZoom>
           <TrustStrip />
         </ScrollZoom>
+      </ScrollParallax>
+      <ScrollParallax x={10}>
+        <ScrollSlide direction="up">
+          <GuaranteeStrip />
+        </ScrollSlide>
       </ScrollParallax>
       <ScrollParallax x={12}>
         <ScrollZoom>

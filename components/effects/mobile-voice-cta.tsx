@@ -43,19 +43,19 @@ export function MobileVoiceCta() {
     >
       <div className="mx-3 mb-3 flex items-center gap-2 rounded-full border border-white/15 bg-[hsl(var(--bg))]/95 p-1.5 backdrop-blur-md">
         <a
-          href={`tel:${site.contact.phone.replace(/\s+/g, '')}`}
-          data-event="demo_call_clicked"
+          href="/#voice"
+          data-event="voice_section_open"
           className="inline-flex h-11 items-center gap-2 rounded-full px-4 font-display text-[0.8rem] font-medium text-white/85"
         >
           <Headphones className="h-3.5 w-3.5" />
-          Live anhören
+          Agent testen
         </a>
         <a
-          href="#pricing"
-          data-event="mobile_cta_solo_start"
-          className="ml-auto inline-flex h-11 items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-5 font-display text-[0.85rem] font-medium text-white"
+          href={site.cta.meetingUrl}
+          data-event="meeting-cta-mobile"
+          className="ml-auto inline-flex h-11 items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-5 font-display text-[0.85rem] font-semibold text-white shadow-[0_8px_28px_-8px_hsl(var(--accent)/0.8)]"
         >
-          Solo starten
+          Termin buchen
           <ArrowUpRight className="h-3.5 w-3.5" />
         </a>
       </div>

@@ -25,7 +25,7 @@ const HERO_EN = {
   subStatement: 'Live in four weeks — not four quarters.',
   subline:
     'Your AI phone assistant answers every call, qualifies leads and books meetings — 24/7, in natural language, wired into your CRM. Currently onboarding Cohort 06 (Q3 2026).',
-  ctaPrimary: 'Book intro call',
+  ctaPrimary: 'Free intro call',
   ctaSecondary: 'See the assistant',
   trustChips: [
     'Live in 4 weeks',
@@ -218,7 +218,7 @@ export function Hero() {
                   data-sound="tick"
                   data-cursor-label="Buchen"
                   data-event="meeting-cta-hero"
-                  className="group relative inline-flex h-12 items-center gap-2 overflow-hidden rounded-full border border-white/25 px-6 font-display text-[0.9rem] font-medium text-white transition-all hover:border-white hover:shadow-[0_12px_30px_-10px_rgba(168,85,247,0.4)]"
+                  className="group relative inline-flex h-12 items-center gap-2 overflow-hidden rounded-full bg-[hsl(var(--accent))] px-7 font-display text-[0.9rem] font-semibold text-white shadow-[0_14px_44px_-12px_hsl(var(--accent)/0.75)] transition-all hover:bg-[hsl(var(--accent-deep))] hover:shadow-[0_18px_56px_-12px_hsl(var(--accent)/0.9)]"
                 >
                   <span className="relative z-10">{h.ctaPrimary}</span>
                   <ArrowUpRight className="relative z-10 h-4 w-4 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -237,6 +237,10 @@ export function Hero() {
                 </a>
               </Magnetic>
             </div>
+
+            <p className="mt-4 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/45">
+              {en ? '30 min · no sales pitch · honest take' : '30 Min · kein Verkaufsgespräch · ehrliche Einschätzung'}
+            </p>
 
             <motion.ul
               initial={{ opacity: 0 }}

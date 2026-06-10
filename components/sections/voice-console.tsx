@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useConversation } from '@elevenlabs/react';
+import { useConversation, ConversationProvider } from '@elevenlabs/react';
 import { Mic, PhoneOff, Loader2, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { site } from '@/lib/content';
@@ -277,7 +277,9 @@ export function VoiceConsole({ title }: { title?: string | null }) {
       ) : null}
       <div className="rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--bg))]/50 p-3">
         {AGENT_ID && mounted ? (
-          <ConsoleControls />
+          <ConversationProvider>
+            <ConsoleControls />
+          </ConversationProvider>
         ) : (
           <ConsoleFallback pending={!!AGENT_ID} />
         )}

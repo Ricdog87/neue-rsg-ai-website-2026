@@ -9,6 +9,7 @@ import {
 import { Mic, PhoneOff, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { isIOS } from '@/lib/device';
+import { unlockAudio } from '@/lib/audio-unlock';
 
 /**
  * In-Browser-Sprachagent (ElevenLabs React-SDK).
@@ -36,6 +37,8 @@ function ButtonInner({ className, label }: { className?: string; label: string }
   }, [status, endSession]);
 
   async function start() {
+    // SYNCHRON vor jedem await — entsperrt iOS-Audio in der User-Geste.
+    unlockAudio();
     setErr(false);
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });

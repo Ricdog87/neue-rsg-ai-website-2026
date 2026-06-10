@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { site } from '@/lib/content';
 import { useEnglish } from '@/components/system/use-locale';
 import { isIOS } from '@/lib/device';
+import { unlockAudio } from '@/lib/audio-unlock';
 
 const AGENT_ID = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID;
 const MAX_MS = 3 * 60 * 1000;
@@ -166,6 +167,10 @@ function ConsoleControls() {
   }, [status, conversation]);
 
   const start = async () => {
+    // SYNCHRON in der User-Geste, vor JEDEM await — sonst verliert iOS
+    // Safari/iPadOS die User-Activation und Audio bleibt stumm.
+    unlockAudio();
+
     setErr(false);
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });

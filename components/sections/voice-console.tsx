@@ -215,14 +215,14 @@ function ConsoleControls() {
           )}
         >
           <Mic className="h-4 w-4" />
-          {err ? (en ? 'Allow mic & retry' : 'Mikrofon erlauben & nochmal') : (en ? 'Talk to the AI agent' : 'Sprich mit der KI-Agentin')}
+          {err ? (en ? 'Allow mic & retry' : 'Mikrofon erlauben & nochmal') : (en ? 'Talk to the AI agent' : 'Sprich mit dem KI-Agenten')}
         </button>
       )}
       {err && (
         <p className="mt-3 max-w-sm text-center text-[0.75rem] leading-relaxed text-[hsl(45_90%_68%)]">
           {en
             ? 'Please allow microphone access when your browser asks — then the agent speaks instantly. Blocked it by accident? Click the lock / camera icon in the address bar → Microphone → Allow → reload the page.'
-            : 'Bitte erlaube den Mikrofon-Zugriff, wenn dein Browser fragt — dann spricht die Agentin sofort. Versehentlich blockiert? Oben in der Adresszeile auf das Schloss-/Kamera-Symbol → Mikrofon → „Zulassen" → Seite neu laden.'}
+            : 'Bitte erlaube den Mikrofon-Zugriff, wenn dein Browser fragt — dann spricht die Agenten sofort. Versehentlich blockiert? Oben in der Adresszeile auf das Schloss-/Kamera-Symbol → Mikrofon → „Zulassen" → Seite neu laden.'}
         </p>
       )}
     </>
@@ -260,7 +260,7 @@ export function VoiceConsole({ title }: { title?: string | null }) {
     title === undefined
       ? en
         ? 'Talk to the AI agent now — live in your browser.'
-        : 'Sprich jetzt mit der KI-Agentin — live im Browser.'
+        : 'Sprich jetzt mit dem KI-Agenten — live im Browser.'
       : title;
 
   return (

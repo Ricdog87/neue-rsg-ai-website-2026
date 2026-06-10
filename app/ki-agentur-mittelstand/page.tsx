@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "KI-Agentur für den Mittelstand – bauen & betreiben",
-  description: "Die KI-Agentur aus dem Vertrieb: wir bauen UND betreiben deine KI-Agenten. Festpreis, Go-Live in 4 Wochen, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden.",
+  description: "Die KI-Agentur aus dem Vertrieb: wir bauen UND betreiben Dein KI-Agenten. Festpreis, Go-Live in 4 Wochen, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden.",
   alternates: { canonical: "https://www.rsg-ai.de/ki-agentur-mittelstand" },
   robots: { index: true, follow: true },
   openGraph: {
     title: "KI-Agentur für den Mittelstand – bauen & betreiben",
-    description: "Die KI-Agentur aus dem Vertrieb: wir bauen UND betreiben deine KI-Agenten. Festpreis, Go-Live in 4 Wochen, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden.",
+    description: "Die KI-Agentur aus dem Vertrieb: wir bauen UND betreiben Dein KI-Agenten. Festpreis, Go-Live in 4 Wochen, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden.",
     url: "https://www.rsg-ai.de/ki-agentur-mittelstand",
     siteName: "RSG Agent Services",
     locale: "de_DE",
@@ -40,7 +40,7 @@ const jsonLd = [
     "areaServed": { "@type": "Country", "name": "Deutschland" },
     "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/ki-agentur-mittelstand", "servicePhone": "+49 30 826 83906" },
     "url": "https://www.rsg-ai.de/ki-agentur-mittelstand",
-    "description": "Die KI-Agentur aus dem Vertrieb: wir bauen UND betreiben deine KI-Agenten. Festpreis, Go-Live in 4 Wochen, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden."
+    "description": "Die KI-Agentur aus dem Vertrieb: wir bauen UND betreiben Dein KI-Agenten. Festpreis, Go-Live in 4 Wochen, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden."
   },
   {
     "@context": "https://schema.org",
@@ -60,7 +60,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main>
         <h1>KI-Agentur für den Mittelstand</h1>
-        <p>Wir bauen und betreiben deine KI-Agenten — die einzige Agentur aus dem Vertrieb. Go-Live in 4 Wochen, Festpreis, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden.</p>
+        <p>Wir bauen und betreiben Dein KI-Agenten — die einzige Agentur aus dem Vertrieb. Go-Live in 4 Wochen, Festpreis, DSGVO & EU-Cloud. Deutschlandweit, Sitz in Wiesbaden.</p>
         <section>
           <h2>Drei Gründe, warum du keinen zweiten Anbieter brauchst</h2>
           <ul>

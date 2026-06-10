@@ -8,7 +8,7 @@ import { voicePlans } from '@/lib/pricing-voice';
 import { useEnglish } from '@/components/system/use-locale';
 
 /**
- * Telefonassistentin-Rechner — Einsparpotenzial.
+ * Telefonassistent-Rechner — Einsparpotenzial.
  *
  * Vergleicht die internen Bearbeitungskosten deiner Anrufe mit dem
  * passenden RSG-AI-Paket. Es werden AUSSCHLIESSLICH die hinterlegten

@@ -59,7 +59,7 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: 'Telefonassistentin', href: '/ki-telefonassistent' },
+  { label: 'Telefonassistent', href: '/ki-telefonassistent' },
   { label: 'Automatisierung', href: '/automatisierung' },
   { label: 'Preise', href: '/preise' },
   { label: 'Cases', href: '/cases' },
@@ -71,7 +71,7 @@ export const nav = [
    HERO — Hook: "Dein Vertrieb arbeitet. Aber zu 70 % falsch."
    ───────────────────────────────────────────────────────── */
 export const hero = {
-  eyebrow: 'KI-Telefonassistentin · Werkstatt für den Vertrieb',
+  eyebrow: 'KI-Telefonassistent · Werkstatt für den Vertrieb',
   headlineKinetic: [
     'KI-Agenten,',
     'die ans Telefon gehen —',
@@ -80,9 +80,9 @@ export const hero = {
   // Used as a refined sub-statement below the headline
   subStatement: 'Live in vier Wochen — nicht in vier Quartalen.',
   subline:
-    'Deine KI-Telefonassistentin nimmt jeden Anruf an, qualifiziert Leads und bucht Termine — 24/7, in natürlichem Deutsch, eingebunden in dein CRM. Aufnahme aktuell für Kohorte 06 (Q3 2026).',
+    'Dein KI-Telefonassistent nimmt jeden Anruf an, qualifiziert Leads und bucht Termine — 24/7, in natürlichem Deutsch, eingebunden in dein CRM. Aufnahme aktuell für Kohorte 06 (Q3 2026).',
   ctaPrimary: 'Kostenloses Erstgespräch',
-  ctaSecondary: 'Telefonassistentin ansehen',
+  ctaSecondary: 'Telefonassistent ansehen',
   trustChips: [
     '4 Wochen bis Live',
     'DSGVO · EU-Server',

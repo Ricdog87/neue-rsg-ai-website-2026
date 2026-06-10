@@ -198,7 +198,7 @@ export const callcenter = {
     points: [
       { title: 'Elastisch skalierbar', body: 'Hunderte Gespräche gleichzeitig — Lastspitzen werden automatisch abgefedert, ohne Warteschleife.' },
       { title: 'Dediziert mit SLA', body: 'Eigene KI-Operation mit garantierter Verfügbarkeit, Monitoring und festen Reaktionszeiten.' },
-      { title: 'Voll integriert', body: 'Anbindung an deine Telefonanlage, dein CRM, ERP und Ticketing — Leads und Termine landen automatisch.' },
+      { title: 'Voll integriert', body: 'Anbindung an Dein Telefonanlage, dein CRM, ERP und Ticketing — Leads und Termine landen automatisch.' },
       { title: 'Outbound at scale', body: 'Recall-, Reaktivierungs- und Termin-Kampagnen über große Anruflisten — vollautomatisch.' },
       { title: 'Multi-Standort', body: 'Zentrale Steuerung über Standorte, Teams und Rufnummern hinweg — ein Dashboard.' },
       { title: 'Sicher & auditierbar', body: 'SSO, Rollen & Rechte, lückenlose Audit-Logs — bereit für regulierte Branchen.' },

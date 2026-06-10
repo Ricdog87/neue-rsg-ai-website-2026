@@ -49,7 +49,7 @@ export function PricingSnapshot() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-4">
           <div className="col-span-12 md:col-span-7">
             <span className="font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
-              {en ? 'Pricing · Phone assistant' : 'Preise · Telefonassistentin'}
+              {en ? 'Pricing · Phone assistant' : 'Preise · Telefonassistent'}
             </span>
             <h2 className="mt-3 font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
               {en ? 'Three plans. One call to get started.' : 'Drei Pakete. Ein Anruf reicht zum Start.'}

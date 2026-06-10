@@ -12,7 +12,7 @@ type Billing = 'monthly' | 'annual';
 /**
  * Pricing — two-tab layout.
  *
- *   ┌─ KI-Telefonassistentin (Voice, default) ─┬─ KI-Agenten & Workflows ─┐
+ *   ┌─ KI-Telefonassistent (Voice, default) ─┬─ KI-Agenten & Workflows ─┐
  *   │                                          │                          │
  *   │  Monatlich / Jährlich (−15 %)            │                          │
  *   │  [Solo 199] [AI Acct Mgr 499 ★] [Scale →call]   │  [Workflows] [Agent]     │
@@ -39,7 +39,7 @@ export function PricingSection() {
               <span className="eyebrow">Investment</span>
             </MaskWipe>
             <SplitLines
-              lines={['Telefonassistentin oder', 'Workflows. Du wählst.']}
+              lines={['Telefonassistent oder', 'Workflows. Du wählst.']}
               className="mt-6"
               lineClassName="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]"
             />
@@ -62,7 +62,7 @@ export function PricingSection() {
               active={tab === 'voice'}
               onClick={() => setTab('voice')}
               icon={<Phone className="h-3.5 w-3.5" />}
-              label="KI-Telefonassistentin"
+              label="KI-Telefonassistent"
             />
             <TabButton
               active={tab === 'workflows'}

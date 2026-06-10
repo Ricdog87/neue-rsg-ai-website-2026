@@ -11,14 +11,14 @@ import { breadcrumbLd, faqPageLd, ldJson, voiceProductLd } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
 
 export const metadata: Metadata = {
-  title: 'Preise — KI-Telefonassistentin & Automatisierung',
+  title: 'Preise — KI-Telefonassistent & Automatisierung',
   description:
     'Solo ab 199 € · AI Account Manager 499 € · Scale auf Anfrage. Plus Automatisierungs-Pakete ab 2.500 €. Alle Preise netto, transparent, monatlich kündbar.',
   alternates: { canonical: '/preise' },
   openGraph: {
-    title: 'Preise · RSG AI — KI-Telefonassistentin',
+    title: 'Preise · RSG AI — KI-Telefonassistent',
     description:
-      'Transparente Preise für deine KI-Telefonassistentin. Solo / AI Account Manager / Scale + Automatisierungs-Pakete.',
+      'Transparente Preise für Dein KI-Telefonassistent. Solo / AI Account Manager / Scale + Automatisierungs-Pakete.',
     type: 'website',
   },
 };
@@ -63,7 +63,7 @@ export default function PreisePage() {
             </div>
             <div className="col-span-12 md:col-span-5 md:pt-2">
               <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-                Telefonassistentin als Abo. Automatisierungen als Festpreis-Projekt. Keine
+                Telefonassistent als Abo. Automatisierungen als Festpreis-Projekt. Keine
                 Beraterstunden-Falle, kein Scope-Creep — Festpreis vor dem ersten Commit.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -106,7 +106,7 @@ export default function PreisePage() {
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))]/82 px-6 py-20 backdrop-blur-[2px] md:py-28 lg:px-10">
         <div className="mx-auto max-w-[820px] text-center">
           <h2 className="font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.02em] text-[hsl(var(--fg))]">
-            Bereit für deine Telefonassistentin?
+            Bereit für Dein Telefonassistent?
           </h2>
           <p className="mt-4 text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
             30 Min Erstgespräch · kostenlos · kein Pitch. Wir prüfen mit dir, welches Paket
@@ -125,7 +125,7 @@ export default function PreisePage() {
               href="/ki-telefonassistent"
               className="text-[0.9rem] text-[hsl(var(--muted))] underline-offset-4 hover:text-[hsl(var(--fg))] hover:underline"
             >
-              Erst mehr über die Telefonassistentin lesen →
+              Erst mehr über die Telefonassistent lesen →
             </Link>
           </div>
         </div>

@@ -16,7 +16,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const CHAPTERS = [
   { id: 'hero', n: '01', label: 'Voice-Agent live' },
   { id: 'pricing-snapshot', n: '02', label: 'Preise' },
-  { id: 'voice', n: '03', label: 'Telefonassistentin' },
+  { id: 'voice', n: '03', label: 'Telefonassistent' },
   { id: 'trust', n: '04', label: 'Vertrauen' },
   { id: 'contact', n: '05', label: 'Termin' },
   { id: 'contact', n: '08', label: 'Termin' },

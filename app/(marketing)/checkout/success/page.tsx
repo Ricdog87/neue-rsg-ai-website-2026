@@ -6,7 +6,7 @@ import { PurchaseBeacon } from '@/components/system/purchase-beacon';
 
 export const metadata: Metadata = {
   title: 'Checkout · erfolgreich',
-  description: 'Deine KI-Telefonassistentin ist gebucht. Hier sind die nächsten Schritte.',
+  description: 'Dein KI-Telefonassistent ist gebucht. Hier sind die nächsten Schritte.',
   alternates: { canonical: '/checkout/success' },
   robots: { index: false, follow: false },
 };
@@ -48,7 +48,7 @@ export default function CheckoutSuccessPage() {
             Buchung bestätigt
           </div>
           <h1 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]">
-            Willkommen an Bord. Deine Telefonassistentin wartet auf den Kickoff.
+            Willkommen an Bord. Dein Telefonassistent wartet auf den Kickoff.
           </h1>
           <p className="mt-6 text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
             Was jetzt passiert — drei Schritte, transparent.

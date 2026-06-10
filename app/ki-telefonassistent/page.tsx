@@ -27,7 +27,7 @@ import { GoogleReviews } from '@/components/sections/google-reviews';
 export const metadata: Metadata = {
   title: 'KI-Telefonassistent — Inbound · Outbound · Termine in unter 0,4 s',
   description:
-    'Deine KI-Telefonassistentin nimmt jeden Anruf in unter 0,4 s an. Inbound, Outbound, Termine — 24/7, natürliches Deutsch, DSGVO-konform, Hosting in Deutschland.',
+    'Dein KI-Telefonassistent nimmt jeden Anruf in unter 0,4 s an. Inbound, Outbound, Termine — 24/7, natürliches Deutsch, DSGVO-konform, Hosting in Deutschland.',
   alternates: { canonical: '/ki-telefonassistent' },
   openGraph: {
     title: 'KI-Telefonassistent für den Mittelstand · RSG AI',
@@ -161,7 +161,7 @@ export default function KiTelefonassistentPage() {
                 Live · 24/7 · DE
               </div>
               <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.025em] text-[hsl(var(--fg))]">
-                Deine KI-Telefonassistentin{' '}
+                Dein KI-Telefonassistent{' '}
                 <span className="text-[hsl(var(--accent))]">nimmt jeden Anruf in</span>{' '}
                 <span className="tabular-nums">&lt; 0,4 s</span> an.
               </h1>
@@ -380,7 +380,7 @@ export default function KiTelefonassistentPage() {
             Hör sie, statt nur über sie zu lesen.
           </h2>
           <p className="mt-4 text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-            Ein Klick — die Telefonassistentin ruft dich in 5 Minuten zurück. Oder buch direkt 30 Min mit Ricardo.
+            Ein Klick — die Telefonassistent ruft dich in 5 Minuten zurück. Oder buch direkt 30 Min mit Ricardo.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link

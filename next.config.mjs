@@ -16,7 +16,7 @@ const nextConfig = {
     return [
       // Duplicate-Content konsolidieren: flache Branchenseite -> kanonische verschachtelte
       { source: '/ki-telefonassistent-arztpraxis', destination: '/ki-telefonassistent/arztpraxis', permanent: true },
-      // Callcenter-Seite entfernt -> auf Telefonassistentin umleiten (kein 404, Link-Equity bleibt)
+      // Callcenter-Seite entfernt -> auf Telefonassistent umleiten (kein 404, Link-Equity bleibt)
       { source: '/ki-callcenter', destination: '/ki-telefonassistent', permanent: true },
       { source: '/en/ki-callcenter', destination: '/en/ki-telefonassistent', permanent: true },
     ];

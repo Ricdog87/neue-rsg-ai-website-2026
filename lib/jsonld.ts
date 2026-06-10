@@ -161,7 +161,7 @@ export function servicesLd() {
 }
 
 /**
- * Voice Product — KI-Telefonassistentin als schema.org Product
+ * Voice Product — KI-Telefonassistent als schema.org Product
  * mit AggregateOffer (Solo + Team + Scale). Rich-Result-eligible.
  */
 export function voiceProductLd() {
@@ -169,9 +169,9 @@ export function voiceProductLd() {
     '@context': 'https://schema.org',
     '@type': 'Product',
     '@id': `${site.url}#voice-product`,
-    name: 'RSG KI-Telefonassistentin',
+    name: 'RSG KI-Telefonassistent',
     description:
-      'KI-Telefonassistentin für den Mittelstand. 24/7 erreichbar, natürlicher Voice, Inbound + Outbound, CRM-integriert. DSGVO, EU-Hosting (Nürnberg). Live in 4 Wochen.',
+      'KI-Telefonassistent für den Mittelstand. 24/7 erreichbar, natürlicher Voice, Inbound + Outbound, CRM-integriert. DSGVO, EU-Hosting (Nürnberg). Live in 4 Wochen.',
     brand: { '@id': `${site.url}#organization` },
     category: 'AI Voice Assistant · Telefonassistent',
     offers: {

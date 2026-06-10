@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 /**
- * Callback-Request — die KI-Telefonassistentin (oder Ricardo persönlich)
+ * Callback-Request — die KI-Telefonassistent (oder Ricardo persönlich)
  * ruft den Lead innerhalb von ~5 Min zurück.
  *
  * MVP: Wir validieren die Nummer, loggen sie und senden eine

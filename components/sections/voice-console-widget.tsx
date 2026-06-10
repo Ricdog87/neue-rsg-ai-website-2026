@@ -82,9 +82,19 @@ export function VoiceConsoleWidget() {
   }
 
   return (
-    <div className="flex min-h-[200px] flex-col items-center justify-center gap-3">
+    <div className="relative flex min-h-[150px] flex-col items-center justify-center gap-2 py-2">
+      {/* Technischer Rahmen-Tag oben, damit der Slot bewusst wirkt */}
+      <div
+        aria-hidden
+        className="mb-1 flex w-full items-center justify-center gap-3 font-mono text-[0.55rem] uppercase tracking-[0.22em] text-white/30"
+      >
+        <span className="h-px w-8 bg-white/12" />
+        {en ? 'Voice line · tap to call' : 'Sprachleitung · tippen zum Starten'}
+        <span className="h-px w-8 bg-white/12" />
+      </div>
+
       {!ready ? (
-        <div className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-[hsl(var(--subtle))]">
+        <div className="flex min-h-[96px] items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-[hsl(var(--subtle))]">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[hsl(174_100%_60%)]" />
           {en ? 'Loading voice engine …' : 'Sprach-Engine lädt …'}
         </div>
@@ -92,11 +102,6 @@ export function VoiceConsoleWidget() {
         // @ts-expect-error custom element
         <elevenlabs-convai agent-id={AGENT_ID} />
       )}
-      <p className="px-4 text-center font-mono text-[0.625rem] uppercase tracking-[0.2em] text-[hsl(var(--subtle))]">
-        {en
-          ? 'Tap the mic to start. Allow microphone in Safari when prompted.'
-          : 'Tipp aufs Mikro um zu starten. Erlaube den Mikrofon-Zugriff, wenn Safari fragt.'}
-      </p>
     </div>
   );
 }

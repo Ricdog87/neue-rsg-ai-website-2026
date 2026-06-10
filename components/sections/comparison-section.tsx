@@ -97,7 +97,9 @@ export function ComparisonSection() {
           transition={{ duration: 0.6 }}
           className="mt-3 overflow-x-auto md:mt-12"
         >
-          <div className="min-w-[760px]">
+          {/* pt-4 keeps the floating "Empfohlen" badge inside the scroll
+              container — overflow-x-auto would otherwise clip it. */}
+          <div className="min-w-[760px] pt-4">
             {/* Header */}
             <div className="grid grid-cols-[1.1fr_1fr_1fr_1.15fr] gap-px">
               <div />
@@ -115,7 +117,7 @@ export function ComparisonSection() {
                 </div>
                 <div className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.16em] text-[hsl(var(--subtle))]">{en ? 'human, in-house' : 'Mensch, inhouse'}</div>
               </div>
-              <div className="relative rounded-t-md border-x border-t border-[hsl(var(--accent))]/45 bg-gradient-to-b from-[hsl(var(--accent))]/15 to-[hsl(var(--accent))]/[0.05] px-5 py-4 shadow-[0_-6px_30px_-12px_hsl(var(--accent)/0.4)]">
+              <div className="relative rounded-t-md border-x border-t border-[hsl(var(--accent))]/40 bg-[hsl(var(--accent))]/[0.06] px-5 py-4 shadow-[0_-6px_30px_-14px_hsl(var(--accent)/0.35)] backdrop-blur-[2px]">
                 {/* Corner brackets — viewfinder */}
                 <span aria-hidden className="absolute left-1.5 top-1.5 h-2 w-2 border-l border-t border-[hsl(var(--accent))]/60" />
                 <span aria-hidden className="absolute right-1.5 top-1.5 h-2 w-2 border-r border-t border-[hsl(var(--accent))]/60" />
@@ -148,7 +150,7 @@ export function ComparisonSection() {
                   {en ? r.humanEn : r.human}
                 </div>
                 <div className={
-                  'relative flex items-start gap-2 border-x border-[hsl(var(--accent))]/45 bg-gradient-to-r from-[hsl(var(--accent))]/[0.1] to-[hsl(var(--accent))]/[0.05] px-5 py-4 text-[0.85rem] font-medium leading-snug text-[hsl(var(--fg))]' +
+                  'relative flex items-start gap-2 border-x border-[hsl(var(--accent))]/40 bg-[hsl(var(--accent))]/[0.04] px-5 py-4 text-[0.85rem] font-medium leading-snug text-[hsl(var(--fg))] transition-colors group-hover:bg-[hsl(var(--accent))]/[0.08]' +
                   (i === ROWS.length - 1 ? ' rounded-b-md border-b' : '')
                 }>
                   {/* Bottom corner brackets only on last row */}

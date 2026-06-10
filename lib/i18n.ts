@@ -14,12 +14,27 @@ export function localeFromPath(pathname: string | null | undefined): Locale {
   return pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'de';
 }
 
+/**
+ * DE paths that have a dedicated English route under /en. Used so the
+ * language switcher never links to a non-existent EN page (404). For DE
+ * pages without an EN version (e.g. German local-SEO city pages, German
+ * blog posts) the switcher gracefully falls back to the English homepage.
+ */
+export const EN_AVAILABLE_PATHS = new Set<string>([
+  '/preise',
+  '/ki-telefonassistent',
+  '/automatisierung',
+  '/ki-agentur-mittelstand',
+  '/termin',
+]);
+
 /** Map a path to its counterpart in the other locale (for the switcher). */
 export function alternatePath(pathname: string, to: Locale): string {
   const isEn = pathname === '/en' || pathname.startsWith('/en/');
   if (to === 'en') {
     if (isEn) return pathname;
-    return pathname === '/' ? '/en' : `/en${pathname}`;
+    if (pathname === '/') return '/en';
+    return EN_AVAILABLE_PATHS.has(pathname) ? `/en${pathname}` : '/en';
   }
   // to === 'de'
   if (!isEn) return pathname;

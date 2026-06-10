@@ -154,7 +154,7 @@ function TerminContent() {
             className="relative overflow-hidden rounded-2xl border border-[hsl(var(--border-strong))] bg-[hsl(var(--surface))]"
             style={{
               boxShadow:
-                '0 24px 60px -20px hsl(271 91% 65% / 0.35), 0 1px 0 hsl(0 0% 100% / 0.05) inset',
+                '0 24px 60px -20px hsl(174 90% 42% / 0.35), 0 1px 0 hsl(0 0% 100% / 0.05) inset',
             }}
           >
             {/* Soft accent border-glow at top */}
@@ -163,7 +163,7 @@ function TerminContent() {
               className="absolute inset-x-0 top-0 h-px"
               style={{
                 background:
-                  'linear-gradient(90deg, transparent, hsl(271 91% 65% / 0.55), transparent)',
+                  'linear-gradient(90deg, transparent, hsl(174 90% 42% / 0.55), transparent)',
               }}
             />
 

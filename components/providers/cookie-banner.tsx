@@ -23,7 +23,7 @@ export function CookieBanner() {
         padding: '1rem 1.5rem'
       }}
       buttonStyle={{
-        background: 'hsl(271 91% 65%)',
+        background: 'hsl(174 90% 42%)',
         color: 'hsl(0 0% 100%)',
         fontSize: '14px',
         fontWeight: 600,

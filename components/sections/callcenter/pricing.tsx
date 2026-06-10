@@ -110,7 +110,7 @@ export function CallcenterPricing() {
             viewport={{ once: true, margin: '-10% 0px' }}
             transition={{ delay: 0.24, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/15 p-6 transition-all duration-300 hover:-translate-y-1.5"
-            style={{ background: 'linear-gradient(160deg, hsl(271 60% 18%) 0%, hsl(240 14% 6%) 55%)' }}
+            style={{ background: 'linear-gradient(160deg, hsl(174 55% 14%) 0%, hsl(240 14% 6%) 55%)' }}
           >
             <div
               aria-hidden

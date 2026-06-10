@@ -192,6 +192,27 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Hero — editorial scanning indicators (Lusion-style) */
+@keyframes hero-scan-horiz {
+  0%   { transform: translateX(-110%); }
+  60%  { transform: translateX(220%); }
+  100% { transform: translateX(220%); }
+}
+@keyframes hero-scan-vert {
+  0%   { transform: translateY(-110%); }
+  60%  { transform: translateY(420%); }
+  100% { transform: translateY(420%); }
+}
+.hero-scan-line {
+  animation: hero-scan-horiz 3.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.hero-scan-vert {
+  animation: hero-scan-vert 4.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scan-line, .hero-scan-vert { animation: none; }
+}
+
 /* Legal pages typography */
 .legal-prose h2 {
   font-family: var(--font-display);

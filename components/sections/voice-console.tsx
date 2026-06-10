@@ -2,11 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import {
-  ConversationProvider,
-  useConversationControls,
-  useConversationStatus,
-} from '@elevenlabs/react';
+import { useConversation } from '@elevenlabs/react';
 import { Mic, PhoneOff, Loader2, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { site } from '@/lib/content';
@@ -156,17 +152,17 @@ function StatusLabel({ state, en }: { state: VisualState; en: boolean }) {
 }
 
 function ConsoleControls() {
-  const { startSession, endSession } = useConversationControls();
-  const { status } = useConversationStatus();
+  const conversation = useConversation();
+  const status = conversation.status;
   const [err, setErr] = useState(false);
   const live = status === 'connected';
   const en = useEnglish();
 
   useEffect(() => {
     if (status !== 'connected') return;
-    const id = window.setTimeout(() => endSession(), MAX_MS);
+    const id = window.setTimeout(() => conversation.endSession(), MAX_MS);
     return () => window.clearTimeout(id);
-  }, [status, endSession]);
+  }, [status, conversation]);
 
   const start = async () => {
     setErr(false);
@@ -177,7 +173,7 @@ function ConsoleControls() {
       return;
     }
     try {
-      await startSession({ agentId: AGENT_ID as string, connectionType: 'webrtc' });
+      await conversation.startSession({ agentId: AGENT_ID as string, connectionType: 'webrtc' });
     } catch {
       setErr(true);
     }
@@ -192,7 +188,7 @@ function ConsoleControls() {
       {live ? (
         <button
           type="button"
-          onClick={() => endSession()}
+          onClick={() => conversation.endSession()}
           className={cn(BTN, 'border border-red-400/40 bg-red-500/15 text-red-100 hover:bg-red-500/25')}
         >
           <span className="relative flex h-2 w-2">
@@ -281,9 +277,7 @@ export function VoiceConsole({ title }: { title?: string | null }) {
       ) : null}
       <div className="rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--bg))]/50 p-3">
         {AGENT_ID && mounted ? (
-          <ConversationProvider>
-            <ConsoleControls />
-          </ConversationProvider>
+          <ConsoleControls />
         ) : (
           <ConsoleFallback pending={!!AGENT_ID} />
         )}

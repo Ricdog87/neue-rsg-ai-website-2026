@@ -23,7 +23,6 @@ import { ScrollSlide } from '@/components/ui/scroll-slide';
 import { ComparisonSection } from '@/components/sections/comparison-section';
 import { GuaranteeStrip } from '@/components/sections/guarantee-strip';
 import { GoogleReviews } from '@/components/sections/google-reviews';
-import { Tilt3D } from '@/components/effects/tilt-3d';
 
 export const metadata: Metadata = {
   title: 'KI-Telefonassistent — Inbound · Outbound · Termine in unter 0,4 s',
@@ -188,9 +187,7 @@ export default function KiTelefonassistentPage() {
               </div>
             </div>
             <div className="col-span-12 md:col-span-5">
-              <Tilt3D>
-                <VoiceConsole />
-              </Tilt3D>
+              <VoiceConsole />
             </div>
           </div>
         </div>

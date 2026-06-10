@@ -13,7 +13,6 @@ import { faqPageLd, ldJson } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
 import { CitiesSection } from '@/components/sections/cities-section'
 import { GuaranteeStrip } from '@/components/sections/guarantee-strip';
-import { Tilt3D } from '@/components/effects/tilt-3d';
 import { SocialProofBar } from '@/components/sections/social-proof-bar';
 import { ComparisonSection } from '@/components/sections/comparison-section';
 import { ObjectionFaq } from '@/components/sections/objection-faq';
@@ -55,9 +54,7 @@ export default function HomePage() {
             Lies nicht über KI-Telefonie — erlebe sie. Ein Klick, deine Stimme, Antwort in unter 0,4 Sekunden.
           </p>
           <div className="mx-auto mt-9 max-w-md text-left">
-            <Tilt3D>
-              <VoiceConsole title={null} />
-            </Tilt3D>
+            <VoiceConsole title={null} />
           </div>
         </div>
       </section>

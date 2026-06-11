@@ -287,7 +287,9 @@ export function Hero() {
               </Magnetic>
               <Magnetic strength={0.12} radius={80}>
                 <a
-                  href="#voice"
+                  /* EN-Homepage hat keine #voice-Sektion → dort zur
+                     Telefonassistent-Seite mit Live-Console verlinken. */
+                  href={en ? '/en/ki-telefonassistent' : '#voice'}
                   data-sound="tick"
                   data-cursor-label="Ansehen"
                   data-event="voice_section_open"

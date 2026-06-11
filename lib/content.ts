@@ -584,11 +584,11 @@ export const footer = {
       title: 'Produkt',
       links: [
         { label: 'Voice-Suite · NEU', href: '/#voice' },
-        { label: 'Warum uns', href: '/#usp' },
-        { label: 'Pipelines', href: '/#pipelines' },
-        { label: 'Prozess', href: '/#solutions' },
-        { label: 'ROI-Rechner', href: '/#roi' },
-        { label: 'Investment', href: '/#pricing' }
+        { label: 'Warum uns', href: '/automatisierung#usp' },
+        { label: 'Pipelines', href: '/automatisierung#pipelines' },
+        { label: 'Prozess', href: '/automatisierung#solutions' },
+        { label: 'ROI-Rechner', href: '/#rechner' },
+        { label: 'Investment', href: '/preise' }
       ]
     },
     {

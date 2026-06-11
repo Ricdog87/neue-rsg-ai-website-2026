@@ -142,40 +142,12 @@ function SnapshotCard({ p, i, en, loadingTier, onCheckout }: {
       onMouseLeave={onLeave}
       style={{ rotateX, rotateY, transformPerspective: 1000, transformStyle: 'preserve-3d' }}
       className={
-        'group relative ' +
-        (p.recommended ? 'z-10 md:-mt-4 md:mb-4 md:scale-[1.04]' : '')
+        'group relative flex flex-col overflow-hidden rounded-2xl border p-6 transition-colors duration-300 ' +
+        (p.recommended
+          ? 'border-[hsl(var(--accent))]/55 bg-gradient-to-b from-[hsl(var(--accent))]/[0.14] via-[hsl(var(--accent))]/[0.05] to-transparent shadow-[0_0_60px_-18px_hsl(var(--accent)/0.6)] md:-mt-3 md:mb-3'
+          : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60 hover:border-[hsl(var(--accent))]/45 hover:bg-[hsl(var(--bg))]/75')
       }
     >
-      {/* Bestseller: Ambient-Halo + rotierender Conic-Gradient-Ring */}
-      {p.recommended && (
-        <>
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -inset-5 -z-10 rounded-[2rem] opacity-60 blur-2xl"
-            style={{
-              background:
-                'radial-gradient(ellipse at 50% 0%, hsl(var(--accent) / 0.5), hsl(var(--accent) / 0.12) 55%, transparent 75%)',
-            }}
-          />
-          <div aria-hidden className="bestseller-ring -inset-[1.5px]" />
-        </>
-      )}
-
-      <div
-        className={
-          'relative flex h-full flex-col overflow-hidden rounded-2xl p-6 transition-colors duration-300 ' +
-          (p.recommended
-            ? 'bg-[hsl(240_10%_5%)]'
-            : 'border border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60 hover:border-[hsl(var(--accent))]/45 hover:bg-[hsl(var(--bg))]/75')
-        }
-      >
-      {/* Bestseller: innerer cyan Schimmer von oben */}
-      {p.recommended && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[hsl(var(--accent))]/[0.12] via-transparent to-[hsl(var(--accent))]/[0.04]"
-        />
-      )}
       {/* Corner brackets — viewfinder framing on the recommended card */}
       {p.recommended && (
         <>
@@ -196,12 +168,8 @@ function SnapshotCard({ p, i, en, loadingTier, onCheckout }: {
           <motion.span
             animate={{ scale: [1, 1.07, 1] }}
             transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-            className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.2em] text-[#04130f] shadow-[0_0_28px_hsl(var(--accent)/0.7)]"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-2.5 py-0.5 font-mono text-[0.575rem] uppercase tracking-[0.2em] text-white shadow-[0_0_22px_hsl(var(--accent)/0.55)]"
           >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#04130f] opacity-50" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#04130f]" />
-            </span>
             ★ Bestseller
           </motion.span>
         ) : (
@@ -224,16 +192,9 @@ function SnapshotCard({ p, i, en, loadingTier, onCheckout }: {
         </p>
       )}
 
-      {/* Price block — Bestseller eine Stufe größer + cyan Glow-Text */}
+      {/* Price block */}
       <div className="mt-5 flex items-end gap-1.5">
-        <span
-          className={
-            'font-display font-medium leading-none tabular-nums tracking-[-0.025em] text-[hsl(var(--fg))] ' +
-            (p.recommended
-              ? 'text-[clamp(2.4rem,4vw,3.1rem)] [text-shadow:0_0_28px_hsl(var(--accent)/0.45)]'
-              : 'text-[clamp(2rem,3.4vw,2.6rem)]')
-          }
-        >
+        <span className="font-display text-[clamp(2rem,3.4vw,2.6rem)] font-medium leading-none tabular-nums tracking-[-0.025em] text-[hsl(var(--fg))]">
           {p.priceMonthly}
         </span>
         {p.priceSuffix ? (
@@ -305,7 +266,6 @@ function SnapshotCard({ p, i, en, loadingTier, onCheckout }: {
           <ArrowUpRight className="h-3.5 w-3.5" />
         </Link>
       )}
-      </div>
     </motion.div>
   );
 }

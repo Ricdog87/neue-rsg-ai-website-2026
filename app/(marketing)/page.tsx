@@ -16,34 +16,31 @@ import { GuaranteeStrip } from '@/components/sections/guarantee-strip';
 import { SocialProofBar } from '@/components/sections/social-proof-bar';
 import { ComparisonSection } from '@/components/sections/comparison-section';
 import { ObjectionFaq } from '@/components/sections/objection-faq';
+import { ExitIntent } from '@/components/effects/exit-intent';
 import { NewsletterSection } from '@/components/sections/newsletter-section';
 
 /**
- * Homepage — Pitch-Arc-Reihenfolge MIT den cinematischen Scroll-Effekten.
+ * Homepage — Focused funnel, not encyclopedia.
  *
- * Reihenfolge = Sales-Story:
- *  №01 Live-Demo → №02 Hero → №03 SocialProof → №04 Problem (Comparison)
- *  → №05 Wert (ROI) → №06 Angebot (Pricing) → №07 Beweis (Reviews)
- *  → №08 TrustStrip → №09 Breather (Marquee) → №10 Einwände (FAQ)
- *  → №11 Garantie → №12 CTA → №13 Tail
+ * Strategy: don't dump everything on one page. Land users on the
+ * value-proposition + price, then funnel them to dedicated pages
+ * for depth (/preise, /ki-telefonassistent, /cases, /insights).
  *
- * Effekt-Komposition: ScrollParallax-Drift + gemischte Slide-Richtungen +
- * Zoom-Reveals (wie Deploy 8165145 — die Version mit dem „Wow"-Scroll).
- * Der overflow-x-clip-Wrapper unterbindet horizontale Scroll-Artefakte
- * durch die Drifts, ohne die Effekte zu kastrieren (clip erzeugt keinen
- * Scroll-Container, sticky bleibt funktional).
- *
- * ExitIntent bleibt entfernt — Overlay-Risiko in Live-Präsentationen.
+ *  №01 Live-Voice-Agent · Interactive Hook (im Browser ausprobieren)
+ *  №02 Hero             · Voice-forward Positioning
+ *  №03 PricingSnapshot  · 3 Voice-Cards → /preise
+ *  №04 TechMarquee      · Tech-Stack-Strip (visual breather)
+ *  №05 VoiceAgents      · Live-Demo + Use-Cases (kompakt)
+ *  №06 TrustStrip       · 4 KPIs (DSGVO · Time-to-Live · Performance)
+ *  №07 Contact          · Final CTA → Termin
  */
 export default function HomePage() {
   return (
-    <div className="overflow-x-clip">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: ldJson(faqPageLd(FAQ)) }}
       />
-
-      {/* №01 — Live-Demo · der Präsentations-Hook */}
       <section id="voice" className="relative overflow-hidden">
         <div
           aria-hidden
@@ -61,81 +58,57 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* №02 — Positionierung */}
       <Hero />
-
-      {/* №03 — Schnelle Glaubwürdigkeit */}
       <ScrollParallax x={-12}>
         <ScrollSlide direction="up">
           <SocialProofBar />
         </ScrollSlide>
       </ScrollParallax>
-
-      {/* №04 — Das Problem: drei Wege, Anrufe zu händeln */}
-      <ScrollParallax x={12}>
-        <ScrollSlide direction="up">
-          <ComparisonSection />
-        </ScrollSlide>
-      </ScrollParallax>
-
-      {/* №05 — Der Wert: verlorener → zurückgewonnener Umsatz */}
-      <ScrollParallax x={14}>
-        <ScrollSlide direction="right">
-          <VoiceRoiCalculator />
-        </ScrollSlide>
-      </ScrollParallax>
-
-      {/* №06 — Das Angebot */}
-      <ScrollParallax x={-14}>
-        <ScrollZoom>
-          <PricingSnapshot />
-        </ScrollZoom>
-      </ScrollParallax>
-
-      {/* №07 — Beweis */}
       <ScrollParallax x={10}>
         <ScrollSlide direction="left">
           <GoogleReviews />
         </ScrollSlide>
       </ScrollParallax>
-
-      {/* №08 — KPIs · DSGVO */}
       <ScrollParallax x={-14}>
         <ScrollZoom>
-          <TrustStrip />
+          <PricingSnapshot />
         </ScrollZoom>
       </ScrollParallax>
-
-      {/* №09 — Breather */}
+      <ScrollParallax x={14}>
+        <ScrollSlide direction="right">
+          <VoiceRoiCalculator />
+        </ScrollSlide>
+      </ScrollParallax>
+      <ScrollParallax x={-12}>
+        <ScrollSlide direction="up">
+          <ComparisonSection />
+        </ScrollSlide>
+      </ScrollParallax>
       <ScrollParallax x={-10}>
         <ScrollSlide direction="up">
           <TechMarquee />
         </ScrollSlide>
       </ScrollParallax>
-
-      {/* №10 — Einwände */}
+      <ScrollParallax x={-14}>
+        <ScrollZoom>
+          <TrustStrip />
+        </ScrollZoom>
+      </ScrollParallax>
       <ScrollParallax x={14}>
         <ScrollSlide direction="up">
           <ObjectionFaq />
         </ScrollSlide>
       </ScrollParallax>
-
-      {/* №11 — Risiko-Umkehr */}
       <ScrollParallax x={10}>
         <ScrollSlide direction="up">
           <GuaranteeStrip />
         </ScrollSlide>
       </ScrollParallax>
-
-      {/* №12 — CTA */}
       <ScrollParallax x={12}>
         <ScrollZoom>
           <ContactSection />
         </ScrollZoom>
       </ScrollParallax>
-
-      {/* №13 — Tail */}
       <ScrollParallax x={-12}>
         <ScrollSlide direction="up">
           <NewsletterSection />
@@ -146,6 +119,7 @@ export default function HomePage() {
           <CitiesSection />
         </ScrollSlide>
       </ScrollParallax>
-    </div>
+      <ExitIntent />
+    </>
   );
 }

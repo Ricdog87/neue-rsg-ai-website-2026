@@ -7,7 +7,7 @@ import { pricing } from '@/lib/content';
 import { voicePlans, type VoicePlan } from '@/lib/pricing-voice';
 import { useEnglish } from '@/components/system/use-locale';
 
-type Billing = 'monthly' | 'annual';
+export type Billing = 'monthly' | 'annual';
 
 type AgentCard = {
   id: string;
@@ -51,8 +51,10 @@ const agentCards: AgentCard[] = (pricing.tiers || []).map((t, i) => {
   };
 });
 
-/* ── Voice Plan Card with annual/monthly logic ── */
-function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
+/* ── Voice Plan Card with annual/monthly logic ──
+   Exportiert: wird auch von der Homepage (PricingSnapshot) genutzt,
+   damit beide Seiten identische, volle Karten zeigen. */
+export function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
   const rec = !!plan.recommended;
   const price = billing === 'monthly' ? plan.priceMonthly : plan.priceAnnual;
   const onRequest = plan.monthlyValue == null;
@@ -82,14 +84,46 @@ function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
   return (
     <div
       className={
-        'relative flex flex-col rounded-xl border p-7 transition-transform duration-300 hover:-translate-y-1 ' +
-        (rec
-          ? 'border-[hsl(var(--accent))/40] bg-[hsl(var(--accent))/10] rec-pulse'
-          : 'border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60')
+        'relative h-full transition-transform duration-300 hover:-translate-y-1 ' +
+        (rec ? 'z-10 md:-mt-3 md:mb-3 md:scale-[1.03]' : '')
       }
     >
+      {/* Bestseller: Ambient-Halo + rotierender Conic-Gradient-Ring */}
       {rec ? (
-        <span className="absolute -top-3 left-7 inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white">
+        <>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-5 -z-10 rounded-[2rem] opacity-60 blur-2xl"
+            style={{
+              background:
+                'radial-gradient(ellipse at 50% 0%, hsl(var(--accent) / 0.5), hsl(var(--accent) / 0.12) 55%, transparent 75%)',
+            }}
+          />
+          <div aria-hidden className="bestseller-ring -inset-[1.5px]" />
+        </>
+      ) : null}
+
+      <div
+        className={
+          'relative flex h-full flex-col rounded-xl p-7 ' +
+          (rec
+            ? 'bg-[hsl(240_10%_5%)]'
+            : 'border border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60')
+        }
+      >
+      {/* Bestseller: innerer cyan Schimmer von oben */}
+      {rec ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-b from-[hsl(var(--accent))]/[0.12] via-transparent to-[hsl(var(--accent))]/[0.04]"
+        />
+      ) : null}
+      {rec ? (
+        <span className="absolute -top-3 left-7 inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--accent))] px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-white shadow-[0_0_24px_hsl(var(--accent)/0.6)]">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+          </span>
           {en ? '★ Bestseller' : '★ Bestseller'}
         </span>
       ) : null}
@@ -99,9 +133,16 @@ function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
 
       <div className="my-6 h-px w-full bg-[hsl(var(--border))]" />
 
-      {/* Price */}
+      {/* Price — Bestseller eine Stufe größer + cyan Glow */}
       <div className="flex items-end gap-2">
-        <span className="font-display text-[clamp(2rem,3.6vw,3rem)] font-medium leading-none tabular-nums tracking-[-0.025em] text-[hsl(var(--fg))]">
+        <span
+          className={
+            'font-display font-medium leading-none tabular-nums tracking-[-0.025em] text-[hsl(var(--fg))] ' +
+            (rec
+              ? 'text-[clamp(2.4rem,4vw,3.4rem)] [text-shadow:0_0_28px_hsl(var(--accent)/0.45)]'
+              : 'text-[clamp(2rem,3.6vw,3rem)]')
+          }
+        >
           {price}
         </span>
         {plan.priceSuffix && !onRequest ? (
@@ -154,6 +195,7 @@ function VoiceCard({ plan, billing }: { plan: VoicePlan; billing: Billing }) {
         {en ? plan.ctaEn ?? plan.cta : plan.cta}
         <ArrowUpRight className="h-3.5 w-3.5" />
       </a>
+      </div>
     </div>
   );
 }

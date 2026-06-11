@@ -20,7 +20,10 @@ export function CookieBanner() {
         borderTop: '1px solid hsl(240 6% 15%)',
         color: 'hsl(0 0% 90%)',
         fontSize: '14px',
-        padding: '1rem 1.5rem'
+        padding: '1rem 1.5rem',
+        paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))',
+        zIndex: 9999,
+        alignItems: 'center'
       }}
       buttonStyle={{
         background: 'hsl(174 90% 42%)',

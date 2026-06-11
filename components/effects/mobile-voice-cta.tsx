@@ -16,6 +16,7 @@ import { site } from '@/lib/content';
  */
 export function MobileVoiceCta() {
   const [visible, setVisible] = useState(false);
+  const [aikoOpen, setAikoOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -26,10 +27,15 @@ export function MobileVoiceCta() {
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const onAiko = (e: Event) => setAikoOpen(Boolean((e as CustomEvent).detail));
+    window.addEventListener('aiko-open-change', onAiko as EventListener);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('aiko-open-change', onAiko as EventListener);
+    };
   }, []);
 
-  if (!visible) return null;
+  if (!visible || aikoOpen) return null;
 
   return (
     <div

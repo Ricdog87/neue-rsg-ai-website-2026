@@ -106,6 +106,13 @@ export function AikoWidget() {
     }
   }, [open]);
 
+  // Notify other sticky elements (e.g. MobileVoiceCta) so they hide while
+  // the Aiko panel covers the viewport on mobile.
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.dispatchEvent(new CustomEvent('aiko-open-change', { detail: open }));
+  }, [open]);
+
   React.useEffect(() => () => abortRef.current?.abort(), []);
 
   async function send() {
@@ -240,13 +247,19 @@ export function AikoWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={cn(
-          'fixed bottom-5 right-5 z-[70] flex h-14 w-14 items-center justify-center rounded-full',
+          // Mobile: über MobileVoiceCta-Bar (~70px hoch) heben → bottom-24 statt bottom-5.
+          'fixed bottom-24 right-4 z-[70] flex h-14 w-14 items-center justify-center rounded-full',
           'bg-gradient-to-br from-[hsl(174_100%_45%)] to-[hsl(174_100%_30%)]',
           'text-[#04130f] shadow-[0_10px_40px_-10px_hsl(174_100%_50%/0.7)]',
           'transition-shadow hover:shadow-[0_14px_50px_-8px_hsl(174_100%_50%/0.85)]',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(174_100%_60%)] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--bg))]',
+          // Desktop: zurück auf normalen Floating-Spot.
           'sm:bottom-6 sm:right-6 sm:h-16 sm:w-16',
         )}
+        style={{
+          // iOS Safe-Area-Inset auf Mobile beachten.
+          marginBottom: 'env(safe-area-inset-bottom, 0px)',
+        }}
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
@@ -278,12 +291,20 @@ export function AikoWidget() {
             role="dialog"
             aria-label="Chat mit Aiko, KI-Sales-Assistentin von RSG AI"
             className={cn(
-              'fixed bottom-24 right-3 z-[69] flex w-[calc(100vw-1.5rem)] max-w-[420px] flex-col overflow-hidden',
-              'rounded-2xl border border-[hsl(174_100%_50%/0.3)] bg-[hsl(var(--surface))]/95 backdrop-blur-xl',
-              'shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]',
-              'sm:bottom-28 sm:right-6',
+              // Mobile: Vollbild — vermeidet Stack-Konflikte mit MobileVoiceCta + CookieBanner.
+              'fixed inset-x-0 bottom-0 top-0 z-[71] flex w-full flex-col overflow-hidden bg-[hsl(var(--surface))]/95 backdrop-blur-xl',
+              'border-0',
+              // ≥sm: zurück zum Floating-Panel.
+              'sm:inset-auto sm:bottom-28 sm:right-6 sm:top-auto sm:z-[69] sm:w-[calc(100vw-1.5rem)] sm:max-w-[420px]',
+              'sm:rounded-2xl sm:border sm:border-[hsl(174_100%_50%/0.3)] sm:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]',
+              // Height: Mobile = full dvh; Desktop = floating mit Cap.
+              'h-[100dvh] sm:h-[min(640px,calc(100dvh-8rem))]',
             )}
-            style={{ height: 'min(640px, calc(100dvh - 8rem))' }}
+            style={{
+              // Mobile: volle dvh, paddingTop für iOS-Statusleiste/Notch.
+              // sm: feste Höhe wie zuvor (Tailwind sm: kann die height nicht überschreiben → useMedia-frei via CSS-Cap).
+              paddingTop: 'env(safe-area-inset-top, 0px)',
+            }}
           >
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-[hsl(var(--border))] bg-[hsl(var(--ink))]/60 px-4 py-3">
@@ -300,10 +321,18 @@ export function AikoWidget() {
               <button
                 type="button"
                 onClick={reset}
-                className="font-mono text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--subtle))] transition-colors hover:text-[hsl(174_100%_70%)]"
+                className="inline-flex h-11 items-center px-3 font-mono text-[10px] uppercase tracking-[0.16em] text-[hsl(var(--subtle))] transition-colors hover:text-[hsl(174_100%_70%)] sm:h-auto sm:px-1"
                 aria-label="Konversation neu starten"
               >
                 Reset
+              </button>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full text-[hsl(var(--muted))] transition-colors hover:bg-[hsl(var(--border))]/40 hover:text-[hsl(var(--fg))] sm:hidden"
+                aria-label="Chat schließen"
+              >
+                <X className="h-5 w-5" />
               </button>
             </div>
 
@@ -343,7 +372,10 @@ export function AikoWidget() {
             </div>
 
             {/* Composer */}
-            <div className="border-t border-[hsl(var(--border))] bg-[hsl(var(--ink))]/40 px-3 py-3">
+            <div
+              className="border-t border-[hsl(var(--border))] bg-[hsl(var(--ink))]/40 px-3 py-3"
+              style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
+            >
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -367,7 +399,8 @@ export function AikoWidget() {
                   disabled={streaming}
                   className={cn(
                     'flex-1 resize-none rounded-xl border border-[hsl(var(--border-strong))] bg-[hsl(var(--bg-deep))]/60',
-                    'px-3 py-2 text-sm text-[hsl(var(--fg))] placeholder:text-[hsl(var(--subtle))]',
+                    // text-base (16px) auf Mobile verhindert iOS-Auto-Zoom beim Fokus.
+                    'px-3 py-2 text-base text-[hsl(var(--fg))] placeholder:text-[hsl(var(--subtle))] sm:text-sm',
                     'focus:border-[hsl(174_100%_50%)] focus:outline-none focus:ring-1 focus:ring-[hsl(174_100%_50%)]',
                     'max-h-32 disabled:opacity-50',
                   )}

@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import { ArrowUpRight, Phone } from 'lucide-react';
 import { voicePlans } from '@/lib/pricing-voice';
-import { VoiceCard } from '@/components/sections/pricing-plans-section';
+import { VoiceCard, type Billing } from '@/components/sections/pricing-plans-section';
 import { useEnglish } from '@/components/system/use-locale';
 
 /**
@@ -11,12 +12,13 @@ import { useEnglish } from '@/components/system/use-locale';
  *
  * Nutzt dieselben vollen Karten wie /preise (VoiceCard aus
  * pricing-plans-section), damit Homepage und Preisseite identisch
- * aussehen: komplette Feature-Listen, Tagline, Setup-Zeile, und der
- * Bestseller mit rotierendem Gradient-Ring + Halo + Scale.
- * Billing hier fix monatlich — der Jahres-Toggle lebt auf /preise.
+ * aussehen — inklusive Monatlich/Jährlich-Toggle (−15 %, Setup
+ * inklusive bei Jahresvorkasse) und dem Pill-Link zu den
+ * Automatisierungs-Preisen, beides 1:1 wie auf /preise.
  */
 export function PricingSnapshot() {
   const en = useEnglish();
+  const [billing, setBilling] = useState<Billing>('monthly');
 
   return (
     <section
@@ -53,22 +55,56 @@ export function PricingSnapshot() {
           </div>
         </div>
 
+        {/* Billing toggle — 1:1 wie /preise (Jahresvorkasse: −15 %, Setup inkl.) */}
+        <div className="mt-10 flex justify-center">
+          <div className="inline-flex items-center rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--bg))]/60 p-1">
+            <button
+              type="button"
+              onClick={() => setBilling('monthly')}
+              data-event="snapshot_billing_monthly"
+              className={
+                'rounded-full px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] transition-all ' +
+                (billing === 'monthly' ? 'bg-[hsl(var(--accent))] text-white' : 'text-[hsl(var(--muted))] hover:text-[hsl(var(--fg))]')
+              }
+            >
+              {en ? 'Monthly' : 'Monatlich'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setBilling('annual')}
+              data-event="snapshot_billing_annual"
+              className={
+                'rounded-full px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] transition-all ' +
+                (billing === 'annual' ? 'bg-[hsl(var(--accent))] text-white' : 'text-[hsl(var(--muted))] hover:text-[hsl(var(--fg))]')
+              }
+            >
+              {en ? 'Yearly · −15%' : 'Jährlich · −15 %'}
+            </button>
+          </div>
+        </div>
+
+        {/* Cross-Link zu den Automatisierungs-Preisen — Pill wie auf /preise */}
+        <p className="mt-5 text-center text-[0.95rem] text-[hsl(var(--muted))]">
+          {en ? 'Need process automation instead?' : 'Brauchst du eher Prozess-Automatisierung?'}{' '}
+          <Link
+            href={en ? '/en/automatisierung' : '/automatisierung#automation-pricing'}
+            data-event="snapshot_to_automation_pricing"
+            className="ml-1.5 inline-flex items-center rounded-full border border-[hsl(var(--accent))/45] bg-[hsl(var(--accent))/12] px-3.5 py-1.5 align-middle font-semibold text-[hsl(var(--accent))] transition-colors hover:border-[hsl(var(--accent))] hover:bg-[hsl(var(--accent))/20]"
+          >
+            → {en ? 'AI agents & workflows' : 'KI-Agenten & Workflows'}
+          </Link>
+        </p>
+
         {/* Cards — identisch zur /preise-Seite (volle Feature-Listen) */}
-        <div className="mt-12 grid items-stretch gap-6 md:grid-cols-3">
+        <div className="mt-10 grid items-stretch gap-6 md:grid-cols-3">
           {voicePlans.map((p) => (
-            <VoiceCard key={p.id} plan={p} billing="monthly" />
+            <VoiceCard key={p.id} plan={p} billing={billing} />
           ))}
         </div>
 
         {/* Sub-line — additional context */}
         <p className="mt-8 text-center text-[0.875rem] text-[hsl(var(--muted))]">
-          {en ? 'Need process automation rather than telephony?' : 'Du brauchst eher Prozess-Automatisierung statt Telefonie?'}{' '}
-          <Link
-            href={en ? '/en/automatisierung' : '/automatisierung'}
-            className="font-medium text-[hsl(var(--accent))] underline-offset-2 hover:underline"
-          >
-            {en ? 'AI agents & workflows from €2,500' : 'KI-Agenten & Workflows ab 2.500 €'}
-          </Link>
+          {en ? 'AI agents & workflows from €2,500' : 'KI-Agenten & Workflows ab 2.500 €'}
           <span className="mx-2 text-[hsl(var(--subtle))]">·</span>
           <Phone className="-mt-0.5 inline h-3.5 w-3.5 text-[hsl(var(--accent))]" />{' '}
           <a

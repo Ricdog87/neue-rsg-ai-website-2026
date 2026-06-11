@@ -7,7 +7,7 @@ import { pricing } from '@/lib/content';
 import { voicePlans, type VoicePlan } from '@/lib/pricing-voice';
 import { useEnglish } from '@/components/system/use-locale';
 
-type Billing = 'monthly' | 'annual';
+export type Billing = 'monthly' | 'annual';
 
 type AgentCard = {
   id: string;

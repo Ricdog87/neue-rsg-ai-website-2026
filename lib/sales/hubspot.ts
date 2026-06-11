@@ -17,6 +17,8 @@
  * Endpoint, keine Daten.
  */
 
+import { site } from '../content';
+
 const HS_BASE = 'https://api.hubapi.com';
 
 function token(): string | null {
@@ -196,9 +198,6 @@ export function meetingLinkFor(params: {
   firstName?: string;
   reason?: string;
 }): string {
-  // Basis-URL aus content.ts (single source of truth)
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { site } = require('../content') as typeof import('../content');
   const base = site.cta.meetingUrl;
   // HubSpot Meetings akzeptiert ?email= &firstName= &userMessage=
   const u = new URL(base.startsWith('http') ? base : 'https://www.rsg-ai.de' + base);

@@ -192,6 +192,34 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Bestseller-Karte — rotierender Conic-Gradient-Ring.
+   Liegt absolut hinter der Karte (-inset-[1.5px]); die Karte selbst hat
+   solides BG, sodass nur die laufende Ring-Kante sichtbar bleibt. */
+@property --bestseller-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes bestseller-spin {
+  to { --bestseller-angle: 360deg; }
+}
+.bestseller-ring {
+  position: absolute;
+  border-radius: 0.85rem;
+  background: conic-gradient(
+    from var(--bestseller-angle),
+    hsl(174 100% 50% / 0.85) 0deg,
+    hsl(174 100% 50% / 0.08) 90deg,
+    hsl(174 100% 50% / 0.35) 180deg,
+    hsl(174 100% 50% / 0.08) 270deg,
+    hsl(174 100% 50% / 0.85) 360deg
+  );
+  animation: bestseller-spin 5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bestseller-ring { animation: none; }
+}
+
 /* Workflow-Showcase — fließende Konnektoren (n8n-Style Datenfluss) */
 @keyframes wf-dash-flow {
   to { stroke-dashoffset: -20; }

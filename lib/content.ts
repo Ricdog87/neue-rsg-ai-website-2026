@@ -626,6 +626,7 @@ export const footer = {
       links: [
         { label: 'Impressum', href: '/impressum' },
         { label: 'Datenschutz', href: '/datenschutz' },
+        { label: 'KI-Transparenz', href: '/ai-transparenz' },
         { label: 'AGB', href: '/agb' }
       ]
     }

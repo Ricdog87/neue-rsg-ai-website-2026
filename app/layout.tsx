@@ -19,6 +19,7 @@ import { RouteTransition } from '@/components/system/route-transition';
 import { SoundProvider } from '@/components/system/sound-engine';
 import { Analytics } from '@/components/system/analytics';
 import { GA4 } from '@/components/system/ga4';
+import { AikoWidget } from '@/components/sales/aiko-widget';
 import { site } from '@/lib/content';
 import {
   organizationLd,
@@ -137,6 +138,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <FloatingCta />
           <MobileVoiceCta />
           <CookieBanner />
+          <AikoWidget />
         </SoundProvider>
         <Analytics />
         <GA4 />

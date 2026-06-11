@@ -192,6 +192,17 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Workflow-Showcase — fließende Konnektoren (n8n-Style Datenfluss) */
+@keyframes wf-dash-flow {
+  to { stroke-dashoffset: -20; }
+}
+.wf-dash {
+  animation: wf-dash-flow 1.1s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wf-dash { animation: none; }
+}
+
 /* Hero — editorial scanning indicators (Lusion-style) */
 @keyframes hero-scan-horiz {
   0%   { transform: translateX(-110%); }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { AutomationHero } from '@/components/sections/automation-hero';
+import { WorkflowShowcase } from '@/components/sections/workflow-showcase';
 import { AgentShowcase } from '@/components/sections/agent-showcase';
 import { PipelineSection } from '@/components/sections/pipeline-section';
 import { AutomationPricing } from '@/components/sections/automation-pricing';
@@ -85,6 +86,9 @@ export default function AutomatisierungPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <AutomationHero />
+      <ScrollSlide direction="up">
+        <WorkflowShowcase />
+      </ScrollSlide>
       <ScrollZoom>
         <AgentShowcase />
       </ScrollZoom>

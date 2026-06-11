@@ -8,6 +8,7 @@ import { GoogleReviews } from '@/components/sections/google-reviews';
 import { ContactSection } from '@/components/sections/contact-section';
 import { ScrollSlide } from '@/components/ui/scroll-slide';
 import { ScrollZoom } from '@/components/ui/scroll-zoom';
+import { ScrollParallax } from '@/components/effects/scroll-parallax';
 import { faqPageLd, ldJson } from '@/lib/jsonld';
 import { FAQ } from '@/lib/faq';
 import { CitiesSection } from '@/components/sections/cities-section'
@@ -18,34 +19,25 @@ import { ObjectionFaq } from '@/components/sections/objection-faq';
 import { NewsletterSection } from '@/components/sections/newsletter-section';
 
 /**
- * Homepage — aufgebaut als Live-Verkaufspräsentation (Pitch-Arc).
+ * Homepage — Pitch-Arc-Reihenfolge MIT den cinematischen Scroll-Effekten.
  *
- * Reihenfolge folgt dem Sales-Gespräch, damit die Seite beim Scrollen
- * die Story trägt:
+ * Reihenfolge = Sales-Story:
+ *  №01 Live-Demo → №02 Hero → №03 SocialProof → №04 Problem (Comparison)
+ *  → №05 Wert (ROI) → №06 Angebot (Pricing) → №07 Beweis (Reviews)
+ *  → №08 TrustStrip → №09 Breather (Marquee) → №10 Einwände (FAQ)
+ *  → №11 Garantie → №12 CTA → №13 Tail
  *
- *  №01 Live-Demo        · VoiceConsole — der Hook, live im Browser
- *  №02 Hero             · Wer wir sind, Positionierung
- *  №03 SocialProof      · Schnelle Glaubwürdigkeit
- *  №04 Comparison       · Das Problem: Manuell vs. Hire vs. Agent
- *  №05 ROI-Rechner      · Der Wert: verlorener → zurückgewonnener Umsatz
- *  №06 Pricing          · Das Angebot (nach dem Wert, nie davor)
- *  №07 GoogleReviews    · Beweis
- *  №08 TrustStrip       · KPIs · DSGVO · Time-to-Live
- *  №09 TechMarquee      · Visueller Breather
- *  №10 ObjectionFaq     · Einwände
- *  №11 GuaranteeStrip   · Risiko-Umkehr
- *  №12 Contact          · CTA → Termin
- *  №13 Newsletter/Cities· Tail (SEO)
+ * Effekt-Komposition: ScrollParallax-Drift + gemischte Slide-Richtungen +
+ * Zoom-Reveals (wie Deploy 8165145 — die Version mit dem „Wow"-Scroll).
+ * Der overflow-x-clip-Wrapper unterbindet horizontale Scroll-Artefakte
+ * durch die Drifts, ohne die Effekte zu kastrieren (clip erzeugt keinen
+ * Scroll-Container, sticky bleibt funktional).
  *
- * Bewusst KEIN horizontaler Parallax-Drift (ScrollParallax x) mehr:
- * voll-breite Sektionen ±7 % zu verschieben erzeugte sichtbare
- * Rand-Balken beim Scrollen. Entrance-Reveals (Slide/Zoom) bleiben.
- * ExitIntent-Popup entfernt — feuert sonst mitten in der Präsentation,
- * sobald die Maus Richtung Browser-Leiste fährt.
+ * ExitIntent bleibt entfernt — Overlay-Risiko in Live-Präsentationen.
  */
 export default function HomePage() {
   return (
-    <>
+    <div className="overflow-x-clip">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: ldJson(faqPageLd(FAQ)) }}
@@ -74,62 +66,86 @@ export default function HomePage() {
       <Hero />
 
       {/* №03 — Schnelle Glaubwürdigkeit */}
-      <ScrollSlide direction="up">
-        <SocialProofBar />
-      </ScrollSlide>
+      <ScrollParallax x={-12}>
+        <ScrollSlide direction="up">
+          <SocialProofBar />
+        </ScrollSlide>
+      </ScrollParallax>
 
       {/* №04 — Das Problem: drei Wege, Anrufe zu händeln */}
-      <ScrollSlide direction="up">
-        <ComparisonSection />
-      </ScrollSlide>
+      <ScrollParallax x={12}>
+        <ScrollSlide direction="up">
+          <ComparisonSection />
+        </ScrollSlide>
+      </ScrollParallax>
 
       {/* №05 — Der Wert: verlorener → zurückgewonnener Umsatz */}
-      <ScrollSlide direction="up">
-        <VoiceRoiCalculator />
-      </ScrollSlide>
+      <ScrollParallax x={14}>
+        <ScrollSlide direction="right">
+          <VoiceRoiCalculator />
+        </ScrollSlide>
+      </ScrollParallax>
 
       {/* №06 — Das Angebot */}
-      <ScrollZoom>
-        <PricingSnapshot />
-      </ScrollZoom>
+      <ScrollParallax x={-14}>
+        <ScrollZoom>
+          <PricingSnapshot />
+        </ScrollZoom>
+      </ScrollParallax>
 
       {/* №07 — Beweis */}
-      <ScrollSlide direction="up">
-        <GoogleReviews />
-      </ScrollSlide>
+      <ScrollParallax x={10}>
+        <ScrollSlide direction="left">
+          <GoogleReviews />
+        </ScrollSlide>
+      </ScrollParallax>
 
       {/* №08 — KPIs · DSGVO */}
-      <ScrollZoom>
-        <TrustStrip />
-      </ScrollZoom>
+      <ScrollParallax x={-14}>
+        <ScrollZoom>
+          <TrustStrip />
+        </ScrollZoom>
+      </ScrollParallax>
 
       {/* №09 — Breather */}
-      <ScrollSlide direction="up">
-        <TechMarquee />
-      </ScrollSlide>
+      <ScrollParallax x={-10}>
+        <ScrollSlide direction="up">
+          <TechMarquee />
+        </ScrollSlide>
+      </ScrollParallax>
 
       {/* №10 — Einwände */}
-      <ScrollSlide direction="up">
-        <ObjectionFaq />
-      </ScrollSlide>
+      <ScrollParallax x={14}>
+        <ScrollSlide direction="up">
+          <ObjectionFaq />
+        </ScrollSlide>
+      </ScrollParallax>
 
       {/* №11 — Risiko-Umkehr */}
-      <ScrollSlide direction="up">
-        <GuaranteeStrip />
-      </ScrollSlide>
+      <ScrollParallax x={10}>
+        <ScrollSlide direction="up">
+          <GuaranteeStrip />
+        </ScrollSlide>
+      </ScrollParallax>
 
       {/* №12 — CTA */}
-      <ScrollZoom>
-        <ContactSection />
-      </ScrollZoom>
+      <ScrollParallax x={12}>
+        <ScrollZoom>
+          <ContactSection />
+        </ScrollZoom>
+      </ScrollParallax>
 
       {/* №13 — Tail */}
-      <ScrollSlide direction="up">
-        <NewsletterSection />
-      </ScrollSlide>
-      <ScrollSlide direction="up">
-        <CitiesSection />
-      </ScrollSlide>
-    </>
+      <ScrollParallax x={-12}>
+        <ScrollSlide direction="up">
+          <NewsletterSection />
+        </ScrollSlide>
+      </ScrollParallax>
+      <ScrollParallax x={-10}>
+        <ScrollSlide direction="up">
+          <CitiesSection />
+        </ScrollSlide>
+      </ScrollParallax>
+    </div>
   );
 }

@@ -213,6 +213,35 @@ body {
   .hero-scan-line, .hero-scan-vert { animation: none; }
 }
 
+/* Bestseller-Karte — rotierender Conic-Gradient-Ring.
+   Wrapper bekommt .bestseller-ring, die Karte selbst liegt mit
+   inset-[1.5px] darüber, sodass nur der Ring-Rand sichtbar bleibt. */
+@property --bestseller-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes bestseller-spin {
+  to { --bestseller-angle: 360deg; }
+}
+.bestseller-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem; /* = rounded-2xl der Karte */
+  background: conic-gradient(
+    from var(--bestseller-angle),
+    hsl(174 100% 50% / 0.85) 0deg,
+    hsl(174 100% 50% / 0.08) 90deg,
+    hsl(174 100% 50% / 0.35) 180deg,
+    hsl(174 100% 50% / 0.08) 270deg,
+    hsl(174 100% 50% / 0.85) 360deg
+  );
+  animation: bestseller-spin 5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bestseller-ring { animation: none; }
+}
+
 /* Legal pages typography */
 .legal-prose h2 {
   font-family: var(--font-display);

@@ -201,7 +201,50 @@ export default function DatenschutzPage() {
         Zweck oder aufgrund gesetzlicher Fristen erforderlich ist.
       </p>
 
-      <h2>8. Terminbuchung</h2>
+      <h2>8. KI-Sales-Assistentin „Aiko" (Web-Chat)</h2>
+      <p>
+        Auf dieser Website betreiben wir einen KI-Chat-Assistenten namens „Aiko". Aiko
+        ist eine kommerzielle KI-Anwendung im Sinne von Art. 50 EU AI Act. Sie wird
+        zu Beginn jedes Gesprächs sowie auf direkte Frage klar als KI offengelegt.
+      </p>
+      <p>
+        <strong>Verarbeitungszwecke:</strong> Vorvertragliche Kommunikation und Beratung,
+        Lead-Qualifizierung, Termin-Vermittlung an unseren Geschäftsführer, optionaler
+        Start eines Bestellvorgangs (Solo / AI Account Manager). Rechtsgrundlage ist
+        Art. 6 Abs. 1 lit. b DSGVO (Anbahnung eines Vertragsverhältnisses); für die
+        Übergabe Ihrer Kontaktdaten an unser CRM holen wir Ihre ausdrückliche Einwilligung
+        ein (Art. 6 Abs. 1 lit. a DSGVO).
+      </p>
+      <p>
+        <strong>Konversations-Verlauf:</strong> Ihr Chat-Verlauf wird ausschließlich
+        lokal in Ihrem Browser (localStorage) gespeichert und an den Server nur zur
+        Verarbeitung der aktuellen Anfrage übertragen. Es findet keine dauerhafte
+        Speicherung der Konversations-Texte auf unseren Servern statt. Nur wenn Sie
+        nach Einwilligung Ihre Kontaktdaten übergeben, werden diese in unserem CRM
+        (HubSpot) zusammen mit einer kurzen Gesprächs-Zusammenfassung dokumentiert.
+        Sie können den Verlauf jederzeit über den „Reset"-Button im Chat löschen.
+      </p>
+      <p>
+        <strong>Auftragsverarbeiter:</strong> Für das Sprachmodell setzen wir Anthropic
+        Ireland Ltd. (Dublin, Irland) ein (Modell „Claude"). Mit Anthropic besteht ein
+        Auftragsverarbeitungsvertrag inkl. Standardvertragsklauseln; Trainingsverbot auf
+        Ihren Daten ist vertraglich zugesichert. Die Verarbeitung erfolgt in Rechenzentren
+        innerhalb der EU/EWR, soweit verfügbar.
+      </p>
+      <p>
+        <strong>Grenzen:</strong> Aiko trifft keine rechtsverbindlichen Entscheidungen
+        und löst keine automatischen Zahlungen aus. Eine Vertragsbuchung erfolgt immer
+        durch Ihre aktive Bestätigung in der nachgelagerten Stripe-Checkout-Strecke.
+        Eine Verarbeitung im Sinne von Art. 22 DSGVO (ausschließlich automatisierte
+        Einzelfallentscheidung) findet nicht statt.
+      </p>
+      <p>
+        Weitere Informationen zu Funktionsweise, Grenzen und Beschwerdemöglichkeiten
+        finden Sie auf unserer{' '}
+        <a href="/ai-transparenz">Seite zur KI-Transparenz</a>.
+      </p>
+
+      <h2>9. Terminbuchung</h2>
       <p>
         Für die Online-Terminvereinbarung nutzen wir ein Buchungs-Widget von HubSpot
         (HubSpot Ireland Ltd., 1 Sir John Rogerson&apos;s Quay, Dublin 2, Irland).
@@ -213,7 +256,7 @@ export default function DatenschutzPage() {
         Standardvertragsklauseln.
       </p>
 
-      <h2>9. Newsletter &amp; ROI-Checkliste</h2>
+      <h2>10. Newsletter &amp; ROI-Checkliste</h2>
       <p>
         Wenn Sie unsere ROI-Checkliste anfordern oder unseren Newsletter abonnieren,
         verarbeiten wir Ihre E-Mail-Adresse im Double-Opt-In-Verfahren, um Ihnen die
@@ -222,7 +265,7 @@ export default function DatenschutzPage() {
         abmelden; eine Weitergabe an Dritte zu Werbezwecken findet nicht statt.
       </p>
 
-      <h2>10. Ihre Rechte</h2>
+      <h2>11. Ihre Rechte</h2>
       <p>Ihnen stehen folgende Rechte zu:</p>
       <ul>
         <li>Auskunft über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO)</li>
@@ -238,7 +281,7 @@ export default function DatenschutzPage() {
         </li>
       </ul>
 
-      <h2>11. Kontakt bei Datenschutzfragen</h2>
+      <h2>12. Kontakt bei Datenschutzfragen</h2>
       <p>
         Fragen oder Anliegen zum Datenschutz richten Sie bitte an:{' '}
         <a href="mailto:datenschutz@recruiting-sg.de">datenschutz@recruiting-sg.de</a>.

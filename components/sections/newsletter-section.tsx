@@ -137,7 +137,7 @@ export function NewsletterSection() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={state === 'loading' || state === 'success'}
-                      className="h-12 w-full rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--bg))] pl-11 pr-4 font-display text-[0.95rem] text-[hsl(var(--fg))] placeholder:text-[hsl(var(--subtle))] focus:border-[hsl(var(--accent))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))/30] disabled:opacity-50"
+                      className="h-12 w-full rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--bg))] pl-11 pr-4 font-display text-base text-[hsl(var(--fg))] placeholder:text-[hsl(var(--subtle))] focus:border-[hsl(var(--accent))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))/30] disabled:opacity-50 sm:text-[0.95rem]"
                     />
                   </div>
                   {/* Honeypot — bots fill this, humans don't see it */}

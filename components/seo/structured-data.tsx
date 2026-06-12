@@ -35,9 +35,20 @@ export function StructuredData() {
       "geoMidpoint": { "@type": "GeoCoordinates", "latitude": "50.0782", "longitude": "8.2397" },
       "geoRadius": "500000"
     },
+    "parentOrganization": {
+      "@type": "Organization",
+      "@id": "https://recruiting-sg.de/#organization",
+      "name": "RSG Recruiting Solutions Group GmbH",
+      "legalName": "RSG Recruiting Solutions Group GmbH",
+      "url": "https://recruiting-sg.de",
+      "taxID": "DE458027073"
+    },
     "sameAs": [
+      "https://recruiting-sg.de",
+      "https://www.linkedin.com/company/113145138",
       "https://www.linkedin.com/company/rsg-ai-automation",
-      "https://www.linkedin.com/company/rsg-recruiting"
+      "https://www.linkedin.com/company/rsg-recruiting",
+      "https://www.northdata.de/RSG+Recruiting+Solutions+Group+GmbH,+Wiesbaden/HRB+35951"
     ]
   }
 

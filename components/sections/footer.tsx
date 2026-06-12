@@ -202,7 +202,7 @@ export function Footer() {
           </p>
         </div>
         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
-        <p className="mt-3 text-[0.7rem] italic text-white/40">RSG AI ist eine Marke der <a href="https://recruiting-sg.de" target="_blank" rel="noopener noreferrer" className="underline decoration-white/20 hover:text-white/60 transition-colors">RSG Recruiting Solutions Group GmbH</a> · Personalvermittlung zum Fixpreis.</p>
+        <p className="mt-3 text-[0.7rem] italic text-white/40">RSG AI ist eine Marke der <a href="https://recruiting-sg.de" target="_blank" rel="noopener noreferrer" className="underline decoration-white/20 hover:text-white/60 transition-colors">RSG Recruiting Solutions Group GmbH</a> · Personalvermittlung zum Fixpreis. · Referenzcheck-Software: <a href="https://candiq.de" target="_blank" rel="noopener noreferrer" className="underline decoration-white/20 hover:text-white/60 transition-colors">candiq.de</a></p>
           <CookieSettings />
         </div>
       </div>

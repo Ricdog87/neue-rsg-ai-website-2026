@@ -4,6 +4,24 @@
  */
 
 export const FAQ: Array<{ q: string; a: string }> = [
+  // ── KI-Telefonassistent – Rich-Snippet-optimiert ──────────────────────────
+  {
+    q: 'Was ist ein KI-Telefonassistent?',
+    a: 'Ein KI-Telefonassistent von RSG AI übernimmt eingehende Anrufe automatisch, qualifiziert Anfragen, beantwortet häufige Fragen und leitet wichtige Gespräche weiter — 24/7, ohne Wartezeiten.',
+  },
+  {
+    q: 'Wie viel kostet ein KI-Telefonassistent von RSG AI?',
+    a: 'RSG AI bietet flexible Preismodelle ab 299 EUR/Monat. Die genauen Kosten hängen vom Anrufvolumen und den gewünschten Funktionen ab. Kontaktieren Sie uns für ein individuelles Angebot.',
+  },
+  {
+    q: 'Wie lange dauert die Einrichtung?',
+    a: 'Ein RSG AI Telefonassistent ist in der Regel innerhalb von 3-5 Werktagen einsatzbereit. Wir übernehmen die komplette Einrichtung und Integration in Ihre bestehenden Systeme.',
+  },
+  {
+    q: 'Spricht der KI-Assistent natürliches Deutsch?',
+    a: 'Ja, RSG AI nutzt modernste Large Language Models mit natürlicher Sprachverarbeitung. Der Assistent kommuniziert flüssig auf Deutsch und erkennt auch Dialekte und regionale Ausdrücke.',
+  },
+  // ── Allgemeine Agent-FAQs ─────────────────────────────────────────────────
   {
     q: 'Wie schnell ist der erste Agent produktiv?',
     a: 'Audit am Montag → erster Agent in der zweiten Woche produktiv → voll integriert nach 4 Wochen. Wir liefern Sprint-basiert, mit wöchentlichen Demos statt Mega-Release am Ende.',

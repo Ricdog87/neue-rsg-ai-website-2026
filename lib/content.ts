@@ -190,7 +190,7 @@ export const voiceAgents = {
     copyCta: 'Nummer kopieren',
     copyConfirm: 'Nummer kopiert — wähl jetzt an',
     disclaimer:
-      'KI- und Aufzeichnungs-Hinweis zu Gesprächsbeginn — du entscheidest. Mo–Fr 9–18 Uhr beste Hörqualität.',
+      'KI- und Aufzeichnungs-Hinweis zu Gesprächsbeginn — du entscheidest. Mo–Fr 5–18 Uhr beste Hörqualität.',
     callerHint:
       'Live mit „Christian" — Senior-Sales-Tonalität, kennt rsg-ai.de und pitcht im Gespräch den Buchungslink.',
     counterTemplate: 'Rund um die Uhr automatisch beantwortet',
@@ -389,7 +389,7 @@ export const roi = {
 
 /* ─────────────────────────────────────────────────────────
    VOICE-PRICING — Solo / AI Account Manager / Scale (Subscription-Model).
-   Setup-Gebühr per Tier · bei Jahresvorkasse entfällt Solo/AI Account Manager.
+   Setup-Gebøhr per Tier · bei Jahresvorkasse entfällt Solo/AI Account Manager.
    ───────────────────────────────────────────────────────── */
 export const voicePricing = {
   annualDiscount: 0.15, // 15 % off bei jährlicher Vorkasse
@@ -458,7 +458,7 @@ export const voicePricing = {
     },
   ],
   footnote:
-    'Alle Preise zzgl. MwSt. · Setup-Gebühr Solo 490 € / AI Account Manager 990 € netto einmalig, separat auf der ersten Rechnung berechnet. Bei Jahresvorkasse entfällt das Setup für Solo & AI Account Manager. · Scale-Setup individuell ab 1.990 € netto.',
+    'Alle Preise zzgl. MwSt. · Setup-Gebøhr Solo 490 € / AI Account Manager 990 € netto einmalig, separat auf der ersten Rechnung berechnet. Bei Jahresvorkasse entfällt das Setup für Solo & AI Account Manager. · Scale-Setup individuell ab 1.990 € netto.',
 } as const;
 
 /* ─────────────────────────────────────────────────────────
@@ -530,7 +530,7 @@ export const pricing = {
 export const about = {
   founder: {
     name: 'Ricardo Serrano',
-    role: 'Gründer & Geschäftsführer',
+    role: 'Gründer & Geschäftsføhrer',
     company: 'RSG Agent Services',
     photo: '/images/ricardo-serrano.png'
   }
@@ -619,6 +619,12 @@ export const footer = {
         { label: 'Termin buchen', href: '/termin' },
         { label: 'Kontakt', href: '/#contact' },
         { label: 'KI-Beratung Wiesbaden', href: '/ki-beratung-wiesbaden' }, { label: 'Auf Google bewerten', href: 'https://g.page/r/CYC7KblNfDiYEAE/review' }
+      ]
+    },
+    {
+      title: 'Karriere',
+      links: [
+        { label: 'Partner werden', href: '/partner' }
       ]
     },
     {

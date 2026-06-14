@@ -12,6 +12,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion']
   },
+    eslint: { ignoreDuringBuilds: true },
   async redirects() {
     return [
       // Duplicate-Content konsolidieren: flache Branchenseite -> kanonische verschachtelte

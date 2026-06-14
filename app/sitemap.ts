@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/ki-telefonassistent', 0.9, 'weekly'],
     ['/ki-beratung-wiesbaden', 0.8, 'monthly'],
     ['/termin', 0.9, 'monthly'],
+    ['/partner', 0.9, 'monthly'],
     ['/roi-checkliste-ki-agent', 0.7, 'monthly'],
     ['/ki-telefonassistent/arztpraxis', 0.8, 'monthly'],
     ['/ki-telefonassistent/autohaus', 0.8, 'monthly'],

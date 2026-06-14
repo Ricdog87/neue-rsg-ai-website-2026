@@ -6,28 +6,28 @@ import { Plus, Minus, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const FAQ_ITEMS = [
   {
-    q: 'Was bedeutet Â§84 HGB â bin ich wirklich selbststÃ¤ndig?',
-    a: 'Â§84 HGB definiert den Handelsvertreter als selbststÃ¤ndigen Gewerbetreibenden. Das bedeutet konkret: Du entscheidest selbst, wann, wo und wie du arbeitest. Du kannst mehrere Auftraggeber gleichzeitig haben (auÃer direkte KI-Wettbewerber) und bist nicht weisungsgebunden. Es gibt kein Ãber-UnterordnungsverhÃ¤ltnis â du bist Unternehmer:in, der fÃ¼r RSG AI Leistungen vermittelt.',
+    q: 'Was bedeutet §84 HGB — bin ich wirklich selbstständig?',
+    a: '§84 HGB definiert den Handelsvertreter als selbstständigen Gewerbetreibenden. Das bedeutet konkret: Du entscheidest selbst, wann, wo und wie du arbeitest. Du kannst mehrere Auftraggeber gleichzeitig haben (außer direkte KI-Wettbewerber) und bist nicht weisungsgebunden. Es gibt kein Über-Unterordnungsverhältnis — du bist Unternehmer:in, der für RSG AI Leistungen vermittelt.',
   },
   {
     q: 'Muss ich etwas investieren oder zahlen?',
-    a: 'Nein. Es gibt keine EinstiegsgebÃ¼hr, kein Investment und keine Vorauszahlung. Du startest kostenlos. Das Einzige, was du brauchst, ist ein eigenes Gewerbe oder Freiberufler-Status â damit du Provisionen legal empfangen kannst. Alle Tools, Materialien und das Onboarding sind in der Partnerschaft inklusive.',
+    a: 'Nein. Es gibt keine Einstiegsgebühr, kein Investment und keine Vorauszahlung. Du startest kostenlos. Das Einzige, was du brauchst, ist ein eigenes Gewerbe oder Freiberufler-Status — damit du Provisionen legal empfangen kannst. Alle Tools, Materialien und das Onboarding sind in der Partnerschaft inklusive.',
   },
   {
-    q: 'Kann ich von Ã¼berall arbeiten?',
-    a: 'Ja, 100 % remote und ortsunabhÃ¤ngig. Unsere KI-LÃ¶sungen betreuen wir vollstÃ¤ndig digital. Discovery Calls, Demos und Onboarding finden online statt. Du brauchst lediglich eine stabile Internetverbindung und ein Telefon â du kannst aus dem Wohnzimmer, Co-Working Space oder dem Ausland heraus arbeiten.',
+    q: 'Kann ich von überall arbeiten?',
+    a: 'Ja, 100 % remote und ortsunabhängig. Unsere KI-Lösungen betreuen wir vollständig digital. Discovery Calls, Demos und Onboarding finden online statt. Du brauchst lediglich eine stabile Internetverbindung und ein Telefon — du kannst aus dem Wohnzimmer, Co-Working Space oder dem Ausland heraus arbeiten.',
   },
   {
-    q: 'Darf ich parallel fÃ¼r andere Unternehmen tÃ¤tig sein?',
-    a: 'Ja. Als Handelsvertreter:in nach Â§84 HGB darfst du grundsÃ¤tzlich fÃ¼r mehrere Auftraggeber tÃ¤tig sein. Die einzige EinschrÃ¤nkung: Du darfst wÃ¤hrend unserer Partnerschaft keine direkten KI-Automatisierungskonkurrenten vertreten. Alle anderen Branchen, Produkte oder Dienstleistungen sind vollstÃ¤ndig erlaubt.',
+    q: 'Darf ich parallel für andere Unternehmen tätig sein?',
+    a: 'Ja. Als Handelsvertreter:in nach §84 HGB darfst du grundsätzlich für mehrere Auftraggeber tätig sein. Die einzige Einschränkung: Du darfst während unserer Partnerschaft keine direkten KI-Automatisierungskonkurrenten vertreten. Alle anderen Branchen, Produkte oder Dienstleistungen sind vollständig erlaubt.',
   },
   {
     q: 'Wann erhalte ich meine erste Provision?',
-    a: 'Sofort nach deiner ersten erfolgreichen Vermittlung. Die Einmalprovision auf das Setup wird nach Zahlungseingang des Kunden ausgezahlt (i.d.R. innerhalb von 14 Tagen). Die monatliche Bestandsprovision flieÃt ab dem Monat, in dem der Kunde seine erste Monatsrate zahlt. Es gibt keine Wartezeit und keine Mindestlaufzeit â was du vermittelst, bekommst du.',
+    a: 'Sofort nach deiner ersten erfolgreichen Vermittlung. Die Einmalprovision auf das Setup wird nach Zahlungseingang des Kunden ausgezahlt (i.d.R. innerhalb von 14 Tagen). Die monatliche Bestandsprovision fließt ab dem Monat, in dem der Kunde seine erste Monatsrate zahlt. Es gibt keine Wartezeit und keine Mindestlaufzeit — was du vermittelst, bekommst du.',
   },
 ];
 
-// ââ FAQ Accordion ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── FAQ Accordion ────────────────────────────────────────────────────────────
 
 export function PartnerFaq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -41,7 +41,7 @@ export function PartnerFaq() {
         <div className="mb-14 grid grid-cols-12 gap-x-6 gap-y-6">
           <div className="col-span-12 md:col-span-5">
             <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-[hsl(var(--accent))]">
-              Deine Fragen Â· beantwortet
+              Deine Fragen · beantwortet
             </span>
             <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]">
               FAQ zur Partnerschaft
@@ -49,8 +49,8 @@ export function PartnerFaq() {
           </div>
           <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
             <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-              Die wichtigsten Fragen zur selbststÃ¤ndigen TÃ¤tigkeit als Handelsvertreter:in nach Â§84 HGB.
-              Weitere Fragen? Stell sie im persÃ¶nlichen GesprÃ¤ch.
+              Die wichtigsten Fragen zur selbstständigen Tätigkeit als Handelsvertreter:in nach §84 HGB.
+              Weitere Fragen? Stell sie im persönlichen Gespräch.
             </p>
           </div>
         </div>
@@ -117,7 +117,7 @@ export function PartnerFaq() {
   );
 }
 
-// ââ Application Form âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── Application Form ─────────────────────────────────────────────────────────
 
 export function PartnerForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -153,11 +153,11 @@ export function PartnerForm() {
         setStatus('success');
       } else {
         const json = await res.json().catch(() => ({})) as { error?: string };
-        setErrorMsg(json.error ?? 'Etwas ist schiefgelaufen â bitte versuche es erneut.');
+        setErrorMsg(json.error ?? 'Etwas ist schiefgelaufen — bitte versuche es erneut.');
         setStatus('error');
       }
     } catch {
-      setErrorMsg('Netzwerkfehler â bitte prÃ¼fe deine Verbindung und versuche es erneut.');
+      setErrorMsg('Netzwerkfehler — bitte prüfe deine Verbindung und versuche es erneut.');
       setStatus('error');
     }
   }
@@ -182,7 +182,7 @@ export function PartnerForm() {
         <div className="mb-14 grid grid-cols-12 gap-x-6 gap-y-6">
           <div className="col-span-12 md:col-span-5">
             <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-[hsl(var(--accent))]">
-              Dein nÃ¤chster Schritt
+              Dein nächster Schritt
             </span>
             <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]">
               Jetzt bewerben.{' '}
@@ -191,8 +191,8 @@ export function PartnerForm() {
           </div>
           <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
             <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-              Keine Spontanzusage. Kein automatisierter Funnel. Ricardo prÃ¼ft jede Bewerbung
-              persÃ¶nlich und antwortet innerhalb von 48h.
+              Keine Spontanzusage. Kein automatisierter Funnel. Ricardo prüft jede Bewerbung
+              persönlich und antwortet innerhalb von 48h.
             </p>
           </div>
         </div>
@@ -210,7 +210,7 @@ export function PartnerForm() {
               Bewerbung erhalten!
             </h3>
             <p className="mt-3 text-[1rem] leading-relaxed text-[hsl(var(--muted))]">
-              Ricardo meldet sich persÃ¶nlich innerhalb von 48h bei dir. Schau auch kurz in deinen
+              Ricardo meldet sich persönlich innerhalb von 48h bei dir. Schau auch kurz in deinen
               Spam-Ordner.
             </p>
           </motion.div>
@@ -283,7 +283,7 @@ export function PartnerForm() {
                   name="phone"
                   type="tel"
                   autoComplete="tel"
-                  placeholder="+49 176 â¦"
+                  placeholder="+49 176 …"
                   className={inputClass}
                 />
               </div>
@@ -301,7 +301,7 @@ export function PartnerForm() {
                   name="region"
                   type="text"
                   autoComplete="address-level1"
-                  placeholder="z.B. Hessen Â· Frankfurt"
+                  placeholder="z.B. Hessen · Frankfurt"
                   className={inputClass}
                 />
               </div>
@@ -387,7 +387,7 @@ export function PartnerForm() {
                 {status === 'loading' ? (
                   <span className="flex items-center gap-2.5">
                     <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                    Wird gesendetâ¦
+                    Wird gesendet…
                   </span>
                 ) : (
                   <>
@@ -397,7 +397,7 @@ export function PartnerForm() {
                 )}
               </button>
               <p className="font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-[hsl(var(--subtle))]">
-                ð DSGVO-konform Â· Ricardo antwortet persÃ¶nlich innerhalb von 48h
+                🔒 DSGVO-konform · Ricardo antwortet persönlich innerhalb von 48h
               </p>
             </div>
           </form>

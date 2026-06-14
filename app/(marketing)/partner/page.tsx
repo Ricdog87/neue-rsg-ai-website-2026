@@ -16,21 +16,21 @@ import { PartnerFaq, PartnerForm } from './partner-sections';
 import { site, voiceAgents } from '@/lib/content';
 
 export const metadata: Metadata = {
-  title: 'Partner werden â KI-Automatisierung vertreiben | RSG AI',
+  title: 'Partner werden – KI-Automatisierung vertreiben | RSG AI',
   description:
-    'Werde selbststÃ¤ndiger Partner von RSG AI. Verdiene Setup-Provision + monatliche Bestandsprovision auf KI-Automatisierungsprojekte. Â§84 HGB, 100 % erfolgsabhÃ¤ngig.',
+    'Werde selbstständiger Partner von RSG AI. Verdiene Setup-Provision + monatliche Bestandsprovision auf KI-Automatisierungsprojekte. §84 HGB, 100 % erfolgsabhängig.',
   alternates: { canonical: '/partner' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'Partner werden â KI-Automatisierung vertreiben | RSG AI',
+    title: 'Partner werden – KI-Automatisierung vertreiben | RSG AI',
     description:
-      'Werde selbststÃ¤ndiger Partner von RSG AI. Â§84 HGB, Setup-Provision + monatliche Bestandsprovision. Kein Investment, sofort starten.',
+      'Werde selbstständiger Partner von RSG AI. §84 HGB, Setup-Provision + monatliche Bestandsprovision. Kein Investment, sofort starten.',
     type: 'website',
     url: `${site.url}/partner`,
   },
 };
 
-// ââ Static data âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── Static data ───────────────────────────────────────────────────────────────
 
 const PROVISION_TABLE = [
   { stufe: 'RSG Partner',    setup: '20 %', bestand: '10 %',          top: false },
@@ -44,7 +44,7 @@ const CAREER_STAGES = [
     num: '01',
     title: 'RSG Partner',
     criteria: 'Einstieg nach Zertifizierung',
-    provisions: '20 % Setup Â· 10 % Bestand',
+    provisions: '20 % Setup · 10 % Bestand',
     perks: [
       'Onboarding-Akademie (Produkt + Vertrieb)',
       'Demo-Assets & Pitch-Decks',
@@ -57,12 +57,12 @@ const CAREER_STAGES = [
     num: '02',
     title: 'Senior Partner',
     criteria: 'Ab 6 aktiven Bestandskunden',
-    provisions: '23 % Setup Â· 13 % Bestand',
+    provisions: '23 % Setup · 13 % Bestand',
     perks: [
       'Alles aus RSG Partner',
       'Leads nach Zertifizierung',
       'Monatliches Strategie-Briefing',
-      'PrioritÃ¤ts-Support',
+      'Prioritäts-Support',
     ],
     highlight: false,
   },
@@ -70,7 +70,7 @@ const CAREER_STAGES = [
     num: '03',
     title: 'Director',
     criteria: 'Ab 15 aktiven Bestandskunden',
-    provisions: '27 % Setup Â· 17 % Bestand',
+    provisions: '27 % Setup · 17 % Bestand',
     perks: [
       'Alles aus Senior Partner',
       'Co-Branding-Option',
@@ -82,12 +82,12 @@ const CAREER_STAGES = [
   {
     num: '04',
     title: 'Equity Circle',
-    criteria: 'Ab 30 aktiven Bestandskunden Â· Einladung',
-    provisions: '30 % Setup Â· 22 % Bestand + Equity',
+    criteria: 'Ab 30 aktiven Bestandskunden · Einladung',
+    provisions: '30 % Setup · 22 % Bestand + Equity',
     perks: [
       'Alle Director-Vorteile',
       'Beteiligung am Unternehmenswachstum',
-      'PersÃ¶nliche Slack-Linie zu Ricardo',
+      'Persönliche Slack-Linie zu Ricardo',
       'Mitentscheidung bei Produkt-Roadmap',
     ],
     highlight: false,
@@ -97,11 +97,11 @@ const CAREER_STAGES = [
 const DELIVERABLES = [
   {
     Icon: Users,
-    text: 'Leads nach Zertifizierung â nicht âunbegrenzt sofort", aber echte qualifizierte Anfragen',
+    text: 'Leads nach Zertifizierung — nicht „unbegrenzt sofort", aber echte qualifizierte Anfragen',
   },
   {
     Icon: BarChart3,
-    text: 'Partner-Cockpit & CRM-Zugang â deine gesamte Pipeline auf einen Blick',
+    text: 'Partner-Cockpit & CRM-Zugang — deine gesamte Pipeline auf einen Blick',
   },
   {
     Icon: BookOpen,
@@ -113,11 +113,11 @@ const DELIVERABLES = [
   },
   {
     Icon: Mic,
-    text: 'Live-Demo-Telefonassistent â vorfÃ¼hrbar fÃ¼r jeden Interessenten (wichtiger USP!)',
+    text: 'Live-Demo-Telefonassistent — vorführbar für jeden Interessenten (wichtiger USP!)',
   },
   {
     Icon: Headphones,
-    text: 'Technischer Sales-Support â wir kommen mit auf deinen Discovery-Call',
+    text: 'Technischer Sales-Support — wir kommen mit auf deinen Discovery-Call',
   },
   {
     Icon: Phone,
@@ -126,26 +126,26 @@ const DELIVERABLES = [
 ] as const;
 
 const FIT_YES = [
-  'Eigenes Gewerbe oder Freiberufler-Status (Pflicht â keine Ausnahme)',
-  'B2B-Vertriebserfahrung â du weiÃt, wie EntscheidergesprÃ¤che laufen',
-  'Netzwerk zu Entscheidern in KMU (50â500 Mitarbeitende)',
-  'Eigenmotiviert, kein Mikromanagement nÃ¶tig',
-  'Bereit, aktiv zu akquirieren und GesprÃ¤che selbst zu initiieren',
+  'Eigenes Gewerbe oder Freiberufler-Status (Pflicht — keine Ausnahme)',
+  'B2B-Vertriebserfahrung — du weißt, wie Entscheidergespräche laufen',
+  'Netzwerk zu Entscheidern in KMU (50–500 Mitarbeitende)',
+  'Eigenmotiviert, kein Mikromanagement nötig',
+  'Bereit, aktiv zu akquirieren und Gespräche selbst zu initiieren',
 ] as const;
 
 const FIT_NO = [
-  'âSchnell-Geld-Sucher" â wer in Woche 1 reich sein will, ist falsch hier',
+  '„Schnell-Geld-Sucher" — wer in Woche 1 reich sein will, ist falsch hier',
   'Ohne jedes B2B-Netzwerk und ohne Bereitschaft, eines aufzubauen',
-  'AusschlieÃlich suchend nach einem ruhigen Nebenjob ohne Eigeninitiative',
+  'Ausschließlich suchend nach einem ruhigen Nebenjob ohne Eigeninitiative',
   'Ohne Gewerbe und ohne Bereitschaft, eines anzumelden',
 ] as const;
 
-// ââ Page âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── Page ─────────────────────────────────────────────────────────────────────
 
 export default function PartnerPage() {
   return (
     <>
-      {/* ââ HERO âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden px-6 pb-20 pt-[140px] md:pb-28 md:pt-[160px] lg:px-10">
         {/* Purple bloom */}
         <div
@@ -158,7 +158,7 @@ export default function PartnerPage() {
         />
         <div className="mx-auto max-w-[1280px]">
           <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-[hsl(var(--accent))]">
-            Handelsvertreter:in Â· Â§84 HGB Â· selbststÃ¤ndig
+            Handelsvertreter:in · §84 HGB · selbstständig
           </span>
           <h1 className="mt-5 max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5.25rem)] font-medium leading-[1.02] tracking-[-0.03em] text-[hsl(var(--fg))]">
             Wachse mit dem KI-Markt.{' '}
@@ -174,8 +174,8 @@ export default function PartnerPage() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-[1.1rem] leading-[1.7] text-[hsl(var(--muted))]">
-            Der KI-Automatisierungsmarkt wÃ¤chst 38&thinsp;% pro Jahr. Wer jetzt Vertrieb
-            Ã¼bernimmt, baut ein wiederkehrendes Einkommen â Monat fÃ¼r Monat, ohne Deckel.
+            Der KI-Automatisierungsmarkt wächst 38&thinsp;% pro Jahr. Wer jetzt Vertrieb
+            übernimmt, baut ein wiederkehrendes Einkommen — Monat für Monat, ohne Deckel.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -191,7 +191,7 @@ export default function PartnerPage() {
               className="group inline-flex h-13 items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.03] px-7 py-3.5 font-display text-[0.95rem] font-medium text-white/80 backdrop-blur-sm transition-all hover:border-white/30 hover:text-white"
             >
               <Phone className="h-4 w-4" />
-              Live-Demo anhÃ¶ren â
+              Live-Demo anhören ↓
             </a>
           </div>
 
@@ -200,7 +200,7 @@ export default function PartnerPage() {
             {[
               'Bestandsprovision ohne Deckel',
               'Monatlich wiederkehrend',
-              'Â§84 HGB Â· selbststÃ¤ndig',
+              '§84 HGB · selbstständig',
               'Sofort-Onboarding',
             ].map((chip) => (
               <span
@@ -214,7 +214,7 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      {/* ââ DAS MODELL âââââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── DAS MODELL ───────────────────────────────────────────────── */}
       <section className="relative border-t border-[hsl(var(--border))] px-6 py-20 md:py-28 lg:px-10">
         <div className="mx-auto max-w-[1280px]">
           <div className="mb-14 grid grid-cols-12 gap-x-6 gap-y-8">
@@ -229,10 +229,10 @@ export default function PartnerPage() {
             </div>
             <div className="col-span-12 md:col-span-6 md:col-start-7 md:pt-2">
               <p className="text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-                Â§84 HGB definiert die selbststÃ¤ndige Partnerschaft. Du entscheidest, wann und wo du
-                arbeitest â keine Weisungsgebundenheit, keine festen Zeiten. Du kannst parallel fÃ¼r
-                andere Auftraggeber tÃ¤tig sein. 100&thinsp;% erfolgsabhÃ¤ngige VergÃ¼tung. Du bist
-                Unternehmer:in â und wir sind dein bestes Produkt.
+                §84 HGB definiert die selbstständige Partnerschaft. Du entscheidest, wann und wo du
+                arbeitest — keine Weisungsgebundenheit, keine festen Zeiten. Du kannst parallel für
+                andere Auftraggeber tätig sein. 100&thinsp;% erfolgsabhängige Vergütung. Du bist
+                Unternehmer:in — und wir sind dein bestes Produkt.
               </p>
             </div>
           </div>
@@ -240,19 +240,19 @@ export default function PartnerPage() {
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {
-                emoji: 'ð',
+                emoji: '🚀',
                 title: 'Unternehmerische Freiheit',
-                body: 'Du fÃ¼hrst dein eigenes Micro-Unternehmen. Keine Rechenschaftspflicht, kein festes Reporting, kein Mikromanagement. Was zÃ¤hlt, sind deine Ergebnisse.',
+                body: 'Du führst dein eigenes Micro-Unternehmen. Keine Rechenschaftspflicht, kein festes Reporting, kein Mikromanagement. Was zählt, sind deine Ergebnisse.',
               },
               {
-                emoji: 'ð',
+                emoji: '🌍',
                 title: 'Freie Zeit- und Ortseinteilung',
-                body: '100&nbsp;% remote. Kein BÃ¼ro, keine Kernzeiten. Ob morgens um 7 oder abends um 21&nbsp;Uhr â du entscheidest, wann du verkaufst.',
+                body: '100&nbsp;% remote. Kein Büro, keine Kernzeiten. Ob morgens um 7 oder abends um 21&nbsp;Uhr — du entscheidest, wann du verkaufst.',
               },
               {
-                emoji: 'ð',
+                emoji: '📈',
                 title: 'Provision ohne Deckel',
-                body: 'Kein Provisionsdeckel, keine Einkommensgrenze. Je mehr Kunden du aufbaust, desto mehr verdienst du â dauerhaft und ohne Pause.',
+                body: 'Kein Provisionsdeckel, keine Einkommensgrenze. Je mehr Kunden du aufbaust, desto mehr verdienst du — dauerhaft und ohne Pause.',
               },
             ].map((card) => (
               <div
@@ -272,12 +272,12 @@ export default function PartnerPage() {
           </div>
 
           <p className="mt-7 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-[hsl(var(--subtle))]">
-            â &nbsp; Eigenes Gewerbe oder anerkannter Freiberufler-Status erforderlich.
+            ⚠&nbsp; Eigenes Gewerbe oder anerkannter Freiberufler-Status erforderlich.
           </p>
         </div>
       </section>
 
-      {/* ââ WAS DU VERKAUFST âââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── WAS DU VERKAUFST ─────────────────────────────────────────── */}
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg-deep))] px-6 py-20 md:py-28 lg:px-10">
         <div className="mx-auto max-w-[1280px]">
           <div className="mb-14">
@@ -285,32 +285,32 @@ export default function PartnerPage() {
               Das Portfolio
             </span>
             <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]">
-              KI-LÃ¶sungen aus einer Hand â drei Produktlinien
+              KI-Lösungen aus einer Hand — drei Produktlinien
             </h2>
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {
-                tag: 'n8n Â· LangChain Â· Zapier',
+                tag: 'n8n · LangChain · Zapier',
                 title: 'Automatische Workflows',
-                body: 'Regel-basierte Automatisierungen fÃ¼r Vertrieb, HR, Buchhaltung und Operations. Dein Kunde spart 15â30 Stunden pro Woche.',
-                setup: 'ab 1.497 â¬ Setup',
-                lizenz: 'ab 297 â¬/Monat Lizenz',
+                body: 'Regel-basierte Automatisierungen für Vertrieb, HR, Buchhaltung und Operations. Dein Kunde spart 15–30 Stunden pro Woche.',
+                setup: 'ab 1.497 € Setup',
+                lizenz: 'ab 297 €/Monat Lizenz',
               },
               {
-                tag: 'LangGraph Â· GPT-4o Â· EU-Cloud',
+                tag: 'LangGraph · GPT-4o · EU-Cloud',
                 title: 'Autonome KI-Agenten',
-                body: 'SelbststÃ¤ndig entscheidende Agenten fÃ¼r Kundenservice, Lead-Qualifizierung und komplexe Workflows mit Multi-Step-Reasoning.',
-                setup: 'ab 4.997 â¬ Setup',
-                lizenz: 'ab 497 â¬/Monat Lizenz',
+                body: 'Selbstständig entscheidende Agenten für Kundenservice, Lead-Qualifizierung und komplexe Workflows mit Multi-Step-Reasoning.',
+                setup: 'ab 4.997 € Setup',
+                lizenz: 'ab 497 €/Monat Lizenz',
               },
               {
-                tag: 'ElevenLabs Â· DSGVO Â· 6 Sprachen',
+                tag: 'ElevenLabs · DSGVO · 6 Sprachen',
                 title: 'Voice-Agenten (RSG Voice Suite)',
-                body: 'KI-Telefonie, die GesprÃ¤che fÃ¼hrt, Termine bucht und qualifiziert. NatÃ¼rliche Sprache mit unter 0,4&nbsp;s Reaktion, DSGVO-konform.',
+                body: 'KI-Telefonie, die Gespräche führt, Termine bucht und qualifiziert. Natürliche Sprache mit unter 0,4&nbsp;s Reaktion, DSGVO-konform.',
                 setup: 'Custom Setup',
-                lizenz: 'ab 797 â¬/Monat',
+                lizenz: 'ab 797 €/Monat',
               },
             ].map((product) => (
               <div
@@ -338,11 +338,11 @@ export default function PartnerPage() {
                   <div className="mt-4 flex flex-col gap-1.5">
                     <div className="flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-[#a855f7]">
                       <span className="h-1 w-1 rounded-full bg-[#a855f7]" />
-                      20â30&nbsp;% Einmalprovision
+                      20–30&nbsp;% Einmalprovision
                     </div>
                     <div className="flex items-center gap-2 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-[hsl(var(--accent))]">
                       <span className="h-1 w-1 rounded-full bg-[hsl(var(--accent))]" />
-                      10â22&nbsp;% monatl. Bestandsprovision
+                      10–22&nbsp;% monatl. Bestandsprovision
                     </div>
                   </div>
                 </div>
@@ -352,7 +352,7 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      {/* ââ WAS DU VERDIENST âââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── WAS DU VERDIENST ─────────────────────────────────────────── */}
       <section className="relative border-t border-[hsl(var(--border))] px-6 py-20 md:py-28 lg:px-10">
         <div
           aria-hidden
@@ -364,13 +364,13 @@ export default function PartnerPage() {
         />
         <div className="mx-auto max-w-[1280px]">
           <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-[hsl(var(--accent))]">
-            Das VergÃ¼tungsmodell
+            Das Vergütungsmodell
           </span>
           <h2 className="mt-4 max-w-3xl font-display text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[hsl(var(--fg))]">
-            Du baust dir einen Bestand auf. Monat fÃ¼r Monat.
+            Du baust dir einen Bestand auf. Monat für Monat.
           </h2>
           <p className="mt-5 max-w-2xl text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-            Das Modell ist zweiteilig â und der zweite Teil macht den Unterschied:
+            Das Modell ist zweiteilig — und der zweite Teil macht den Unterschied:
           </p>
 
           {/* Two-part model */}
@@ -385,8 +385,8 @@ export default function PartnerPage() {
                 </span>
               </div>
               <p className="text-[0.95rem] leading-[1.65] text-[hsl(var(--muted))]">
-                Du vermittelst einen Neukunden â du erhÃ¤ltst sofort eine Einmalprovision auf das
-                Setup. Substanziell â bis zu 30&thinsp;% des Einmal-Betrags.
+                Du vermittelst einen Neukunden → du erhältst sofort eine Einmalprovision auf das
+                Setup. Substanziell — bis zu 30&thinsp;% des Einmal-Betrags.
               </p>
             </div>
             <div className="rounded-2xl border border-[hsl(var(--accent))]/25 bg-[hsl(var(--accent))]/5 p-7">
@@ -399,8 +399,8 @@ export default function PartnerPage() {
                 </span>
               </div>
               <p className="text-[0.95rem] leading-[1.65] text-[hsl(var(--muted))]">
-                Solange der Kunde zahlt, flieÃt deine Provision weiter. Ohne Deckel. Ohne
-                Auslaufdatum. Du bringst den Kunden einmal â du verdienst jahrelang.
+                Solange der Kunde zahlt, fließt deine Provision weiter. Ohne Deckel. Ohne
+                Auslaufdatum. Du bringst den Kunden einmal — du verdienst jahrelang.
               </p>
             </div>
           </div>
@@ -408,7 +408,7 @@ export default function PartnerPage() {
           {/* Annuity metaphor */}
           <div className="mt-6 rounded-2xl border border-[#a855f7]/20 bg-[#a855f7]/5 p-7">
             <p className="font-accent text-[1.1rem] italic leading-[1.65] text-[hsl(var(--fg))]">
-              âWie ein Bausparvertrag, nur ohne Bausparvertrag. Jeder Neukunde ist ein neuer,
+              „Wie ein Bausparvertrag, nur ohne Bausparvertrag. Jeder Neukunde ist ein neuer,
               dauerhafter Einkommensstrom."
             </p>
           </div>
@@ -473,11 +473,11 @@ export default function PartnerPage() {
                 Beispielaufbau
               </h3>
               <span className="inline-flex items-center rounded-full border border-amber-500/25 bg-amber-500/10 px-3 py-1 font-mono text-[0.6rem] uppercase tracking-[0.15em] text-amber-400">
-                Beispielrechnung Â· keine Verdienstgarantie
+                Beispielrechnung · keine Verdienstgarantie
               </span>
             </div>
             <p className="mb-6 text-[0.875rem] leading-[1.6] text-[hsl(var(--muted))]">
-              Annahme: 8 neue Kunden pro Quartal Â· Ã Vertragswert 497&thinsp;â¬/Monat Â· RSG Partner
+              Annahme: 8 neue Kunden pro Quartal · Ø Vertragswert 497&thinsp;€/Monat · RSG Partner
               (10&thinsp;% Bestandsprovision)
             </p>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -495,7 +495,7 @@ export default function PartnerPage() {
                     {row.monat}
                   </div>
                   <div className="mt-2 font-display text-[1.75rem] font-medium leading-none text-[hsl(var(--fg))]">
-                    ~{row.betrag.toLocaleString('de-DE')}&thinsp;â¬
+                    ~{row.betrag.toLocaleString('de-DE')}&thinsp;€
                   </div>
                   <div className="mt-1 text-[0.8rem] text-[hsl(var(--subtle))]">
                     / Monat wiederkehrend
@@ -511,22 +511,22 @@ export default function PartnerPage() {
               <p className="text-[0.9rem] leading-[1.65] text-[hsl(var(--muted))]">
                 Als{' '}
                 <strong className="text-[hsl(var(--fg))]">Director</strong> mit Voice-Kunden-Mix:
-                12 Kunden Ã 797&thinsp;â¬ Ã 17&thinsp;% ={' '}
-                <strong className="text-[hsl(var(--accent))]">~1.625&thinsp;â¬/Monat</strong> â plus
-                weitere Bestandskunden â gesamt{' '}
-                <strong className="text-[hsl(var(--fg))]">bis ~5.000â8.400&thinsp;â¬/Monat</strong>{' '}
-                mÃ¶glich.
+                12 Kunden × 797&thinsp;€ × 17&thinsp;% ={' '}
+                <strong className="text-[hsl(var(--accent))]">~1.625&thinsp;€/Monat</strong> — plus
+                weitere Bestandskunden → gesamt{' '}
+                <strong className="text-[hsl(var(--fg))]">bis ~5.000–8.400&thinsp;€/Monat</strong>{' '}
+                möglich.
               </p>
             </div>
             <p className="mt-4 font-mono text-[0.625rem] uppercase tracking-[0.16em] text-[hsl(var(--subtle))]">
-              Beispielrechnung auf Basis angenommener VermittlungsaktivitÃ¤t. Keine
+              Beispielrechnung auf Basis angenommener Vermittlungsaktivität. Keine
               Verdienstgarantie.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ââ KARRIERESTUFEN âââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── KARRIERESTUFEN ───────────────────────────────────────────── */}
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg-deep))] px-6 py-20 md:py-28 lg:px-10">
         <div className="mx-auto max-w-[1280px]">
           <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-[hsl(var(--accent))]">
@@ -536,8 +536,8 @@ export default function PartnerPage() {
             Vier Stufen. Keine Deckelung.
           </h2>
           <p className="mt-4 max-w-2xl text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-            Jede Stufe bringt hÃ¶here Provisionen und mehr UnterstÃ¼tzung. Du steigst auf, wenn du die
-            Kriterien erfÃ¼llst â automatisch, ohne GesprÃ¤ch, ohne Antrag.
+            Jede Stufe bringt höhere Provisionen und mehr Unterstützung. Du steigst auf, wenn du die
+            Kriterien erfüllst — automatisch, ohne Gespräch, ohne Antrag.
           </p>
 
           <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -582,7 +582,7 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      {/* ââ WAS WIR LIEFERN ââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── WAS WIR LIEFERN ──────────────────────────────────────────── */}
       <section className="relative border-t border-[hsl(var(--border))] px-6 py-20 md:py-28 lg:px-10">
         <div className="mx-auto max-w-[1280px]">
           <div className="grid grid-cols-12 gap-x-6 gap-y-8">
@@ -594,7 +594,7 @@ export default function PartnerPage() {
                 Was wir liefern
               </h2>
               <p className="mt-4 text-[1.05rem] leading-[1.65] text-[hsl(var(--muted))]">
-                Du verkaufst â wir liefern. Technisch, didaktisch, operativ.
+                Du verkaufst — wir liefern. Technisch, didaktisch, operativ.
               </p>
             </div>
             <div className="col-span-12 md:col-span-7 md:col-start-6">
@@ -616,7 +616,7 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      {/* ââ WER PASST / WER NICHT ââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── WER PASST / WER NICHT ────────────────────────────────────── */}
       <section className="relative border-t border-[hsl(var(--border))] bg-[hsl(var(--bg-deep))] px-6 py-20 md:py-28 lg:px-10">
         <div className="mx-auto max-w-[1280px]">
           <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-[hsl(var(--accent))]">
@@ -629,7 +629,7 @@ export default function PartnerPage() {
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-[hsl(var(--success))]/20 bg-[hsl(var(--success))]/[0.04] p-7">
               <h3 className="mb-5 font-display text-[1.1rem] font-medium text-[hsl(var(--fg))]">
-                â Das bringst du mit
+                ✓ Das bringst du mit
               </h3>
               <ul className="space-y-3">
                 {FIT_YES.map((item) => (
@@ -644,7 +644,7 @@ export default function PartnerPage() {
             </div>
             <div className="rounded-2xl border border-red-500/20 bg-red-500/[0.04] p-7">
               <h3 className="mb-5 font-display text-[1.1rem] font-medium text-[hsl(var(--fg))]">
-                â Das passt nicht
+                ✗ Das passt nicht
               </h3>
               <ul className="space-y-3">
                 {FIT_NO.map((item) => (
@@ -661,16 +661,16 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      {/* ââ FAQ + FORM (client components) âââââââââââââââââââââââââââââ */}
+      {/* ── FAQ + FORM (client components) ───────────────────────────── */}
       <PartnerFaq />
       <PartnerForm />
 
-      {/* ââ LEGAL DISCLAIMER âââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── LEGAL DISCLAIMER ─────────────────────────────────────────── */}
       <div className="border-t border-[hsl(var(--border))] px-6 py-10 lg:px-10">
         <div className="mx-auto max-w-[1280px]">
           <p className="max-w-4xl text-[0.75rem] leading-[1.7] text-[hsl(var(--subtle))]">
-            Diese Partnerschaft ist eine selbststÃ¤ndige TÃ¤tigkeit als Handelsvertreter:in gemÃ¤Ã
-            Â§84 HGB. Es besteht kein ArbeitsverhÃ¤ltnis. FÃ¼r die TÃ¤tigkeit ist ein eigenes Gewerbe
+            Diese Partnerschaft ist eine selbstständige Tätigkeit als Handelsvertreter:in gemäß
+            §84 HGB. Es besteht kein Arbeitsverhältnis. Für die Tätigkeit ist ein eigenes Gewerbe
             oder anerkannter Freiberufler-Status erforderlich. Alle Provisions- und
             Verdienstangaben sind Beispielrechnungen und keine Verdienstgarantien.
           </p>

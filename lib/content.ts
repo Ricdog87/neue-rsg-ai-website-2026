@@ -64,7 +64,6 @@ export const nav = [
   { label: 'Preise', href: '/preise' },
   { label: 'Cases', href: '/cases' },
   { label: 'Insights', href: '/insights' },
-  { label: 'Partner', href: '/partner' },
   { label: 'Termin', href: '/termin' }
 ] as const;
 
@@ -618,9 +617,14 @@ export const footer = {
       title: 'Unternehmen',
       links: [
         { label: 'Termin buchen', href: '/termin' },
-        { label: 'Partner werden', href: '/partner' },
         { label: 'Kontakt', href: '/#contact' },
         { label: 'KI-Beratung Wiesbaden', href: '/ki-beratung-wiesbaden' }, { label: 'Auf Google bewerten', href: 'https://g.page/r/CYC7KblNfDiYEAE/review' }
+      ]
+    },
+    {
+      title: 'Karriere',
+      links: [
+        { label: 'Partner werden', href: '/partner' }
       ]
     },
     {

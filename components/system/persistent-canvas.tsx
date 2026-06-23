@@ -93,7 +93,10 @@ export function PersistentCanvas() {
     return () => document.removeEventListener('visibilitychange', onVis);
   }, []);
 
-  // Scroll-driven opacity
+  // Scroll-driven opacity + WebGL-Pause sobald Hero off-screen.
+  // Sterne / Bloom kosten ~50–60% CPU/GPU permanent — wenn der Nutzer am
+  // Footer liest, ist der Hintergrund eh weggeblendet → freeze the scene.
+  const [scrolledPast, setScrolledPast] = useState(false);
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const el = ref.current;
@@ -106,6 +109,8 @@ export function PersistentCanvas() {
       const heroProgress = Math.min(1, y / (vh * 0.9));
       const op = 1 - heroProgress * 0.45;
       el.style.opacity = op.toFixed(3);
+      // Pause sobald wir > 1 viewport gescrollt haben (Hero komplett raus).
+      setScrolledPast(y > vh * 1.05);
       raf = 0;
     };
     const onScroll = () => {
@@ -144,7 +149,7 @@ export function PersistentCanvas() {
       style={{ contain: 'strict' }}
     >
       <CanvasBoundary fallback={fallback}>
-        <NeuralSpace reduced={reduced || paused} />
+        <NeuralSpace reduced={reduced || paused || scrolledPast} />
       </CanvasBoundary>
     </div>
   );

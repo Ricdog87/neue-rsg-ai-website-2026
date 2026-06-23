@@ -39,6 +39,10 @@ function Visualizer({ live }: { live: boolean }) {
     if (!ctx) return;
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // reduced-motion: still paint once (static look), kein rAF-Loop.
+    if (reduce) {
+      // Eine statische Darstellung reicht — Performance > Wow für diese User.
+    }
     const dpr = Math.min(2, window.devicePixelRatio || 1);
     let raf = 0;
     let t = 0;
@@ -46,6 +50,9 @@ function Visualizer({ live }: { live: boolean }) {
     let talk = 0;
     let scan = 0;
     let dir = 1;
+    // Pause-Gates: nur animieren wenn (a) sichtbar im Viewport UND (b) Tab nicht hidden.
+    let visible = false;
+    let hidden = typeof document !== 'undefined' ? document.hidden : false;
 
     const fit = () => {
       const r = canvas.getBoundingClientRect();
@@ -132,10 +139,40 @@ function Visualizer({ live }: { live: boolean }) {
 
       raf = requestAnimationFrame(frame);
     };
-    raf = requestAnimationFrame(frame);
+
+    const start = () => {
+      if (raf || !visible || hidden) return;
+      raf = requestAnimationFrame(frame);
+    };
+    const stop = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    };
+
+    // Sichtbarkeit per IntersectionObserver — pausiert die Canvas-Animation,
+    // sobald die Konsole außerhalb des Viewports ist (z.B. weit runtergescrollt).
+    const io = new IntersectionObserver(
+      (entries) => {
+        visible = entries[0]?.isIntersecting ?? false;
+        if (visible) start();
+        else stop();
+      },
+      { threshold: 0.01 },
+    );
+    io.observe(canvas);
+
+    // Tab-Hidden → pausieren (kein 60fps-Drain im Hintergrund-Tab).
+    const onVis = () => {
+      hidden = document.hidden;
+      if (hidden) stop();
+      else start();
+    };
+    document.addEventListener('visibilitychange', onVis);
 
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      io.disconnect();
+      document.removeEventListener('visibilitychange', onVis);
       window.removeEventListener('resize', fit);
     };
   }, []);

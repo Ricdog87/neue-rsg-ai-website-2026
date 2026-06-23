@@ -57,8 +57,19 @@ export function CursorTrail() {
 
     let raf = 0;
     const loop = () => {
+      // Idle-Auto-Stop: nach 1s ohne Mausbewegung Trail wegfaden, dann rAF
+      // beenden — kein Permanent-60fps-Drain, wenn nichts passiert.
+      const idle = performance.now() - lastMove;
+      const intensity = lastMove === 0 ? 0 : Math.max(0, 1 - idle / 900);
+
+      if (paused || intensity < 0.01) {
+        // Falls noch was sichtbar, einmal clearen, dann rAF stoppen.
+        ctx.clearRect(0, 0, w, h);
+        raf = 0;
+        return;
+      }
+
       raf = requestAnimationFrame(loop);
-      if (paused) return;
 
       // Bestehenden Schweif sanft ausfaden (Alpha reduzieren)
       ctx.globalCompositeOperation = 'destination-out';
@@ -69,28 +80,35 @@ export function CursorTrail() {
       pos.x += (target.x - pos.x) * 0.18;
       pos.y += (target.y - pos.y) * 0.18;
 
-      // Bei Stillstand verblasst der Schweif ganz
-      const idle = performance.now() - lastMove;
-      const intensity = lastMove === 0 ? 0 : Math.max(0, 1 - idle / 900);
-      if (intensity > 0.01) {
-        const r = 150;
-        const grad = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, r);
-        grad.addColorStop(0, `rgba(45,240,220,${0.22 * intensity})`);
-        grad.addColorStop(0.4, `rgba(120,90,240,${0.12 * intensity})`);
-        grad.addColorStop(1, 'rgba(120,90,240,0)');
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = grad;
-        ctx.fill();
+      const r = 150;
+      const grad = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, r);
+      grad.addColorStop(0, `rgba(45,240,220,${0.22 * intensity})`);
+      grad.addColorStop(0.4, `rgba(120,90,240,${0.12 * intensity})`);
+      grad.addColorStop(1, 'rgba(120,90,240,0)');
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    };
+
+    // Loop on demand: pointermove (re-)startet die Animation.
+    const armLoop = () => {
+      if (!raf && !paused) {
+        raf = requestAnimationFrame(loop);
       }
     };
-    raf = requestAnimationFrame(loop);
+    const onMoveArm = (e: PointerEvent) => {
+      onMove(e);
+      armLoop();
+    };
+    window.removeEventListener('pointermove', onMove);
+    window.addEventListener('pointermove', onMoveArm, { passive: true });
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
-      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointermove', onMoveArm);
       document.removeEventListener('visibilitychange', onVis);
     };
   }, []);

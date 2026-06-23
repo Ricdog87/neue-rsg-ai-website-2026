@@ -115,7 +115,8 @@ function NebulaPulse() {
           }
           float fbm(vec2 p){
             float v = 0.0; float a = 0.5;
-            for (int i = 0; i < 5; i++) { v += a * noise(p); p = p * 2.02 + vec2(1.7, 9.2); a *= 0.5; }
+            // 3 statt 5 Oktaven → spart ~40% Shader-Kosten, visuell quasi identisch.
+            for (int i = 0; i < 3; i++) { v += a * noise(p); p = p * 2.02 + vec2(1.7, 9.2); a *= 0.5; }
             return v;
           }
 
@@ -472,11 +473,13 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
         {/* Far parallax dust — slowest, behind the stars */}
         <FarDust />
 
-        {/* Stars — main layer, three resolutions for depth */}
+        {/* Stars — main layer, three resolutions for depth.
+            Counts ~halbiert (19.500 → 8.500) für deutlich weniger GPU/CPU-Last;
+            visuell bleibt der "tiefer Kosmos"-Eindruck dank Layering erhalten. */}
         <Stars
           radius={120}
           depth={90}
-          count={7000}
+          count={3000}
           factor={3}
           saturation={0}
           fade
@@ -485,17 +488,16 @@ function Scene({ pointer }: { pointer: React.MutableRefObject<{ x: number; y: nu
         <Stars
           radius={60}
           depth={45}
-          count={3500}
+          count={1500}
           factor={4}
           saturation={0}
           fade
           speed={0.85}
         />
-        {/* Fine, dense far stars — gives the deep "HD cosmos" depth */}
         <Stars
           radius={240}
           depth={140}
-          count={9000}
+          count={4000}
           factor={1.4}
           saturation={0}
           fade
@@ -543,7 +545,7 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
       style={{ background: '#000000' }}
     >
       <Canvas
-        dpr={[1.5, 2]}
+        dpr={[1, 1.5]}
         camera={{ position: [0, 0, 6], fov: 60 }}
         gl={{
           antialias: true,
@@ -555,9 +557,8 @@ export function NeuralSpace({ reduced }: { reduced?: boolean }) {
       >
         <color attach="background" args={['#000000']} />
         <Scene pointer={pointer} />
-        {/* Multisampled AA + a softer, wider bloom = cleaner edges and a
-            more cinematic glow without the harsh "halo" look. */}
-        <EffectComposer enableNormalPass={false} multisampling={4}>
+        {/* Multisampling halbiert (4→2), Bloom-Look bleibt durch mipmapBlur weich. */}
+        <EffectComposer enableNormalPass={false} multisampling={2}>
           <Bloom
             intensity={0.62}
             luminanceThreshold={0.32}

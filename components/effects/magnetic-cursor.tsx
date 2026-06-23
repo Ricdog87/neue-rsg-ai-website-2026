@@ -52,7 +52,7 @@ export function MagneticCursor() {
     };
 
     // Hover-Feedback: ring grows + optional context label slides in
-    const enterInteractive = (e: Event) => {
+    const enterInteractive = (el: Element) => {
       gsap.to(ring, {
         scale: 1.6,
         borderColor: 'hsl(0 0% 100% / 0.85)',
@@ -61,9 +61,7 @@ export function MagneticCursor() {
       });
       gsap.to(dot, { scale: 0, duration: 0.2 });
 
-      // Optional context label from data-cursor-label
-      const el = e.currentTarget as HTMLElement | null;
-      const text = el?.getAttribute('data-cursor-label');
+      const text = (el as HTMLElement).getAttribute?.('data-cursor-label');
       if (text && label) {
         label.textContent = text;
         gsap.to(label, {
@@ -90,15 +88,27 @@ export function MagneticCursor() {
     };
 
     const interactiveSelector = 'a, button, [role="button"], input, textarea, label, [data-cursor="hover"]';
-    const bind = () => {
-      document.querySelectorAll(interactiveSelector).forEach((el) => {
-        el.addEventListener('mouseenter', enterInteractive);
-        el.addEventListener('mouseleave', leaveInteractive);
-      });
+    // Event-Delegation statt N Listener + MutationObserver: ein einziger
+    // mouseover/mouseout am Dokument, prüft per .closest() ob das Ziel
+    // interaktiv ist. Skaliert mit beliebig vielen DOM-Mutations (Aiko-
+    // Streams, Framer-Animationen) ohne Re-Binding-Kosten.
+    let activeInteractive: Element | null = null;
+    const onOver = (e: MouseEvent) => {
+      const t = (e.target as Element | null)?.closest?.(interactiveSelector);
+      if (t && t !== activeInteractive) {
+        activeInteractive = t;
+        enterInteractive(t);
+      }
     };
-    bind();
-    const mo = new MutationObserver(bind);
-    mo.observe(document.body, { childList: true, subtree: true });
+    const onOut = (e: MouseEvent) => {
+      if (!activeInteractive) return;
+      const related = (e.relatedTarget as Element | null)?.closest?.(interactiveSelector);
+      if (related === activeInteractive) return;
+      leaveInteractive();
+      activeInteractive = null;
+    };
+    document.addEventListener('mouseover', onOver);
+    document.addEventListener('mouseout', onOut);
 
     window.addEventListener('pointermove', onMove, { passive: true });
 
@@ -112,7 +122,8 @@ export function MagneticCursor() {
       window.removeEventListener('pointermove', onMove);
       document.removeEventListener('mouseleave', onLeave);
       document.removeEventListener('mouseenter', onEnter);
-      mo.disconnect();
+      document.removeEventListener('mouseover', onOver);
+      document.removeEventListener('mouseout', onOut);
       document.documentElement.classList.remove('has-custom-cursor');
     };
   }, []);

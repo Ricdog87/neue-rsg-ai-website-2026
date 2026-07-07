@@ -19,6 +19,7 @@ import { RouteTransition } from '@/components/system/route-transition';
 import { SoundProvider } from '@/components/system/sound-engine';
 import { Analytics } from '@/components/system/analytics';
 import { GA4 } from '@/components/system/ga4';
+import { HubSpot } from '@/components/system/hubspot';
 import { AikoWidget } from '@/components/sales/aiko-widget';
 import { site } from '@/lib/content';
 import {
@@ -142,6 +143,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </SoundProvider>
         <Analytics />
         <GA4 />
+        <HubSpot />
       </body>
     </html>
   );

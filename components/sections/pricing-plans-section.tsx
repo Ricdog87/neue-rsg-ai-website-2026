@@ -495,7 +495,7 @@ export function PricingPlansSection() {
         ) : null}
 
         <p className="mt-8 max-w-3xl mx-auto text-center text-[0.85rem] leading-relaxed text-[hsl(var(--muted))]">
-          {en ? 'All prices net, plus VAT · Setup fee Solo €490 / AI Account Manager €990 net, one-time on the first invoice. With annual prepayment the setup is waived for Solo & AI Account Manager. Scale setup from €1,990, individual.' : 'Alle Preise netto, zzgl. MwSt. · Setup-Gebühr Solo 490 € / AI Account Manager 990 € netto einmalig auf 1. Rechnung. Bei Jahresvorkasse entfällt das Setup für Solo & AI Account Manager. Scale-Setup ab 1.990 € individuell.'}
+          {en ? 'All prices net, plus VAT · Setup fee Solo €490 / AI Account Manager €990 net, one-time on the first invoice. With annual prepayment the setup is waived for Solo & AI Account Manager. Scale setup from €1,990, individual. AI phone assistants run on the fonio telephony platform (fonio GmbH, Vienna) — set up, integrated and operated by RSG AI.' : 'Alle Preise netto, zzgl. MwSt. · Setup-Gebühr Solo 490 € / AI Account Manager 990 € netto einmalig auf 1. Rechnung. Bei Jahresvorkasse entfällt das Setup für Solo & AI Account Manager. Scale-Setup ab 1.990 € individuell. · KI-Telefonassistenten laufen auf der Telefonie-Plattform fonio (fonio GmbH, Wien) — Einrichtung, Integration & Betrieb durch RSG AI.'}
         </p>
       </div>
     </section>

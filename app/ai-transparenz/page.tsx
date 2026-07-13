@@ -96,7 +96,9 @@ export default function AiTransparenzPage() {
         <strong>Grenzen:</strong> Sprach-Erkennung kann bei Akzent, Hintergrundgeräuschen
         oder Übersprechen Fehler erzeugen. Marija ist primär für die Demonstration
         konzipiert; konkrete Termin- und Bestellprozesse werden in Produktivinstallationen
-        unserer Kunden eingerichtet und folgen dort eigenen Compliance-Regeln.
+        unserer Kunden eingerichtet und folgen dort eigenen Compliance-Regeln. Produktive
+        Kundeninstallationen betreiben wir auf der Telefonie-Plattform fonio (siehe
+        Abschnitt 3).
       </p>
       <p>
         <strong>Daten:</strong> Details siehe{' '}
@@ -118,6 +120,18 @@ export default function AiTransparenzPage() {
           <strong>ElevenLabs Inc.</strong> — Sprach-Modell und Telefonie-Pipeline für
           Marija. Auftragsverarbeitungsvertrag, EU-Hosting (Frankfurt) für die
           Sprachverarbeitung.
+        </li>
+        <li>
+          <strong>fonio GmbH</strong> (Wien, Österreich) — Telefonie-Plattform für die
+          produktiven KI-Telefonassistenten unserer Kunden (Pakete Solo, AI Account
+          Manager und Scale). RSG konfiguriert und betreibt die Assistenten auf der
+          fonio-Plattform; jeder Kunde erhält eine eigene fonio-Lizenz.
+          Auftragsverarbeitung gem. Art. 28 DSGVO; Datenspeicherung in Deutschland
+          (Hetzner), Telefonie über Twilio. Details:{' '}
+          <a href="/datenschutz#7.-ki-telefonassistent-sprachverarbeitung-voice-agenten">
+            Datenschutzerklärung &sect; 7
+          </a>
+          .
         </li>
         <li>
           <strong>HubSpot Ireland Ltd.</strong> — CRM für Lead-Speicherung und

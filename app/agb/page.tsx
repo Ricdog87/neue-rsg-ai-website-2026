@@ -53,6 +53,28 @@ export default function AgbPage() {
         <li>Team-Schulung und Dokumentation</li>
       </ul>
 
+      <h2>§ 3a Telefonie-Plattform fonio</h2>
+      <p>
+        KI-Telefonassistenten (insbesondere die Pakete „Solo“, „AI Account Manager“ und
+        „Scale“) werden auf der Telefonie-Plattform fonio der fonio GmbH (Wien,
+        Österreich) bereitgestellt. fonio ist Anbieterin der zugrunde liegenden
+        Plattform-Technologie; RSG erbringt Konzeption, Einrichtung, Integration, Betrieb
+        und laufende Betreuung. Jeder Kunde erhält eine eigene Lizenz bzw. ein eigenes
+        Kundenkonto auf der Plattform; die gemeinsame Nutzung einer Lizenz durch mehrere
+        Unternehmen findet nicht statt.
+      </p>
+      <p>
+        Voraussetzung für die Nutzung des KI-Telefonassistenten ist, dass der Kunde die
+        jeweils gültigen Endkundenbedingungen von fonio (abrufbar unter{' '}
+        <a href="https://docs.fonio.ai/Datenschutz/fonioAGB" target="_blank" rel="noopener noreferrer">
+          docs.fonio.ai
+        </a>
+        ) sowie die Datenschutzhinweise von fonio vor der ersten Nutzung akzeptiert. RSG
+        stellt diese Bedingungen im Onboarding bereit und dokumentiert die Annahme. Rechte
+        an der fonio-Plattform einschließlich dort hinterlegter Prompts und
+        Wissensdatenbanken verbleiben bei fonio bzw. deren Lizenzgebern (§ 9).
+      </p>
+
       <h2>§ 4 Mitwirkungspflichten des Kunden</h2>
       <p>
         Der Kunde stellt RSG die zur Leistungserbringung erforderlichen Informationen,

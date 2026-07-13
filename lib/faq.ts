@@ -11,7 +11,7 @@ export const FAQ: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Wie viel kostet ein KI-Telefonassistent von RSG AI?',
-    a: 'RSG AI bietet flexible Preismodelle ab 299 EUR/Monat. Die genauen Kosten hängen vom Anrufvolumen und den gewünschten Funktionen ab. Kontaktieren Sie uns für ein individuelles Angebot.',
+    a: 'RSG AI bietet flexible Preismodelle ab 199 € netto/Monat (Paket Solo) zzgl. einmaligem Setup. Die genauen Kosten hängen vom Anrufvolumen und den gewünschten Funktionen ab. Kontaktieren Sie uns für ein individuelles Angebot.',
   },
   {
     q: 'Wie lange dauert die Einrichtung?',
@@ -32,7 +32,7 @@ export const FAQ: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Sind wir am Ende von eurer Infrastruktur abhängig?',
-    a: 'Nein. Du bekommst Quellcode, Konfiguration, Daten und Dokumentation. Falls du irgendwann ohne uns weitermachen willst, kannst du das. Vendor-Lock-in ist ein Anti-Pattern, kein Geschäftsmodell.',
+    a: 'Nein. Du bekommst Konfiguration, Daten, Dokumentation und bei individuell entwickelten Workflows den Quellcode. Der KI-Telefonassistent läuft auf der Telefonie-Plattform fonio (Wien) — mit eigenem Kundenkonto je Kunde, das auch ohne uns weitergeführt werden kann. Vendor-Lock-in ist ein Anti-Pattern, kein Geschäftsmodell.',
   },
   {
     q: 'Was kostet der Betrieb monatlich?',
@@ -63,7 +63,7 @@ export const FAQ_EN: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Will we end up dependent on your infrastructure?',
-    a: 'No. You get source code, configuration, data and documentation. If you ever want to continue without us, you can. Vendor lock-in is an anti-pattern, not a business model.',
+    a: 'No. You get configuration, data, documentation and — for custom-built workflows — the source code. The AI phone assistant runs on the fonio telephony platform (Vienna) with a separate customer account per client, which you can keep even without us. Vendor lock-in is an anti-pattern, not a business model.',
   },
   {
     q: 'What does monthly operation cost?',

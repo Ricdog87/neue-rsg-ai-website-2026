@@ -31,7 +31,7 @@ export default function EnTermsPage() {
 
       <h2>Ownership</h2>
       <p>
-        On completion you own the code, configuration and data of the solutions we build for you. We continue to operate them on request, but you are never locked in.
+        On completion you own the configuration, data and — for custom-built workflows — the code of the solutions we build for you. AI phone assistants run on the fonio telephony platform (fonio GmbH, Vienna); each client receives their own fonio licence, and platform components remain the property of the respective provider. We continue to operate everything on request, but you are never locked in.
       </p>
 
       <h2>Data protection</h2>

@@ -14,7 +14,7 @@ import { useEnglish } from '@/components/system/use-locale';
 const ITEMS = [
   { Icon: BadgeCheck, title: '30-Tage-SLA', sub: 'oder Anpassung auf unsere Kosten', titleEn: '30-day SLA', subEn: 'or we fix it at our cost' },
   { Icon: FileCheck2, title: 'Festpreis', sub: 'vor dem ersten Commit — kein Scope-Creep', titleEn: 'Fixed price', subEn: 'before the first commit — no scope creep' },
-  { Icon: Lock, title: 'Du besitzt alles', sub: 'Code · Daten · Konfiguration', titleEn: 'You own everything', subEn: 'code · data · configuration' },
+  { Icon: Lock, title: 'Du besitzt deine Daten', sub: 'Daten · Workflows · Konfiguration', titleEn: 'You own your data', subEn: 'data · workflows · configuration' },
   { Icon: ShieldCheck, title: 'DSGVO · EU-Hosting', sub: 'Server in Nürnberg · AVV inkl.', titleEn: 'GDPR · EU hosting', subEn: 'servers in Nuremberg · DPA incl.' },
 ];
 

@@ -389,7 +389,7 @@ export const roi = {
 
 /* ─────────────────────────────────────────────────────────
    VOICE-PRICING — Solo / AI Account Manager / Scale (Subscription-Model).
-   Setup-Gebøhr per Tier · bei Jahresvorkasse entfällt Solo/AI Account Manager.
+   Setup-Gebühr per Tier · bei Jahresvorkasse entfällt Solo/AI Account Manager.
    ───────────────────────────────────────────────────────── */
 export const voicePricing = {
   annualDiscount: 0.15, // 15 % off bei jährlicher Vorkasse
@@ -458,7 +458,7 @@ export const voicePricing = {
     },
   ],
   footnote:
-    'Alle Preise zzgl. MwSt. · Setup-Gebøhr Solo 490 € / AI Account Manager 990 € netto einmalig, separat auf der ersten Rechnung berechnet. Bei Jahresvorkasse entfällt das Setup für Solo & AI Account Manager. · Scale-Setup individuell ab 1.990 € netto.',
+    'Alle Preise zzgl. MwSt. · Setup-Gebühr Solo 490 € / AI Account Manager 990 € netto einmalig, separat auf der ersten Rechnung berechnet. Bei Jahresvorkasse entfällt das Setup für Solo & AI Account Manager. · Scale-Setup individuell ab 1.990 € netto. · KI-Telefonassistenten laufen auf der Telefonie-Plattform fonio (fonio GmbH, Wien) — Einrichtung, Integration & Betrieb durch RSG AI.',
 } as const;
 
 /* ─────────────────────────────────────────────────────────
@@ -530,7 +530,7 @@ export const pricing = {
 export const about = {
   founder: {
     name: 'Ricardo Serrano',
-    role: 'Gründer & Geschäftsføhrer',
+    role: 'Gründer & Geschäftsführer',
     company: 'RSG Agent Services',
     photo: '/images/ricardo-serrano.png'
   }

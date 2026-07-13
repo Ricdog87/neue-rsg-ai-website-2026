@@ -9,14 +9,14 @@ import { useEnglish } from '@/components/system/use-locale';
 
 const GUARANTEES_DE = [
   { Icon: Clock, label: '30-Tage-SLA', detail: 'oder Anpassung auf unsere Kosten' },
-  { Icon: Code2, label: 'Du besitzt alles', detail: 'Code · Daten · Konfig' },
+  { Icon: Code2, label: 'Du besitzt deine Daten', detail: 'Daten · Workflows · Konfig' },
   { Icon: Lock, label: 'DSGVO · EU', detail: 'Server in Deutschland (Nürnberg) · AVV inkl.' },
   { Icon: Shield, label: 'Festpreis', detail: 'vor dem ersten Commit' },
 ] as const;
 
 const GUARANTEES_EN = [
   { Icon: Clock, label: '30-day SLA', detail: 'or we adjust at our cost' },
-  { Icon: Code2, label: 'You own everything', detail: 'Code · data · config' },
+  { Icon: Code2, label: 'You own your data', detail: 'Data · workflows · config' },
   { Icon: Lock, label: 'GDPR · EU', detail: 'Servers in Germany (Nuremberg) · DPA incl.' },
   { Icon: Shield, label: 'Fixed price', detail: 'before the first commit' },
 ] as const;

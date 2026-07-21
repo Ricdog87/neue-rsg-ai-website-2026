@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Star } from 'lucide-react';
+import { Star, Landmark, ArrowUpRight } from 'lucide-react';
 import { useEnglish } from '@/components/system/use-locale';
 
 /**
@@ -84,6 +84,34 @@ export function SocialProofBar() {
             </Link>
           </div>
         </div>
+
+        {/* Offizielle Anerkennung — Gründerportrait der Wirtschaftsförderung Wiesbaden */}
+        <motion.a
+          href="https://www.wiesbaden.de/wirtschaft/gruenden/gruender/RSG-Recruiting-Solutions-Group-GmbH"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-event="wiesbaden-portrait-click"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-10% 0px' }}
+          transition={{ duration: 0.5 }}
+          className="group mt-6 flex flex-col gap-3 rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--surface))]/60 px-5 py-4 transition-colors hover:border-[hsl(var(--accent))/45] hover:bg-[hsl(var(--surface))] sm:flex-row sm:items-center sm:gap-4 border-t-[hsl(var(--border))]"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[hsl(var(--accent))/30] bg-[hsl(var(--accent))/10] text-[hsl(var(--accent))]">
+            <Landmark className="h-4 w-4" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[hsl(var(--accent))]">
+              {en ? 'Officially featured' : 'Offiziell vorgestellt'}
+            </div>
+            <div className="mt-0.5 text-[0.9rem] leading-snug text-[hsl(var(--fg))]/90">
+              {en
+                ? 'Founder portrait by the City of Wiesbaden’s Economic Development Office'
+                : 'Gründerportrait der Wirtschaftsförderung der Landeshauptstadt Wiesbaden'}
+            </div>
+          </div>
+          <ArrowUpRight className="hidden h-4 w-4 shrink-0 text-[hsl(var(--subtle))] transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[hsl(var(--accent))] sm:block" />
+        </motion.a>
       </div>
     </section>
   );

@@ -46,7 +46,24 @@ export default function HomePage() {
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[440px] w-[720px] max-w-[92vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,hsl(174_100%_50%/0.05),transparent_75%)] blur-3xl"
         />
-        <div className="mx-auto max-w-2xl px-6 pb-16 pt-[130px] text-center lg:pt-[160px]">
+        <div className="mx-auto max-w-2xl px-6 pb-16 pt-[112px] text-center lg:pt-[140px]">
+          {/* Autoritäts-Pill — offizielles Gründerportrait der Stadt Wiesbaden.
+              Dezent im Dark-Stil, kein Promo-Banner. Trust-Signal ganz oben. */}
+          <a
+            href="https://www.wiesbaden.de/wirtschaft/gruenden/gruender/RSG-Recruiting-Solutions-Group-GmbH"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-event="wiesbaden-portrait-top-click"
+            className="group mb-9 inline-flex items-center gap-2.5 rounded-full border border-[hsl(174_100%_50%/0.28)] bg-[hsl(174_100%_50%/0.06)] py-1.5 pl-2.5 pr-4 text-[0.78rem] text-white/85 transition-colors hover:border-[hsl(174_100%_50%/0.55)] hover:bg-[hsl(174_100%_50%/0.10)]"
+          >
+            <span className="rounded-full bg-[hsl(174_100%_50%/0.16)] px-2 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-[hsl(174_100%_72%)]">
+              Offiziell
+            </span>
+            <span className="text-white/85">
+              Vorgestellt von der Wirtschaftsförderung Wiesbaden
+            </span>
+            <span aria-hidden className="text-[hsl(174_100%_72%)] transition-transform group-hover:translate-x-0.5">→</span>
+          </a>
           <h2 className="font-display text-[clamp(2rem,5vw,3.25rem)] font-medium leading-[1.05] tracking-[-0.02em] text-white">
             Sprich mit einem unserer KI-Agenten.
           </h2>

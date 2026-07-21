@@ -85,7 +85,8 @@ export function SocialProofBar() {
           </div>
         </div>
 
-        {/* Offizielle Anerkennung — Gründerportrait der Wirtschaftsförderung Wiesbaden */}
+        {/* Offizielle Anerkennung — Gründerportrait der Wirtschaftsförderung Wiesbaden.
+            Aufgewerteter Autoritäts-Streifen: Akzent-Rahmen + Glow, eigenständig prominent. */}
         <motion.a
           href="https://www.wiesbaden.de/wirtschaft/gruenden/gruender/RSG-Recruiting-Solutions-Group-GmbH"
           target="_blank"
@@ -95,22 +96,30 @@ export function SocialProofBar() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10% 0px' }}
           transition={{ duration: 0.5 }}
-          className="group mt-6 flex flex-col gap-3 rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--surface))]/60 px-5 py-4 transition-colors hover:border-[hsl(var(--accent))/45] hover:bg-[hsl(var(--surface))] sm:flex-row sm:items-center sm:gap-4 border-t-[hsl(var(--border))]"
+          className="group relative mt-8 flex flex-col gap-4 overflow-hidden rounded-xl border border-[hsl(var(--accent))/35] bg-[hsl(var(--accent))/[0.055]] px-6 py-5 transition-colors hover:border-[hsl(var(--accent))/60] hover:bg-[hsl(var(--accent))/[0.09]] sm:flex-row sm:items-center sm:gap-5"
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[hsl(var(--accent))/30] bg-[hsl(var(--accent))/10] text-[hsl(var(--accent))]">
-            <Landmark className="h-4 w-4" />
+          {/* Sanfter Akzent-Glow links */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -left-16 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,hsl(var(--accent)/0.18),transparent_70%)] blur-2xl"
+          />
+          <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[hsl(var(--accent))/45] bg-[hsl(var(--accent))/[0.14]] text-[hsl(var(--accent))]">
+            <Landmark className="h-5 w-5" />
           </span>
-          <div className="min-w-0 flex-1">
-            <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[hsl(var(--accent))]">
-              {en ? 'Officially featured' : 'Offiziell vorgestellt'}
+          <div className="relative min-w-0 flex-1">
+            <div className="font-mono text-[0.65rem] uppercase tracking-[0.22em] text-[hsl(var(--accent))]">
+              {en ? 'Officially featured by the City of Wiesbaden' : 'Offiziell vorgestellt · Landeshauptstadt Wiesbaden'}
             </div>
-            <div className="mt-0.5 text-[0.9rem] leading-snug text-[hsl(var(--fg))]/90">
+            <div className="mt-1 font-display text-[1.05rem] font-medium leading-snug text-[hsl(var(--fg))]">
               {en
-                ? 'Founder portrait by the City of Wiesbaden’s Economic Development Office'
-                : 'Gründerportrait der Wirtschaftsförderung der Landeshauptstadt Wiesbaden'}
+                ? 'Founder portrait by the Economic Development Office'
+                : 'Gründerportrait der Wirtschaftsförderung Wiesbaden'}
             </div>
           </div>
-          <ArrowUpRight className="hidden h-4 w-4 shrink-0 text-[hsl(var(--subtle))] transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[hsl(var(--accent))] sm:block" />
+          <span className="relative inline-flex shrink-0 items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-[hsl(var(--muted))] transition-colors group-hover:text-[hsl(var(--accent))]">
+            {en ? 'Read' : 'Lesen'}
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </span>
         </motion.a>
       </div>
     </section>

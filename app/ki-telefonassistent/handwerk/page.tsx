@@ -39,7 +39,7 @@ const jsonLd = [
       "address": { "@type": "PostalAddress", "streetAddress": "Klingholzstraße 7", "postalCode": "65189", "addressLocality": "Wiesbaden", "addressCountry": "DE" }
     },
     "areaServed": { "@type": "Country", "name": "Deutschland" },
-    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/ki-telefonassistent/handwerk", "servicePhone": "+49 30 826 83906" },
+    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/ki-telefonassistent/handwerk", "servicePhone": "+49 30 826 87804" },
     "url": "https://www.rsg-ai.de/ki-telefonassistent/handwerk",
     "description": "Dein KI-Telefonassistent nimmt Anrufe an, qualifiziert Anfragen und bucht Termine – auch auf der Baustelle. DSGVO, deutsche Server. Jetzt Demo anhören."
   },

@@ -39,7 +39,7 @@ const jsonLd = [
       "address": { "@type": "PostalAddress", "streetAddress": "Klingholzstraße 7", "postalCode": "65189", "addressLocality": "Wiesbaden", "addressCountry": "DE" }
     },
     "areaServed": { "@type": "Country", "name": "Deutschland" },
-    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/ki-telefonassistent/hausverwaltung", "servicePhone": "+49 30 826 83906" },
+    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/ki-telefonassistent/hausverwaltung", "servicePhone": "+49 30 826 87804" },
     "url": "https://www.rsg-ai.de/ki-telefonassistent/hausverwaltung",
     "description": "Mieter-Anrufe von Schadensmeldung bis Notfall – automatisch angenommen, strukturiert erfasst, priorisiert weitergeleitet. DSGVO, EU-Hosting."
   },

@@ -44,7 +44,7 @@ const jsonLd = [
       "address": { "@type": "PostalAddress", "streetAddress": "Klingholzstraße 7", "postalCode": "65189", "addressLocality": "Wiesbaden", "addressCountry": "DE" }
     },
     "areaServed": { "@type": "Country", "name": "Germany" },
-    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/en/ki-agentur-mittelstand", "servicePhone": "+49 30 826 83906" },
+    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/en/ki-agentur-mittelstand", "servicePhone": "+49 30 826 87804" },
     "url": "https://www.rsg-ai.de/en/ki-agentur-mittelstand",
     "description": "The AI agency born from sales: we build AND operate your AI agents. Fixed price, go-live in 4 weeks, GDPR & EU cloud."
   },

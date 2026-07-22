@@ -30,7 +30,7 @@ export function normalizePhone(raw: string): string | null {
   return s;
 }
 
-/** Format E.164 for display: "+49 30 826 83906". Best-effort, never throws. */
+/** Format E.164 for display: "+49 30 826 87804". Best-effort, never throws. */
 export function formatPhoneDisplay(e164: string): string {
   if (!e164.startsWith('+')) return e164;
   const digits = e164.slice(1);

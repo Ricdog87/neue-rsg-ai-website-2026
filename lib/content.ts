@@ -183,8 +183,8 @@ export const voiceAgents = {
     headline: 'Hör live, was wir bauen.',
     subline:
       'Ruf jetzt unseren Empfangs-Assistenten an. Sie nimmt ab beim ersten Klingeln. Echte Stimme, echte Antworten, in unter 0,4 Sekunden — wie für deine eigene Hotline.',
-    phoneDisplay: '+49 30 826 83906',
-    phoneHref: 'tel:+493082683906',
+    phoneDisplay: '+49 30 826 87804',
+    phoneHref: 'tel:+493082687804',
     phoneLabel: 'RSG KI Empfangs-Assistent · live',
     callCta: 'Jetzt anrufen',
     copyCta: 'Nummer kopieren',

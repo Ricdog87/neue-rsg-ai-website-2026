@@ -13,8 +13,8 @@ import { useEnglish } from '@/components/system/use-locale';
  */
 
 // Anzeige- und Wähl-Format der Inbound-Demo-Nummer
-const PHONE_DISPLAY = '+49 30 826 83906';
-const PHONE_DIAL = '+493082683906';
+const PHONE_DISPLAY = '+49 30 826 87804';
+const PHONE_DIAL = '+493082687804';
 
 export function HeroCallbackCard() {
   const en = useEnglish();

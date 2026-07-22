@@ -53,7 +53,7 @@ export default function VergleichPage() {
 
         <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
           <h3 className="text-2xl font-bold mb-4">RSG AI kostenlos testen</h3>
-          <p className="text-white/60 mb-6">Rufen Sie jetzt unseren Demo-Agenten an: +49 30 826 83906</p>
+          <p className="text-white/60 mb-6">Rufen Sie jetzt unseren Demo-Agenten an: +49 30 826 87804</p>
           <Link href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition inline-block">Demo-Termin anfragen</Link>
         </div>
 

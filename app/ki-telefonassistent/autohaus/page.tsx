@@ -39,7 +39,7 @@ const jsonLd = [
       "address": { "@type": "PostalAddress", "streetAddress": "Klingholzstraße 7", "postalCode": "65189", "addressLocality": "Wiesbaden", "addressCountry": "DE" }
     },
     "areaServed": { "@type": "Country", "name": "Deutschland" },
-    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/ki-telefonassistent/autohaus", "servicePhone": "+49 30 826 83906" },
+    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/ki-telefonassistent/autohaus", "servicePhone": "+49 30 826 87804" },
     "url": "https://www.rsg-ai.de/ki-telefonassistent/autohaus",
     "description": "Service-Termine, Probefahrten und Teile-Anfragen automatisch annehmen und buchen. Angebunden an Ihr DMS. DSGVO, Hosting in Deutschland."
   },

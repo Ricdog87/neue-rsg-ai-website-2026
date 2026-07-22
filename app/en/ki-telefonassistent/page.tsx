@@ -100,7 +100,7 @@ const JSON_LD = [
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: `${site.url}/en/ki-telefonassistent`,
-      servicePhone: '+49 30 826 83906',
+      servicePhone: '+49 30 826 87804',
     },
     url: `${site.url}/en/ki-telefonassistent`,
   },

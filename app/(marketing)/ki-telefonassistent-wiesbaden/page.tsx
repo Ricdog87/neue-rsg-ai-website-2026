@@ -25,7 +25,7 @@ export default function WiesbadenPage() {
     "name": "RSG AI – KI-Telefonassistent Wiesbaden",
     "image": "https://www.rsg-ai.de/og-image.png",
     "url": "https://www.rsg-ai.de",
-    "telephone": "+49-30-826-83906",
+    "telephone": "+49-30-826-87804",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Am Heiligenhaus 9",
@@ -92,8 +92,8 @@ export default function WiesbadenPage() {
           <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition">
             Kostenloses Erstgespräch
           </a>
-          <a href="tel:+493082683906" className="border border-white/20 text-white px-8 py-4 rounded-full hover:border-white/60 transition">
-            +49 30 826 839 06
+          <a href="tel:+493082687804" className="border border-white/20 text-white px-8 py-4 rounded-full hover:border-white/60 transition">
+            +49 30 826 878 04
           </a>
         </div>
 
@@ -167,7 +167,7 @@ export default function WiesbadenPage() {
             <a href="/termin" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition">
               Termin buchen
             </a>
-            <a href="tel:+493082683906" className="border border-white/20 text-white px-8 py-4 rounded-full hover:border-white/60 transition">
+            <a href="tel:+493082687804" className="border border-white/20 text-white px-8 py-4 rounded-full hover:border-white/60 transition">
               Jetzt anrufen
             </a>
           </div>

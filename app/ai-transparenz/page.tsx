@@ -84,7 +84,7 @@ export default function AiTransparenzPage() {
       <p>
         <strong>Zweck:</strong> Marija ist eine Live-Demonstration unserer KI-Telefonie.
         Sie können sie über die in den Voice-Sektionen eingebettete Sprach-Konsole oder
-        per Anruf unter <strong>+49 30 826 83906</strong> kontaktieren.
+        per Anruf unter <strong>+49 30 826 87804</strong> kontaktieren.
       </p>
       <p>
         <strong>Funktionsweise:</strong> Marija nutzt die KI-Plattform „ElevenLabs Conversational

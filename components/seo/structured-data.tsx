@@ -26,7 +26,7 @@ export function StructuredData() {
       "latitude": "50.0782",
       "longitude": "8.2397"
     },
-    "telephone": "+49-30-826-83906",
+    "telephone": "+49-30-826-87804",
     "email": "r.serrano@recruiting-sg.de",
     "foundingDate": "2024",
     "areaServed": ["DE", "AT", "CH"],

@@ -39,7 +39,7 @@ const jsonLd = [
       "address": { "@type": "PostalAddress", "streetAddress": "Klingholzstraße 7", "postalCode": "65189", "addressLocality": "Wiesbaden", "addressCountry": "DE" }
     },
     "areaServed": { "@type": "Country", "name": "Deutschland" },
-    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/ki-telefonassistent/steuerberater", "servicePhone": "+49 30 826 83906" },
+    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.rsg-ai.de/ki-telefonassistent/steuerberater", "servicePhone": "+49 30 826 87804" },
     "url": "https://www.rsg-ai.de/ki-telefonassistent/steuerberater",
     "description": "Mandanten-Anrufe automatisch annehmen, qualifizieren und weiterleiten. DSGVO-konform, DATEV-Welt, EU-Hosting. Entlasten Sie Ihr Sekretariat."
   },
